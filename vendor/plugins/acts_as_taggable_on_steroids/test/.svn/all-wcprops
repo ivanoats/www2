@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/sw_sw/!svn/ver/29/vendor/plugins/acts_as_taggable_on_steroids/test
+END
+tagging_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/sw_sw/!svn/ver/28/vendor/plugins/acts_as_taggable_on_steroids/test/tagging_test.rb
+END
+schema.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/sw_sw/!svn/ver/28/vendor/plugins/acts_as_taggable_on_steroids/test/schema.rb
+END
+abstract_unit.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/sw_sw/!svn/ver/28/vendor/plugins/acts_as_taggable_on_steroids/test/abstract_unit.rb
+END
+acts_as_taggable_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/sw_sw/!svn/ver/28/vendor/plugins/acts_as_taggable_on_steroids/test/acts_as_taggable_test.rb
+END
+database.yml
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/sw_sw/!svn/ver/28/vendor/plugins/acts_as_taggable_on_steroids/test/database.yml
+END
+debug.log
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/sw_sw/!svn/ver/29/vendor/plugins/acts_as_taggable_on_steroids/test/debug.log
+END
+tag_list_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/sw_sw/!svn/ver/28/vendor/plugins/acts_as_taggable_on_steroids/test/tag_list_test.rb
+END
+tag_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/sw_sw/!svn/ver/28/vendor/plugins/acts_as_taggable_on_steroids/test/tag_test.rb
+END
+tags_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/sw_sw/!svn/ver/28/vendor/plugins/acts_as_taggable_on_steroids/test/tags_helper_test.rb
+END

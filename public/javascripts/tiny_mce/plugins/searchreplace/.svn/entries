@@ -1,0 +1,64 @@
+8
+
+dir
+87
+http://sw.unfuddle.com/svn/sw_sw/public/javascripts/tiny_mce/plugins/searchreplace
+http://sw.unfuddle.com/svn/sw_sw
+
+
+
+2008-06-06T01:33:18.183132Z
+55
+sw_ivanoats
+
+
+svn:special svn:externals svn:needs-lock
+
+editor_plugin.js
+file
+
+
+
+
+2008-03-10T03:13:48.000000Z
+3154c3cb319e9dd9c5994ae7125ad4f2
+2008-06-06T01:33:18.183132Z
+55
+sw_ivanoats
+has-props
+
+langs
+dir
+
+editor_plugin_src.js
+file
+
+
+
+
+2008-03-10T03:13:48.000000Z
+1246e382a76c59f1ea7f8e67ab8c3e4b
+2008-06-06T01:33:18.183132Z
+55
+sw_ivanoats
+has-props
+
+css
+dir
+
+searchreplace.htm
+file
+
+
+
+
+2008-06-03T00:38:12.000000Z
+06c98f16bbfdf78fb09b09eb5985d080
+2008-06-06T01:33:18.183132Z
+55
+sw_ivanoats
+has-props
+
+js
+dir
+

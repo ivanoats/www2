@@ -1,0 +1,75 @@
+<h2>Thank you, help is on the way.</h2>
+<p><strong>Your support request has been emailed to our team.</strong></p>
+
+<%if @ticket.department == "technical" %>	
+<p>We have sent you an automatic reply with a tracking number. Please reply to that email instead of using this form again if you have more information.</p>
+<% end %>
+<p>Our team responds to issues as soon as possible. Depending on how busy we are, replies typically are one to four hours. During unusually busy periods it may take up to one business day to respond to your request.</p>
+
+<% if logged_in_user and logged_in_user.has_role?('administrator') %> 
+
+<p>
+  <b>Subject:</b>
+  <%=h @ticket.subject %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @ticket.description %>
+</p>
+
+<p>
+  <b>Domain name:</b>
+  <%=h @ticket.domain_name %>
+</p>
+
+<p>
+  <b>First name:</b>
+  <%=h @ticket.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%=h @ticket.last_name %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%=h @ticket.phone %>
+</p>
+
+<p>
+  <b>Timezone:</b>
+  <%=h @ticket.timezone %>
+</p>
+
+<p>
+  <b>Priority:</b>
+  <%=h @ticket.priority %>
+</p>
+
+<p>
+  <b>Cpanel username:</b>
+  <%=h @ticket.cpanel_username %>
+</p>
+
+<p>
+  <b>Cpanel password:</b>
+  <%=h @ticket.cpanel_password %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @ticket.email %>
+</p>
+
+<p>
+  <b>Email password:</b>
+  <%=h @ticket.email_password %>
+</p>
+
+
+<%= link_to 'Edit', edit_ticket_path(@ticket) %>
+<%= link_to 'Back', tickets_path %>
+
+<% end %>

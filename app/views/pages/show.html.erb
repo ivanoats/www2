@@ -1,0 +1,5 @@
+<h2><%= @page.title %></h2> 
+<p><%= @page.body %></p>
+<% if logged_in_user and logged_in_user.has_role?('administrator') %> 
+<%= link_to "edit page", edit_page_path(@page) %>
+<% end %>

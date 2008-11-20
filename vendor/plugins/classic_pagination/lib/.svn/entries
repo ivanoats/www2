@@ -1,0 +1,40 @@
+8
+
+dir
+87
+http://sw.unfuddle.com/svn/sw_sw/vendor/plugins/classic_pagination/lib
+http://sw.unfuddle.com/svn/sw_sw
+
+
+
+2008-02-08T06:48:17.588778Z
+23
+sw_ivanoats
+
+
+svn:special svn:externals svn:needs-lock
+
+pagination_helper.rb
+file
+
+
+
+
+2007-06-11T16:12:10.000000Z
+535b7515c14fb3964e97be32c2d36415
+2008-02-08T06:48:17.588778Z
+23
+sw_ivanoats
+
+pagination.rb
+file
+
+
+
+
+2007-06-11T16:12:10.000000Z
+8e6c7e73c2d01556d438dd91df0607a1
+2008-02-08T06:48:17.588778Z
+23
+sw_ivanoats
+

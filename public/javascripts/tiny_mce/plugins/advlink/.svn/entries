@@ -1,0 +1,64 @@
+8
+
+dir
+87
+http://sw.unfuddle.com/svn/sw_sw/public/javascripts/tiny_mce/plugins/advlink
+http://sw.unfuddle.com/svn/sw_sw
+
+
+
+2008-06-06T01:33:18.183132Z
+55
+sw_ivanoats
+
+
+svn:special svn:externals svn:needs-lock
+
+editor_plugin.js
+file
+
+
+
+
+2008-01-15T04:08:58.000000Z
+519f312b12dbc801f5d199f19ea650bb
+2008-06-06T01:33:18.183132Z
+55
+sw_ivanoats
+has-props
+
+langs
+dir
+
+link.htm
+file
+
+
+
+
+2008-06-03T00:38:12.000000Z
+241fc47632fb9681098fa2353afd96ec
+2008-06-06T01:33:18.183132Z
+55
+sw_ivanoats
+has-props
+
+editor_plugin_src.js
+file
+
+
+
+
+2008-01-15T04:08:58.000000Z
+cb2b648dc17c01c6d3030aef0d7b6a82
+2008-06-06T01:33:18.183132Z
+55
+sw_ivanoats
+has-props
+
+css
+dir
+
+js
+dir
+

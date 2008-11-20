@@ -1,0 +1,97 @@
+8
+
+dir
+87
+http://sw.unfuddle.com/svn/sw_sw/vendor/plugins/mofo
+http://sw.unfuddle.com/svn/sw_sw
+
+
+
+2008-03-06T14:49:05.294193Z
+38
+sw_ivanoats
+has-props
+
+svn:special svn:externals svn:needs-lock
+
+test
+dir
+
+LICENSE
+file
+
+
+
+
+2007-04-24T08:22:53.000000Z
+9826efd93e9707412ae4d5ad19dbb7e8
+2008-03-06T14:49:05.294193Z
+38
+sw_ivanoats
+
+Rakefile
+file
+
+
+
+
+2007-08-21T22:47:06.000000Z
+4abcc25830e4d5f7e52c0624563e06fc
+2008-03-06T14:49:05.294193Z
+38
+sw_ivanoats
+
+Manifest.txt
+file
+
+
+
+
+2007-04-30T07:23:44.000000Z
+83eddb7448a89d8bcfcee72513397dd4
+2008-03-06T14:49:05.294193Z
+38
+sw_ivanoats
+
+site
+dir
+
+init.rb
+file
+
+
+
+
+2007-04-24T08:22:53.000000Z
+d8dfc668595024c7ef088a1cf746996e
+2008-03-06T14:49:05.294193Z
+38
+sw_ivanoats
+
+lib
+dir
+
+CHANGELOG
+file
+
+
+
+
+2007-05-09T19:42:25.000000Z
+677c969e37e3275309453ce7db81b3c5
+2008-03-06T14:49:05.294193Z
+38
+sw_ivanoats
+
+README
+file
+
+
+
+
+2007-05-08T06:21:02.000000Z
+64b2507cd245466df833c06f5d5ff2a3
+2008-03-06T14:49:05.294193Z
+38
+sw_ivanoats
+

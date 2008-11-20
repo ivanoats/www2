@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/sw_sw/!svn/ver/28/vendor/plugins/acts_as_taggable_on_steroids/test/fixtures
+END
+user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/sw_sw/!svn/ver/28/vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/user.rb
+END
+users.yml
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/sw_sw/!svn/ver/28/vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/users.yml
+END
+taggings.yml
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/sw_sw/!svn/ver/28/vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/taggings.yml
+END
+subscription.rb
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/sw_sw/!svn/ver/28/vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/subscription.rb
+END
+post.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/sw_sw/!svn/ver/28/vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/post.rb
+END
+special_post.rb
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/sw_sw/!svn/ver/28/vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/special_post.rb
+END
+subscriptions.yml
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/sw_sw/!svn/ver/28/vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/subscriptions.yml
+END
+posts.yml
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/sw_sw/!svn/ver/28/vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/posts.yml
+END
+photo.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/sw_sw/!svn/ver/28/vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/photo.rb
+END
+photos.yml
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/sw_sw/!svn/ver/28/vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/photos.yml
+END
+magazine.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/sw_sw/!svn/ver/28/vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/magazine.rb
+END
+magazines.yml
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/sw_sw/!svn/ver/28/vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/magazines.yml
+END
+tags.yml
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/sw_sw/!svn/ver/28/vendor/plugins/acts_as_taggable_on_steroids/test/fixtures/tags.yml
+END

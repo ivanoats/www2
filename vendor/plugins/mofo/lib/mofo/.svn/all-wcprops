@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/lib/mofo
+END
+rel_tag.rb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/lib/mofo/rel_tag.rb
+END
+xoxo.rb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/lib/mofo/xoxo.rb
+END
+hcalendar.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/lib/mofo/hcalendar.rb
+END
+hcard.rb
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/lib/mofo/hcard.rb
+END
+adr.rb
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/lib/mofo/adr.rb
+END
+rel_bookmark.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/lib/mofo/rel_bookmark.rb
+END
+hresume.rb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/lib/mofo/hresume.rb
+END
+hentry.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/lib/mofo/hentry.rb
+END
+hreview.rb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/lib/mofo/hreview.rb
+END
+geo.rb
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/lib/mofo/geo.rb
+END
+hfeed.rb
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/lib/mofo/hfeed.rb
+END
+xfn.rb
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/lib/mofo/xfn.rb
+END

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: Product_one
+  price_dollars: 9
+  price_cents: 99
+
+two:
+  name: Product_two
+  price_dollars: 19
+  price_cents: 99

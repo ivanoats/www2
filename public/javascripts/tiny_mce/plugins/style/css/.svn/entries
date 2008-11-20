@@ -1,0 +1,29 @@
+8
+
+dir
+87
+http://sw.unfuddle.com/svn/sw_sw/public/javascripts/tiny_mce/plugins/style/css
+http://sw.unfuddle.com/svn/sw_sw
+
+
+
+2008-06-06T01:33:18.183132Z
+55
+sw_ivanoats
+
+
+svn:special svn:externals svn:needs-lock
+
+props.css
+file
+
+
+
+
+2007-11-01T21:58:48.000000Z
+3442be519751bad52b23dc35a1de30d5
+2008-06-06T01:33:18.183132Z
+55
+sw_ivanoats
+has-props
+

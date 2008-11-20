@@ -1,0 +1,103 @@
+8
+
+dir
+87
+http://sw.unfuddle.com/svn/sw_sw/public/javascripts/tiny_mce/plugins/table
+http://sw.unfuddle.com/svn/sw_sw
+
+
+
+2008-06-06T01:33:18.183132Z
+55
+sw_ivanoats
+
+
+svn:special svn:externals svn:needs-lock
+
+editor_plugin.js
+file
+
+
+
+
+2008-05-27T19:05:34.000000Z
+d08b97d989fa2dab0ec22b22dd8adccd
+2008-06-06T01:33:18.183132Z
+55
+sw_ivanoats
+has-props
+
+langs
+dir
+
+cell.htm
+file
+
+
+
+
+2008-06-03T00:38:12.000000Z
+44bdd56658d8afd1b17bb8f0b36a3eda
+2008-06-06T01:33:18.183132Z
+55
+sw_ivanoats
+has-props
+
+editor_plugin_src.js
+file
+
+
+
+
+2008-05-27T19:05:34.000000Z
+b7f4c796855052c8cb9143a422e5ca74
+2008-06-06T01:33:18.183132Z
+55
+sw_ivanoats
+has-props
+
+css
+dir
+
+merge_cells.htm
+file
+
+
+
+
+2008-06-03T00:38:12.000000Z
+e2c8360c37f1a4f7492ee555a9d2ff40
+2008-06-06T01:33:18.183132Z
+55
+sw_ivanoats
+has-props
+
+js
+dir
+
+row.htm
+file
+
+
+
+
+2008-06-03T00:38:12.000000Z
+862dcb05201061bea985b7ba8c26a013
+2008-06-06T01:33:18.183132Z
+55
+sw_ivanoats
+has-props
+
+table.htm
+file
+
+
+
+
+2008-06-03T00:38:12.000000Z
+8eaf68b57c9322259402021fbf6b057a
+2008-06-06T01:33:18.183132Z
+55
+sw_ivanoats
+has-props
+

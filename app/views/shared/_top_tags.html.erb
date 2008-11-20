@@ -1,0 +1,8 @@
+<ul class="bullet" id="support_sidebar">
+	<h2 class="fixes">Top Tags</h2>
+</ul>
+<div id="top_tags_sidebar">
+	<% tag_cloud @article_tags, %w(css1 css2 css3 css4) do |tag, css_class| %>
+    	<%= link_to tag.name, { :controller => 'tags', :action => 'show', :id => tag.name }, :class => css_class %>
+	<% end %>
+</div>

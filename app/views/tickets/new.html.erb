@@ -1,0 +1,115 @@
+<% content_for :sidebar do %>
+	<%= render :partial => 'shared/search_form' %>
+	<%= render :partial => 'shared/common_fixes' %>
+	
+	<div class="spiffy-wrap">
+
+	  <b class="spiffy">
+	  <b class="spiffy1"><b></b></b>
+	  <b class="spiffy2"><b></b></b>
+	  <b class="spiffy3"></b>
+	  <b class="spiffy4"></b>
+	  <b class="spiffy5"></b></b>
+
+	  <div class="spiffyfg">
+	<div class="synopsis alert">What looks different here? Our support page has the look and feel of our upcoming new site.</div>
+
+	  </div>
+
+	  <b class="spiffy">
+	  <b class="spiffy5"></b>
+	  <b class="spiffy4"></b>
+	  <b class="spiffy3"></b>
+	  <b class="spiffy2"><b></b></b>
+	  <b class="spiffy1"><b></b></b></b>
+	</div>
+
+	
+<% end %>
+
+<div id="support_form">
+
+
+
+<h1>Get Help - Contact Support</h1>
+<p>Please use this form to guide you in giving our tech team the complete information they need to help you faster. All fields are required unless it says optional.</p>
+<%= error_messages_for :ticket %>
+
+<% form_for(@ticket) do |f| %>
+
+    <fieldset>
+	<div>
+	    <label for="department">Department</label>:
+	<% # department = 'technical' %>
+	    <span class="radio"><%= radio_button "ticket", :department, "technical", :id => "radio-tech" %> Technical</span> <span class="field_description_radio">24 hours</span>&nbsp;&nbsp;&nbsp;&nbsp;
+	    <span class="radio"><%= radio_button "ticket", :department, "other", :id => "radio-other" %> Sales, billing, or anything else</span> <span class="field_description_radio">9am to 5pm US Pacific Time</span>
+    </div>
+  <div>
+    <label for="subject">Subject</label>: 
+	<span class="field_description">A few words to describe/remember the problem (will be the email subject in our reply to you)</span>
+    <%= f.text_field :subject %>
+  </div>
+  <div>
+    <label for="description">Description</label><br />
+    <span class="field_description">Please describe how to reproduce the issue in a step-by-step list of instructions, and any other information needed. Include the full text of error messages, or email bounce messages.</span>
+    <%= f.text_area( :description, :cols => 60, :rows => 10) %>
+  </div>
+
+  <div>
+    <label for="">Domain name</label><br /><span class="field_description">e.g.  your-domain.com</span>
+    <%= f.text_field :domain_name %>
+  </div>
+
+  <div>
+    <label for="">First Name</label><br /><span class="field_description"></span>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div>
+    <label for="">Last Name</label><br /><span class="field_description"></span>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div>
+    <label for="email">Your Contact Email</label><br /><span class="field_description">(if you are having an issue with the email we are hosting for you, use another one to ensure delivery)</span>
+    <%= f.text_field :email %>
+  </div>
+
+  <div>
+    <label for="phone_number">Phone Number</label><br /><span class="field_description">Optional - used only if you have purchased phone support or for escalating issues. Please include country code (+1 for US and Canada, +44 for UK, etc&hellip;)</span><br/>
+    <%= f.text_field :phone %>
+  </div>
+
+  <div>
+    <label for="timezone">Timezone</label><br /><span class="field_description">(Optional - please include country and timezone if you included phone number. Do not use an abbreviation)</span>
+    <%= f.text_field :timezone %>
+  </div>
+
+  <div>
+    <label for="priority">Priority</label><br /><span class="field_description">Optional</span>
+    <%= f.text_field :priority %>
+  </div>
+
+  <div>
+    <label for="cpanel_username">cPanel username</label><br /><span class="field_description">put don't know if you don't know it. <a href="http://www.sustainablewebsites.com/billing">Click here to re-send your welcome email</a></span>
+    <%= f.text_field :cpanel_username %>
+  </div>
+
+  <div>
+    <label for="cpanel_password">cPanel password</label><br /><span class="field_description">put don't know if you don't know it</span>
+    <%= f.password_field :cpanel_password %>
+  </div>
+
+  <div>
+    <label for="">Email password</label><br /><span class="field_description">Optional. If you are having an issue with an email account, please include the password so that our team can trouble-shoot and test resolution of the problem.</span>
+    <%= f.password_field :email_password %>
+  </div>
+
+  <div>
+    <%= f.submit "Submit" %>
+  </div>
+  </fieldset>
+<% end %>
+
+<%#= link_to 'Back', tickets_path %>
+</div><!-- end div support form -->

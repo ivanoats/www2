@@ -1,0 +1,46 @@
+8
+
+dir
+87
+http://sw.unfuddle.com/svn/sw_sw/vendor/plugins/mofo/lib
+http://sw.unfuddle.com/svn/sw_sw
+
+
+
+2008-03-06T14:49:05.294193Z
+38
+sw_ivanoats
+
+
+svn:special svn:externals svn:needs-lock
+
+mofo
+dir
+
+microformat
+dir
+
+mofo.rb
+file
+
+
+
+
+2007-04-24T08:22:53.000000Z
+a8fef6b4c5a5e110bd4b81063a044cdd
+2008-03-06T14:49:05.294193Z
+38
+sw_ivanoats
+
+microformat.rb
+file
+
+
+
+
+2007-08-04T03:11:23.000000Z
+9a66d9c6d1cb561a4c4c9b085dfef599
+2008-03-06T14:49:05.294193Z
+38
+sw_ivanoats
+

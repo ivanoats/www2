@@ -1,0 +1,46 @@
+8
+
+dir
+87
+http://sw.unfuddle.com/svn/sw_sw/vendor/plugins/permalink_fu
+http://sw.unfuddle.com/svn/sw_sw
+
+
+
+2008-05-21T01:34:09.617815Z
+46
+sw_ivanoats
+
+
+svn:special svn:externals svn:needs-lock
+
+test
+dir
+
+init.rb
+file
+
+
+
+
+2008-05-02T14:47:08.000000Z
+48e9e248c3c4689a8418023ad5fc9634
+2008-05-21T01:34:09.617815Z
+46
+sw_ivanoats
+
+lib
+dir
+
+README
+file
+
+
+
+
+2008-05-02T14:47:02.000000Z
+025b52417314ceb8f391f725cc0284a9
+2008-05-21T01:34:09.617815Z
+46
+sw_ivanoats
+

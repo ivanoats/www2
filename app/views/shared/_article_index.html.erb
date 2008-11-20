@@ -1,0 +1,17 @@
+<div class="hfeed">
+<% articles.each do |article| %> 
+  <div class="hentry">
+	 <h3 class="entry-title"><%= link_to article.title,  permalink_url(article.permalink), :rel => 'bookmark' %></h3> 
+     <div class="entry-content"><%= article.synopsis %> 
+      	<%= link_to 'Read more', permalink_url(article.permalink), :rel => 'bookmark' %>
+     </div><!-- end entry-content -->
+	 <div class="article_meta"> 
+	    Created on <span class="published" title="<%= article.created_at.to_s %>"><%= article.created_at.to_s(:human_date) %></span> by <span class="author vcard"><%= link_to article.user.username, user_url(article.user.id), :class => 'fn url' if article.user %>
+		</span> in
+		<% if article.category %> 
+	      <%= link_to article.category.name, category_articles_path(article.category), :rel => 'tag', :class => 'entry-category' %>  
+	    <% end #if article has a category%>
+	 </div><!-- end article_meta -->
+  </div><!-- end hentry -->
+<% end %>
+</div><!-- end hfeed -->

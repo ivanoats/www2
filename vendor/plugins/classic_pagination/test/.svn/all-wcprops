@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/sw_sw/!svn/ver/23/vendor/plugins/classic_pagination/test
+END
+helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/sw_sw/!svn/ver/23/vendor/plugins/classic_pagination/test/helper.rb
+END
+pagination_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/sw_sw/!svn/ver/23/vendor/plugins/classic_pagination/test/pagination_helper_test.rb
+END
+pagination_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/sw_sw/!svn/ver/23/vendor/plugins/classic_pagination/test/pagination_test.rb
+END

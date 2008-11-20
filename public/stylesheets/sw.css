@@ -1,0 +1,274 @@
+/***
+
+   :: Theme Development: q:D rosschapman.net
+   :: Last modified 10/15/07
+
+	Font Palette
+	***************************************
+	body: 'Trebuchet MS', sans-serif;
+
+	Color Palette
+	***************************************
+	dropdown green color: #305305;
+	footer light green color: #e0ead3;
+
+***/
+
+/*=============================================
+----------------- General --------------------
+==============================================*/
+
+body {margin: 0; padding: 0; font: small "Helvetica Neue", Helvetica, Arial, sans-serif;;}
+h1, h2, h3, h4, h5, h6 {font-weight:normal; font-family: 'Trebuchet MS', sans-serif;}
+h1 {margin: 0; padding-bottom: 8px; font-size: 1.7em;}
+h2 {font-size:1.5em;margin: 0 0 .2em;}
+h3 {font-size:1.3em;margin-bottom: .5em; line-height:1;}
+h4 {font-size:1.2em;line-height:1.25;margin-bottom:1.25em;height:1.25em;}
+h5 {font-size:1em;font-weight:bold;margin-bottom:1.5em;}
+h6 {font-size:1em;font-weight:bold;}
+h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {margin:0;}
+h2.page-title {margin: 1em 0 1em;}
+h2.entry-title {margin: 0 0 .2em;}
+h2.search-title {padding-top: 3px;}
+h3 a {color: #000000;} /* blog titles */
+h3 a:hover {background: #eeeeee;}
+p img {margin:1.5em 1em 1.5em 0;padding:0;}
+p img.right {float:right;margin:1.5em 0 1.5em 1.5em;}
+a, a:focus, a:hover {width:0; height:0;outline:0; /* removes outline */}
+a {text-decoration:none;}
+a:hover {text-decoration: underline;}
+blockquote {margin:1.5em;color:#666;font-style:italic;}
+strong {font-weight:bold;}
+em, dfn {font-style:italic;}
+dfn {font-weight:bold;}
+sup, sub {line-height:0;}
+abbr, acronym {border: none; display: block;}
+address {margin:0 0 1.5em;font-style:italic;}
+del {color:#666;}
+pre, code {margin:1.5em 0;white-space:pre;}
+pre, code, tt {font:1em 'andale mono', 'lucida console', monospace;line-height:1.5;}
+img {border:none;}
+ul, ol, li {margin:0; padding:0;}
+ol li {list-style-type: decimal;}
+a img {border: none;}
+
+/*=============================================
+----------------- Forms ----------------------
+==============================================*/
+
+input, input.title, textarea, select {margin:0.5em 0;border:1px solid #bbb;}
+input:active, input:focus, input.title:focus, textarea:focus, select:focus {border:1px solid #666;}
+input.title {font-size:1.5em;}
+
+
+/******************* Clearfix ********************/
+.clearfix:after {content: ".";display: block;clear: both;visibility: hidden;line-height: 0;height: 0;}
+.clearfix {display: inline-block;}
+html[xmlns] .clearfix {display: block;}
+* html .clearfix {height: 1%;}
+
+/*=============================================
+----------------- Layout ---------------------
+==============================================*/
+
+#wrapper {margin: 0; padding: 0; background: url(../images/bg.jpg) top center repeat-x;}
+	#pages_home #wrapper {margin: 0; padding: 0; background: url(../images/bg_home.jpg) top center repeat-x;}
+#container {width: 1000px; margin: 0 auto; padding-bottom: 10px;}
+#header {height: 110px;}
+#header img {margin: 0; padding-left: 1%; float: left;}
+#top p {float: right; margin: 0; padding: 10px 20px 0 0; display: inline; font-size: 1em;}
+#top_login, #top_login a {color: #00b160; text-decoration: none;}
+#top_twitter {color: #008265;}
+/*#splash {height: 333px; width: 990px; margin: 0; float: right;  background: url(../images/bg_splash.jpg) no-repeat;}
+*/
+#content {float: left; width: 67%; margin: 20px 0;  padding: 0 5% 0 2%; border-right: 1px solid #dedede; font-size: 1.2em;}
+#content ul {margin-left: 15px;}
+#sidebar {float: left; width: 20%; margin: 20px 0; padding: 0 1% 0 3%; text-align: right;}
+#sidebar ul, 
+#sidebar li {margin: 0; padding: 0; list-style: none;}
+#sidebar p img {margin: 0; padding: 0;}
+#footer {margin: 0; padding-bottom: 2%; clear: left; background: url(../images/ft_bg.gif) top repeat-x #82aa51; color: #e0ead3; font-size: 1.3em;}
+#footer-inner {width: 1000px; margin: 0 auto; padding-left: 30px; clear: both;}
+.footer-block {margin: 0; padding: 10px 0; border-bottom: 1px solid #9bbd71; clear: both; font-size: 1em;}
+.footer-block p, 
+.footer-block ul {padding-left: 70px;}
+.footer-block li {list-style:none;}
+.footer-block h1 {font-size: 1em; font-weight: bold;}
+.footer-block a {color: #e0ead3; text-decoration: none;}
+.footer_headline_link {color: #115511}
+.tiny {font-size: .6em;}
+.fb1 {font-size: 1.2em; background: url(../images/fb1_bg.gif) left no-repeat;}
+.fb2 {height: 130px; padding: 30px 0 0; margin: 0; font: .8em arial, helvetica, sans-serif; background: url(../images/fb2_bg.gif) left center no-repeat;}
+.fb2 ul.first {padding-left: 70px;}
+.fb2 ul {float: left; margin: 0; padding-left: 5%;}
+.fb3 {color: #4a602f; background: url(../images/fb3_bg.gif) left no-repeat; border: none;}
+.clearfix:after {content: "."; display: block; height: 0; clear: both; visibility: hidden;}
+.clearfix {display: inline-block;}  
+
+#spacer {margin-top: 10px; padding-top: 10px;}
+
+/******************* Blog ********************/
+.article_meta { font-size: .8em; margin-top: 5px; }
+
+.synopsis, .alert {padding: 1em 1.5em; color: #77a143; font-style: italic; background: #f9ffb9; font-size: .9em; font-weight: bold; text-align: left;}
+.alert {font-size: 1em;}
+.spiffy-wrap {margin-top: 10px; margin-left: -5px;}
+.spiffy{display:block}
+.spiffy *{
+  display:block;
+  height:1px;
+  overflow:hidden;
+  font-size:.01em;
+  background:#f9ffb9;}
+.spiffy1{
+  margin-left:3px;
+  margin-right:3px;
+  padding-left:1px;
+  padding-right:1px;
+  border-left:1px solid #fcffe0;
+  border-right:1px solid #fcffe0;
+  background:#faffca}
+.spiffy2{
+  margin-left:1px;
+  margin-right:1px;
+  padding-right:1px;
+  padding-left:1px;
+  border-left:1px solid #fefff8;
+  border-right:1px solid #fefff8;
+  background:#faffc6}
+.spiffy3{
+  margin-left:1px;
+  margin-right:1px;
+  border-left:1px solid #faffc6;
+  border-right:1px solid #faffc6;}
+.spiffy4{
+  border-left:1px solid #fcffe0;
+  border-right:1px solid #fcffe0}
+.spiffy5{
+  border-left:1px solid #faffca;
+  border-right:1px solid #faffca}
+.spiffyfg{
+  background:#f9ffb9}
+
+
+
+/*=============================================
+----------------- Nav ------------------------
+==============================================*/
+
+#nav {height: 46px; width: 552px; margin-top: 32px; clear: right; float: right; background: url(../images/bg_nav.gif) bottom no-repeat;}
+#nav ul {margin: 0; padding: 0;}
+#nav li {list-style: none; float: left;}
+#nav a {display: block; text-decoration: none;}
+#nav a:hover {background: url(../images/bg_nav_hover.gif) no-repeat; }
+#nav #home a {height: 46px; width: 120px;}
+#nav #home a:hover {background: url(../images/bg_nav_hover.gif) no-repeat; background-position: 0;}
+#nav #services a {height: 46px; width: 130px;}
+#nav #services a:hover {background: url(../images/bg_nav_hover.gif) no-repeat; background-position: -120px 0;}
+#nav #blog a {height: 46px; width: 80px;}
+#nav #blog a:hover {background: url(../images/bg_nav_hover.gif) no-repeat; background-position: -250px 0;}
+#nav #about a {height: 46px; width: 100px;}
+#nav #about a:hover {background: url(../images/bg_nav_hover.gif) no-repeat; background-position: -330px 0}
+#nav #contact a {height: 46px; width: 120px;}
+#nav #contact a:hover {background: url(../images/bg_nav_hover.gif) no-repeat; background-position: -430px 0}
+#nav li#services ul, #nav li#about ul {margin: 46px 0 0 0px;}
+#nav li#services ul, #nav li#about ul {padding: 0 0 0 20px; background: #d1ebb1;}
+#nav li#services li a, #nav li#about li a {height: auto; padding: 10px 0; color: #77a143;}
+#nav li#services ul a:hover, #nav li#about ul a:hover {color: #305305; background: none;}
+#nav li ul {position: absolute; width: 100px; left: -999em;}
+#nav li:hover ul, #nav li.sfhover ul {left: auto;}
+#nav li ul {float: none; clear: both; margin: 0;}
+
+/*=============================================
+----------------- Splash Nav -----------------
+==============================================*/
+
+#splash {background-image: url(../images/bg_splash.jpg); background-repeat:no-repeat;}
+#splash ul {margin: 0; padding: 190px 0 0 745px; list-style: none;}
+#splash li {margin: 0; padding: 0;}
+#splash a {display: block;}
+#splash a:hover {background: url(../images/bg_splash_hov.jpg) right no-repeat;}
+#splash #signup a {height: 67px; width: 240px;}
+#splash #signup a:hover {background: url(../images/bg_splash_hov.jpg) no-repeat; background-position: -745px -190px;}
+#splash #learn_more a {height: 67px; width: 240px;}
+#splash #learn_more a:hover {background: url(../images/bg_splash_hov.jpg) no-repeat; background-position: -745px -257px;}
+
+/*=============================================
+----------------- User Table -----------------
+==============================================*/
+
+table#users { width: 100%;} 
+table#users th { font-size: 95%; } 
+table#users td { font-size: 90%; } 
+
+/************** support ticket form ***************/
+
+.field_description { color: #555; font-size: .8em; margin-bottom: 2px; display: block;}
+.field_description_radio { color: #555; font-size: .8em; margin-bottom: 2px; display: inline;}
+
+div#support_form ul {
+ font-size: .9em;
+ margin-bottom: 20px;
+}
+
+div#support_form li {
+ list-style-position: outside;
+ list-style-type: disc;
+ margin-left: 15px;
+ margin-bottom: 10px;
+}
+
+div#support_form input {
+ background-color: #cfc;
+ display: inline; /* was block */
+ }
+
+div#support_form input.sffocus,
+div#support_form input:focus, 
+div#support_form textarea.sffocus,
+div#support_form textarea:focus {
+	background-color: #e8ffe8;
+}
+
+div#support_form div {
+	margin-bottom: 15px;
+}
+
+div#support_form fieldset {
+	border: none;
+}
+
+div#support_form textarea {
+background-color: #cfc;
+display: block;
+
+}
+
+.errorExplanation { color: red; margin-bottom: 15px;}
+
+#support_sidebar {
+	margin-top: 10px;
+	text-align: left;
+}
+
+#support_sidebar li {
+	margin: 10px 0 0;
+	padding: 0px 0 0 30px;
+	background: url(../images/info.png) top left no-repeat;
+}
+
+/******************* rails flash (error messages) ********************/
+
+#notice { color: green; }
+.fieldWithErrors { background-color: red;  }
+.radio .fieldWithErrors { display: inline; background-color: red; }
+.radio .fieldWithErrors input { display: inline; background-color: red; }
+
+
+/******************* tag clouds *************************************/
+.css1 { font-size: 1.0em; }
+.css2 { font-size: 1.2em; }
+.css3 { font-size: 1.4em; }
+.css4 { font-size: 1.6em; }
+
+#top_tags_sidebar { text-align: left; margin-bottom: 15px }

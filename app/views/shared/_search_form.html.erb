@@ -1,0 +1,9 @@
+<% form_tag articles_path, :method => 'get' do %>
+  <li class="search" style="text-align: left;">
+	 <img src="/images/search.png"/ style="float:left; margin: 0; padding: 0 15px 5px 0" height=26 width=28 /><h2 class="search-title">Search</h2>
+	 <p>Many answers are already here! Search the <a title="View the Sustainable Websites Knowledgebase for articles on web design and hosting troubleshooting" href="/knowledgebase">knowledgebase</a>:
+    <%= text_field_tag :search, params[:search] %>
+	  <%= submit_tag :search, :name => nil %>
+	</p>
+	</li>
+<% end %>

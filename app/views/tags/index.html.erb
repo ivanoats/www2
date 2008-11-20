@@ -1,0 +1,9 @@
+<% content_for :sidebar do %>
+	<%= render :partial => 'shared/search_form' %>
+<% end %>
+
+<h2>Article tags:</h2>
+
+<% tag_cloud @article_tags, %w(css1 css2 css3 css4) do |tag, css_class| %>
+    <%= link_to tag.name, { :action => :show, :id => tag.name }, :class => css_class %>
+<% end %>

@@ -1,0 +1,19 @@
+8
+
+dir
+87
+http://sw.unfuddle.com/svn/sw_sw/vendor/plugins/acts_as_taggable_on_steroids/generators
+http://sw.unfuddle.com/svn/sw_sw
+
+
+
+2008-02-13T23:09:40.903168Z
+28
+sw_ivanoats
+
+
+svn:special svn:externals svn:needs-lock
+
+acts_as_taggable_migration
+dir
+

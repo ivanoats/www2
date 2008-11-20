@@ -1,0 +1,17 @@
+K 21
+piston:local-revision
+V 2
+37
+K 22
+piston:remote-revision
+V 3
+365
+K 11
+piston:root
+V 38
+svn://errtheblog.com/svn/projects/mofo
+K 11
+piston:uuid
+V 36
+cf301c5b-d72e-0410-996c-ed4829982077
+END

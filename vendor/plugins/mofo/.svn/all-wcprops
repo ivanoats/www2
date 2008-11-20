@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/LICENSE
+END
+Rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/Rakefile
+END
+Manifest.txt
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/Manifest.txt
+END
+init.rb
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/init.rb
+END
+CHANGELOG
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/CHANGELOG
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/README
+END

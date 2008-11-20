@@ -1,0 +1,67 @@
+# Logfile created on Wed Feb 13 23:24:36 +0000 2008 by /
+  [4;36;1mSQL (0.000211)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: Unknown table 'tags': DROP TABLE `tags`[0m
+  [4;36;1mSQL (0.003142)[0m   [0;1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255) DEFAULT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: Unknown table 'taggings': DROP TABLE `taggings`[0m
+  [4;36;1mSQL (0.046140)[0m   [0;1mCREATE TABLE `taggings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `tag_id` int(11) DEFAULT NULL, `taggable_id` int(11) DEFAULT NULL, `taggable_type` varchar(255) DEFAULT NULL, `created_at` datetime DEFAULT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: Unknown table 'users': DROP TABLE `users`[0m
+  [4;36;1mSQL (0.002844)[0m   [0;1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255) DEFAULT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: Unknown table 'posts': DROP TABLE `posts`[0m
+  [4;36;1mSQL (0.003238)[0m   [0;1mCREATE TABLE `posts` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `text` text DEFAULT NULL, `cached_tag_list` varchar(255) DEFAULT NULL, `user_id` int(11) DEFAULT NULL, `type` varchar(255) DEFAULT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: Unknown table 'photos': DROP TABLE `photos`[0m
+  [4;36;1mSQL (0.002855)[0m   [0;1mCREATE TABLE `photos` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255) DEFAULT NULL, `user_id` int(11) DEFAULT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: Unknown table 'subscriptions': DROP TABLE `subscriptions`[0m
+  [4;36;1mSQL (0.003491)[0m   [0;1mCREATE TABLE `subscriptions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11) DEFAULT NULL, `magazine_id` int(11) DEFAULT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: Unknown table 'magazines': DROP TABLE `magazines`[0m
+  [4;36;1mSQL (0.022918)[0m   [0;1mCREATE TABLE `magazines` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255) DEFAULT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.002808)[0m   [0mCREATE TABLE `schema_info` (version int(11))[0m
+  [4;36;1mSQL (0.000688)[0m   [0;1mINSERT INTO `schema_info` (version) VALUES(0)[0m
+  [4;35;1mSQL (0.007343)[0m   [0mSHOW FIELDS FROM `schema_info`[0m
+  [4;36;1mSQL (0.001414)[0m   [0;1mUPDATE schema_info SET version = 0[0m
+  [4;35;1mSQL (0.000402)[0m   [0mCREATE TABLE 'companies' (
+ 'id' INTEGER PRIMARY KEY NOT NULL,
+ 'name' TEXT DEFAULT NULL,
+ 'rating' INTEGER DEFAULT 1
+)[0m
+  [4;36;1mSQL (0.000234)[0m   [0;1m
+
+CREATE TABLE 'replies' (
+ 'id' INTEGER PRIMARY KEY NOT NULL, 
+ 'content' text, 
+ 'created_at' datetime, 
+ 'updated_at' datetime, 
+ 'topic_id' integer
+)[0m
+  [4;35;1mSQL (0.000237)[0m   [0m
+
+CREATE TABLE 'topics' (
+ 'id' INTEGER PRIMARY KEY NOT NULL, 
+ 'title' varchar(255), 
+ 'subtitle' varchar(255), 
+ 'content' text, 
+ 'created_at' datetime, 
+ 'updated_at' datetime
+)[0m
+  [4;36;1mSQL (0.000261)[0m   [0;1m
+
+CREATE TABLE 'developers' (
+ 'id' INTEGER PRIMARY KEY NOT NULL,
+ 'name' TEXT DEFAULT NULL,
+ 'salary' INTEGER DEFAULT 70000,
+ 'created_at' DATETIME DEFAULT NULL,
+ 'updated_at' DATETIME DEFAULT NULL
+)[0m
+  [4;35;1mSQL (0.000233)[0m   [0m
+
+CREATE TABLE 'projects' (
+ 'id' INTEGER PRIMARY KEY NOT NULL,
+ 'name' TEXT DEFAULT NULL
+)[0m
+  [4;36;1mSQL (0.000250)[0m   [0;1m
+
+CREATE TABLE 'developers_projects' (
+ 'developer_id' INTEGER NOT NULL,
+ 'project_id' INTEGER NOT NULL,
+ 'joined_on' DATE DEFAULT NULL,
+ 'access_level' INTEGER DEFAULT 1
+)[0m

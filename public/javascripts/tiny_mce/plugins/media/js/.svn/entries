@@ -1,0 +1,42 @@
+8
+
+dir
+87
+http://sw.unfuddle.com/svn/sw_sw/public/javascripts/tiny_mce/plugins/media/js
+http://sw.unfuddle.com/svn/sw_sw
+
+
+
+2008-06-06T01:33:18.183132Z
+55
+sw_ivanoats
+
+
+svn:special svn:externals svn:needs-lock
+
+embed.js
+file
+
+
+
+
+2007-11-01T21:58:48.000000Z
+39ebc57f44e1cc683724e1c1ff761894
+2008-06-06T01:33:18.183132Z
+55
+sw_ivanoats
+has-props
+
+media.js
+file
+
+
+
+
+2008-04-17T04:15:44.000000Z
+6bf59f47c0b05d8ae6f9a2686c94e29c
+2008-06-06T01:33:18.183132Z
+55
+sw_ivanoats
+has-props
+

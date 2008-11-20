@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/test
+END
+reltag_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/test/reltag_test.rb
+END
+subclass_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/test/subclass_test.rb
+END
+test_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/test/test_helper.rb
+END
+ext_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/test/ext_test.rb
+END
+include_pattern_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/test/include_pattern_test.rb
+END
+hcalendar_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/test/hcalendar_test.rb
+END
+hcard_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/test/hcard_test.rb
+END
+hatom_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/test/hatom_test.rb
+END
+hresume_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/test/hresume_test.rb
+END
+hreview_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/test/hreview_test.rb
+END
+xfn_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/test/xfn_test.rb
+END
+base_url_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/test/base_url_test.rb
+END
+xoxo_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/sw_sw/!svn/ver/38/vendor/plugins/mofo/test/xoxo_test.rb
+END

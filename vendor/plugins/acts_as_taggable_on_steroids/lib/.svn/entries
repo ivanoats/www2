@@ -1,0 +1,88 @@
+8
+
+dir
+87
+http://sw.unfuddle.com/svn/sw_sw/vendor/plugins/acts_as_taggable_on_steroids/lib
+http://sw.unfuddle.com/svn/sw_sw
+
+
+
+2008-02-13T23:09:40.903168Z
+28
+sw_ivanoats
+
+
+svn:special svn:externals svn:needs-lock
+
+tags_helper.rb
+file
+
+
+
+
+2008-02-13T14:32:38.000000Z
+edad8370d0bc78ce4fa5a7ca77550220
+2008-02-13T23:09:40.903168Z
+28
+sw_ivanoats
+
+tagging.rb
+file
+
+
+
+
+2008-02-13T14:32:37.000000Z
+ef8149ac0b1243c6c862d49c5cd4ae14
+2008-02-13T23:09:40.903168Z
+28
+sw_ivanoats
+
+tag_counts_extension.rb
+file
+
+
+
+
+2008-02-13T14:32:35.000000Z
+6412369ec643a2e413a93754077cac61
+2008-02-13T23:09:40.903168Z
+28
+sw_ivanoats
+
+acts_as_taggable.rb
+file
+
+
+
+
+2008-02-13T14:32:34.000000Z
+1a2ba115a45e5f32e49d3fefdc0e5565
+2008-02-13T23:09:40.903168Z
+28
+sw_ivanoats
+
+tag_list.rb
+file
+
+
+
+
+2008-02-13T14:32:36.000000Z
+03c45d9b4b634a10278db67659fac970
+2008-02-13T23:09:40.903168Z
+28
+sw_ivanoats
+
+tag.rb
+file
+
+
+
+
+2008-02-13T14:32:34.000000Z
+0b5dfc9307350cb9f94edb8412923077
+2008-02-13T23:09:40.903168Z
+28
+sw_ivanoats
+

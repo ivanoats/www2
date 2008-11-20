@@ -1,0 +1,85 @@
+8
+
+dir
+87
+http://sw.unfuddle.com/svn/sw_sw/vendor/plugins/acts_as_commentable
+http://sw.unfuddle.com/svn/sw_sw
+
+
+
+2008-02-13T13:29:02.103387Z
+27
+sw_ivanoats
+
+
+svn:special svn:externals svn:needs-lock
+
+test
+dir
+
+init.rb
+file
+
+
+
+
+2008-02-13T12:32:35.000000Z
+8d98cc8df3e22b97ddc4b9c97b440afe
+2008-02-13T13:29:02.103387Z
+27
+sw_ivanoats
+
+tasks
+dir
+
+lib
+dir
+
+CHANGELOG
+file
+
+
+
+
+2008-02-13T12:32:34.000000Z
+22eae247b0a61cacd186e723ab398e1c
+2008-02-13T13:29:02.103387Z
+27
+sw_ivanoats
+
+install.rb
+file
+
+
+
+
+2008-02-13T12:32:36.000000Z
+cbe738c10eba4ae2da8c6859c9723e44
+2008-02-13T13:29:02.103387Z
+27
+sw_ivanoats
+
+MIT-LICENSE
+file
+
+
+
+
+2008-02-13T12:32:34.000000Z
+3ea1b94d199b85cbc4970271ba0ae1c7
+2008-02-13T13:29:02.103387Z
+27
+sw_ivanoats
+
+README
+file
+
+
+
+
+2008-02-13T12:32:35.000000Z
+b67b4c906fc9c8c88cd3d2a34820dac3
+2008-02-13T13:29:02.103387Z
+27
+sw_ivanoats
+
