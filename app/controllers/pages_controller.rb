@@ -11,7 +11,7 @@ class PagesController < ApplicationController
   def permalink
     @page = Page.find_by_permalink(params[:permalink])
     respond_to do |format|
-       format.html { render :action => 'show' }
+       format.html { render :partial => 'show' }
        format.xml  { render :xml => @page.to_xml }
      end
   end
@@ -20,6 +20,7 @@ class PagesController < ApplicationController
   def show
     @page = Page.find(params[:id].to_i)
     #@page = Page.find_by_permalink(params[:permalink])
+    render :partial => :show
   end
 
   def home

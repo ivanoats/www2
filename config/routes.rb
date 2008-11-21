@@ -28,7 +28,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :invoices
   map.resources :comments
   map.resources :pages
-  map.page_permalink 'page/:permalink', :controller => 'pages', :action => 'permalink'
+  
+  map.page_permalink '/page/:permalink', :controller => 'pages', :action => 'permalink'
+  
+  #this would be nice, but it would override 404 handler
+  #map.page_permalink '/:permalink', :controller => 'pages', :action => 'permalink'
   
   map.resources :articles, :collection => {:admin => :get}  
   map.permalink 'article/:permalink', :controller => 'articles', :action => 'permalink'
