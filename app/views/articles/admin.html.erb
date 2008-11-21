@@ -1,10 +1,5 @@
 <h2>Edit Articles</h2> 
 <p><%= link_to 'Create New Article', new_article_path %></p> 
-<% if @articles_pages.page_count > 1 %> 
-  <p class="pagination">Pages: <strong> 
-    <%= pagination_links @articles_pages, :params => params %> 
-  </strong></p> 
-<% end %> 
 <ul> 
 <% @articles.each do |article| %> 
   <li> 
@@ -15,3 +10,4 @@
   </li> 
 <% end %> 
 </ul> 
+<%= will_paginate @article, :class => "apple_pagination" %>

@@ -8,19 +8,19 @@ class ArticlesController < ApplicationController
         @kb = true if params[:category_id] == "2"
         @kb = true if request.path == "/faq" or request.path == "/kb" or request.path == "/knowledgebase" 
         
-        @articles_pages, @articles = paginate(:articles, 
+        @articles = Article.paginate(:page => params[:page],
           :include => :user, 
           :order => 'created_at DESC', 
           :conditions => ["category_id=? AND published=?",params[:category_id].to_i,true]) 
       elsif params[:search]
         #@articles = Article.search(params[:search])
         @kb = true
-        @articles_pages, @articles = paginate(:articles,
+        @articles = Article.paginate(:page => params[:page],
           :include => :user,
           :conditions => ['(body LIKE ?) AND published = ?',"%#{params[:search]}%",true ])
       else 
         #@articles = Article.find_all_by_published(true) 
-        @articles_pages, @articles = paginate(:articles, 
+        @articles = Article.paginate(:page => params[:page], 
           :include => :user, 
           :order => 'created_at DESC', 
           :conditions => ["published = ?",true])        
@@ -100,7 +100,7 @@ class ArticlesController < ApplicationController
   end 
   
   def admin 
-    @articles_pages, @articles = paginate(:articles, :order => 'published_at DESC') 
+    @articles = Article.paginate(:page => params[:page], :per_page => 10, :order => 'published_at DESC') 
   end 
  
 end
