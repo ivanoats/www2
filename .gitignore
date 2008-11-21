@@ -4,3 +4,6 @@ tmp/**/*
 public/cache/**/*
 doc/api
 doc/app
+config/database.yml
+
+

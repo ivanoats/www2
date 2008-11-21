@@ -17,9 +17,9 @@ ActiveRecord::Schema.define(:version => 20081121113151) do
     t.string   "title"
     t.string   "permalink"
     t.string   "cached_tag_list"
-    t.text     "synopsis",         :limit => 1000
-    t.text     "body",             :limit => 20000
-    t.boolean  "published",                         :default => false
+    t.text     "synopsis"
+    t.text     "body"
+    t.boolean  "published",        :default => false
     t.datetime "published_at"
     t.boolean  "comments_enabled"
     t.datetime "created_at"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20081121113151) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :default => ""
-    t.text     "comment",          :default => ""
+    t.text     "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id",          :default => 0,  :null => false
@@ -67,9 +67,9 @@ ActiveRecord::Schema.define(:version => 20081121113151) do
   end
 
   create_table "open_id_authentication_nonces", :force => true do |t|
-    t.integer "timestamp",  :null => false
+    t.integer "timestamp",                  :null => false
     t.string  "server_url"
-    t.string  "salt",       :null => false
+    t.string  "salt",       :default => "", :null => false
   end
 
   create_table "pages", :force => true do |t|
@@ -108,14 +108,14 @@ ActiveRecord::Schema.define(:version => 20081121113151) do
   end
 
   create_table "sessions", :force => true do |t|
-    t.string   "session_id", :null => false
+    t.string   "session_id", :default => "", :null => false
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
@@ -124,8 +124,8 @@ ActiveRecord::Schema.define(:version => 20081121113151) do
     t.datetime "created_at"
   end
 
-  add_index "taggings", ["taggable_id", "taggable_type"], :name => "index_taggings_on_taggable_id_and_taggable_type"
   add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type"], :name => "index_taggings_on_taggable_id_and_taggable_type"
 
   create_table "tags", :force => true do |t|
     t.string "name"
