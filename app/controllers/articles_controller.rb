@@ -5,32 +5,30 @@ class ArticlesController < ApplicationController
   def index
     @article_tags = Article.tag_counts :order => 'count desc', :at_least => 3 
     if params[:category_id]
-        @kb = true if params[:category_id] == "2"
-        @kb = true if request.path == "/faq" or request.path == "/kb" or request.path == "/knowledgebase" 
-        
-        @articles = Article.paginate(:page => params[:page],
-          :include => :user, 
-          :order => 'created_at DESC', 
-          :conditions => ["category_id=? AND published=?",params[:category_id].to_i,true]) 
-      elsif params[:search]
-        #@articles = Article.search(params[:search])
-        @kb = true
-        @articles = Article.paginate(:page => params[:page],
-          :include => :user,
-          :conditions => ['(body LIKE ?) AND published = ?',"%#{params[:search]}%",true ])
-      else 
-        #@articles = Article.find_all_by_published(true) 
-        @articles = Article.paginate(:page => params[:page], 
-          :include => :user, 
-          :order => 'created_at DESC', 
-          :conditions => ["published = ?",true])        
-      end 
-      respond_to do |wants| 
-        wants.html 
-        wants.xml  { render :xml => @articles.to_xml } 
-        wants.rss  { render :action => 'rss.rxml', :layout => false } 
-        wants.atom { render :action => 'atom.rxml', :layout => false } 
-      end 
+      @kb = true if params[:category_id] == "2"
+      @kb = true if request.path == "/faq" or request.path == "/kb" or request.path == "/knowledgebase" 
+      
+      @articles = Article.paginate(:page => params[:page],
+        :include => :user, 
+        :order => 'created_at DESC', 
+        :conditions => ["category_id=? AND published=?",params[:category_id].to_i,true]) 
+    elsif params[:search]
+      @kb = true
+      @articles = Article.paginate(:page => params[:page],
+        :include => :user,
+        :conditions => ['(body LIKE ?) AND published = ?',"%#{params[:search]}%",true ])
+    else 
+      @articles = Article.paginate(:page => params[:page], 
+        :include => :user, 
+        :order => 'created_at DESC', 
+        :conditions => ["published = ?",true])        
+    end 
+    respond_to do |wants| 
+      wants.html 
+      wants.xml  { render :xml => @articles.to_xml } 
+      wants.rss  { render :action => 'rss.rxml', :layout => false } 
+      wants.atom { render :action => 'atom.rxml', :layout => false } 
+    end 
   end
 
   def permalink

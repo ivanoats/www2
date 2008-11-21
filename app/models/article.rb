@@ -15,7 +15,11 @@ class Article < ActiveRecord::Base
   validates_length_of :title, :maximum => 255 
   validates_length_of :synopsis, :maximum => 1000 
   validates_length_of :body, :maximum => 20000 
-
+  
+  def self.per_page
+    10
+  end
+  
   def self.search(search)
     if search
       find(:all, :conditions => ['(body LIKE ?) AND published = true',"%#{search}%" ])
