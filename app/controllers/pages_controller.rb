@@ -2,7 +2,7 @@ class PagesController < ApplicationController
 
   attr_accessor :splash_on
   
-  before_filter :check_administrator_role, :except => [:show, :home]
+  require_role "Administrator", :except => [:show, :home]
 
   def index
     @pages = Page.find(:all)

@@ -1,7 +1,6 @@
 class TicketsController < ApplicationController
   
-  before_filter :check_administrator_role, 
-                :only => [:index, :destroy, :enable]
+  require_role "Administrator", :only => [:index, :destroy, :enable]
 
   before_filter :login_required, :only => [:edit, :update]
   

@@ -39,7 +39,7 @@ module ApplicationHelper
   def meta_keywords 
     if @article and !@article.new_record? 
       [@article.title, 
-       @article.user.username, 
+       @article.user.name, 
        @article.tag_list].join(',') 
     else 
       %w(green web site hosting sustainable website design coaching).join(',') 

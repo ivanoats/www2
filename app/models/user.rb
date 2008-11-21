@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   validate :normalize_identity_url
   
   # Relationships
+  has_many :articles
   has_and_belongs_to_many :roles
 
   # HACK HACK HACK -- how to do attr_accessible from here?

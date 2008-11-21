@@ -1,0 +1,66 @@
+<% @page_title = @article.title unless @artcle.nil? %>
+
+<h2><%= @article.title %></h2> 
+<div class="spiffy-wrap">
+  <b class="spiffy">
+  <b class="spiffy1"><b></b></b>
+  <b class="spiffy2"><b></b></b>
+  <b class="spiffy3"></b>
+  <b class="spiffy4"></b>
+  <b class="spiffy5"></b></b>
+
+  <div class="spiffyfg">
+<div class="synopsis"><%= @article.synopsis %></div>
+  </div>
+
+  <b class="spiffy">
+  <b class="spiffy5"></b>
+  <b class="spiffy4"></b>
+  <b class="spiffy3"></b>
+  <b class="spiffy2"><b></b></b>
+  <b class="spiffy1"><b></b></b></b>
+</div>
+
+
+<div id="article_body"><%= @article.body %></div> 
+<div id="spacer"> </div>
+<% if @article.category %> 
+  <p class="category">Category:
+	 <%= link_to @article.category.name, category_articles_path(@article.category), :rel => 'tag' %> 
+  </p> 
+<% end %>
+<div id="tags">Tags: 
+	<% @article.tag_list.each do |tag| %>
+		<%= link_to tag,tag_path(tag), :rel => 'tag' %>
+	<% end %>
+</div> 
+<p>Created on:
+  <%= @article.created_at.to_s(:human_date) %></p>
+
+<% if logged_in? and current_user.has_role?('administrator') %> 
+<%= link_to "edit article", edit_article_path(@article.id) %>
+<% end %>
+
+<% if @article.comments.count > 0 then %><h2>Comments</h2><% end %>
+<% if @article.comments_enabled == 1 %>
+<div id="comments">
+    <%# logger.info @post.comments.to_yaml %>
+    <% @article.comments.each do |comment|%>
+      <%= render :partial => "comments/comment", :locals => {:comment => comment } %>           
+    <% end %>
+</div><!-- end comments -->
+
+<h2>Leave a comment</h2>
+<% remote_form_for :comment, :url=>{:controller=>"comments", :action=>"new", :id=>@article.id } do |f| %>
+    <label for="name">Name:</label> 
+			<%= f.text_field "name" %>
+    <label for="emal">Email (will not be published):</label> 
+			<%= f.text_field "email" %>
+    <label for="web_site">Website (optional):</label> 
+			<%= f.text_field "web_site" %>
+    <label for="comment">Comment:</label>
+    <%= f.text_area "comment", :rows=>5, :cols=>35 %><br>
+    <p class="btn"><%= submit_tag "Add Comment"%></p>
+<% end %>
+<% end #if comments enabled %>
+<p><%= link_to 'Back to article list', articles_url %></p> 

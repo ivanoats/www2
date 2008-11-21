@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   
-  before_filter :check_editor_role, :except => [:index, :show, :permalink]
+  require_role "Editor", :except => [:index, :show, :permalink]
 
   def index
     @article_tags = Article.tag_counts :order => 'count desc', :at_least => 3 
@@ -11,19 +11,19 @@ class ArticlesController < ApplicationController
         @articles_pages, @articles = paginate(:articles, 
           :include => :user, 
           :order => 'created_at DESC', 
-          :conditions => "category_id=#{params[:category_id].to_i} AND published=true") 
+          :conditions => ["category_id=? AND published=?",params[:category_id].to_i,true]) 
       elsif params[:search]
         #@articles = Article.search(params[:search])
         @kb = true
         @articles_pages, @articles = paginate(:articles,
           :include => :user,
-          :conditions => ['(body LIKE ?) AND published = true',"%#{params[:search]}%" ])
+          :conditions => ['(body LIKE ?) AND published = ?',"%#{params[:search]}%",true ])
       else 
         #@articles = Article.find_all_by_published(true) 
         @articles_pages, @articles = paginate(:articles, 
           :include => :user, 
           :order => 'created_at DESC', 
-          :conditions => "published = true")        
+          :conditions => ["published = ?",true])        
       end 
       respond_to do |wants| 
         wants.html 
@@ -62,7 +62,7 @@ class ArticlesController < ApplicationController
     respond_to do |wants| 
       if @article.save
         flash[:notice] = "article saved"
-        @logged_in_user.articles << @article 
+        current_user.articles << @article 
         wants.html { redirect_to admin_articles_url } 
         wants.xml  { render :xml => @article.to_xml }
       else

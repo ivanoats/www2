@@ -16,6 +16,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :passwords
   map.resource :session
   
+  map.resources :users, :member => { :enable => :put } do |users| 
+    users.resources :roles 
+  end
+  
   # Application Resources
   map.resources :products
   map.resources :tags

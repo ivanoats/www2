@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
   
-  before_filter :check_editor_role, :except => [:index, :show] 
+  require_role "Editor", :except => [:index, :show] 
 
   def index
     # add in other things that can be tagged here and in the view
@@ -31,7 +31,7 @@ class TagsController < ApplicationController
   #   logger.info params[:article].fetch(tags)
   #   @article = Article.create(params[:article]) 
   #   # article tags
-  #   @logged_in_user.articles << @article 
+  #   current_user.articles << @article 
   #   respond_to do |wants| 
   #     wants.html { redirect_to admin_articles_url } 
   #     wants.xml  { render :xml => @article.to_xml } 

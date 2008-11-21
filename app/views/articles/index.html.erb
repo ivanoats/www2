@@ -1,0 +1,35 @@
+<% content_for :head do %> 
+  <%= auto_discovery_link_tag %> 
+<% end %>
+
+<% content_for :sidebar do %>
+	<%= render :partial => 'shared/search_form' %>
+	<%= render :partial => 'shared/top_tags' %>
+	<% if @kb then %>
+	<%= render :partial => 'shared/common_fixes' %>
+	<% end %>
+<% end %>
+<% #if referrer is knowledgebase - print kb instead %>
+<h2>Sustainable Websites
+<% if @kb then %>
+	Knowledgebase
+<% else  %>
+	Blog
+<% end %>
+</h2>
+<% if @articles.empty? %>
+	<p>Sorry, there were no results for the search <strong><%= params[:search] ||= "you did" %></strong>.</p>
+	<p>Try browsing via <%= link_to "tags", tags_url %>, or try your search again on the right.</p>
+<% else %>
+	<% if @articles_pages.page_count > 1 %> 
+	  <p class="pagination">Pages: <strong> 
+	    <%= pagination_links @articles_pages, :params => params %> 
+	  </strong></p> 
+	<% end #if article page count is more than one %> 
+	<%= render :partial => 'shared/article_index', :locals => { :articles => @articles } %>
+	<% if @articles_pages.page_count > 1 %> 
+	  <p class="pagination">Pages: <strong> 
+	    <%= pagination_links @articles_pages, :params => params %> 
+	  </strong></p> 
+	<% end #if article page count is more than one %>
+<% end %> 

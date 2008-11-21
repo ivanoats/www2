@@ -9,11 +9,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081028184131) do
+ActiveRecord::Schema.define(:version => 20081121113151) do
 
   create_table "articles", :force => true do |t|
-    t.integer  "user_id_id"
-    t.integer  "category_id_id"
+    t.integer  "user_id"
+    t.integer  "category_id"
     t.string   "title"
     t.string   "permalink"
     t.string   "cached_tag_list"
@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(:version => 20081028184131) do
     t.datetime "updated_at"
   end
 
-  add_index "four_oh_fours", ["path"], :name => "index_four_oh_fours_on_path"
   add_index "four_oh_fours", ["host", "path", "referer"], :name => "index_four_oh_fours_on_host_and_path_and_referer", :unique => true
+  add_index "four_oh_fours", ["path"], :name => "index_four_oh_fours_on_path"
 
   create_table "open_id_authentication_associations", :force => true do |t|
     t.integer "issued"
@@ -164,6 +164,9 @@ ActiveRecord::Schema.define(:version => 20081028184131) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "enabled",                                  :default => true,      :null => false
+    t.text     "profile"
+    t.datetime "last_login_at"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

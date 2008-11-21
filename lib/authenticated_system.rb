@@ -5,18 +5,21 @@ module AuthenticatedSystem
     def logged_in?
       !!current_user
     end
-
+    alias :is_logged_in? :logged_in? 
+    
     # Accesses the current user from the session.
     # Future calls avoid the database because nil is not equal to false.
     def current_user
       @current_user ||= (login_from_session || login_from_basic_auth || login_from_cookie) unless @current_user == false
     end
+    alias :logged_in_user :current_user 
 
     # Store the given user id in the session.
     def current_user=(new_user)
       session[:user_id] = new_user ? new_user.id : nil
       @current_user = new_user || false
     end
+    alias :logged_in_user= :current_user= 
 
     # Check if the user is authorized
     #
@@ -94,7 +97,7 @@ module AuthenticatedSystem
     # Inclusion hook to make #current_user and #logged_in?
     # available as ActionView helper methods.
     def self.included(base)
-      base.send :helper_method, :current_user, :logged_in?, :authorized? if base.respond_to? :helper_method
+      base.send :helper_method, :current_user, :logged_in?, :authorized?, :is_logged_in?,:logged_in_user  if base.respond_to? :helper_method
     end
 
     #

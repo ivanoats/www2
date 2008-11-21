@@ -43,6 +43,10 @@ class UsersController < ApplicationController
     end
   end
   
+  def index
+    @users = User.find(:all)
+  end
+  
   def show
     @user = User.find(params[:id])
     @articles = @user.articles.find(:all, :limit => 3, :order => 'created_at DESC')
