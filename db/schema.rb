@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081121125922) do
+ActiveRecord::Schema.define(:version => 20081121113151) do
 
   create_table "articles", :force => true do |t|
     t.integer  "user_id"
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(:version => 20081121125922) do
     t.boolean  "comments_enabled"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "link"
   end
 
   create_table "categories", :force => true do |t|

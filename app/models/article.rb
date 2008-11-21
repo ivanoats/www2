@@ -4,10 +4,10 @@ class Article < ActiveRecord::Base
   
   acts_as_commentable
   acts_as_taggable
-  has_permalink :make_permalink
+  has_permalink :title
   
   before_save :update_published_at 
-
+  
   validates_presence_of :title
   validates_uniqueness_of :title, :on => :create, :message => "must be unique" 
   validates_presence_of :synopsis 
@@ -29,19 +29,6 @@ class Article < ActiveRecord::Base
     self.published_at = Time.now if published == true 
   end
   
-  # def before_save 
-  #     
-  #     
-  #     @attributes['permalink'] = 
-  #       title.downcase.gsub(/\s+/, '_').gsub(/[^a-zA-Z0-9_]+/, '') 
-  #   end
-  #
-  
-  # - 
-     
-  def make_permalink
-    self.link || self.title
-  end
   
   #def to_param 
     #{}"#{id}-#{permalink}" 
