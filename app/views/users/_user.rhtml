@@ -4,9 +4,9 @@
   <td><%= user.enabled ? 'yes' : 'no' -%> 
   <% unless user == logged_in_user -%> 
     <% if user.enabled -%> 
-      [<%= link_to('disable', user_url(user.id), :method => :delete) %>] 
+      [<%= link_to('disable', {:action => :disable,:id => user}, :method => :delete) %>] 
     <% else -%> 
-      [<%= link_to('enable', enable_user_url(user.id), :method => :put) %>] 
+      [<%= link_to('enable', {:action => :enable,:id => user}, :method => :put) %>] 
     <% end -%> 
   <% end -%> 
   </td>

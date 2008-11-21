@@ -58,6 +58,26 @@ class UsersController < ApplicationController
     render :action => 'show'
   end
   
+  def enable
+    @user = User.find(params[:id]) 
+    if @user.update_attribute(:enabled, true) 
+      flash[:notice] = "User enabled" 
+    else 
+      flash[:error] = "There was a problem enabling this user." 
+    end 
+    redirect_to :action => 'index'
+  end
+  
+  def disable
+    @user = User.find(params[:id]) 
+    if @user.update_attribute(:enabled, false) 
+      flash[:notice] = "User disabled" 
+    else 
+      flash[:error] = "There was a problem disabling this user." 
+    end 
+    redirect_to :action => 'index'
+  end
+  
   protected
   
   def create_new_user(attributes)

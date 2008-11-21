@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)
-    u = find_in_state :first, :active, :conditions => { :login => login } # need to get the salt
+    u = find_in_state :first, :active, :conditions => { :login => login, :enabled => true } # need to get the salt
     u && u.authenticated?(password) ? u : nil
   end
   
@@ -50,7 +50,11 @@ class User < ActiveRecord::Base
   def password_required?
     new_record? ? not_using_openid? && (crypted_password.blank? || !password.blank?) : !password.blank?
   end
-
+  
+  def username
+    self.name.blank? ? self.login : self.login
+  end
+  
   protected
     
   def make_activation_code

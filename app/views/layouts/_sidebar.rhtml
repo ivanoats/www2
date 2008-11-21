@@ -5,8 +5,7 @@
 		    <li>Logged in as: <i><%= current_user.login %></i></li> 
 			<li><%= link_to 'My Profile', 
 			                    edit_user_path(current_user) %></li> 
-			<li><%= link_to 'Logout', {:controller => 'account', :action => 'logout'}, 
-		                              :method => :post %></li> 
+			<li><%= link_to 'Logout', logout_url %></li> 
 		  <% else %> 
 		    <li><%#= link_to 'Signup', :controller => 'users', :action => 'new' %></li> 
 		    <li><%#= link_to 'Login', :controller => 'account', :action => 'login' %></li> 
