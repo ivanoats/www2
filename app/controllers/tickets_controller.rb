@@ -4,6 +4,7 @@ class TicketsController < ApplicationController
 
   before_filter :login_required, :only => [:edit, :update]
   
+  ssl_required :new, :create, :edit, :update
   
   # GET /tickets
   # GET /tickets.xml

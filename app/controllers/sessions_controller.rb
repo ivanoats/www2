@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :create
   
+  ssl_exceptions #SSL for all
+  
   def new
   end
 
