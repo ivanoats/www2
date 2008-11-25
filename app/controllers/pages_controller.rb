@@ -19,7 +19,7 @@ class PagesController < ApplicationController
 
   def show
     @page = Page.find(params[:id].to_i)
-    render :partial => 'show'
+    render :partial => 'show', :layout => "application"
   end
 
   def home
