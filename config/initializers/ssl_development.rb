@@ -1,1 +1,1 @@
-SslRequirement.disable_ssl_check = true if RAILS_ENV == "development"
+SslRequirement.disable_ssl_check = true if RAILS_ENV == "development" || RAILS_ENV == "test"

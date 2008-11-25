@@ -1,0 +1,6 @@
+one:
+  title: "Page One"
+  permalink: "page_one"
+  body: "This is the page content"
+  user_id: 1
+  restricted: false

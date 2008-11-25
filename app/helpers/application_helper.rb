@@ -55,5 +55,12 @@ module ApplicationHelper
     end
   end
   
+  def page_permalink_path(permalink = @page.permalink)
+    "/#{permalink}"
+  end
+  
+  def page_permalink_url(permalink = page_permalink_path)
+    url_for(permalink)
+  end
   
 end

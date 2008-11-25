@@ -2,7 +2,7 @@ class PagesController < ApplicationController
 
   attr_accessor :splash_on
   
-  require_role "Administrator", :except => [:show, :home]
+  require_role "Administrator", :except => [:show, :home, :permalink]
 
   def index
     @pages = Page.find(:all)
@@ -19,8 +19,7 @@ class PagesController < ApplicationController
 
   def show
     @page = Page.find(params[:id].to_i)
-    #@page = Page.find_by_permalink(params[:permalink])
-    render :partial => :show
+    render :partial => 'show'
   end
 
   def home
