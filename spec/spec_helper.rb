@@ -5,6 +5,8 @@ require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'spec'
 require 'spec/rails'
 
+require 'rspec_response_enhancer'
+
 include AuthenticatedTestHelper
 include AuthenticatedSystem
 
@@ -15,7 +17,10 @@ Spec::Runner.configure do |config|
   config.use_transactional_fixtures = true
   config.use_instantiated_fixtures  = false
   config.fixture_path = RAILS_ROOT + '/spec/fixtures/'
-
+  
+  config.include(RSpecResponseEnhancer)
+                 
+  
   # == Fixtures
   #
   # You can declare fixtures for each example_group like this:
@@ -48,3 +53,20 @@ Spec::Runner.configure do |config|
   # 
   # For more information take a look at Spec::Example::Configuration and Spec::Runner
 end
+
+def mock_ticket
+  mock_model(Ticket, :id => 1,
+    :email  => 'email@example.com',
+    :description => 'description that is long enough',
+    :domain_name => 'example.com',
+    :first_name => 'first name',
+    :last_name => 'last name',
+    :cpanel_username => 'cpanel name',
+    :cpanel_password => 'cpanel password',
+    :department => 'department',
+    :to_xml => "User-in-XML", :to_json => "User-in-JSON", 
+    :errors => [])
+end
+
+
+

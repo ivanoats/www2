@@ -1,0 +1,1 @@
+require 'rspec_response_additions' if RAILS_ENV=='test'
