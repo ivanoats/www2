@@ -4,7 +4,7 @@ class Article < ActiveRecord::Base
   
   acts_as_commentable
   acts_as_taggable
-  has_permalink :title
+  #has_permalink :title
   
   before_save :update_published_at 
   
@@ -15,6 +15,17 @@ class Article < ActiveRecord::Base
   validates_length_of :title, :maximum => 255 
   validates_length_of :synopsis, :maximum => 1000 
   validates_length_of :body, :maximum => 20000 
+  
+  validates_uniqueness_of :permalink
+  
+  def before_validation
+    self.permalink = self.title unless self.permalink_changed?
+  end
+  
+  def permalink=(new_value)
+    new_value = self.title if new_value.blank?
+    write_attribute(:permalink,PermalinkFu.escape(new_value))
+  end
   
   def self.per_page
     10

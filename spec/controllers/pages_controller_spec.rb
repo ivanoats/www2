@@ -4,6 +4,7 @@ describe PagesController do
   fixtures :users, :pages, :roles, :roles_users
 
   describe "Anybody" do
+
     it "should show a page" do
       Page.should_receive(:find).with(100).and_return(Page.new)
       get 'show', :id => 100
@@ -11,7 +12,7 @@ describe PagesController do
     end
     
     it "should show the home page" do
-      Page.should_receive(:find).and_return(pages(:one))
+      Page.should_receive(:find).and_return(Page.new)
       get 'home'
       response.should be_success
     end

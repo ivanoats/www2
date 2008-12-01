@@ -3,7 +3,13 @@ class Page < ActiveRecord::Base
   validates_length_of :title, :within => 3..255 
   validates_length_of :body, :maximum => 100000
   
-  has_permalink :title
+#  has_permalink :title
+  
+  validates_uniqueness_of :permalink
+  
+  def before_validation
+    self.permalink = PermalinkFu.escape(self.title) 
+  end
   
   def before_create 
     @attributes['permalink'] = 

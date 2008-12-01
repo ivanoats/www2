@@ -32,4 +32,14 @@ describe Article do
     @article.permalink.should == "changed"
   end
   
+  it "should use title when permalink is saved as blank" do
+    @article.permalink = "temp_permalink"
+    @article.save
+    @article.permalink.should == "temp_permalink"
+
+    @article.update_attribute(:permalink,"")
+    @article.permalink.should == "articletest"
+    
+  end
+  
 end
