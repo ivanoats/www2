@@ -4,7 +4,7 @@ class FourOhFoursController < ApplicationController
     cleaned_path = request.path.gsub(/\//," ").strip
     #if request.path is in the set of page permalinks then redirect to that page
     @page = Page.find_by_permalink(cleaned_path)
-    
+    @page_title = @page.title
     render :partial => 'pages/show', :layout => "application" and return false if @page
     #redirect_to page_permalink_url(to_page.permalink) and return false
     

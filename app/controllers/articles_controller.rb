@@ -45,6 +45,8 @@ class ArticlesController < ApplicationController
     else 
       @article = Article.find_by_id_and_published(params[:id], true) 
     end 
+    @page_title = @article.title    
+    
     respond_to do |wants| 
       wants.html 
       wants.xml { render :xml => @article.to_xml } 

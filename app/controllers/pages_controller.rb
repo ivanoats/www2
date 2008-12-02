@@ -10,6 +10,7 @@ class PagesController < ApplicationController
 
   def permalink
     @page = Page.find_by_permalink(params[:permalink])
+    @page_title = @page.title
     respond_to do |format|
        format.html { render :partial => 'show' }
        format.xml  { render :xml => @page.to_xml }
@@ -18,12 +19,14 @@ class PagesController < ApplicationController
 
 
   def show
-    @page = Page.find(params[:id].to_i)
+    @page = Page.find(params[:id])
+    @page_title = @page.title
     render :partial => 'show', :layout => "application"
   end
 
   def home
     @page = Page.find(1)
+    @page_title = @page.title
     @splash_on = true
   end
 
