@@ -47,9 +47,16 @@ after "deploy:update_code","deploy:symlink_configs"
 #set :repository,  "git@sw.unfuddle.com:sw/www2.git"
 set :scm, "git"
 set :repository, "ssh://git@sw.unfuddle.com/sw/www2.git"
-set :git_shallow_clone, 1
-set :short_branch, "master"
-set :ssh_options, { :forward_agent => true, :port => 28822 }
+#set :git_shallow_clone, 1
+
+set :branch, "master"
+set :deploy_via, :remote_cache
+set :ssh_options, {  :port => 28822 }
+
+set :git_enable_submodules, 1
+
+#I finally got this working using a key on www2, lets just stick with that.
+#ssh_options[:forward_agent] = true
 
 #############################################################
 #	Passenger
