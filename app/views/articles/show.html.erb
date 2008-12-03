@@ -1,4 +1,4 @@
-<% @page_title = @article.title unless @artcle.nil? %>
+<% @page_title = @article.title unless @article.nil? %>
 
 <h2><%= @article.title %></h2> 
 <div class="spiffy-wrap">
@@ -21,46 +21,46 @@
   <b class="spiffy1"><b></b></b></b>
 </div>
 
-
 <div id="article_body"><%= @article.body %></div> 
 <div id="spacer"> </div>
+
 <% if @article.category %> 
   <p class="category">Category:
 	 <%= link_to @article.category.name, category_articles_path(@article.category), :rel => 'tag' %> 
   </p> 
 <% end %>
+
 <div id="tags">Tags: 
 	<% @article.tag_list.each do |tag| %>
 		<%= link_to tag,tag_path(tag), :rel => 'tag' %>
 	<% end %>
 </div> 
-<p>Created on:
-  <%= @article.created_at.to_s(:human_date) %></p>
 
-<% if logged_in? and current_user.has_role?('administrator') %> 
-<%= link_to "edit article", edit_article_path(@article.id) %>
-<% end %>
+<p>Created on: <%= @article.created_at.to_date.to_formatted_s(:long_ordinal) %></p>
 
-<% if @article.comments.count > 0 then %><h2>Comments</h2><% end %>
-<% if @article.comments_enabled == 1 %>
-<div id="comments">
-    <%# logger.info @post.comments.to_yaml %>
+<%= link_to( "edit article", edit_article_path(@article.id)) if logged_in? and current_user.has_role?('administrator') %>
+
+
+<%= content_tag(:h2,'Comments') if @article.comments.count > 0 %>
+<% if @article.comments_enabled %>
+  <div id="comments">
     <% @article.comments.each do |comment|%>
       <%= render :partial => "comments/comment", :locals => {:comment => comment } %>           
     <% end %>
-</div><!-- end comments -->
+  </div>
 
-<h2>Leave a comment</h2>
-<% remote_form_for :comment, :url=>{:controller=>"comments", :action=>"new", :id=>@article.id } do |f| %>
-    <label for="name">Name:</label> 
-			<%= f.text_field "name" %>
-    <label for="emal">Email (will not be published):</label> 
-			<%= f.text_field "email" %>
-    <label for="web_site">Website (optional):</label> 
-			<%= f.text_field "web_site" %>
-    <label for="comment">Comment:</label>
-    <%= f.text_area "comment", :rows=>5, :cols=>35 %><br>
-    <p class="btn"><%= submit_tag "Add Comment"%></p>
+  <% uni_remote_form_for :comment, :url => {:controller => "comments", :action => "create"} do |form| %>
+    <%= uniform_success_message flash[:notice] if flash[:notice] %>
+    
+    <% form.fieldset :type => "inline", :legend => "leave a comment" do %>
+      <%= form.text_field :name %>
+      <%= form.text_field :email, :label => "Email (not published)", :required => true%>
+      <%= form.text_field :web_site, :label => "Website" %>
+      <%= form.text_area "comment", :required => true %>
+      <%= hidden_field_tag :commentable_id, @article.id  %>
+      <%= hidden_field_tag :commentable_type, "article" %>
+      <%= form.submit "Add Comment"%>
+    <% end %>
+  <% end %>
 <% end %>
-<% end #if comments enabled %>
 <p><%= link_to 'Back to article list', articles_url %></p> 

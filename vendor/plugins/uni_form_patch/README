@@ -1,0 +1,50 @@
+UniFormPatch
+============
+A small patch plugin for Marcus Irven's uni-form plugin.
+
+Fix the following features:
+
+* Make the form show properly
+* Show field focus and error background images
+* Show error and success form messages properly
+
+Installation
+=========
+If you havn't installed uni-form, install it at first:
+script/plugin install http://uni-form.rubyforge.org/svn/trunk/plugins/uni-form/
+
+Follow the installation notes in Marcus's uni-form README to finish installation
+
+Install uni_form_patch:
+script/plugin install http://rails-uni-form-patch.googlecode.com/svn/trunk/uni_form_patch
+
+The installation will automatically copy/update/delete files:
+Copy public/images/uni-form/*.png
+Update public/stylesheets/uni-form.css
+Delete public/stylesheets/uni-form-generic.css
+
+Example
+=======
+For the usage of uni-form, read Marcus's uni-form README.
+
+Show uni-form style messages:
+<% uni_form_for :user do |form| %>
+  
+  <%= uniform_success_message flash[:notice] if flash[:notice] %>
+  <%= uniform_error_messages [@user] %>
+  <%= uniform_error_messages [@user, @address] %>
+  
+	<% form.fieldset :type => "block", :legend => "cool stuff" do %>
+		<%= form.text_field :first_name, :required => true, :label => "Your first name" %>
+		<%= form.text_field :last_name %>
+	<% end %>
+	<%= form.submit "save" %>
+<% end %>
+
+Author's Info
+=======
+Blog about uni-form: http://xiaoboonrails.blogspot.com/search/label/uni-form
+My Blog Xiaobo On Rails: http://xiaoboonrails.blogspot.com/
+My Other Website: http://www.kikout.com
+Copyright (c) 2008 [xiaobozzz@gmail.com], released under the MIT license
+

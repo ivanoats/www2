@@ -46,6 +46,7 @@ class ArticlesController < ApplicationController
       @article = Article.find_by_id_and_published(params[:id], true) 
     end 
     @page_title = @article.title    
+    @comment = Comment.new
     
     respond_to do |wants| 
       wants.html 
