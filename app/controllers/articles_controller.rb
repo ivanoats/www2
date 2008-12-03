@@ -101,7 +101,7 @@ class ArticlesController < ApplicationController
   end 
   
   def admin 
-    @articles = Article.paginate(:page => params[:page], :per_page => 10, :order => 'published_at DESC') 
+    @articles = Article.paginate(:page => params[:page], :per_page => 10, :order => 'published_at DESC, created_at DESC') 
   end 
  
 end
