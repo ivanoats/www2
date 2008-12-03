@@ -27,16 +27,17 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :subscriptions
   map.resources :invoices
   map.resources :comments
+  
   map.resources :pages
-  
   map.page_permalink '/page/:permalink', :controller => 'pages', :action => 'permalink'
-  
-  #this would be nice, but it would override 404 handler
-  #map.page_permalink '/:permalink', :controller => 'pages', :action => 'permalink'
   
   map.resources :articles, :collection => {:admin => :get}  
   map.permalink 'article/:permalink', :controller => 'articles', :action => 'permalink'
   map.connect 'article/:permalink.:format', :controller => 'articles', :action => 'permalink', :format => nil
+  
+  map.resources :categories, :collection => {:admin => :get} do |categories| 
+    categories.resources :articles, :name_prefix => 'category_' 
+  end
   
   map.show_user '/user/:login', 
                   :controller => 'users', 
@@ -51,10 +52,7 @@ ActionController::Routing::Routes.draw do |map|
   map.knowledgebase '/knowledgebase', :controller => 'articles', :action => 'index', :category_id => 2
   
   # Home Page
-  # from bort, not used anymore: map.root :controller => 'sessions', :action => 'new'
-  map.root :controller => 'pages', 
-                 :action => 'home'
-
+  map.root :controller => 'pages', :action => 'home'
 
   # Install the default routes as the lowest priority.
   map.connect ':controller/:action/:id'
