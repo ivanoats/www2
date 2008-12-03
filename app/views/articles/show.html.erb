@@ -49,7 +49,7 @@
     <% end %>
   </div>
 
-  <% uni_remote_form_for :comment, :url => {:controller => "comments", :action => "create"} do |form| %>
+  <% uni_remote_form_for :comment, :url => {:controller => "comments", :action => "create", :article_id => @article.id}, :html => {:id => 'comment_form'} do |form| %>
     <%= uniform_success_message flash[:notice] if flash[:notice] %>
     
     <% form.fieldset :type => "inline", :legend => "leave a comment" do %>
@@ -57,8 +57,6 @@
       <%= form.text_field :email, :label => "Email (not published)", :required => true%>
       <%= form.text_field :web_site, :label => "Website" %>
       <%= form.text_area "comment", :required => true %>
-      <%= hidden_field_tag :commentable_id, @article.id  %>
-      <%= hidden_field_tag :commentable_type, "article" %>
       <%= form.submit "Add Comment"%>
     <% end %>
   <% end %>

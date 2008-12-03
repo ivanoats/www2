@@ -5,10 +5,11 @@ describe CommentsController do
   describe "Anybody" do
 
     it "should add a comment" do
+      c = Comment.count
       Article.should_receive(:find).and_return(Article.new)
-      get 'new', :id => 100
+      post 'create',:article_id => 100, :comment => {:email => 'email@example.com', :comment => "New Comment"}
       response.should be_success
-      #TODO check comment actually created
+      Comment.count.should == c + 1
     end
     
   end
