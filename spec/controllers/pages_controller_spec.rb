@@ -6,7 +6,7 @@ describe PagesController do
   describe "Anybody" do
 
     it "should show a page" do
-      Page.should_receive(:find).with(100).and_return(Page.new)
+      Page.should_receive(:find).with('100').and_return(Page.new)
       get 'show', :id => 100
       response.should be_success
     end

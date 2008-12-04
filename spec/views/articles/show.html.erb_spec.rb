@@ -10,6 +10,7 @@ describe "Article show page" do
     
     @article = create_article
     
+    assigns[:comment] = Comment.new
     assigns[:article] = @article
   end
   
