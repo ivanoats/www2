@@ -1,0 +1,11 @@
+
+<% for field in [:email, :host, :country, :state, :city, :company_name, :company_division, :password] %>
+<p>
+  <div style='float: left; width: 150px; text-align: right;  padding-right: 5px;'><%= field.to_s.humanize %>: </div>
+  <div style='padding-left: 5px;'> <%=h @certificate_ticket.send field %></div>
+</p>
+<% end %>
+
+
+<%= link_to 'Edit', edit_certificate_ticket_path(@certificate_ticket) %> |
+<%= link_to 'Back', certificate_tickets_path %>

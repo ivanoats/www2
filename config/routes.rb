@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+
   
   # Restful Authentication Rewrites
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
@@ -24,6 +25,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :products
   map.resources :tags
   map.resources :tickets
+  map.resources :certificate_tickets
   map.resources :subscriptions
   map.resources :invoices
   map.resources :comments

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081121113151) do
+ActiveRecord::Schema.define(:version => 20081204115038) do
 
   create_table "articles", :force => true do |t|
     t.integer  "user_id"
@@ -28,6 +28,21 @@ ActiveRecord::Schema.define(:version => 20081121113151) do
 
   create_table "categories", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "certificate_tickets", :force => true do |t|
+    t.string   "email"
+    t.string   "password"
+    t.string   "host"
+    t.string   "country"
+    t.string   "state"
+    t.string   "city"
+    t.string   "company_name"
+    t.string   "company_division"
+    t.text     "csr"
+    t.text     "rsa"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "comments", :force => true do |t|

@@ -1,0 +1,71 @@
+<%= error_messages_for :certificate_ticket %> 
+
+<% uni_form_for @certificate_ticket do |form| -%> 
+  <%= uniform_success_message flash[:notice] if flash[:notice] %>
+  
+  <% form.fieldset :type => "block", :legend => "" do %>
+    <%= form.text_field :email, :required => true, :label => "Email address to send certificate to" %>
+    <%= form.text_field :host, :required => true, :label => "Host to make certificate for (choose either www.yourdomain.com or yourdomain.com - it cannot be valid for both)" %>
+    <%= form.text_field :country, :required => true, :label => "Country (two letter code)" %>
+    <%= form.select(:state, [ 	
+    	[' ', ''],
+    	['Alabama'], 
+    	['Alaska'],
+    	['Arizona'],
+    	['Arkansas'], 
+    	['California'], 
+    	['Colorado'], 
+    	['Connecticut'], 
+    	['Delaware'], 
+    	['District Of Columbia'], 
+    	['Florida'],
+    	['Georgia'],
+    	['Hawaii'], 
+    	['Idaho'], 
+    	['Illinois'], 
+    	['Indiana'], 
+    	['Iowa'], 
+    	['Kansas'], 
+    	['Kentucky'], 
+    	['Louisiana'], 
+    	['Maine'], 
+    	['Maryland'], 
+    	['Massachusetts'], 
+    	['Michigan'], 
+    	['Minnesota'],
+    	['Mississippi'], 
+    	['Missouri'], 
+    	['Montana'], 
+    	['Nebraska'], 
+    	['Nevada'], 
+    	['New Hampshire'], 
+    	['New Jersey'], 
+    	['New Mexico'], 
+    	['New York'], 
+    	['North Carolina'], 
+    	['North Dakota'], 
+    	['Ohio'], 
+    	['Oklahoma'], 
+    	['Oregon'], 
+    	['Pennsylvania'], 
+    	['Rhode Island'], 
+    	['South Carolina'], 
+    	['South Dakota'], 
+    	['Tennessee'], 
+    	['Texas'], 
+    	['Utah'], 
+    	['Vermont'], 
+    	['Virginia'], 
+    	['Washington'], 
+    	['West Virginia'], 
+    	['Wisconsin'], 
+    	['Wyoming']], :required => true) %>
+    <%= form.text_field :city, :required => true %>
+    <%= form.text_field :company_name, :required => true %>
+    <%= form.text_field :company_division, :required => true, :label => "Company division ( put main if no divisions )" %>
+    <%= form.text_field :password, :required => true, :label => "Your password for the SSL certificate from www.sustainabledomains.com" %>
+    
+    <%= form.submit 'Send' %>
+  <% end %>
+<% end -%>
+You will be emailed a CSR and a RSA key.  

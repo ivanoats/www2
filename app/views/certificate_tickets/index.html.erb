@@ -1,0 +1,13 @@
+<h2>All Certificate Tickets</h2>
+<p><%= link_to 'Create new ticket', new_certificate_ticket_url %></p>
+<ul> 
+  <% @certificate_tickets.each do |ticket| %> 
+    <li>
+      <%= link_to ticket.email, certificate_ticket_url(ticket) %>
+
+      <%= link_to 'edit', edit_certificate_ticket_url(ticket) %>
+      <%= link_to 'delete', certificate_ticket_url(ticket), :method => :delete, 
+              :confirm => 'Are you sure you wish to delete this ticket?' %>
+     </li>
+  <% end %> 
+</ul>

@@ -2,10 +2,10 @@
 <p><%= link_to 'Create new page', new_page_url %></p>
 <ul> 
   <% @pages.each do |page| %> 
-    <li><%= link_to page.permalink, page_permalink_url(page.permalink) %> : <%= page.title %></li>
+    <li><%= link_to page.permalink, page_permalink_url(page.permalink) %> : <%= page.title %>
     | <%= link_to 'delete', page_url(page), :method => :delete, 
               :confirm => 'Are you sure you wish to delete this page?' %>
     | <%= link_to 'edit', edit_page_url(page) %>
-     
+     </li>
   <% end %> 
 </ul>
