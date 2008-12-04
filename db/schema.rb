@@ -67,9 +67,9 @@ ActiveRecord::Schema.define(:version => 20081121113151) do
   end
 
   create_table "open_id_authentication_nonces", :force => true do |t|
-    t.integer "timestamp",  :null => false
+    t.integer "timestamp",                  :null => false
     t.string  "server_url"
-    t.string  "salt",       :null => false
+    t.string  "salt",       :default => "", :null => false
   end
 
   create_table "pages", :force => true do |t|
@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(:version => 20081121113151) do
   end
 
   create_table "sessions", :force => true do |t|
-    t.string   "session_id", :null => false
+    t.string   "session_id", :default => "", :null => false
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
