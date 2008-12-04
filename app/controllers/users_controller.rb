@@ -52,6 +52,10 @@ class UsersController < ApplicationController
     @articles = @user.articles.find(:all, :limit => 3, :order => 'created_at DESC')
   end
   
+  def edit
+    @user = User.find(params[:id])
+  end
+  
   def show_by_login
     @user = User.find_by_login(params[:login]) 
     @articles = @user.articles.find(:all, :limit => 3, :order => 'created_at DESC')
