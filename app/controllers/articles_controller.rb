@@ -33,6 +33,8 @@ class ArticlesController < ApplicationController
 
   def permalink
     @article = Article.find_by_permalink(params[:permalink])
+    @comment = Comment.new
+    
     respond_to do |format|
        format.html { render :action => 'show' }
        format.xml  { render :xml => @article.to_xml }
@@ -62,13 +64,23 @@ class ArticlesController < ApplicationController
     @article = Article.new(params[:article]) 
     respond_to do |wants| 
       if @article.save
-        flash[:notice] = "article saved"
+        flash[:notice] = "Article saved"
         current_user.articles << @article 
         wants.html { redirect_to admin_articles_url } 
         wants.xml  { render :xml => @article.to_xml }
+        wants.js { render :update do |page|
+          page.redirect_to edit_article_url(@article)
+        end
+        }
       else
         wants.html { render :action => "new" } 
         wants.xml  { render :xml => @article.errors, :status => :unprocessable_entity } 
+        wants.js { render :update do |page|
+          page.replace_html 'notice', ''
+          page.select("#errorExplanation") { |e| e.replace_html '' } 
+          page.replace_html 'error', error_messages_for(:article)
+        end
+        }
       end
     end 
   end 
@@ -81,12 +93,24 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id]) 
     respond_to do |wants| 
       if @article.update_attributes(params[:article]) 
-        flash[:notice] = "article updated"
+        flash[:notice] = "Article updated"
         wants.html { redirect_to admin_articles_url } 
         wants.xml  { render :xml => @article.to_xml } 
+        wants.js { render :update do |page| 
+          page.replace_html 'notice', "article updated"
+          page.replace_html 'error', ''
+          page.select("#errorExplanation") { |e| e.replace_html '' } 
+        end
+        }
       else
-          wants.html { render :action => "update" } 
-          wants.xml  {render :xml => @article.errors, :status => :unprocessable_entity }   
+        wants.html { render :action => "update" } 
+        wants.xml  {render :xml => @article.errors, :status => :unprocessable_entity }
+        wants.js { render :update do |page|
+          page.replace_html 'notice', ''
+          page.select("#errorExplanation") { |e| e.replace_html '' } 
+          page.replace_html 'error', error_messages_for(:article)
+        end
+        }     
       end
     end
   end 

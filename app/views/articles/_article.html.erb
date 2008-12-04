@@ -1,7 +1,6 @@
+<%= error_messages_for :article %>
 
-<% form_for :article, 
-            :url => article_url(@article), 
-            :html => { :method => :put } do |f| -%> 
+<% form_for @article do |f| -%> 
   <p>Title:<br /><%= f.text_field :title, :size => 60 %></p> 
   <p>Permalink:<br /><%= f.text_field :permalink, :size => 60 %></p> 
   <p>Synopsis:<br /><%= f.text_area :synopsis, :rows => 4, :cols => 60 %></p> 
@@ -13,5 +12,5 @@
   <p>Published? <%= f.check_box :published %></p> 
   <p>Comments enabled? <%= f.check_box :comments_enabled %></p>  
   <p>Tags: <%= f.text_field :tag_list %></p>
-  <%= submit_tag 'Save' %> or <%= link_to 'cancel', articles_url %> 
+  <%= submit_tag 'Save' %> <%= submit_to_remote "save_and_continue", "Save and Continue" , :url => (@article.new_record? ? articles_url : article_url(@article)), :before => "tinyMCE.triggerSave(false,true);" %> or <%= link_to 'cancel', articles_url %> 
 <% end -%> 

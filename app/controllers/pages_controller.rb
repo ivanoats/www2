@@ -36,27 +36,56 @@ class PagesController < ApplicationController
 
   def create
      @page = Page.new(params[:page]) 
-     @page.save! 
-     flash[:notice] = 'Page saved' 
-     redirect_to :action => 'index' 
-   rescue ActiveRecord::RecordInvalid 
-     render :action => 'new'
+     respond_to do |wants| 
+       if @page.save
+         flash[:notice] = "Page saved"
+         wants.html { redirect_to pages_url } 
+         wants.xml  { render :xml => @page.to_xml }
+         wants.js { render :update do |page|
+           page.redirect_to edit_page_url(@page)
+         end
+         }
+       else
+         wants.html { render :action => "new" } 
+         wants.xml  { render :xml => @page.errors, :status => :unprocessable_entity } 
+         wants.js { render :update do |page|
+           page.replace_html 'notice', ''
+           page.select("#errorExplanation") { |e| e.replace_html '' } 
+           page.replace_html 'error', error_messages_for(:page)
+         end
+         }
+       end
+     end
   end
 
   def edit
-    @page = Page.find(params[:id].to_i)
-    #@page = Page.find_by_permalink(params[:permalink])
+    @page = Page.find(params[:id])
   end
 
   def update
-      @page = Page.find(params[:id].to_i)
-      #@page = Page.find_by_permalink(params[:permalink])
-      @page.attributes = params[:page] 
-      @page.save! 
-      flash[:notice] = "Page updated" 
-      redirect_to :action => 'index' 
-    rescue 
-      render :action => 'edit' 
+    @page = Page.find(params[:id]) 
+    respond_to do |wants| 
+      if @page.update_attributes(params[:page]) 
+        flash[:notice] = "Page updated"
+        wants.html { redirect_to pages_url } 
+        wants.xml  { render :xml => @page.to_xml } 
+        wants.js { render :update do |page| 
+          page.replace_html 'notice', "Page updated"
+          page.replace_html 'error', ''
+          page.select("#errorExplanation") { |e| e.replace_html '' } 
+        end
+        }
+      else
+        wants.html { render :action => "update" } 
+        wants.xml  {render :xml => @page.errors, :status => :unprocessable_entity }
+        wants.js { render :update do |page|
+          page.replace_html 'notice', ''
+          page.select("#errorExplanation") { |e| e.replace_html '' } 
+          page.replace_html 'error', error_messages_for(:page)
+        end
+        }     
+      end
+    end
   end
 
   def destroy
