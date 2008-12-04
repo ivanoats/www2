@@ -8,7 +8,7 @@
 </div>
 <br style='clear: both;'/>
 <h2>Recent Articles</h2>
-<% if @articles.nil? %>
+<% if @articles.empty? %>
 	<p>This user has not published any blog articles yet</p>
 <% else %>
 	<%= render :partial => 'shared/article_index', :locals => { :articles => @articles } %>
