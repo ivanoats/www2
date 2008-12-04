@@ -5,8 +5,8 @@
   
   <% form.fieldset :type => "block", :legend => "" do %>
     <%= form.text_field :email, :required => true, :label => "Email address to send certificate to" %>
-    <%= form.text_field :host, :required => true, :label => "Host to make certificate for (choose either www.yourdomain.com or yourdomain.com - it cannot be valid for both)" %>
-    <%= form.text_field :country, :required => true, :label => "Country (two letter code)" %>
+    <%= form.text_field :host, :required => true, :label => "Host to make certificate for", :hint => "choose either www.yourdomain.com or yourdomain.com - it cannot be valid for both" %>
+    <%= form.text_field :country, :required => true, :hint => "two letter code" %>
     <%= form.select(:state, [ 	
     	[' ', ''],
     	['Alabama'], 
@@ -61,9 +61,9 @@
     	['Wisconsin'], 
     	['Wyoming']], :required => true) %>
     <%= form.text_field :city, :required => true %>
-    <%= form.text_field :company_name, :required => true %>
-    <%= form.text_field :company_division, :required => true, :label => "Company division ( put main if no divisions )" %>
-    <%= form.text_field :password, :required => true, :label => "Your password for the SSL certificate from www.sustainabledomains.com" %>
+    <%= form.text_field :company_name, :required => true, :label => "Company Name" %>
+    <%= form.text_field :company_division, :required => true, :label => "Company Division", :hint => "put main if no divisions" %>
+    <%= form.text_field :password, :required => true, :label => "SSL certificate password ", :hint => "Your password for the SSL certificate from www.sustainabledomains.com" %>
     
     <%= form.submit 'Send' %>
   <% end %>
