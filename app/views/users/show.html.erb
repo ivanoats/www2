@@ -1,6 +1,12 @@
-<h2><%= @user.name %></h2> 
-<p>Member since <%= @user.created_at.to_s(:human_date) %></p> 
-<p><%= @user.profile %></p>
+<div id="profile">
+  <h2><%=  @user.username %> </h2>
+  
+  <%= image_tag( gravitar_url(@user.email), :class => 'gravitar') if gravatar?(@user.email )%>
+  <p>Member since <%= @user.created_at.to_s(:human_date) %></p> 
+  <br/>
+  <p><%= @user.profile %></p>
+</div>
+<br style='clear: both;'/>
 <h2>Recent Articles</h2>
 <% if @articles.nil? %>
 	<p>This user has not published any blog articles yet</p>

@@ -89,5 +89,27 @@ module UsersHelper
       link_to_login_with_IP content_text, options
     end
   end
+  
+  require 'net/http'
+  require 'digest/md5'
+  
+  def gravitar_url(email,options = {})
+    hash = Digest::MD5.hexdigest(email.to_s.downcase)
+    options = { :rating => 'g', :timeout => 2 }.merge(options)
+    
+    "http://www.gravatar.com/avatar/#{hash}?rating=#{options[:rating]}&default=http://gravatar.com/avatar"
+  end
+  
+  # Is there a Gravatar for this email? Optionally specify :rating and :timeout.
+  def gravatar?(email, options = {})
+    hash = Digest::MD5.hexdigest(email.to_s.downcase)
+    options = { :rating => 'g', :timeout => 2 }.merge(options)
+    http = Net::HTTP.new('www.gravatar.com', 80)
+    http.read_timeout = options[:timeout]
+    response = http.request_head("/avatar/#{hash}?rating=#{options[:rating]}&default=http://gravatar.com/avatar")
+    response.code != '302'
+  rescue StandardError, Timeout::Error
+    false  # Don't show "no gravatar" if the service is down or slow
+  end
 
 end

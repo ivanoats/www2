@@ -1,10 +1,8 @@
 class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :create
-  
-  # before_filter :check_administrator_role, 
-  #               :only => [:index, :destroy, :enable]
-  # 
-  # before_filter :login_required, :only => [:edit, :update]
+
+  require_role "Administrator", :only => [:index, :destroy, :enable]
+  before_filter :login_required, :only => [:edit, :update]
   
   def new
     @user = User.new
@@ -53,7 +51,28 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.find(params[:id])
+    @current_user = logged_in_user
+    if @current_user.has_role?('administrator') && params[:id]
+      @user = User.find(params[:id])
+    else
+      @user = @current_user
+    end
+  end
+  
+  def update
+    @current_user = logged_in_user
+    if @current_user.has_role?('administrator') && params[:id]
+      @user = User.find(params[:id])
+    else
+      @user = @current_user
+    end
+    
+    if @user.update_attributes(params[:user]) 
+      flash[:notice] = "User updated" 
+      redirect_to :action => 'show', :id => @user 
+    else 
+      render :action => 'edit' 
+    end 
   end
   
   def show_by_login
