@@ -2,18 +2,19 @@ class FourOhFoursController < ApplicationController
 
   def index
     cleaned_path = request.path.gsub(/\//," ").strip
-    #if request.path is in the set of page permalinks then redirect to that page
+
+    #fake /:page_permalink
     @page = Page.find_by_permalink(cleaned_path)
-    @page_title = @page.title
-    render :partial => 'pages/show', :layout => "application" and return false if @page
-    #redirect_to page_permalink_url(to_page.permalink) and return false
+    if @page
+      @page_title = @page.title
+      render :partial => 'pages/show', :layout => "application" and return false
+    end
     
-    #same if it is an article name
+    #redirect to /article/:article_permalink
     @article = Article.find_by_permalink(cleaned_path)
     redirect_to permalink_url(@article.permalink) and return false if @article
-
     
-    #TODO: same if it a username?
+    redirect_to articles_path(:search => cleaned_path) and return false
     
     FourOhFour.add_request(request.host, request.path, request.env['HTTP_REFERER'] || '') 
     respond_to do |format| 
