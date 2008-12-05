@@ -35,10 +35,19 @@ describe ArticlesController do
       get :permalink, :permalink => 'pazermalink'
       response.should be_success
     end
+  end
+  
+  describe "reponding to show" do
+    it "should show an article" do
+      Article.should_receive(:find).and_return(Article.new)
+      get :show, :id => 1
+      response.should be_success
+    end
     
     it "should respond correctly to an old url" do
-      get :permalink, :permalink => 'alksdnkglasdg'
+      get :show, :id => 'alksdnkglasdg'
       response.should redirect_to(:action => "index", :search => 'alksdnkglasdg')
     end
   end
+  
 end

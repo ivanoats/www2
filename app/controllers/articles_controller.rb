@@ -49,6 +49,10 @@ class ArticlesController < ApplicationController
     else 
       @article = Article.find_by_id_and_published(params[:id], true) 
     end 
+    
+    redirect_to(:action => "index", :search => params[:id]) and return if @article.nil?
+    
+    
     @page_title = @article.title    
     @comment = Comment.new
     
