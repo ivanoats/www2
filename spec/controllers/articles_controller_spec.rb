@@ -27,4 +27,18 @@ describe ArticlesController do
     end
     
   end
+  
+  describe "responding to permalink" do
+    it "should show an article" do
+      Article.should_receive(:find_by_permalink).and_return(Article.new(:permalink => 'pazermalink'))
+      
+      get :permalink, :permalink => 'pazermalink'
+      response.should be_success
+    end
+    
+    it "should respond correctly to an old url" do
+      get :permalink, :permalink => 'alksdnkglasdg'
+      response.should redirect_to(:action => "index", :search => 'alksdnkglasdg')
+    end
+  end
 end

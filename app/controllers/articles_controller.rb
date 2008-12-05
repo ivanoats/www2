@@ -35,6 +35,8 @@ class ArticlesController < ApplicationController
     @article = Article.find_by_permalink(params[:permalink])
     @comment = Comment.new
     
+    redirect_to(:action => "index", :search => params[:permalink]) and return if @article.nil?
+    
     respond_to do |format|
        format.html { render :action => 'show' }
        format.xml  { render :xml => @article.to_xml }
