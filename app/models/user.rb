@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   # Check if a user has a role.
   def has_role?(role)
     list ||= self.roles.map(&:name)
-    list.include?(role.to_s) || list.include?('administrator')
+    list.include?(role.to_s) || list.include?('Administrator')
   end
   
   # Not using open id

@@ -1,6 +1,6 @@
 admin_role:
   id: 1
-  name: administrator
+  name: Administrator
 user_role:
   id: 2
   name: user

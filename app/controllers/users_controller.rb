@@ -52,7 +52,7 @@ class UsersController < ApplicationController
   
   def edit
     @current_user = logged_in_user
-    if @current_user.has_role?('administrator') && params[:id]
+    if @current_user.has_role?('Administrator') && params[:id]
       @user = User.find(params[:id])
     else
       @user = @current_user
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
   
   def update
     @current_user = logged_in_user
-    if @current_user.has_role?('administrator') && params[:id]
+    if @current_user.has_role?('Administrator') && params[:id]
       @user = User.find(params[:id])
     else
       @user = @current_user

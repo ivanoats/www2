@@ -72,6 +72,15 @@ ActiveRecord::Schema.define(:version => 20081204115038) do
   add_index "four_oh_fours", ["host", "path", "referer"], :name => "index_four_oh_fours_on_host_and_path_and_referer", :unique => true
   add_index "four_oh_fours", ["path"], :name => "index_four_oh_fours_on_path"
 
+  create_table "invoices", :force => true do |t|
+    t.integer  "amount",       :limit => 10, :precision => 10, :scale => 0
+    t.date     "due_date"
+    t.integer  "user_id"
+    t.integer  "line_item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "open_id_authentication_associations", :force => true do |t|
     t.integer "issued"
     t.integer "lifetime"
@@ -131,6 +140,11 @@ ActiveRecord::Schema.define(:version => 20081204115038) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "subscriptions", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

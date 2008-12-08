@@ -27,6 +27,9 @@ describe FourOhFoursController do
       response.should redirect_to permalink_url('that_article')
     end
     
+    it "should request a page that does not exist" #http://site.com/page/asdkjasdkja
+    it "should request pages instead of page" #http://site.com/pages/asdkjalkdfj
+    
   end
   
 end

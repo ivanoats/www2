@@ -38,7 +38,7 @@
 
 <p>Created on: <%= @article.created_at.to_date.to_formatted_s(:long_ordinal) %></p>
 
-<%= link_to( "edit article", edit_article_path(@article.id)) if logged_in? and current_user.has_role?('administrator') %>
+<%= link_to( "edit article", edit_article_path(@article.id)) if logged_in? and current_user.has_role?('Administrator') %>
 
 
 <%= content_tag(:h2,'Comments') if @article.comments.count > 0 %>
