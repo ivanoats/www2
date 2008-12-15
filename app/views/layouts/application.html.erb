@@ -31,12 +31,14 @@
   		<%= render :partial => 'layouts/menu' %>
   	</div><!--/header-->
   	<% if @splash_on then %>
+	<div id="splash-wrap">
   	<div id="splash">
   		<ul>
   			<li id="signup"><a href="#"></a></li>
   			<li id="learn_more"><a href="#"></a></li>
   		</ul>
   	</div><!--/splash-->
+	</div><!--/splash-wrap-->
   	<% end #if splash on %>
   	<div id="content">
   	    <%# if flash[:notice] -%> 

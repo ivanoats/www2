@@ -33,41 +33,21 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	font-family: inherit;
 	vertical-align: baseline;
 }
-:focus {
-	outline: 0;
-}
-body {
-	line-height: 1;
-	color: black;
-	background: white;
-}
-ol, ul {
-	list-style: none;
-}
-table {
-	border-collapse: separate;
-	border-spacing: 0;
-}
-caption, th, td {
-	text-align: left;
-	font-weight: normal;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: "";
-}
-blockquote, q {
-	quotes: "" "";
-}
-
+:focus {outline: 0;}
+body {line-height: 1;color: black;background: white;}
+ol, ul {list-style: none;}
+table {border-collapse: separate;border-spacing: 0;}
+caption, th, td {text-align: left;font-weight: normal;}
+blockquote:before, blockquote:after, q:before, q:after {content: "";}
+blockquote, q {quotes: "" "";}
 
 /* General */
 
-body {margin: 0; padding: 0; font: small "Helvetica Neue", Helvetica, Arial, sans-serif;;}
+body {margin: 0; padding: 0; font: small "Helvetica Neue", Helvetica, Arial, sans-serif; color:#333333;}
 h1, h2, h3, h4, h5, h6 {font-weight:normal; font-family: 'Trebuchet MS', sans-serif;}
 h1 {margin: 0; padding-bottom: 8px; font-size: 1.7em;}
-h2 {font-size:1.5em;margin: 0 0 .2em;}
-h3 {font-size:1.3em;margin-bottom: .5em; line-height:1;}
+h2 {font-size:1.5em;margin: 0 0 10px;}
+h3 {font-size:1.3em;margin-bottom: 10px; line-height:1;}
 h4 {font-size:1.2em;line-height:1.25;margin-bottom:1.25em;height:1.25em;}
 h5 {font-size:1em;font-weight:bold;margin-bottom:1.5em;}
 h6 {font-size:1em;font-weight:bold;}
@@ -78,23 +58,15 @@ h2.search-title {padding-top: 3px;}
 h3 a {color: #000000;} /* blog titles */
 h3 a:hover {background: #eeeeee;}
 
-p img {margin:1.5em 1em 1.5em 0;padding:0;}
-p img.right {float:right;margin:1.5em 0 1.5em 1.5em;}
-a, a:focus, a:hover {width:0; height:0;outline:0; /* removes outline */}
-a {text-decoration:none;}
-a:hover {text-decoration: underline;}
+#content p {margin:0 0 1em;}
+#content p img {margin:1.5em 1em 1.5em 0;padding:0;}
+#content p img.right {float:right;margin:1.5em 0 1.5em 1.5em;}
+#content a, a:focus, a:hover {width:0; height:0;outline:0; /* removes outline */}
+#content a {text-decoration:none;}
+#content a:hover {text-decoration: underline;}
 blockquote {margin:1.5em;color:#666;font-style:italic;}
-strong {font-weight:bold;}
-em, dfn {font-style:italic;}
-dfn {font-weight:bold;}
-sup, sub {line-height:0;}
-abbr, acronym {border: none; display: block;}
-address {margin:0 0 1.5em;font-style:italic;}
-del {color:#666;}
-pre, code {margin:1.5em 0;white-space:pre;}
-pre, code, tt {font:1em 'andale mono', 'lucida console', monospace;line-height:1.5;}
 img {border:none;}
-ul, ol, li {margin:0; padding:0;}
+#content ul, ol, li {margin:0; padding:0; list-style: disc;}
 ol li {list-style-type: decimal;}
 a img {border: none;}
 
@@ -115,14 +87,16 @@ html[xmlns] .clearfix {display: block;}
 #top_login, #top_login a {color: #00b160; text-decoration: none;}
 #top_twitter {color: #008265;}
 
+#splash-wrap {height: 330px;width: 100%; }
+
 #splash {background-image: url(../images/bg_splash.jpg); background-repeat:no-repeat;}
-#splash ul {margin: 0; padding: 190px 0 0 745px; list-style: none;}
-#splash li {margin: 0; padding: 0;}
+#splash ul {margin: 0; padding: 190px 0 0 745px;}
+#splash li {margin: 0; padding: 0; list-style: none;}
 #splash a {display: block;}
 #splash #signup a {height: 67px; width: 240px;}
 #splash #learn_more a {height: 67px; width: 240px;}
 
-#content {float: left; width: 67%; margin: 20px 0;  padding: 0 5% 0 2%; border-right: 1px solid #dedede; font-size: 1.2em;}
+#content {float: left; width: 67%; margin: 30px 0;  padding: 0 5% 0 2%; border-right: 1px solid #dedede; font-size: 1.2em;}
 #content ul {margin-left: 15px;}
 #sidebar {float: left; width: 20%; margin: 20px 0; padding: 0 1% 0 3%; text-align: right;}
 #sidebar ul, 
@@ -148,6 +122,9 @@ html[xmlns] .clearfix {display: block;}
 
 /******************* Blog ********************/
 .article_meta { font-size: .8em; margin-top: 5px; }
+.pagination {margin: 20px 0;}
+.hentry {margin: 20px 0 30px;}
+#article_body {margin: 20px 0;}
 
 .synopsis, .alert {padding: 1em 1.5em; color: #77a143; font-style: italic; background: #f9ffb9; font-size: .9em; font-weight: bold; text-align: left;}
 .alert {font-size: 1em;}
