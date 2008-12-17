@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tocdata>
+	<item name="Welcome" url="Welcome.htm"/>
+	<book name="Mambo Beginner Tutorials">
+		<item name="Install Mambo via Shell with Plesk" url="Install_Mambo_via_Shell_with_Plesk.htm"/>
+		<item name="Install Mambo via Shell with cPanel" url="Install_mambo_via_Shell_with_cPanelk.htm"/>
+		<item name="Install a Component" url="Install_a_Component.htm"/>
+		<item name="Install a Component Manually" url="Install_a_Component_Manually.htm"/>
+		<item name="Install a Language" url="Install_a_Language.htm"/>
+		<item name="Install a Language Manually" url="Install_a_Language_Manually.htm"/>
+		<item name="Install a Mambot" url="Install_a_Mambot.htm"/>
+		<item name="Install a Mambot Manually" url="Install_a_Mambot_Manually.htm"/>
+		<item name="Install a Module" url="Install_a_Module.htm"/>
+		<item name="Install a Module Manually" url="Install_a_Module_Manually.htm"/>
+		<item name="Install a Template" url="Install_a_Template.htm"/>
+		<item name="Install a Template Manually" url="Install_a_Template_Manually.htm"/>
+		<item name="Add a Section" url="Add_a_Section.htm"/>
+		<item name="Add a Category" url="Add_a_Category.htm"/>
+		<item name="Add a Content Item" url="Add_a_Content_Item.htm"/>
+		<item name="Add a Content Item from the Frontend" url="Add_a_Content_Item_from_the_Frontend.htm"/>
+		<item name="Edit/Approve a Submitted Item" url="Edit_Approve_a_Submitted_Item.htm"/>
+		<item name="Change the Content Layout" url="Change_the_Content_Layout.htm"/>
+	</book>
+	<book name="Mambo Layout Tutorials">
+		<book name="Add Menu Item">
+			<item name="Blog Category" url="Blog_Category.htm"/>
+			<item name="Component" url="Component.htm"/>
+			<item name="Link URL" url="Link_URL.htm"/>
+			<item name="Table-Content Section" url="Table-Content_Section.htm"/>
+			<item name="Wrapper" url="Wrapper.htm"/>
+		</book>
+		<item name="Add Contact Form" url="Add_Contact_Form.htm"/>
+		<item name="Add &quot;Top of Page&quot; Link" url="Add_Top_of_Page_Link.htm"/>
+		<item name="Assign Template" url="Assign_Template.htm"/>
+		<item name="Change the Frontpage Layout" url="Change_the_Frontpage_Layout.htm"/>
+		<item name="Change Homepage" url="Change_Homepage.htm"/>
+		<item name="Change Menu Orientation" url="Change_Menu_Orientation.htm"/>
+		<item name="Create a Module" url="Create_a_Module.htm"/>
+	</book>
+	<book name="Mambo Administrator Tutorials">
+		<item name="Archive Management" url="Archive_Management.htm"/>
+		<item name="Backup Using phpMyAdmin" url="Backup_Using_phpMyAdmin.htm"/>
+		<item name="Change Access Level of Content" url="Change_Access_Level_of_Content.htm"/>
+		<item name="Change Installed Directory" url="Change_Installed_Directory.htm"/>
+		<item name="Email All Users" url="Email_All_Users.htm"/>
+		<item name="Enable SEF URLs" url="Enable_SEF_URLs.htm"/>
+		<item name="Global Configuration Setup" url="Global_Configuration_Setup.htm"/>
+		<item name="Media Manager" url="Media_Manager.htm"/>
+		<item name="Module Manager" url="Module_Manager.htm"/>
+		<item name="Publishing Control of Contents" url="Publishing_Control_of_Contents.htm"/>
+		<item name="Setup RSS" url="Setup_RSS.htm"/>
+		<item name="Trash Management" url="Trash_Management.htm"/>
+		<item name="Update User Details - Backend" url="Update_User_Details_-_Backend.htm"/>
+		<item name="Update User Details - Frontend" url="Update_User_Details_-_Frontend.htm"/>
+		<item name="User Management" url="User_Management.htm"/>
+	</book>
+</tocdata>

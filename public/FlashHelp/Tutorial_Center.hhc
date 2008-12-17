@@ -1,0 +1,214 @@
+<html>
+<!-- Sitemap 1.0 -->
+<object type="text/site properties">
+  <param name="FrameName" value="bsscright">
+  <param name="SiteType" value="toc">
+  <param name="Image Width" value="16">
+</object>
+<ul>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Welcome">
+    <param name="Local" value="Welcome.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Mambo Beginner Tutorials">
+  </object>
+  <ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Install Mambo via Shell with Plesk">
+      <param name="Local" value="Install_Mambo_via_Shell_with_Plesk.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Install Mambo via Shell with cPanel">
+      <param name="Local" value="Install_mambo_via_Shell_with_cPanelk.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Install a Component">
+      <param name="Local" value="Install_a_Component.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Install a Component Manually">
+      <param name="Local" value="Install_a_Component_Manually.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Install a Language">
+      <param name="Local" value="Install_a_Language.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Install a Language Manually">
+      <param name="Local" value="Install_a_Language_Manually.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Install a Mambot">
+      <param name="Local" value="Install_a_Mambot.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Install a Mambot Manually">
+      <param name="Local" value="Install_a_Mambot_Manually.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Install a Module">
+      <param name="Local" value="Install_a_Module.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Install a Module Manually">
+      <param name="Local" value="Install_a_Module_Manually.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Install a Template">
+      <param name="Local" value="Install_a_Template.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Install a Template Manually">
+      <param name="Local" value="Install_a_Template_Manually.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Add a Section">
+      <param name="Local" value="Add_a_Section.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Add a Category">
+      <param name="Local" value="Add_a_Category.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Add a Content Item">
+      <param name="Local" value="Add_a_Content_Item.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Add a Content Item from the Frontend">
+      <param name="Local" value="Add_a_Content_Item_from_the_Frontend.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Edit/Approve a Submitted Item">
+      <param name="Local" value="Edit_Approve_a_Submitted_Item.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Change the Content Layout">
+      <param name="Local" value="Change_the_Content_Layout.htm">
+    </object>
+    </ul>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Mambo Layout Tutorials">
+  </object>
+  <ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Add Menu Item">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Blog Category">
+        <param name="Local" value="Blog_Category.htm">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Component">
+        <param name="Local" value="Component.htm">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Link URL">
+        <param name="Local" value="Link_URL.htm">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Table-Content Section">
+        <param name="Local" value="Table-Content_Section.htm">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Wrapper">
+        <param name="Local" value="Wrapper.htm">
+      </object>
+      </ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Add Contact Form">
+      <param name="Local" value="Add_Contact_Form.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Add &quot;Top of Page&quot; Link">
+      <param name="Local" value="Add_Top_of_Page_Link.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Assign Template">
+      <param name="Local" value="Assign_Template.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Change the Frontpage Layout">
+      <param name="Local" value="Change_the_Frontpage_Layout.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Change Homepage">
+      <param name="Local" value="Change_Homepage.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Change Menu Orientation">
+      <param name="Local" value="Change_Menu_Orientation.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Create a Module">
+      <param name="Local" value="Create_a_Module.htm">
+    </object>
+    </ul>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Mambo Administrator Tutorials">
+  </object>
+  <ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Archive Management">
+      <param name="Local" value="Archive_Management.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Backup Using phpMyAdmin">
+      <param name="Local" value="Backup_Using_phpMyAdmin.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Change Access Level of Content">
+      <param name="Local" value="Change_Access_Level_of_Content.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Change Installed Directory">
+      <param name="Local" value="Change_Installed_Directory.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Email All Users">
+      <param name="Local" value="Email_All_Users.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Enable SEF URLs">
+      <param name="Local" value="Enable_SEF_URLs.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Global Configuration Setup">
+      <param name="Local" value="Global_Configuration_Setup.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Media Manager">
+      <param name="Local" value="Media_Manager.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Module Manager">
+      <param name="Local" value="Module_Manager.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Publishing Control of Contents">
+      <param name="Local" value="Publishing_Control_of_Contents.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Setup RSS">
+      <param name="Local" value="Setup_RSS.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Trash Management">
+      <param name="Local" value="Trash_Management.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Update User Details - Backend">
+      <param name="Local" value="Update_User_Details_-_Backend.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Update User Details - Frontend">
+      <param name="Local" value="Update_User_Details_-_Frontend.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="User Management">
+      <param name="Local" value="User_Management.htm">
+    </object>
+    </ul>
+</ul>
+</html>
