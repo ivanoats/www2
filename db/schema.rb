@@ -9,21 +9,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081204115038) do
+ActiveRecord::Schema.define(:version => 20081217010248) do
 
   create_table "articles", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "category_id"
     t.string   "title"
-    t.string   "permalink"
-    t.string   "cached_tag_list"
     t.text     "synopsis"
     t.text     "body"
     t.boolean  "published",        :default => false
-    t.datetime "published_at"
-    t.boolean  "comments_enabled"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "published_at"
+    t.integer  "category_id",      :default => 1
+    t.string   "permalink"
+    t.boolean  "comments_enabled"
+    t.string   "cached_tag_list"
   end
 
   create_table "categories", :force => true do |t|
@@ -81,6 +81,19 @@ ActiveRecord::Schema.define(:version => 20081204115038) do
     t.datetime "updated_at"
   end
 
+  create_table "old_users", :force => true do |t|
+    t.string   "username",        :limit => 64,  :default => "",   :null => false
+    t.string   "email",           :limit => 128, :default => "",   :null => false
+    t.string   "hashed_password", :limit => 64
+    t.boolean  "enabled",                        :default => true, :null => false
+    t.text     "profile"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "last_login_at"
+  end
+
+  add_index "old_users", ["username"], :name => "index_users_on_username"
+
   create_table "open_id_authentication_associations", :force => true do |t|
     t.integer "issued"
     t.integer "lifetime"
@@ -100,10 +113,9 @@ ActiveRecord::Schema.define(:version => 20081204115038) do
     t.string   "title"
     t.string   "permalink"
     t.text     "body"
-    t.integer  "user_id"
-    t.boolean  "restricted"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "restricted"
   end
 
   create_table "passwords", :force => true do |t|
@@ -115,9 +127,15 @@ ActiveRecord::Schema.define(:version => 20081204115038) do
   end
 
   create_table "products", :force => true do |t|
-    t.string   "name"
-    t.integer  "price_dollars"
-    t.integer  "price_cents"
+    t.integer  "price",      :limit => 10, :precision => 10, :scale => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "redirects", :force => true do |t|
+    t.string   "slug"
+    t.string   "url"
+    t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

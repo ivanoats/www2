@@ -5,7 +5,10 @@ class FourOhFoursController < ApplicationController
 
     #checked cleaned_path against list of redirects in database
     logger.info("CLEANED PATH: " + cleaned_path)
-    redirect_to  'https://billing.sustainablewebsites.com/step_one.php?gid=2' and return if cleaned_path.strip == 'cabn'
+    redirect = Redirect.find_by_slug(cleaned_path)
+    redirect_to redirect.url and return unless redirect == nil
+    
+    #redirect_to  'https://billing.sustainablewebsites.com/step_one.php?gid=2' and return if cleaned_path.strip == 'cabn'
 
     #fake /:page_permalink
     @page = Page.find_by_permalink(cleaned_path)

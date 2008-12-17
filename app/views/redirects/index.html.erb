@@ -1,0 +1,22 @@
+<h1>Custom Redirects</h1>
+<%= link_to 'New redirect', new_redirect_path %>
+<table class="scaffold">
+  <tr>
+    <th>Slug</th>
+    <th>Url</th>
+  </tr>
+
+<% for redirect in @redirects %>
+  <tr>
+    <td><a href="/<%=h redirect.slug %>"><%=h redirect.slug %></a></td>
+    <td><a href="<%=h redirect.url %>">link</a></td>	
+    <td><%= link_to 'Show', redirect %></td>
+    <td><%= link_to 'Edit', edit_redirect_path(redirect) %></td>
+    <td><%= link_to 'Destroy', redirect, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+

@@ -1,0 +1,18 @@
+<p>
+  <b>Slug:</b>
+  <a href="/<%=h @redirect.slug %>"><%=h @redirect.slug %></a>
+</p>
+
+<p>
+  <b>Url:</b>
+  <a href="<%=h @redirect.url %>"><%=h @redirect.url %></a>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%=h @redirect.notes %>
+</p>
+
+
+<%= link_to 'Edit', edit_redirect_path(@redirect) %> |
+<%= link_to 'Back', redirects_path %>

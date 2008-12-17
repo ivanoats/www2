@@ -204,6 +204,10 @@ table#users { width: 100%;}
 table#users th { font-size: 95%; } 
 table#users td { font-size: 90%; } 
 
+/* defaults for rails scaffolding */
+table.scaffold { border-collapse: separate; }
+table.scaffold td { padding: 5px; }
+
 /************** support ticket form ***************/
 
 .field_description { color: #555; font-size: .8em; margin-bottom: 2px; display: block;}
