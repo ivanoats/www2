@@ -6,13 +6,13 @@ describe "/redirects/index.html.erb" do
   before(:each) do
     assigns[:redirects] = [
       stub_model(Redirect,
-        :slug => "value for slug",
-        :url => "value for url",
+        :slug => "slug1",
+        :url => "http://www.google.com",
         :notes => "value for notes"
       ),
       stub_model(Redirect,
-        :slug => "value for slug",
-        :url => "value for url",
+        :slug => "slug2",
+        :url => "http://www.yahoo.com",
         :notes => "value for notes"
       )
     ]
@@ -20,8 +20,8 @@ describe "/redirects/index.html.erb" do
 
   it "should render list of redirects" do
     render "/redirects/index.html.erb"
-    response.should have_tag("tr>td", "value for slug", 2)
-    response.should have_tag("tr>td", "value for url", 2)
+    response.should have_tag("tr>td", "slug1", 2)
+    response.should have_tag("tr>td", "http://www.google.com", 2)
     response.should have_tag("tr>td", "value for notes", 2)
   end
 end

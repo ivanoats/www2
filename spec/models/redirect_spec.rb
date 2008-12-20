@@ -3,8 +3,8 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe Redirect do
   before(:each) do
     @valid_attributes = {
-      :slug => "value for slug",
-      :url => "value for url",
+      :slug => "slug",
+      :url => "http://www.google.com",
       :notes => "value for notes"
     }
   end
