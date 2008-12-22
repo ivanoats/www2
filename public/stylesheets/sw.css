@@ -279,3 +279,19 @@ display: block;
 .css4 { font-size: 1.6em; }
 
 #top_tags_sidebar { text-align: left; margin-bottom: 15px }
+
+/******************  text buttons *****************/
+#content a.signup {
+	font-weight: bold;
+	display: block; 
+	border: 1px solid black;
+	border-bottom: 1px solid black;
+	background: #ccffcc;
+	width: 225px;
+	height: 20px;
+	padding: 10px;
+	margin: 10px;
+}
+#content a.signup:hover {
+	background: #ffccff;
+}
