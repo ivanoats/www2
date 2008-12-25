@@ -310,7 +310,7 @@ display: block;
 	background: #ffccff;
 }
 /****************** graphic buttons *****************/
-.sign-up {
+#content .sign-up {
 	height:31px;
 	margin:-4px 0 24px 0;
 	}
@@ -328,11 +328,11 @@ display: block;
 	background:transparent url(../images/btn-signup.gif) no-repeat -137px 0;
 	border:none;
 	}
-.learn-more {
+#content .learn-more {
 	height:31px;
-	margin:-4px 0 24px 0;
+	margin:10px 0 24px 0;
 	}
-.learn-more a {
+#content .learn-more a {
 	display:block;
 	width:137px;
 	height:31px;
@@ -341,7 +341,7 @@ display: block;
 	text-indent:-9999em;
 	border:none;
 	}
-.learn-more a:hover {
+#content .learn-more a:hover {
 	display:block;
 	background:transparent url(../images/btn-learn-more.gif) no-repeat -137px 0;
 	border:none;
