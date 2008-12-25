@@ -309,3 +309,40 @@ display: block;
 #content a.signup:hover {
 	background: #ffccff;
 }
+/****************** graphic buttons *****************/
+.sign-up {
+	height:31px;
+	margin:-4px 0 24px 0;
+	}
+.sign-up a {
+	display:block;
+	width:137px;
+	height:31px;
+/*	float:right;*/
+	background:transparent url(../images/btn-signup.gif) no-repeat 0 0;
+	text-indent:-9999em;
+	border:none;
+	}
+.sign-up a:hover {
+	display:block;
+	background:transparent url(../images/btn-signup.gif) no-repeat -137px 0;
+	border:none;
+	}
+.learn-more {
+	height:31px;
+	margin:-4px 0 24px 0;
+	}
+.learn-more a {
+	display:block;
+	width:137px;
+	height:31px;
+/*	float:right;*/
+	background:transparent url(../images/btn-learn-more.gif) no-repeat 0 0;
+	text-indent:-9999em;
+	border:none;
+	}
+.learn-more a:hover {
+	display:block;
+	background:transparent url(../images/btn-learn-more.gif) no-repeat -137px 0;
+	border:none;
+	}
