@@ -10,10 +10,7 @@
 		    <li><%#= link_to 'Signup', :controller => 'users', :action => 'new' %></li> 
 		    <li><%#= link_to 'Login', :controller => 'account', :action => 'login' %></li> 
 		  <% end %>
-		 <pre>
-		<%#= current_user.methods.to_yaml %>
-		</pre>
-		   <% if logged_in? and current_user.has_role?('Administrator') %> 
+		  <% if logged_in? and current_user.has_role?('Administrator') %> 
 			<li><hr size="1" width="90%" align="left"/></li> 
 		    <li><b>Admin Options</b></li> 
 		    <li><%= link_to 'Users Admin', users_path %></li> 

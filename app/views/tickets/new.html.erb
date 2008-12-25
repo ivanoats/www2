@@ -1,38 +1,12 @@
 <% content_for :sidebar do %>
 	<%= render :partial => 'shared/search_form' %>
-	<%= render :partial => 'shared/common_fixes' %>
-	
-	<div class="spiffy-wrap">
-
-	  <b class="spiffy">
-	  <b class="spiffy1"><b></b></b>
-	  <b class="spiffy2"><b></b></b>
-	  <b class="spiffy3"></b>
-	  <b class="spiffy4"></b>
-	  <b class="spiffy5"></b></b>
-
-	  <div class="spiffyfg">
-	<!-- <div class="synopsis alert">What looks different here? Our support page has the look and feel of our upcoming new site.</div> -->
-
-	  </div>
-
-	  <b class="spiffy">
-	  <b class="spiffy5"></b>
-	  <b class="spiffy4"></b>
-	  <b class="spiffy3"></b>
-	  <b class="spiffy2"><b></b></b>
-	  <b class="spiffy1"><b></b></b></b>
-	</div>
-
-	
+	<%= render :partial => 'shared/common_fixes' %>	
 <% end %>
 
 <div id="support_form">
 
-
-
 <h1>Get Help - Contact Support</h1>
-<p>Please use this form to guide you in giving our tech team the complete information they need to help you faster. All fields are required unless it says optional.</p>
+<p>If your issue is not listed on the right side of this page, please use this form to guide you in giving our tech team the complete information they need to help you faster. All fields are required unless it says optional.</p>
 <%= error_messages_for :ticket %>
 
 <% form_for(@ticket) do |f| %>
@@ -76,7 +50,7 @@
   </div>
 
   <div>
-    <label for="phone_number">Phone Number</label><br /><span class="field_description">Optional - used only if you have purchased phone support or for escalating issues. Please include country code (+1 for US and Canada, +44 for UK, etc&hellip;)</span><br/>
+    <label for="phone_number">Phone Number</label><br /><span class="field_description">Optional - use only if you have purchased phone support or for escalating issues. Please include country code (+1 for US and Canada, +44 for UK, etc&hellip;)</span><br/>
     <%= f.text_field :phone %>
   </div>
 
@@ -91,7 +65,7 @@
   </div>
 
   <div>
-    <label for="cpanel_username">cPanel username</label><br /><span class="field_description">put don't know if you don't know it. <a href="http://www.sustainablewebsites.com/billing">Click here to re-send your welcome email</a></span>
+    <label for="cpanel_username">cPanel username</label><br /><span class="field_description">put don't know if you don't know it. <a href="http://www.sustainablewebsites.com/billing">Click here to re-send your password email</a></span>
     <%= f.text_field :cpanel_username %>
   </div>
 
