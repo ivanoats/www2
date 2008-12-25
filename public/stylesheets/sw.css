@@ -314,7 +314,7 @@ display: block;
 	height:31px;
 	margin:-4px 0 24px 0;
 	}
-.sign-up a {
+#content .sign-up a {
 	display:block;
 	width:137px;
 	height:31px;
@@ -323,7 +323,7 @@ display: block;
 	text-indent:-9999em;
 	border:none;
 	}
-.sign-up a:hover {
+#content .sign-up a:hover {
 	display:block;
 	background:transparent url(../images/btn-signup.gif) no-repeat -137px 0;
 	border:none;
