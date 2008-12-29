@@ -57,6 +57,7 @@ h2.entry-title {margin: 0 0 .2em;}
 h2.search-title {padding-top: 3px;}
 h3 a {color: #000000;} /* blog titles */
 h3 a:hover {background: #eeeeee;}
+strong {font-weight: bold;}
 
 #content p {margin:0 0 1em;}
 /* #content p img {margin:1.5em 1em 1.5em 0;padding:0;} */
@@ -133,6 +134,7 @@ html[xmlns] .clearfix {display: block;}
 #content ul.hosting-table-list li span.tooltip {position:relative; top: 4px; margin: 0 10px;} /* tooltip */
 #content ul.hosting-table-list li p.check {width: 490px; margin: 0; padding: 10px 70px 10px 0; background: url(../images/tb_check.jpg) right center no-repeat;} /* check */
 #content .signup-button {text-align:right; position: relative; right:20px;}
+.hosting_plan_name { font-size: 1.5em }
 
 /******************* Blog ********************/
 .article_meta { font-size: .8em; margin-top: 5px; }
