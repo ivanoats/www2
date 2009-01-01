@@ -1,2 +1,5 @@
 # future .htaccess
-#Redirect 301 /cabn https://billing.sustainablewebsites.com/step_one.php?gid=2
+# Redirect 301 /cabn https://billing.sustainablewebsites.com/step_one.php?gid=2
+# RewriteEngine On
+# RewriteCond %{HTTP_HOST} ^sustainablewebsites\.com$ [NC] 
+# RewriteRule ^(.*)$ http://www.sustainablewebsites.com/$1 [R=301,L]
