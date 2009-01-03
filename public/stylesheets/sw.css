@@ -102,7 +102,11 @@ html[xmlns] .clearfix {display: block;}
 #sidebar {float: left; width: 20%; margin: 20px 0; padding: 0 1% 0 3%; text-align: right;}
 #sidebar ul, 
 #sidebar li {margin: 0; padding: 0; list-style: none;}
-#sidebar p img {margin: 0; padding: 0;}
+#sidebar p img {
+border:medium none;
+margin:10px;
+padding:10px;
+}
 #footer {margin: 0; padding-bottom: 2%; clear: left; background: url(../images/ft_bg.gif) top repeat-x #82aa51; color: #e0ead3; font-size: 1.3em;}
 #footer-inner {width: 1000px; margin: 0 auto; padding-left: 30px; clear: both;}
 .footer-block {margin: 0; padding: 30px 0; border-bottom: 1px solid #9bbd71; clear: both; font-size: 1em;}
