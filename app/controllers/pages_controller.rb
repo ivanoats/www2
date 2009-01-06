@@ -10,11 +10,18 @@ class PagesController < ApplicationController
 
   def permalink
     @page = Page.find_by_permalink(params[:permalink])
-    @page_title = @page.title
-    respond_to do |format|
-       format.html { render :partial => 'show' }
-       format.xml  { render :xml => @page.to_xml }
-     end
+    unless @page.nil? then
+      @page_title = @page.title
+      respond_to do |format|
+         format.html { render :partial => 'show', :layout => "application" }
+         format.xml  { render :xml => @page.to_xml }
+      end
+   else
+     respond_to do |format| 
+       format.html { render :file => "#{RAILS_ROOT}/public/404.html", :status => "404 Not Found" } 
+       format.all { render :nothing => true, :status => "404 Not Found" } 
+     end 
+   end #if page existed
   end
 
 
