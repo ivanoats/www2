@@ -3,6 +3,7 @@ tmp/**/*
 .DS_Store
 public/.DS_Store
 public/cache/**/*
+public/.DS_Store
 doc/api
 doc/app
 config/database.yml
