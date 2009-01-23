@@ -36,8 +36,8 @@
   margin:0; padding:0;
   clear:both;
   /* user prefs */
-  background:#f9f9f9;
-  margin:0; padding:7px 4px;
+  /* background:#f9f9f9; */
+  margin:0; padding:7px 0px;
 }
 
 .buttonHolder{
