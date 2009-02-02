@@ -141,13 +141,19 @@ padding:10px;
 .hosting_plan_name { font-size: 1.5em }
 
 /******************* Blog ********************/
-.article_meta { font-size: .8em; margin-top: 5px; }
+.article_meta, .comment_time { font-size: .8em; margin-top: 5px; }
 .pagination {margin: 20px 0;}
 .hentry {margin: 20px 0 30px;}
 #article_body {margin: 20px 0;}
 
 .synopsis, .alert {padding: 10px 20px	; color: #77a143; font-style: italic; background: #f9ffb9; font-size: .9em; font-weight: bold; text-align: left;}
 .alert {font-size: 1em;}
+
+.comment {
+border-top: 1px dotted #555; 
+padding-top:5px; 
+}
+
 .spiffy-wrap {margin-top: 10px; margin-left: -5px;}
 .spiffy{display:block}
 .spiffy *{

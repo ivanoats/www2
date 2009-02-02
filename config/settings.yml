@@ -12,8 +12,8 @@ staging:
   admin_email: bort@bort.com  
   
 production:
-  site_url: http://www2.sustainablewebsites.com
+  site_url: http://www.sustainablewebsites.com
   site_name: Sustainable Websites
-  admin_email: admin@sustainablewebsites.com 
+  admin_email: ivan@sustainablewebsites.com 
 
 
