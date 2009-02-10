@@ -24,7 +24,7 @@ describe FourOhFoursController do
     it "should request an article by name" do
       Article.should_receive(:find_by_permalink).and_return(Article.new(:permalink => "that_article"))
       get 'index', :path => ["that_article"]
-      response.should redirect_to permalink_url('that_article')
+      response.should redirect_to(permalink_url('that_article'))
     end
     
     it "should request a page that does not exist" #http://site.com/page/asdkjasdkja
