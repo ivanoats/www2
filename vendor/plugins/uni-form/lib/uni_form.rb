@@ -146,7 +146,7 @@ module MarcusIrven #:nodoc:
       options.delete(:legend)
       options.delete(:type)
       
-      @template.concat(@template.content_tag(:fieldset, content, options.merge({ :class => classname.strip })), proc.binding)
+      @template.concat(@template.content_tag(:fieldset, content, options.merge({ :class => classname.strip })))
       
     end
 

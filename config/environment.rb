@@ -77,4 +77,6 @@ Rails::Initializer.run do |config|
 end
 
 # Exception Notifier
-ExceptionNotifier.exception_recipients = %w(ivanoats@gmail.com sales@sustainablewebsites.com)
+ExceptionNotifier.exception_recipients = %w(ivanoats@gmail.com)
+ExceptionNotifier.sender_address = %("Application Error" <app.error@sustainablewebsites.com>) 
+ExceptionNotifier.email_prefix = "[www2] " 

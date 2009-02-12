@@ -95,7 +95,8 @@ describe UsersController do
     end
     
     it "should route users's 'new' action correctly" do
-      route_for(:controller => 'users', :action => 'new').should == "/signup"
+      # TODO fix this route when ready to allow user signups
+      route_for(:controller => 'users', :action => 'new').should == "/signup-new"
     end
     
     it "should route {:controller => 'users', :action => 'create'} correctly" do

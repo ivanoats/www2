@@ -122,14 +122,20 @@ padding:10px;
 #content .signup-button {text-align:right; position: relative; right:20px;}
 .hosting_plan_name { font-size: 1.5em }
 
-/* Blog ################################################################## */
-.article_meta { font-size: .8em; margin-top: 5px; }
+/******************* Blog ********************/
+.article_meta, .comment_time { font-size: .8em; margin-top: 5px; }
 .pagination {margin: 20px 0;}
 .hentry {margin: 20px 0 30px;}
 #article_body {margin: 20px 0;}
 
 .synopsis, .alert {padding: 10px 20px	; color: #77a143; font-style: italic; background: #f9ffb9; font-size: .9em; font-weight: bold; text-align: left;}
 .alert {font-size: 1em;}
+
+.comment {
+border-top: 1px dotted #555; 
+padding-top:5px; 
+}
+
 .spiffy-wrap {margin-top: 10px; margin-left: -5px;}
 .spiffy{display:block}
 .spiffy *{
@@ -185,10 +191,9 @@ padding:10px;
 #nav #about a:hover {background: url(../images/bg_nav_hover.gif) no-repeat; background-position: -330px 0}
 #nav #contact a {height: 46px; width: 120px;}
 #nav #contact a:hover {background: url(../images/bg_nav_hover.gif) no-repeat; background-position: -430px 0}
-#nav li#services ul, #nav li#about ul {margin: 46px 0 0 0px;}
-#nav li#services ul, #nav li#about ul {padding: 0 0 0 20px; background: #d1ebb1;}
-#nav li#services li a, #nav li#about li a {height: auto; padding: 10px 0; color: #77a143;}
-#nav li#services ul a:hover, #nav li#about ul a:hover {color: #305305; background: none;}
+#nav li#services ul, #nav li#about ul, #nav li#contact ul {margin: 0 0 0 0px; padding: 0 0 0 20px; background: #d1ebb1;}
+#nav li#services li a, #nav li#about li a, #nav li#contact li a {height: auto; padding: 10px 0; color: #77a143;}
+#nav li#services ul a:hover, #nav li#about ul a:hover, #nav li#contact ul a:hover {color: #305305; background: none;}
 #nav li ul {position: absolute; width: 100px; left: -999em;}
 #nav li:hover ul, #nav li.sfhover ul {left: auto;}
 #nav li ul {float: none; clear: both; margin: 0;}

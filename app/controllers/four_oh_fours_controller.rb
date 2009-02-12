@@ -4,8 +4,9 @@ class FourOhFoursController < ApplicationController
     cleaned_path = request.path.gsub(/\//," ").strip
 
     #checked cleaned_path against list of redirects in database
+    # E.g. /billing => https://billing.sustainablewebsites.com
     redirect = Redirect.find_by_slug(cleaned_path)
-    redirect_to redirect.url and return unless redirect.blank?
+    redirect_to(redirect.url, :status => 301) and return unless redirect.blank?
     
     #fake /:page_permalink
     @page = Page.find_by_permalink(cleaned_path)

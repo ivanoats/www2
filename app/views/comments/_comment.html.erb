@@ -1,6 +1,6 @@
 <% unless comment.nil?  %>
 <div class="comment" id="<%= comment.id %>_comment_id">
-    <h3><%= comment.title %></h3>
+    <h3><a href="<%= comment.web_site %>"><%= comment.name %></a></h3>
     <p class="comment_time"><%= time_ago_in_words comment.created_at %> ago</p>
     <p><%=  comment.comment %></p>
 </div>
