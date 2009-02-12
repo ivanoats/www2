@@ -1,7 +1,5 @@
 /***
 
-   :: Theme Development: q:D rosschapman.net
-
 	Font Palette
 	***************************************
 	body: 'Trebuchet MS', sans-serif;
@@ -15,24 +13,8 @@
 
 /* Reset Reloaded: http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/ */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	outline: 0;
-	font-weight: inherit;
-	font-style: inherit;
-	font-size: 100%;
-	font-family: inherit;
-	vertical-align: baseline;
-}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, font, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td {margin: 0;padding: 0;border: 0;outline: 0;font-weight: inherit;font-style: inherit;font-size: 100%;font-family: inherit;vertical-align: baseline;}
 :focus {outline: 0;}
 body {line-height: 1;color: black;background: white;}
 ol, ul {list-style: none;}
@@ -41,7 +23,7 @@ caption, th, td {text-align: left;font-weight: normal;}
 blockquote:before, blockquote:after, q:before, q:after {content: "";}
 blockquote, q {quotes: "" "";}
 
-/* General */
+/* General ################################################################## */
 
 body {font: small "Helvetica Neue", Helvetica, Arial, sans-serif; color:#333333;}
 h1, h2, h3, h4, h5, h6 {font-weight:normal; font-family: 'Trebuchet MS', sans-serif;}
@@ -77,7 +59,7 @@ a img {border: none;}
 html[xmlns] .clearfix {display: block;}
 * html .clearfix {height: 1%;}
 
-/* Layout */
+/* Layout ################################################################## */
 
 #wrapper {margin: 0; padding: 0; background: url(../images/bg.jpg) top center repeat-x;}
 	#pages_home #wrapper {margin: 0; padding: 0; background: url(../images/bg_home.jpg) top center repeat-x;}
@@ -118,21 +100,21 @@ padding:10px;
 .footer_headline_link {color: #115511}
 .tiny {font-size: .6em;}
 .fb1 {font-size: 1.2em; background: url(../images/fb1_bg.gif) left no-repeat;}
-.fb2 {height: 130px; padding: 30px 0 0; margin: 0; font: .8em arial, helvetica, sans-serif; background: url(../images/fb2_bg.gif) left center no-repeat;}
+.fb2 {padding: 30px 0 30px; margin: 0; font: .8em arial, helvetica, sans-serif; background: url(../images/fb2_bg.gif) left center no-repeat;}
 .fb2 ul.first {padding-left: 70px;}
 .fb2 ul {float: left; margin: 0; padding-left: 5%;}
 .fb3 {color: #4a602f; background: url(../images/fb3_bg.gif) left no-repeat; border: none;}
 
 #spacer {margin-top: 10px; padding-top: 10px;}
 
-/* Hosting Table */
+/* Hosting Table ################################################################## */
 
 #hosting-10-tease {margin-bottom: 10px; height: 120px; background: url(../images/tb_10.gif) no-repeat;}
 #hosting-20-tease {margin-bottom: 10px; height: 120px; background: url(../images/tb_20.gif) no-repeat;}
 #hosting-30-tease {margin-bottom: 10px; height: 120px; background: url(../images/tb_30.gif) no-repeat;}
 
 .hosting-table {height: 100%; width: 650px; margin: 0 0 50px;}
-#content .hosting-table p.synopsis {position:relative; top: 40px; left: 10px; width: 490px; background: none;	}
+#content .hosting-table p.synopsis {position:relative; top: 35px; left: 10px; width: 490px; background: none;	}
 #content ul.hosting-table-list {width: 630px; margin: 10px 10px 30px;}
 #content ul.hosting-table-list li {margin: 0px 0px 10px 0px; padding:10px 100px 10px 40px; list-style: none inside; background: #F5FCFF url(../images/tb_bg_row.jpg) repeat-x;} 
 #content ul.hosting-table-list li span.tooltip {position:relative; top: 4px; margin: 0 10px;} /* tooltip */
@@ -216,14 +198,19 @@ padding-top:5px;
 #nav li:hover ul, #nav li.sfhover ul {left: auto;}
 #nav li ul {float: none; clear: both; margin: 0;}
 
-/* Forms */
+/* Forms ################################################################## */
 
 input, input.title, textarea, select {margin:0.5em 0;border:1px solid #bbb;}
 input:active, input:focus, input.title:focus, textarea:focus, select:focus {border:1px solid #666;}
 input.title {font-size:1.5em;}
 
+/* Comment Form Overrides */
+.uniForm {border-top: 2px solid #DFDFDF; padding: 20px 0;}
+.ctrlHolder {background: none; padding: 7px 0;}
+label em, .label em {color: red;}
 
-/* User Table */
+
+/* User Table ################################################################## */
 
 table#users { width: 100%;} 
 table#users th { font-size: 95%; } 
