@@ -4,7 +4,7 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
     xml.title       "Sustainable Websites Green Web Hosting News" 
     xml.link        articles_url 
     xml.pubDate     CGI.rfc1123_date @articles.first.published_at if @articles.any? 
-    xml.description "Articles from Sustainable Websites" 
+    xml.description "Articles from Sustainable Websites. Tips on web hosting, web design, green design, and green marketing" 
     @articles.each do |article| 
       xml.item do 
         xml.title       article.title 
