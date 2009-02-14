@@ -18,15 +18,13 @@ class Article < ActiveRecord::Base
   
   validates_uniqueness_of :permalink
   
-  def before_validation
-    self.permalink = self.title unless self.permalink_changed?
+  def before_save
+    self.permalink = self.title if self.permalink.blank?
+    self.permalink.gsub!('_','-')
+    self.permalink = PermalinkFu.escape(self.permalink)
   end
   
-  def permalink=(new_value)
-    new_value = self.title if new_value.blank?
-    write_attribute(:permalink,PermalinkFu.escape(new_value))
-  end
-  
+    
   def self.per_page
     10
   end
