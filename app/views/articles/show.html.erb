@@ -49,8 +49,9 @@
     <% end %>
   </div>
 
-  <% uni_remote_form_for :comment, :url => {:controller => "comments", :action => "create", :article_id => @article.id}, :html => {:id => 'comment_form'} do |form| %>
+  <% uni_remote_form_for :comment, :url => {:controller => "comments", :action => "create", :commentable_id => @article.id, :commentable_type => @article.class.name}, :html => {:id => 'comment_form'} do |form| %>
     <%= uniform_success_message flash[:notice] if flash[:notice] %>
+    <div id="commentErrors"></div>
     
     <% form.fieldset :type => "inline", :legend => "leave a comment" do %>
       <%= form.text_field :name %>
