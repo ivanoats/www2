@@ -10,7 +10,8 @@ class CommentsController < ApplicationController
           wants.js { render :update do |page|
             page.insert_html :bottom, 'comments', :partial => 'comments/comment', :locals => {:comment => @comment}
             page.visual_effect :highlight, 'comments', :duration => 3
-            page.form.reset 'comment_form'
+            page << "$('#comment_form')[0].reset()"
+            page.replace_html 'commentMessage', uniform_success_message(flash[:notice])
           end
           }
         else
@@ -19,7 +20,7 @@ class CommentsController < ApplicationController
           wants.js { render :update do |page|
             page.replace_html 'notice', ''
             page.select("#errorExplanation") { |e| e.replace_html '' } 
-            page.replace_html 'commentErrors', error_messages_for(:comment)
+            page.replace_html 'commentMessage', error_messages_for(:comment)
           end
           }
         end
