@@ -4,12 +4,10 @@ xml.feed "xmlns" => "http://www.w3.org/2005/Atom" do
   xml.link    "rel" => "self", "href" => articles_url 
   xml.link    "rel" => "alternate", "href" => articles_url 
   xml.id      articles_url 
-  if @articles.any? 
-    xml.updated( @articles.first.updated_at.strftime "%Y-%m-%dT%H:%M:%SZ" )
-  end 
+  xml.updated( @articles.first.updated_at.strftime "%Y-%m-%dT%H:%M:%SZ" ) if @articles.any? 
   xml.author  { xml.name "Articles from Sustainable Websites Green Web Hosting" } 
   @articles.each do |article| 
-    xml.article do 
+    xml.entry do 
       xml.title   article.title 
       xml.link    "rel" => "alternate", "href" => article_url(article.permalink) 
       xml.id      article_url(article) 

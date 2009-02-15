@@ -17,6 +17,10 @@
 	<%= javascript_include_tag :defaults, :cache => true %> 
   <%= javascript_include_tag 'uni-form.jquery.js' %>
   <%= yield :head %> 
+  
+  <%= auto_discovery_link_tag(:rss, :controller => :articles, :action => 'index', :format => 'rss') %>
+  <%= auto_discovery_link_tag(:rss, :controller => :articles, :action => 'index', :format => 'atom') %>
+  
 </head>
 <body id="<%= controller.controller_name.to_s + "_" + controller.action_name.to_s %>">
   <div id="wrapper">
