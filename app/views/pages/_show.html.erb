@@ -1,3 +1,14 @@
+<% content_for :head do %>
+  <style type='text/css'>
+    #sidebar { display:none;}
+    #content { 
+      float: none;
+      width: auto;
+      border-right: 0px;
+    }
+  </style>
+<% end if @page.hide_sidebar %>
+
 <h2><%= @page.title %></h2> 
 <p><%= @page.body %></p>
 <% if logged_in_user and logged_in_user.has_role?('Administrator') %> 

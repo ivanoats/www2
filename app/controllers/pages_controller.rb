@@ -16,6 +16,7 @@ class PagesController < ApplicationController
 
   def permalink
     @page = Page.find_by_permalink(params[:permalink])
+    
     unless @page.nil? then
       @page_title = @page.title
       respond_to do |format|
