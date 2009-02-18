@@ -4,7 +4,6 @@ class Article < ActiveRecord::Base
   
   acts_as_commentable
   acts_as_taggable
-  #has_permalink :title
   
   before_save :update_published_at 
   
@@ -42,9 +41,4 @@ class Article < ActiveRecord::Base
     self.published_at = Time.now if published == true 
   end
   
-  
-  #def to_param 
-    #{}"#{id}-#{permalink}" 
-   # permalink
-  #end
 end
