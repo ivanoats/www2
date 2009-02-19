@@ -28,6 +28,14 @@ describe ArticlesController do
     
   end
   
+  describe "responding to livesearch" do
+    it "should return live search results" do
+      Article.should_receive(:find).and_return([Article.new])
+      get :livesearch, :search => 'Search'
+      response.should be_success
+    end
+  end
+  
   describe "responding to permalink" do
     it "should show an article" do
       Article.should_receive(:find_by_permalink).and_return(Article.new(:permalink => 'pazermalink'))

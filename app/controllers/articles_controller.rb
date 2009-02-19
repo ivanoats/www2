@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   
-  require_role "Editor", :except => [:index, :show, :permalink, :search]
+  require_role "Editor", :except => [:index, :show, :permalink, :livesearch]
 
   def index
     @article_tags = Article.tag_counts :order => 'count desc', :at_least => 3 
@@ -31,7 +31,7 @@ class ArticlesController < ApplicationController
     end 
   end
   
-  def search
+  def livesearch
     @search = params[:search]
     search = "%#{params[:search]}%"
     @articles = Article.all(:conditions => ['(title LIKE ? or body LIKE ?) AND published = ?',search,search,true], :limit => 10)

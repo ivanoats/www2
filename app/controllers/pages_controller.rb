@@ -41,7 +41,7 @@ class PagesController < ApplicationController
   
 
   def home
-    @page = Page.find(1)
+    @page = Page.first || Page.new
     @page_title = @page.title
     @splash_on = true
   end
