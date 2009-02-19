@@ -5,7 +5,6 @@ class CommentsController < ApplicationController
       respond_to do |wants| 
         if @comment.save
           flash[:notice] = "Comment saved"
-          wants.html { redirect_to admin_comments_url } 
           wants.xml  { render :xml => @comment.to_xml }
           wants.js { render :update do |page|
             page.insert_html :bottom, 'comments', :partial => 'comments/comment', :locals => {:comment => @comment}

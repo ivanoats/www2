@@ -1,12 +1,21 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe CertificateTicketsController do
-
   fixtures :users, :roles, :roles_users
   
-
   def mock_certificate_ticket(stubs={})
-    @mock_certificate_ticket ||= mock_model(CertificateTicket, stubs)
+    @valid_params = {
+      :email => 'email@email.com',
+      :password => 'password',
+      :host => 'host', 
+      :country => 'country', 
+      :state => 'state', 
+      :city => 'city', 
+      :company_name => 'c name',
+      :company_division => 'c division'
+    }
+    
+    @mock_certificate_ticket ||= mock_model(CertificateTicket, @valid_params.merge(stubs))
   end
   
   describe "Anybody" do
@@ -109,14 +118,14 @@ describe CertificateTicketsController do
 
         it "should expose the requested certificate_ticket as @certificate_ticket" do
           CertificateTicket.stub!(:find).and_return(mock_certificate_ticket(:update_attributes => true))
-          put :update, :id => "1"
+          put :update, :id => "1", :certificate_ticket => {}
           assigns(:certificate_ticket).should equal(mock_certificate_ticket)
         end
 
         it "should redirect to the certificate_ticket" do
           CertificateTicket.stub!(:find).and_return(mock_certificate_ticket(:update_attributes => true))
-          put :update, :id => "1"
-          response.should redirect_to(certificate_ticket_url(mock_certificate_ticket))
+          put :update, :id => "1", :certificate_ticket => {}
+          response.should redirect_to(certificate_ticket_url(:id => 1))
         end
 
       end
