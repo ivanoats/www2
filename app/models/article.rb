@@ -4,7 +4,6 @@ class Article < ActiveRecord::Base
   
   acts_as_commentable
   acts_as_taggable
-  #has_permalink :title
   
   before_save :update_published_at 
   
@@ -18,15 +17,13 @@ class Article < ActiveRecord::Base
   
   validates_uniqueness_of :permalink
   
-  def before_validation
-    self.permalink = self.title unless self.permalink_changed?
+  def before_save
+    self.permalink = self.title if self.permalink.blank?
+    self.permalink.gsub!('_','-')
+    self.permalink = PermalinkFu.escape(self.permalink)
   end
   
-  def permalink=(new_value)
-    new_value = self.title if new_value.blank?
-    write_attribute(:permalink,PermalinkFu.escape(new_value))
-  end
-  
+    
   def self.per_page
     10
   end
@@ -44,9 +41,4 @@ class Article < ActiveRecord::Base
     self.published_at = Time.now if published == true 
   end
   
-  
-  #def to_param 
-    #{}"#{id}-#{permalink}" 
-   # permalink
-  #end
 end

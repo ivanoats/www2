@@ -199,9 +199,7 @@
   margin-top:-1px;
 }
 
-.blockLabels .focused{
-  padding:7px 4px;
-}
+
 
 /* ########################################################################## */
 
@@ -276,9 +274,6 @@ label em,
 .ctrlHolder.error input,
 .ctrlHolder.error input:focus{
  border-color:#DF7D7D;
-}
-.ctrlHolder.error.focused{
- padding:7px 4px;
 }
 
 .uniForm #successMsg{

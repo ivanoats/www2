@@ -1,0 +1,29 @@
+<% if @articles.empty? %>
+  <h2>No search results for &ldquo;<%= h @search %>&rdquo;</h2>
+<% else %>
+<h2>Articles</h2>
+<ol>
+  <% for article in @articles %>
+    <li url="<%= permalink_url(article.permalink)%>"><!-- validation is for wussies -->
+      <h3><%= highlight( article.title, @search) %></h3>
+      <p><%= highlight(article.synopsis,@search) %></p>
+    </li>
+  <% end %>
+</ol>
+<% end%>
+
+<%= javascript_tag "	
+jQuery('.live-search-results li').hover(function() {
+		$(this).addClass('hover');
+		window.status = $(this).attr('url');
+	}, 
+	function() {
+		$(this).removeClass('hover');
+	}
+);
+
+jQuery('.live-search-results li').click(function() {
+  window.location = $(this).attr('url'); return false;
+});
+
+"%>

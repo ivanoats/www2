@@ -73,7 +73,7 @@ class CertificateTicketsController < ApplicationController
     @certificate_ticket.destroy
 
     respond_to do |format|
-      format.html { redirect_to(admin_certificate_tickets_url) }
+      format.html { redirect_to(certificate_tickets_url) }
       format.xml  { head :ok }
     end
   end

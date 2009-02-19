@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   
-  require_role "Editor", :except => [:index, :show, :permalink]
+  require_role "Editor", :except => [:index, :show, :permalink, :livesearch]
 
   def index
     @article_tags = Article.tag_counts :order => 'count desc', :at_least => 3 
@@ -29,6 +29,14 @@ class ArticlesController < ApplicationController
       wants.rss  { render :action => 'rss.rxml', :layout => false } 
       wants.atom { render :action => 'atom.rxml', :layout => false } 
     end 
+  end
+  
+  def livesearch
+    @search = params[:search]
+    search = "%#{params[:search]}%"
+    @articles = Article.all(:conditions => ['(title LIKE ? or body LIKE ?) AND published = ?',search,search,true], :limit => 10)
+    
+    render :layout => false
   end
 
   def permalink

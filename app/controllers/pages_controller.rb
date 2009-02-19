@@ -3,13 +3,20 @@ class PagesController < ApplicationController
   attr_accessor :splash_on
   
   require_role "Administrator", :except => [:show, :home, :permalink]
-
+  before_filter :login_required, :except => [:show, :home, :permalink]
+  
+  
   def index
-    @pages = Page.find(:all)
+    @pages = Page.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+    end
   end
 
   def permalink
     @page = Page.find_by_permalink(params[:permalink])
+    
     unless @page.nil? then
       @page_title = @page.title
       respond_to do |format|
@@ -30,9 +37,11 @@ class PagesController < ApplicationController
     @page_title = @page.title
     render :partial => 'show', :layout => "application"
   end
+  
+  
 
   def home
-    @page = Page.find(1)
+    @page = Page.first || Page.new
     @page_title = @page.title
     @splash_on = true
   end
@@ -95,16 +104,15 @@ class PagesController < ApplicationController
     end
   end
 
-  def destroy
-    #@page = Page.find(params[:id].to_i)
-    @page = Page.find_by_permalink(params[:permalink]) 
-    if @page.destroy 
-      flash[:notice] = "Page deleted" 
-    else 
-      flash[:error] = "There was a problem deleting the page" 
+  def destroy 
+    @page = Page.find(params[:id]) 
+    @page.destroy 
+    respond_to do |wants| 
+      wants.html { redirect_to pages_url } 
+      wants.xml  { render :nothing => true } 
     end 
-    redirect_to :action => 'index' 
   end
+  
    
   def splash_on?
     @splash_on
