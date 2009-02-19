@@ -275,9 +275,6 @@ label em,
 .ctrlHolder.error input:focus{
  border-color:#DF7D7D;
 }
-.ctrlHolder.error.focused{
- padding:7px 4px;
-}
 
 .uniForm #successMsg{
   background:#FFFCDF url(/images/uni-form/uf_focused.png);
