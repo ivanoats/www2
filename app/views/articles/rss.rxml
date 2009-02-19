@@ -12,7 +12,7 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
         xml.description article.body 
         xml.pubDate     CGI.rfc1123_date article.published_at 
         xml.guid        article_url(article) 
-        xml.author      "#{article.user.email} (#{article.user.name})" 
+        xml.author      "#{article.user.name}" 
       end 
     end 
   end 

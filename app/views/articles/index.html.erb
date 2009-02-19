@@ -21,7 +21,7 @@
 	<p>Sorry, there were no results for the search <strong><%= params[:search] ||= "you did" %></strong>.</p>
 	<p>Try browsing via <%= link_to "tags", tags_url %>, or try your search again on the right.</p>
 <% else %>
-	<%= will_paginate @articles %>
+	<%# don't want top pager for now = will_paginate @articles %>
 	<%= render :partial => 'shared/article_index', :locals => { :articles => @articles } %>
 	<%= will_paginate @articles %>
 <% end %> 
