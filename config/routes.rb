@@ -53,7 +53,7 @@ ActionController::Routing::Routes.draw do |map|
   map.faq '/faq', :controller => 'articles', :action => 'index', :category_id => 2
   map.knowledgebase '/knowledgebase', :controller => 'articles', :action => 'index', :category_id => 2
   map.livesearch '/search/:search', :controller => 'articles', :action => 'livesearch', :search => nil
-  map.certificate_ticket '/certificate_signing_request', :controller => 'certificate_tickets', :action => "new"
+  map.certificate_signing_request '/certificate_signing_request', :controller => 'certificate_tickets', :action => "new"
   # Home Page
   map.root :controller => 'pages', :action => 'home'
 
