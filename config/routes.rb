@@ -33,7 +33,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :pages
   map.page_permalink '/page/:permalink', :controller => 'pages', :action => 'permalink'
   
-  map.resources :articles, :collection => {:admin => :get}, :member => {:preview => :put}  
+  map.resources :articles, :collection => {:admin => :get}
   map.permalink 'article/:permalink', :controller => 'articles', :action => 'permalink'
   map.connect 'article/:permalink.:format', :controller => 'articles', :action => 'permalink', :format => nil
   
