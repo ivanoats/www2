@@ -12,5 +12,10 @@
   <p>Published? <%= f.check_box :published %></p> 
   <p>Comments enabled? <%= f.check_box :comments_enabled %></p>  
   <p>Tags: <%= f.text_field :tag_list %></p>
-  <%= submit_tag 'Save' %> <%= submit_to_remote "save_and_continue", "Save and Continue" , :url => (@article.new_record? ? articles_url : article_url(@article)), :before => "tinyMCE.triggerSave(false,true);" %> or <%= link_to 'cancel', articles_url %> 
+  <%= submit_tag 'Save' %> 
+  <%= submit_to_remote "save_and_continue", "Save and Continue" , :url => (@article.new_record? ? articles_url : article_url(@article)), :before => "tinyMCE.triggerSave(false,true);" %> 
+  <%= submit_tag "Preview", :onclick => "$(this).parent().attr('action','#{@article.new_record? ? preview_articles_url : preview_article_url(@article)}'); $(this).parent().submit();"  %> 
+   or <%= link_to 'cancel', articles_url %> 
 <% end -%> 
+
+

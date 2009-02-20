@@ -74,12 +74,17 @@ class ArticlesController < ApplicationController
     @article = Article.new 
   end 
 
+  def preview
+    @article = Article.find_by_id(params[:id]) || Article.new
+    @article.attributes = params[:article]
+  end
+
   def create 
     @article = Article.new(params[:article]) 
+    @article.user = current_user
     respond_to do |wants| 
       if @article.save
         flash[:notice] = "Article saved"
-        current_user.articles << @article 
         wants.html { redirect_to admin_articles_url } 
         wants.xml  { render :xml => @article.to_xml }
         wants.js { render :update do |page|
