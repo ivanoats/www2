@@ -15,5 +15,21 @@ class ApplicationController < ActionController::Base
   def record_not_found
     render :file => File.join(RAILS_ROOT, 'public', '404.html'), :status => 404
   end
+  
+  def affiliate_check
+    # see if there is an existing affiliate cookie
+    existing_affiliate = cookies[:referrer_id]
+    # if there isn't an existing affiliate cookie and there is a referrer id in query string
+    if !params['referrer_id'].nil? and existing_affiliate.blank?   
+      cookie_hash = { 
+        :value => params['referrer_id'],
+        :expires => 90.days.from_now
+      }
+      cookie_hash[:domain] = '.sustainablewebsites.com' if ENV['RAILS_ENV'] != 'development'
+      cookies[:referrer_id] = cookie_hash  
+      puts cookies[:referrer_id]
+    end
+    
+  end
 end
 

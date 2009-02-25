@@ -1,5 +1,5 @@
 <div id="sidebar">
-	<%= yield (:sidebar) || render(:partial => 'shared/default_sidebar') %>
+	<%= yield(:sidebar) || render(:partial => 'shared/default_sidebar') %>
 	<ul>
 		  <% if logged_in? %> 
 		    <li>Logged in as: <i><%= current_user.login %></i></li> 

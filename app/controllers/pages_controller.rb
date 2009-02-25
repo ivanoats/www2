@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   attr_accessor :splash_on
   
   require_role "Administrator", :except => [:show, :home, :permalink]
+  before_filter :affiliate_check, :only => [:show, :home, :permalink]
   before_filter :login_required, :except => [:show, :home, :permalink]
   
   
