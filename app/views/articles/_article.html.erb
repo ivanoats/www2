@@ -4,7 +4,7 @@
   <p>Title:<br /><%= f.text_field :title, :size => 60 %></p> 
   <p>Permalink:<br /><%= f.text_field :permalink, :size => 60 %></p> 
   <p>Synopsis:<br /><%= f.text_area :synopsis, :rows => 4, :cols => 60 %></p> 
-  <p>Body: <%= link_to_function "Toggle editor", "toggleEditor('article_body');"%><br />
+  <p>Body: <%#= link_to_function "Toggle editor", "toggleEditor('article_body');"%><br />
   <%= f.text_area :body, :rows => 20, :cols => 60, :class => "mce-editor" %></p> 
   <p>Category:<br /> 
     <%= f.collection_select :category_id, 

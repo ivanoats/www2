@@ -13,7 +13,7 @@
 	<![endif]-->
 	<link rel="shortcut icon" href="/favicon.ico" />
 	<% # Include TinyMCE before other JS to avoid problems -%>
-	<%= yield :tinymce %>
+	<%# = yield :tinymce %>
 	<%= javascript_include_tag :defaults, :cache => true %> 
   <%= javascript_include_tag 'jquery.dimensions.js','jquery.liveSearch.js', 'uni-form.jquery.js' %>
   <%= yield :head %> 
