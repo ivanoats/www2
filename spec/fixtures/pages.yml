@@ -1,5 +1,5 @@
 one:
   title: "Page One"
   body: "This is the page content"
-  user_id: 1
   restricted: false
+  hide_sidebar: false
