@@ -10,7 +10,8 @@ describe PagesController do
   describe "Anybody" do
 
     it "should show a page" do
-      Page.should_receive(:find).with('100').and_return(Page.new)
+#      Page.should_receive(:find).with('100').and_return(Page.new(:title => 'a title'))
+      Page.should_receive(:find).and_return(mock_page(:title => 'a title'))
       get 'show', :id => 100
       response.should be_success
     end

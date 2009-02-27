@@ -42,7 +42,7 @@ class PagesController < ApplicationController
   
 
   def home
-    @page = Page.first || Page.new
+    @page = Page.first || Page.new( :title => 'blank home page')
     @page_title = @page.title
     @splash_on = true
   end
