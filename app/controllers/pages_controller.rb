@@ -93,7 +93,7 @@ class PagesController < ApplicationController
         end
         }
       else
-        wants.html { render :action => "update" } 
+        wants.html { render :action => "edit" } 
         wants.xml  {render :xml => @page.errors, :status => :unprocessable_entity }
         wants.js { render :update do |page|
           page.replace_html 'notice', ''
