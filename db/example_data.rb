@@ -3,6 +3,7 @@ module FixtureReplacement
     a.title = String.random(10)
     a.synopsis = 'Rut Ro'
     a.body = 'When Mummies Attack'
+#    a.user =  what do I put here?
 	end
 
   attributes_for :category do |a|
