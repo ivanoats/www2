@@ -33,5 +33,11 @@ describe "Article show page" do
     render "/articles/show.html.erb"
     response.should include_text('Test Author')
   end
+  
+  it "should link to the author's profile page" do
+    @article.stub!(:user).and_return mock_model(User, :name => "Test Author", :login => "testauthor")
+    render "/articles/show.html.erb"
+    response.should include_text('/user/testauthor') 
+  end
 end
 
