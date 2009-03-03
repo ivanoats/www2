@@ -29,8 +29,7 @@ describe "Article show page" do
   end
     
   it "should show the author of the article" do
-    @article.stub!(:user).and_return "Test Author"
-    # I really want to test for user.name
+    @article.stub!(:user).and_return mock_model(User, :name => "Test Author", :login => "testauthor")
     render "/articles/show.html.erb"
     response.should include_text('Test Author')
   end
