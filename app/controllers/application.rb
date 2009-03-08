@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
   def affiliate_check
     # see if there is an existing affiliate cookie
     existing_affiliate = cookies[:referrer_id]
+    debugger  
     # if there isn't an existing affiliate cookie and there is a referrer id in query string
     if !params['referrer_id'].nil? and existing_affiliate.blank?   
       cookie_hash = { 
@@ -26,6 +27,7 @@ class ApplicationController < ActionController::Base
         :expires => 90.days.from_now
       }
       cookie_hash[:domain] = '.sustainablewebsites.com' if ENV['RAILS_ENV'] != 'development'
+      #cookie_hash[:domain] = 'localhost:3000'    # does not seem to work in development
       cookies[:referrer_id] = cookie_hash  
       puts cookies[:referrer_id]
     end
