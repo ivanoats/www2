@@ -1,0 +1,60 @@
+<h1>Editing server</h1>
+
+<% form_for(@server) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :ip_address %><br />
+    <%= f.text_field :ip_address %>
+  </p>
+  <p>
+    <%= f.label :vendor %><br />
+    <%= f.text_field :vendor %>
+  </p>
+  <p>
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+  </p>
+  <p>
+    <%= f.label :primary_ns %><br />
+    <%= f.text_field :primary_ns %>
+  </p>
+  <p>
+    <%= f.label :primary_ns_ip %><br />
+    <%= f.text_field :primary_ns_ip %>
+  </p>
+  <p>
+    <%= f.label :secondary_ns %><br />
+    <%= f.text_field :secondary_ns %>
+  </p>
+  <p>
+    <%= f.label :secondary_ns_ip %><br />
+    <%= f.text_field :secondary_ns_ip %>
+  </p>
+  <p>
+    <%= f.label :max_accounts %><br />
+    <%= f.text_field :max_accounts %>
+  </p>
+  <p>
+    <%= f.label :whm_user %><br />
+    <%= f.text_field :whm_user %>
+  </p>
+  <p>
+    <%= f.label :whm_pass %><br />
+    <%= f.text_field :whm_pass %>
+  </p>
+  <p>
+    <%= f.label :whm_key %><br />
+    <%= f.text_area :whm_key %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @server %> |
+<%= link_to 'Back', servers_path %>

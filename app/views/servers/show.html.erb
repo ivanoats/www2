@@ -1,0 +1,63 @@
+<p>
+  <b>Name:</b>
+  <%=h @server.name %>
+</p>
+
+<p>
+  <b>Ip address:</b>
+  <%=h @server.ip_address %>
+</p>
+
+<p>
+  <b>Vendor:</b>
+  <%=h @server.vendor %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%=h @server.location %>
+</p>
+
+<p>
+  <b>Primary ns:</b>
+  <%=h @server.primary_ns %>
+</p>
+
+<p>
+  <b>Primary ns ip:</b>
+  <%=h @server.primary_ns_ip %>
+</p>
+
+<p>
+  <b>Secondary ns:</b>
+  <%=h @server.secondary_ns %>
+</p>
+
+<p>
+  <b>Secondary ns ip:</b>
+  <%=h @server.secondary_ns_ip %>
+</p>
+
+<p>
+  <b>Max accounts:</b>
+  <%=h @server.max_accounts %>
+</p>
+
+<p>
+  <b>Whm user:</b>
+  <%=h @server.whm_user %>
+</p>
+
+<p>
+  <b>Whm pass:</b>
+  <%=h @server.whm_pass %>
+</p>
+
+<p>
+  <b>Whm key:</b>
+  <%=h @server.whm_key %>
+</p>
+
+
+<%= link_to 'Edit', edit_server_path(@server) %> |
+<%= link_to 'Back', servers_path %>

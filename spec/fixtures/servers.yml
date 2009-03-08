@@ -1,0 +1,29 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  ip_address: MyString
+  vendor: MyString
+  location: MyString
+  primary_ns: MyString
+  primary_ns_ip: MyString
+  secondary_ns: MyString
+  secondary_ns_ip: MyString
+  max_accounts: 1
+  whm_user: MyString
+  whm_pass: MyString
+  whm_key: MyText
+
+two:
+  name: MyString
+  ip_address: MyString
+  vendor: MyString
+  location: MyString
+  primary_ns: MyString
+  primary_ns_ip: MyString
+  secondary_ns: MyString
+  secondary_ns_ip: MyString
+  max_accounts: 1
+  whm_user: MyString
+  whm_pass: MyString
+  whm_key: MyText

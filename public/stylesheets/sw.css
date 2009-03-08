@@ -219,6 +219,7 @@ table#users td { font-size: 90%; }
 /* defaults for rails scaffolding */
 table.scaffold { border-collapse: separate; }
 table.scaffold td { padding: 5px; }
+table.scaffold th { padding: 5px; }
 
 /************** support ticket form ***************/
 
