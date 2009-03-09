@@ -22,6 +22,7 @@ class Comment < ActiveRecord::Base
   validates_presence_of :email, :on => :create, :message => "can't be blank"
   validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message => "email is invalid"
   validates_presence_of :comment, :on => :create, :message => "can't be blank"
+  validates_presence_of :commentable, :on => :create, :message => "you have to comment on something!"
   
   # Helper class method to lookup all comments assigned
   # to all commentable types for a given user.

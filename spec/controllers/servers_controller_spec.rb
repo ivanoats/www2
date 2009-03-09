@@ -1,12 +1,21 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
+describe "an admin user is signed in", :shared => true do
+  before( :each ) do
+    controller.stub!( :login_required )
+  end
+end
+
 describe ServersController do
 
   def mock_server(stubs={})
     @mock_server ||= mock_model(Server, stubs)
   end
   
+  
   describe "responding to GET index" do
+    
+    it_should_behave_like "an admin user is signed in"
 
     it "should expose all servers as @servers" do
       Server.should_receive(:find).with(:all).and_return([mock_server])

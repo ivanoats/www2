@@ -1,9 +1,9 @@
 class ServersController < ApplicationController
-  # require_role "Administrator"
-  # 
-  # before_filter :login_required
-  # 
-  # ssl_required :new, :create, :edit, :update
+  require_role "Administrator"
+  
+  before_filter :login_required
+  
+  ssl_required :new, :create, :edit, :update
   
   
   # GET /servers
