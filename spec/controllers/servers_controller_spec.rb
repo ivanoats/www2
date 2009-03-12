@@ -2,8 +2,9 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe "an admin user is signed in", :shared => true do
   before( :each ) do
-    controller.stub!( :login_required )
-  end
+     controller.stub!( :login_required )  #mock user is logged in
+     controller.current_user = mock_model(User, :has_role? => true )  #mock user is admin 
+   end
 end
 
 describe ServersController do
@@ -38,6 +39,7 @@ describe ServersController do
   end
 
   describe "responding to GET show" do
+    it_should_behave_like "an admin user is signed in"
 
     it "should expose the requested server as @server" do
       Server.should_receive(:find).with("37").and_return(mock_server)
@@ -60,6 +62,7 @@ describe ServersController do
   end
 
   describe "responding to GET new" do
+    it_should_behave_like "an admin user is signed in"
   
     it "should expose a new server as @server" do
       Server.should_receive(:new).and_return(mock_server)
@@ -70,6 +73,7 @@ describe ServersController do
   end
 
   describe "responding to GET edit" do
+    it_should_behave_like "an admin user is signed in"
   
     it "should expose the requested server as @server" do
       Server.should_receive(:find).with("37").and_return(mock_server)
@@ -80,6 +84,7 @@ describe ServersController do
   end
 
   describe "responding to POST create" do
+    it_should_behave_like "an admin user is signed in"
 
     describe "with valid params" do
       
@@ -116,6 +121,7 @@ describe ServersController do
   end
 
   describe "responding to PUT udpate" do
+    it_should_behave_like "an admin user is signed in"
 
     describe "with valid params" do
 
@@ -140,6 +146,7 @@ describe ServersController do
     end
     
     describe "with invalid params" do
+      it_should_behave_like "an admin user is signed in"
 
       it "should update the requested server" do
         Server.should_receive(:find).with("37").and_return(mock_server)
@@ -164,6 +171,7 @@ describe ServersController do
   end
 
   describe "responding to DELETE destroy" do
+    it_should_behave_like "an admin user is signed in"
 
     it "should destroy the requested server" do
       Server.should_receive(:find).with("37").and_return(mock_server)

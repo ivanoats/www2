@@ -3,7 +3,7 @@ class ServersController < ApplicationController
   
   before_filter :login_required
   
-  ssl_required :new, :create, :edit, :update
+#  ssl_required :new, :create, :edit, :update
   
   
   # GET /servers
