@@ -109,26 +109,32 @@ padding:10px;
 
 /* Hosting Table ################################################################## */
 
-#hosting-10-tease {margin-bottom: 10px; height: 120px; background: url(../images/tb_10.gif) no-repeat;}
-#hosting-20-tease {margin-bottom: 10px; height: 120px; background: url(../images/tb_20.gif) no-repeat;}
-#hosting-30-tease {margin-bottom: 10px; height: 120px; background: url(../images/tb_30.gif) no-repeat;}
+/* Teaser *****/
+#content #hosting-10-tease {background: #f9ffb9 url(../images/tb_10.gif) no-repeat;}
+#content #hosting-20-tease {background: #f9ffb9 url(../images/tb_20.gif) no-repeat;}
+#content #hosting-30-tease {background: #f9ffb9 url(../images/tb_30.gif) no-repeat;}
+#content .hosting-tease {margin:0; padding:0; *min-height: 100px;}
+#content .hosting-tease p {margin: 0; padding: 60px 0px 0px 30px; *padding: 60px 0px 0px 30px;width: 480px; color: #77A143; font-style: italic; font-weight: bold; line-height: 1.5em;}
+/* end-Teaser *****/
 
-.hosting-table {height: 100%; width: 650px; margin: 0 0 50px;}
-#content .hosting-table p.synopsis {position:relative; top: 35px; left: 10px; width: 490px; background: none;	}
-#content ul.hosting-table-list {width: 630px; margin: 10px 10px 30px;}
-#content ul.hosting-table-list li {margin: 0px 0px 10px 0px; padding:10px 100px 10px 40px; list-style: none inside; background: #F5FCFF url(../images/tb_bg_row.jpg) repeat-x;} 
+#content .hosting-table {height: 100%; width: 650px; margin: 0 0 50px;}
+#content .hosting-table .syn-bg-bott {position:relative; top: 0px; height: 20px; background: url(../images/tb_syn_bott.gif) bottom center no-repeat;} 
+#content .hosting-table-list p {width: 490px; margin: 0; padding: 0; background: none;}
+#content ul.hosting-table-list {width: 630px; margin: 20px 10px 30px;}
+#content ul.hosting-table-list li {margin: 0px 0px 10px 0px; padding:10px 100px 10px 40px; *padding: 10px 100px 10px 30px; list-style: none inside; background: #F5FCFF url(../images/tb_bg_row.jpg) repeat-x;} 
 #content ul.hosting-table-list li span.tooltip {position:relative; top: 4px; margin: 0 10px;} /* tooltip */
 #content ul.hosting-table-list li p.check {width: 490px; margin: 0; padding: 10px 70px 10px 0; background: url(../images/tb_check.jpg) right center no-repeat;} /* check */
 #content .signup-button {text-align:right; position: relative; right:20px;}
 .hosting_plan_name { font-size: 1.5em }
 
-/******************* Blog ********************/
+/* Blog ################################################################## */
+
 .article_meta, .comment_time { font-size: .8em; margin-top: 5px; }
 .pagination {margin: 20px 0;}
 .hentry {margin: 20px 0 30px;}
 #article_body {margin: 20px 0;}
 
-.synopsis, .alert {padding: 10px 20px	; color: #77a143; font-style: italic; background: #f9ffb9; font-size: .9em; font-weight: bold; text-align: left;}
+.synopsis, .alert {padding: 10px 20px; color: #77a143; font-style: italic; background: #f9ffb9; font-size: .9em; font-weight: bold; text-align: left;}
 .alert {font-size: 1em;}
 
 .comment {
@@ -136,45 +142,7 @@ border-top: 1px dotted #555;
 padding-top:5px; 
 }
 
-.spiffy-wrap {margin-top: 10px; margin-left: -5px;}
-.spiffy{display:block}
-.spiffy *{
-  display:block;
-  height:1px;
-  overflow:hidden;
-  font-size:.01em;
-  background:#f9ffb9;}
-.spiffy1{
-  margin-left:3px;
-  margin-right:3px;
-  padding-left:1px;
-  padding-right:1px;
-  border-left:1px solid #fcffe0;
-  border-right:1px solid #fcffe0;
-  background:#faffca}
-.spiffy2{
-  margin-left:1px;
-  margin-right:1px;
-  padding-right:1px;
-  padding-left:1px;
-  border-left:1px solid #fefff8;
-  border-right:1px solid #fefff8;
-  background:#faffc6}
-.spiffy3{
-  margin-left:1px;
-  margin-right:1px;
-  border-left:1px solid #faffc6;
-  border-right:1px solid #faffc6;}
-.spiffy4{
-  border-left:1px solid #fcffe0;
-  border-right:1px solid #fcffe0}
-.spiffy5{
-  border-left:1px solid #faffca;
-  border-right:1px solid #faffca}
-.spiffyfg{
-  background:#f9ffb9}
-
-/* Nav */
+/* Nav ################################################################## */
 
 #nav {height: 46px; width: 552px; margin-top: 32px; clear: right; float: right; background: url(../images/bg_nav.gif) bottom no-repeat;}
 #nav ul {margin: 0; padding: 0;}
