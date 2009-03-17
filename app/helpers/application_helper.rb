@@ -63,4 +63,8 @@ module ApplicationHelper
     url_for(permalink)
   end
   
+  def menu_link(title,url)
+    url = 'http://www.sustainablewebsites.com' + url if RAILS_ENV == "production"
+    link_to(title,url)
+  end
 end

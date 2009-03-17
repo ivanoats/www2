@@ -1,7 +1,7 @@
 <div id="footer">
 	<div id="footer-inner">
 	<div class="footer-block fb1">
-		<p>Questions?  <a href="/contact">Contact us</a> / <SCRIPT TYPE="text/javascript">
+		<p>Questions?  <%= menu_link "Contact us", '/contact'%> / <SCRIPT TYPE="text/javascript">
 		<!-- 
 		// protected email script by Joe Maller
 		// JavaScripts available at http://www.joemaller.com
@@ -23,35 +23,35 @@
 	<div class="footer-block fb2">
 		<ul class="first">
 		<li><h1>Help</h1></li>
-		<li><a href="/knowledgebase">Knowledge Base</a></li>
-		<li><a href="/article/tutorials">Video Tutorials</a></li>
+		<li><%= menu_link "Knowldge Base", '/knowledgebase'%></li>
+		<li><%= menu_link "Video Tutorials", '/article/tutorials'%></li>
 		<li><a href="https://billing.sustainablewebsites.com/clogin.php">Lost Password</a></li>
-		<li><a href="/control-panel">Control Panel</a></li>
-		<li><a href="/webmail">Webmail</a></li>
-		<li><a href="/support">Talk to the team</a></li>
+		<li><%= menu_link "Control Panel", '/control-panel'%></li>
+		<li><%= menu_link "Webmail", '/webmail'%></li>
+		<li><%= menu_link "Talk to the team", '/support'%></li>
 		</ul>
 		<ul>
 		<li><h1>Services</h1></li>
-		<li><a href="/green-web-hosting-services">Shared Hosting</a></li>
-		<li><a href="/article/nonprofit-discount">Nonprofit Hosting</a></li>
-		<li><a href="/web-design">Web Design</a></li>
-		<li><a href="/marketing-coaching">Marketing Coaching</a></li>
-		<li><a href="/ecommerce">eCommerce</a></li>
+		<li><%= menu_link "Shared Hosting", '/green-web-hosting-services'%></li>
+		<li><%= menu_link "Nonprofit Hosting", '/article/nonprofit-discount'%></li>
+		<li><%= menu_link "Web Design", '/web-design'%></li>
+		<li><%= menu_link "Marketing Coaching", '/marketing-coaching'%></li>
+		<li><%= menu_link "eCommerce", '/ecommerce'%></li>
 		</ul>
 		<ul>
 		<li><h1>More Services</h1></li>
-		<li><a href="/digital-coaching">Digital Coaching</a></li>
-		<li><a href="/web-design-coaching">Web Design Coaching</a></li>
-		<li><a href="/wordpress-hosting">Wordpress Hosting</a></li>
-		<li><a href="/joomla-hosting">Joomla, Drupal and CMS Hosting</a></li>
+		<li><%= menu_link "Digital Coaching", '/digital-coaching'%></li>
+		<li><%= menu_link "Web Design Coaching", '/web-design-coaching'%></li>
+		<li><%= menu_link "Wordpress Hosting", '/wordpress-hosting'%></li>
+		<li><%= menu_link "Joomla, Drupal and CMS Hosting", '/joomla-hosting'%></li>
 		</ul>
 		<ul>
-		<li><h1><a href="/legal">Legal</a></h1></li>
-		<li><a href="/terms-of-service">Terms of Service</a></li>
-		<li><a href="/acceptable-use-policy">Acceptible Use Policy</a></li>
-		<li><a href="/privacy">Privacy Policy</a></li>
-		<li><a href="/copyright">Copyright Policy</a></li>
-		<li<a href="/service-level-agreement">Service Level Agreement</a></li>
+		<li><h1><%= menu_link "Legal", '/legal'%></h1></li>
+		<li><%= menu_link "Terms of Service", '/terms-of-service'%></li>
+		<li><%= menu_link "Acceptible Use Policy", '/acceptable-use-policy'%></li>
+		<li><%= menu_link "Privacy Policy", '/privacy'%></li>
+		<li><%= menu_link "Copyright Policy", '/copyright'%></li>
+		<li<%= menu_link "Service Level Agreement", '/service-level-agreement'%></li>
 		</ul>	
 		<div class="clearfix"></div>	
 	</div>

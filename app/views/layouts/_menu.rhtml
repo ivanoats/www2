@@ -1,25 +1,15 @@
 <div id="nav-wrapper">
 	<ul id="nav">
-		<li id="home"><a href="/"></a></li>
-		<li id="services"><a href="/green-web-hosting-services"></a>
-		 <!--	<ul>
-			
-				<li><a href="">Sample</a></li>
-				<li><a href="">Sample</a></li>
-				<li><a href="">Sample</a></li>
-			</ul>
-		-->
-		
-		</li>
-		<li id="blog"><a href="/blog"><span></span></a></li>
-		<li id="about"><a href="/about-us"><span></span></a>
-		</li>
-		<li id="contact"><a href="/contact"><span></span></a>
+		<li id="home"><%= menu_link '','/'%></li>
+		<li id="services"><%= menu_link '','/green-web-hosting-services' %></li>
+		<li id="blog"><%= menu_link '','/blog'%></li>
+		<li id="about"><%= menu_link '','/about-us'%></li>
+		<li id="contact"><%= menu_link '', '/contact'%>
 			<ul>
-				<li><a href="/contact">Sales</a></li>
-				<li><a href="/support">Technical Help</a></li>
-				<li><a href="/billing">Billing</a></li>
-				<li><a href="/billing">Password Help</a></li>
+				<li><%= menu_link 'Sales','/contact' %></li>
+				<li><%= menu_link 'Technical Help','/support'%></li>
+				<li><%= menu_link 'Billing','/billing'%></li>
+				<li><%= menu_link 'Password Help','/billing' %></li>
 			</ul>
 		</li>
 	</ul>
