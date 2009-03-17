@@ -1,25 +1,8 @@
 <% @page_title = @article.title unless @article.nil? %>
 
 <h2><%= @article.title %></h2> 
-<div class="spiffy-wrap">
-  <b class="spiffy">
-  <b class="spiffy1"><b></b></b>
-  <b class="spiffy2"><b></b></b>
-  <b class="spiffy3"></b>
-  <b class="spiffy4"></b>
-  <b class="spiffy5"></b></b>
 
-  <div class="spiffyfg">
 <div class="synopsis"><%= @article.synopsis %></div>
-  </div>
-
-  <b class="spiffy">
-  <b class="spiffy5"></b>
-  <b class="spiffy4"></b>
-  <b class="spiffy3"></b>
-  <b class="spiffy2"><b></b></b>
-  <b class="spiffy1"><b></b></b></b>
-</div>
 
 <div id="article_body"><%= @article.body %></div> 
 <div id="spacer"> </div>
@@ -29,6 +12,12 @@
 	 <%= link_to @article.category.name, category_articles_path(@article.category), :rel => 'tag' %> 
   </p> 
 <% end %>
+
+<p id="author">Author: <%=  if @article.user.name == ""
+		link_to(@article.user.login, show_user_path(@article.user.login))
+	else
+		link_to(@article.user.name, show_user_path(@article.user.login))
+	end   %></p>
 
 <div id="tags">Tags: 
 	<% @article.tag_list.each do |tag| %>

@@ -6,6 +6,7 @@ require 'spec'
 require 'spec/rails'
 
 require 'rspec_response_enhancer'
+require 'webrat'
 
 include AuthenticatedTestHelper
 include AuthenticatedSystem
@@ -20,6 +21,7 @@ Spec::Runner.configure do |config|
   
   config.include RSpecResponseEnhancer
   config.include FixtureReplacement
+  config.include Webrat::Matchers, :type => :views 
   
   # == Fixtures
   #

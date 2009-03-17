@@ -122,7 +122,7 @@ class ArticlesController < ApplicationController
         end
         }
       else
-        wants.html { render :action => "update" } 
+        wants.html { render :action => "edit" } 
         wants.xml  {render :xml => @article.errors, :status => :unprocessable_entity }
         wants.js { render :update do |page|
           page.replace_html 'notice', ''

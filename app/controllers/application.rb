@@ -26,6 +26,7 @@ class ApplicationController < ActionController::Base
         :expires => 90.days.from_now
       }
       cookie_hash[:domain] = '.sustainablewebsites.com' if ENV['RAILS_ENV'] != 'development'
+      #cookie_hash[:domain] = 'localhost:3000'    # does not seem to work in development
       cookies[:referrer_id] = cookie_hash  
       puts cookies[:referrer_id]
     end

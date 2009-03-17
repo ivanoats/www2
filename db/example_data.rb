@@ -3,6 +3,7 @@ module FixtureReplacement
     a.title = String.random(10)
     a.synopsis = 'Rut Ro'
     a.body = 'When Mummies Attack'
+    a.user =  default_user
 	end
 
   attributes_for :category do |a|
@@ -49,7 +50,11 @@ module FixtureReplacement
 	end
 
   attributes_for :user do |a|
-    
+    a.password = 'testpass'
+    a.password_confirmation = 'testpass'
+    a.login = 'testlogin'
+    a.name = 'testauthor'
+    a.email = 'arealemail@boo.com'
 	end
 
 end

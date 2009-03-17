@@ -1,7 +1,12 @@
 class CommentsController < ApplicationController
   	
-  	def create 
-      @comment = Comment.new(params[:comment]) 
+  	def create
+  	  # ensure what user is commenting ON is passed to new comment 
+      comment_hash = params[:comment]
+      #comment_hash[:commentable_id] = params[:commentable_id]
+      #comment_hash[:commentable_type] = params[:commentable_type]
+      @comment = Comment.new(comment_hash) 
+      
       respond_to do |wants| 
         if @comment.save
           flash[:notice] = "Comment saved"

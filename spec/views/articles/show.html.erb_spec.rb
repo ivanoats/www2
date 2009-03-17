@@ -9,6 +9,7 @@ describe "Article show page" do
     # @article.should_receive(:category).and_return(mock_model(Category))
     
     @article = create_article
+    #debugger
     
     assigns[:comment] = Comment.new
     assigns[:article] = @article
@@ -27,5 +28,16 @@ describe "Article show page" do
     response.should include_text('comments')
   end
     
+  it "should show the author of the article" do
+    @article.stub!(:user).and_return mock_model(User, :name => "Test Author", :login => "testauthor")
+    render "/articles/show.html.erb"
+    response.should include_text('Test Author')
+  end
+  
+  it "should link to the author's profile page" do
+    @article.stub!(:user).and_return mock_model(User, :name => "Test Author", :login => "testauthor")
+    render "/articles/show.html.erb"
+    response.should include_text('/user/testauthor') 
+  end
 end
 

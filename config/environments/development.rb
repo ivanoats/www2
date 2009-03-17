@@ -22,3 +22,10 @@ REST_AUTH_DIGEST_STRETCHES = 10
 
 # textmate footnotes
 config.gem "josevalim-rails-footnotes",  :lib => "rails-footnotes", :source => "http://gems.github.com"
+
+if File.exists?(File.join(RAILS_ROOT,'tmp', 'debug.txt'))
+  require 'ruby-debug'
+  Debugger.wait_connection = true
+  Debugger.start_remote
+  File.delete(File.join(RAILS_ROOT,'tmp', 'debug.txt'))
+end

@@ -9,3 +9,4 @@ doc/app
 config/database.yml
 db/*.sqlite3
 db/schema.rb
+assets/*

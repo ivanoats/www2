@@ -1,0 +1,28 @@
+<h1>Listing servers</h1>
+
+<table class="scaffold">
+  <tr>
+    <th>Name</th>
+    <th>IP address</th>
+    <th>Vendor</th>
+    <th>Location</th>
+    <th>WHM user</th>
+  </tr>
+
+<% for server in @servers %>
+  <tr>
+    <td><%=h server.name %></td>
+    <td><%=h server.ip_address %></td>
+    <td><%=h server.vendor %></td>
+    <td><%=h server.location %></td>
+    <td><%=h server.whm_user %></td>
+    <td><%= link_to 'Show', server %></td>
+    <td><%= link_to 'Edit', edit_server_path(server) %></td>
+    <td><%= link_to 'Destroy', server, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New server', new_server_path %>

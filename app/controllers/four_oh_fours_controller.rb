@@ -1,5 +1,7 @@
 class FourOhFoursController < ApplicationController
 
+before_filter :affiliate_check
+
   def index
     cleaned_path = request.path.gsub(/\//," ").strip
 
