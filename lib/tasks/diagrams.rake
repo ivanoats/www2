@@ -1,3 +1,5 @@
+# note, railroad has a problem with acts as state machine. In order to get it to work, you have to comment out 'include Authorization::AasmRoles' in app/models/user.rb
+
 namespace :doc do
   namespace :diagram do
     task :models do
