@@ -3,20 +3,23 @@
 <% end %>
 
 <% content_for :sidebar do %>
-	<%= render :partial => 'shared/search_form' %>
-	<%= render :partial => 'shared/top_tags' %>
-	<% if @kb then %>
-	<%= render :partial => 'shared/common_fixes' %>
-	<% end %>
+    <%= render :partial => 'shared/subscribe' if !@kb %>
+    <%= render :partial => 'shared/blog_search_form' %>
+    <%= render :partial => 'shared/top_tags' %>
+    <% if @kb then %>
+        <%= render :partial => 'shared/common_fixes' %>
+        <%= render :partial => 'shared/subscribe' %>
+    <% end %>
+    
 <% end %>
 <% #if referrer is knowledgebase - print kb instead %>
-<h2>Sustainable Websites
 <% if @kb then %>
-	Knowledgebase
+	<h1>Sustainable Websites Knowledgebase</h1>
 <% else  %>
-	Blog
+	<h1>Green Web Hosting Blog</h1>
+	<p style="margin-bottom:40px"><em style="font-style: italic;">A smattering of tips, thoughts on the tao, and tweet-able tickles</em></p>
 <% end %>
-</h2>
+
 <% if @articles.empty? %>
 	<p>Sorry, there were no results for the search <strong><%= params[:search] ||= "you did" %></strong>.</p>
 	<p>Try browsing via <%= link_to "tags", tags_url %>, or try your search again on the right.</p>

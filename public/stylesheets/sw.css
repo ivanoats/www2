@@ -129,7 +129,8 @@ padding:10px;
 
 /* Blog ################################################################## */
 
-.article_meta, .comment_time { font-size: .8em; margin-top: 5px; }
+.article_meta { font-size: .8em; margin-top: 15px; color: #999;}
+.comment_time { font-size: .8em; margin-top: 5px; }
 .pagination {margin: 20px 0;}
 .hentry {margin: 20px 0 30px;}
 #article_body {margin: 20px 0;}
