@@ -6,6 +6,8 @@
       	<%= link_to 'Read more', permalink_url(article.permalink), :rel => 'bookmark' %>
      </div><!-- end entry-content -->
 	 <div class="article_meta"> 
+<script type="text/javascript" src="http://w.sharethis.com/button/sharethis.js#publisher=8dcb5a76-e48e-4047-aacb-158bfbb3c6ea&amp;type=website&amp;style=rotate&amp;post_services=facebook%2Cdigg%2Cdelicious%2Cybuzz%2Ctwitter%2Cstumbleupon%2Cwordpress%2Creddit%2Ctechnorati%2Cmixx%2Cblogger%2Ctypepad%2Cgoogle_bmarks%2Cwindows_live%2Cmyspace%2Cpropeller%2Cnewsvine%2Clinkedin%2Cfriendfeed%2Cblinklist&amp;headerbg=%2300631e&amp;headerTitle=Share%20the%20link%20love%2C%20we%20love%20you%20back!"></script>
+	     
 	    Created on <span class="published" title="<%= article.created_at.to_s %>"><%= article.created_at.to_s(:human_date) %></span> by <span class="author vcard"><%= link_to article.user.username, user_url(article.user.id), :class => 'fn url' if article.user %>
 		</span> in
 		<% if article.category %> 
