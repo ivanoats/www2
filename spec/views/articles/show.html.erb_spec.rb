@@ -39,5 +39,7 @@ describe "Article show page" do
     render "/articles/show.html.erb"
     response.should include_text('/user/testauthor') 
   end
+  
+  it "should allow a comment with valid attributes" 
 end
 

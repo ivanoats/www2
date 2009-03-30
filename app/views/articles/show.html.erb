@@ -48,6 +48,8 @@
       <%= form.text_field :email, :label => "Email (not published)", :required => true%>
       <%= form.text_field :web_site, :label => "Website" %>
       <%= form.text_area "comment", :required => true %>
+      <input type="hidden" name="comment[commentable_id]" value="<%= @article.id %>">
+      <input type="hidden" name="comment[commentable_type]" value="<%= @article.class.name %>" />
       <%= form.submit "Add Comment"%>
     <% end %>
   <% end %>
