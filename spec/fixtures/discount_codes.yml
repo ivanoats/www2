@@ -2,16 +2,12 @@
 
 one:
   name: MyString
-  description: MyText
-  cost: 1.5
-  recurring_period: 1
+  percent_off: 1
   status: MyString
-  type: MyString
+  expiration_date: 2009-04-06 13:45:18
 
 two:
   name: MyString
-  description: MyText
-  cost: 1.5
-  recurring_period: 1
+  percent_off: 1
   status: MyString
-  type: MyString
+  expiration_date: 2009-04-06 13:45:18

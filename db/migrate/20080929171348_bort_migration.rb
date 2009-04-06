@@ -80,14 +80,6 @@ class BortMigration < ActiveRecord::Migration
       t.datetime "updated_at"
     end
 
-    create_table "products", :force => true do |t|
-      t.string   "name"
-      t.integer  "price_dollars"
-      t.integer  "price_cents"
-      t.datetime "created_at"
-      t.datetime "updated_at"
-    end
-
     create_table "roles", :force => true do |t|
       t.string "name"
     end

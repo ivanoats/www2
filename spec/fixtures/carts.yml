@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  referrer_id: 1
+  session_id: MyString
+
+two:
+  referrer_id: 1
+  session_id: MyString

@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  monitor_resolve: false
+  resolved: false
+  expires_on: 2009-04-06 13:34:57
+
+two:
+  name: MyString
+  monitor_resolve: false
+  resolved: false
+  expires_on: 2009-04-06 13:34:57
