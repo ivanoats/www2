@@ -1,8 +1,8 @@
 # This file is copied to ~/spec when you run 'ruby script/generate rspec'
 # from the project root directory.
-ENV["RAILS_ENV"] = "test"
-require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
-require 'spec'
+ENV["RAILS_ENV"] ||= 'test'
+require File.dirname(__FILE__) + "/../config/environment" unless defined?(RAILS_ROOT)
+require 'spec/autorun'
 require 'spec/rails'
 
 require 'rspec_response_enhancer'
@@ -21,8 +21,8 @@ Spec::Runner.configure do |config|
   
   config.include RSpecResponseEnhancer
   config.include FixtureReplacement
-  config.include Webrat::Matchers, :type => :views 
-  
+  config.include Webrat::Matchers, :type => :views
+
   # == Fixtures
   #
   # You can declare fixtures for each example_group like this:
@@ -53,7 +53,7 @@ Spec::Runner.configure do |config|
   #
   # == Notes
   # 
-  # For more information take a look at Spec::Example::Configuration and Spec::Runner
+  # For more information take a look at Spec::Runner::Configuration and Spec::Runner
 end
 
 def mock_ticket
@@ -69,6 +69,3 @@ def mock_ticket
     :to_xml => "User-in-XML", :to_json => "User-in-JSON", 
     :errors => [])
 end
-
-
-
