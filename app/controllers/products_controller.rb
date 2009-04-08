@@ -1,4 +1,8 @@
 class ProductsController < ApplicationController
+  require_role "Administrator"
+  
+  before_filter :login_required
+  
   # GET /products
   # GET /products.xml
   def index

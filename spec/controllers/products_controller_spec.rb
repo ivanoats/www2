@@ -8,6 +8,8 @@ describe ProductsController do
   
   describe "GET index" do
 
+    it_should_behave_like "an admin user is signed in"
+
     it "exposes all products as @products" do
       Product.should_receive(:find).with(:all).and_return([mock_product])
       get :index
@@ -29,6 +31,8 @@ describe ProductsController do
 
   describe "GET show" do
 
+    it_should_behave_like "an admin user is signed in"
+
     it "exposes the requested product as @product" do
       Product.should_receive(:find).with("37").and_return(mock_product)
       get :show, :id => "37"
@@ -49,7 +53,9 @@ describe ProductsController do
   end
 
   describe "GET new" do
-  
+
+    it_should_behave_like "an admin user is signed in"
+
     it "exposes a new product as @product" do
       Product.should_receive(:new).and_return(mock_product)
       get :new
@@ -59,6 +65,8 @@ describe ProductsController do
   end
 
   describe "GET edit" do
+    
+    it_should_behave_like "an admin user is signed in"
   
     it "exposes the requested product as @product" do
       Product.should_receive(:find).with("37").and_return(mock_product)
@@ -69,6 +77,8 @@ describe ProductsController do
   end
 
   describe "POST create" do
+
+    it_should_behave_like "an admin user is signed in"
 
     describe "with valid params" do
       
@@ -105,6 +115,8 @@ describe ProductsController do
   end
 
   describe "PUT udpate" do
+
+    it_should_behave_like "an admin user is signed in"
 
     describe "with valid params" do
 
@@ -153,6 +165,8 @@ describe ProductsController do
   end
 
   describe "DELETE destroy" do
+
+    it_should_behave_like "an admin user is signed in"
 
     it "destroys the requested product" do
       Product.should_receive(:find).with("37").and_return(mock_product)
