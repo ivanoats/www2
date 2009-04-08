@@ -5,20 +5,14 @@ describe "/products/edit.html.erb" do
   
   before(:each) do
     assigns[:product] = @product = stub_model(Product,
-      :new_record? => false,
-      :name => "value for name",
-      :price_dollars => "1",
-      :price_cents => "1"
+      :new_record? => false
     )
   end
 
-  it "should render edit form" do
-    render "/products/edit.html.erb"
+  it "renders the edit product form" do
+    render
     
     response.should have_tag("form[action=#{product_path(@product)}][method=post]") do
-      with_tag('input#product_name[name=?]', "product[name]")
-      with_tag('input#product_price_dollars[name=?]', "product[price_dollars]")
-      with_tag('input#product_price_cents[name=?]', "product[price_cents]")
     end
   end
 end

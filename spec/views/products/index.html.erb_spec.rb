@@ -5,24 +5,13 @@ describe "/products/index.html.erb" do
   
   before(:each) do
     assigns[:products] = [
-      stub_model(Product,
-        :name => "value for name",
-        :price_dollars => "1",
-        :price_cents => "1"
-      ),
-      stub_model(Product,
-        :name => "value for name",
-        :price_dollars => "1",
-        :price_cents => "1"
-      )
+      stub_model(Product),
+      stub_model(Product)
     ]
   end
 
-  it "should render list of products" do
-    render "/products/index.html.erb"
-    response.should have_tag("tr>td", "value for name", 2)
-    response.should have_tag("tr>td", "1", 2)
-    response.should have_tag("tr>td", "1", 2)
+  it "renders a list of products" do
+    render
   end
 end
 

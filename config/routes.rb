@@ -1,6 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :servers
-
   
   # Restful Authentication Rewrites
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
@@ -24,6 +22,7 @@ ActionController::Routing::Routes.draw do |map|
   
   # Application Resources
   map.resources :redirects
+  map.resources :servers
   map.resources :products
   map.resources :tags
   map.resources :tickets
@@ -31,8 +30,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :subscriptions
   map.resources :invoices
   map.resources :comments
-  
   map.resources :pages
+ 
   map.page_permalink '/page/:permalink', :controller => 'pages', :action => 'permalink'
   
   map.resources :articles, :collection => {:admin => :get}
