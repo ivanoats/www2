@@ -280,6 +280,8 @@ describe User do
       @user.should be_pending
     end
   end
+  
+  it "should have one customer"
 
 protected
   def create_user(options = {})
