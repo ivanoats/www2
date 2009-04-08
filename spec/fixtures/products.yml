@@ -4,7 +4,7 @@ one:
   name: MyString
   description: MyText
   cost: 1.5
-  recurring_period: 1
+  recurring_month: 1
   status: MyString
   type: MyString
 
@@ -12,6 +12,6 @@ two:
   name: MyString
   description: MyText
   cost: 1.5
-  recurring_period: 1
+  recurring_month: 1
   status: MyString
   type: MyString
