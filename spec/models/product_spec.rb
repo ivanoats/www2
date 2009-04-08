@@ -3,12 +3,12 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe Product do
   before(:each) do
     @valid_attributes = {
-      :name => "Basic Web Hosting",
-      :description => "1,000MB Storage, 10,000MB Bandwidth, Unlimited Emails, Unlimited Addons, Fantastico",
-      :cost => 1000,
+      :name            => "Basic Web Hosting",
+      :description     => "1,000MB Storage, 10,000MB Bandwidth, Unlimited Emails, Unlimited Addons, Fantastico",
+      :cost            => 1000,
       :recurring_month => 1,  #months
-      :status => "active",  # [active|disabled]
-      :type => "package"
+      :status          => "active",  # [active|disabled]
+      :kind            => "package"
     }
   end
 

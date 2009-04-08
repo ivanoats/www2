@@ -1,3 +1,32 @@
+<p>
+  <b>Name:</b>
+  <%=h @product.name %>
+</p>
+
+<p>
+  <b>Cost in cents:</b>
+  <%=h @product.cost %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @product.description %>
+</p>
+
+<p>
+  <b>Recurring Month:</b>
+  <%=h @product.recurring_month %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%=h @product.status %>
+</p>
+
+<p>
+  <b>Kind:</b>
+  <%=h @product.kind %>
+</p>
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>

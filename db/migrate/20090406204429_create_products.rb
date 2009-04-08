@@ -7,7 +7,7 @@ class CreateProducts < ActiveRecord::Migration
       t.integer :cost
       t.integer :recurring_month
       t.string :status
-      t.string :type
+      t.string :kind
 
       t.timestamps
     end
