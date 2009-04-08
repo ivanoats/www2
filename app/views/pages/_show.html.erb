@@ -9,6 +9,18 @@
   </style>
 <% end if @page.hide_sidebar %>
 
+<% content_for :head do %>
+  <style type='text/css'>
+    #content { 
+      float: right;
+      padding: 0 20px 0 40px;
+/*      border-left: 1px solid #dedede */
+      border-width: 0 0 0 1px;
+    }
+  </style>
+<% end if @page.flip_sidebar %>
+
+
 <h2><%= @page.title %></h2> 
 <p><%= @page.body %></p>
 <% if logged_in_user and logged_in_user.has_role?('Administrator') %> 
