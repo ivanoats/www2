@@ -18,9 +18,9 @@
 </p>
 <p>
   <%= f.label :status %><br />
-  <%= f.text_field :status %>
+  <%= select("product", "status", Product::STATUS, {:include_blank => true}) %>
 </p>
 <p>
   <%= f.label :kind %><br />
-  <%= f.text_field :kind %>
+  <%= select("product", "kind", Product::KINDS, {:include_blank => true}) %>
 </p>
