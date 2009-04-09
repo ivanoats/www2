@@ -1,36 +1,6 @@
 <h1>Editing product</h1>
 
 <% form_for(@product) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :cost %> in cents<br />
-    <%= f.text_field :cost %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </p>
-  <p>
-    <%= f.label :recurring_month %><br />
-    <%= f.text_field :recurring_month %>
-  </p>
-  <p>
-    <%= f.label :status %><br />
-    <%= f.text_field :status %>
-  </p>
-  <p>
-    <%= f.label :kind %><br />
-    <%= f.text_field :kind %>
-  </p>
-  <p>
-    <%= f.submit "Update" %>
-  </p>
+  <%= render :partial => "form", :locals => { :f => f } %>
+  <p><%= f.submit "Update" %> or <%= link_to 'Cancel', products_path %></p>
 <% end %>
-
-<%= link_to 'Show', @product %> |
-<%= link_to 'Back', products_path %>

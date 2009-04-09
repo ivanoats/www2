@@ -11,6 +11,9 @@ require 'webrat'
 include AuthenticatedTestHelper
 include AuthenticatedSystem
 
+# Require all .rb files in /spec/shared and its sub-directories
+Dir[RAILS_ROOT + '/spec/shared/**/*.rb'].each { |f| require f }
+
 Spec::Runner.configure do |config|
   # If you're not using ActiveRecord you should remove these
   # lines, delete config/database.yml and disable :active_record

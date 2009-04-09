@@ -5,22 +5,22 @@
   <%= f.text_field :name %>
 </p>
 <p>
-  <%= f.label :cost %> in cents<br />
-  <%= f.text_field :cost %>
+  <%= f.label :description %><br />
+  <%= f.text_area :description, :cols => 60 %>
 </p>
 <p>
-  <%= f.label :description %><br />
-  <%= f.text_area :description %>
+  <%= f.label :cost %> in cents<br />
+  $ <%= f.text_field :cost, :size => 10 %> USD
 </p>
 <p>
   <%= f.label :recurring_month %><br />
-  <%= f.text_field :recurring_month %>
+  <%= f.text_field :recurring_month, :size => 10 %>
 </p>
 <p>
   <%= f.label :status %><br />
-  <%= f.text_field :status %>
+  <%= select("product", "status", Product::STATUS, {:include_blank => true}) %>
 </p>
 <p>
   <%= f.label :kind %><br />
-  <%= f.text_field :kind %>
+  <%= select("product", "kind", Product::KINDS, {:include_blank => true}) %>
 </p>
