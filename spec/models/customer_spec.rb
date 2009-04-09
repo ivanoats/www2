@@ -28,10 +28,6 @@ describe Customer do
     lambda { Customer.create!(@valid_attributes.merge(:last_name => '')) }.should raise_error
   end
 
-  it "should require organization" do
-    lambda { Customer.create!(@valid_attributes.merge(:organization => '')) }.should raise_error
-  end
-
   it "should require address_1" do
     lambda { Customer.create!(@valid_attributes.merge(:address_1 => '')) }.should raise_error
   end
