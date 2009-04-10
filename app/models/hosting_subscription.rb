@@ -1,0 +1,3 @@
+class HostingSubscription < Subscription
+  
+end

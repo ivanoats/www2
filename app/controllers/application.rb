@@ -32,6 +32,22 @@ class ApplicationController < ActionController::Base
     end
     
   end
-  
+
+  def require_account
+    user = current_user
+
+    flash[:error] = "User must be logged in" and redirect_to root_url if user.nil?
+    flash[:error] = "User doesn't belong to an account" and redirect_to root_url if user.accounts.empty?
+
+    #attempt to load from session
+    if(session[:account])
+      account = Account.find_by_id(session[:account])
+      @account = account and return if account.users.include? user
+    end
+
+    #load first account by default
+    @account = user.accounts.first
+  end
+
 end
 

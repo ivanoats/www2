@@ -1,0 +1,14 @@
+development:
+  url: http://resellertest.enom.com/interface.asp?
+  username: yourusername
+  password: yourpassword
+
+test:
+    url: http://resellertest.enom.com/interface.asp?
+    username: yourusername
+    password: yourpassword
+    
+production:
+    url: http://reseller.enom.com/interface.asp?
+    username: yourusername
+    password: yourpassword

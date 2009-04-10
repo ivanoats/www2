@@ -9,4 +9,5 @@ class Customer < ActiveRecord::Base
   
   # Relationships
   belongs_to :user
+
 end
