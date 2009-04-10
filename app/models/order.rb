@@ -1,4 +1,6 @@
 class Order < ActiveRecord::Base
+  include AASM
+  
   belongs_to :account
   
   has_many :purchases
