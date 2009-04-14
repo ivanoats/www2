@@ -28,6 +28,21 @@ class Account < ActiveRecord::Base
     create_or_update_cim_profile(options)
   end
 
+
+  def authorized?(order)
+    gateway = authorize_net_gateway #self.paypal? ? paypal_gateway : authorize_net_gateway
+    amount = self.total_charge_in_pennies
+    response = gateway.authorize(amount, credit_card, {:address => '',:ip => '127.0.0.1'}.merge!(purchase_tracking))
+    
+  end
+  
+  def pay(order, authorization)
+    throw "Cannot pay order with bad authorization" unless response.success?
+    gateway = authorize_net_gateway
+    gateway.capture(amount, reponse.authorization)
+    order.paid!
+  end
+  
   def address
     "#{self.address_1}\n #{self.address_2}"
   end
@@ -78,7 +93,35 @@ protected
       self.update_cim_profile options
     end
   end
-
+  
+  def authorize_net_gateway
+    AuthorizeNetGateway.new(
+      if RAILS_ENV == 'production'
+        { :login => 'prod',
+          :password => 'pass'
+        }
+      else
+        { :login => 'devel',
+          :password => 'pass',
+          :test => true
+        }
+      end)
+  end
+  
+  def paypal_gateway
+    PaypalExpressGateway.new(
+      if RAILS_ENV == 'production'
+        { :login => 'prod',
+          :password => 'pass'
+        }
+      else
+        { :login => 'devel',
+          :password => 'pass',
+          :test => true
+        }
+      end)
+  end
+  
   def authorize_net_cim_gateway
     ActiveMerchant::Billing::AuthorizeNetCimGateWay.new(:login => "", :password => "", :test => true)
   end

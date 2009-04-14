@@ -20,10 +20,16 @@ class GreenHostingStoreController < ApplicationController
     
     
   end
-
+  
+  def billing
+    @credit_card = CreditCard.new(params[:credit_card])
+    if @credit_card.valid?
+      @account.save_credit_card(@credit_card)
+    end
+  end
+  
   def payment
     @order = Order.from_cart(@cart)
-    @credit_card = CreditCard.new(params[:credit_card])
     
     #TODO create a Hosting for each Purchase of a HostingPlan
     #TODO create an AddOn for each Purchase of a ?
@@ -33,12 +39,10 @@ class GreenHostingStoreController < ApplicationController
     #TODO set up subscription for hosting
     
     #TODO -total charge for order?  total charge for Account?  subscriptions belong to ... Account?  Purchase?  Order?
-    
-    if @order.valid? && @credit_card.valid?
-      response = @order.authorized?(@credit_card)
+    if @order.valid? 
+      response = @account.authorized?(@order)
       if response.success?
-        @account.save_credit_card(@credit_card)
-        @order.make_payment(@credit_card,response.authorization)
+        @account.pay(@order, response.authorization)
         redirect_to :action => 'thanks' and return
       end
       flash[:error] = response.message
@@ -51,34 +55,6 @@ class GreenHostingStoreController < ApplicationController
   
 private
 
-  def authorize_net_gateway
-    AuthorizeNetGateway.new(
-      if RAILS_ENV == 'production'
-        { :login => 'prod',
-          :password => 'pass'
-        }
-      else
-        { :login => 'devel',
-          :password => 'pass',
-          :test => true
-        }
-      end)
-  end
-  
-  def paypal_gateway
-    PaypalExpressGateway.new(
-      if RAILS_ENV == 'production'
-        { :login => 'prod',
-          :password => 'pass'
-        }
-      else
-        { :login => 'devel',
-          :password => 'pass',
-          :test => true
-        }
-      end)
-  end
-  
   def purchase_tracking
     { :customer => "#{@account.first_name} #{@account.last_name}",
       :order_id => @order.invoice_number
