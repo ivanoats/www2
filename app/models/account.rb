@@ -8,76 +8,78 @@ class Account < ActiveRecord::Base
   has_many :domains 
 
   attr_protected :balance
-  has_many :payments
-
-  has_one :subscription
   
-  def check_subscription
-    #TODO add to balance for each new successful 
-    
-    #update subscription amount if different than balance
-    
-    
+  has_many :payments
+  has_one :payment_profile
+
+  def save_credit_card(credit_card)
+    options = {}
+    options[:payment] = {:credit_card => credit_card}
+    options[:bill_to] = {
+      :first_name => self.first_name,
+      :last_name => self.last_name,
+      :company => self.organization,
+      :address => self.address,
+      :city => self.city,
+      :state => self.state,
+      :zip => '',
+      :country => self.country
+    }
+    create_or_update_cim_profile(options)
+  end
+
+  def address
+    "#{self.address_1}\n #{self.address_2}"
   end
   
-  # def should_bill?
-  #     self.last_payment_on + self.payment_period < (Time.today + 1.day).at_beginning_of_day
-  #   end
-  #   
-  #   def bill
-  #     self.update_attribute(:last_payment_on, Date.today)
-  #     self.account.update_attribute(:balance, self.account.balance - self.cost)
-  #   end
+  def email
+    return self.users.first.email unless self.users.empty?
+    return ""
+  end
   
-  # def update_subscriptions
-  #     #called periodically to update balance from subscriptions, ya?
-  #     
-  #   end
-  #   
-  #   def setup_subscription(amount)
-  #     subscription = self.subscription || Subscription.new
-  #     gateway = RecurringBilling::RecurringBillingGateway.get_instance(active_merchant_gateway)
-  #     recurring_options = {
-  #       :start_date => Date.today,
-  #       :trial_days => 0,
-  #       :interval => '1 m' #monthly
-  #     }
-  #   end
-  # 
-  #   def pay_balance
-  #     
-  #     
-  #     
-  #     subscription = Subscription.find_by_id(subscription_id)
-  # 
-  #     gw = RecurringBilling::RecurringBillingGateway.get_instance(@gateway)
-  #     tariff = @all_tariff_plans[subscription.tariff_plan_id]
-  #     recurring_options = {
-  #             :start_date => subscription.starts_on,
-  #             :trial_days => tariff['payment_term']['trial_days'],
-  #             :end_date => subscription.ends_on,
-  #             :interval => tariff['payment_term']['periodicity']
-  #             }
-  # 
-  #     if payment_options[:subscription_name].nil?
-  #       payment_options[:subscription_name] = @tariff_plans_namespace+': '+tariff['service']['name']
-  #     end
-  # 
-  #     payment_options[:taxes_amount_included] = Money.new(subscription.taxes_amount,subscription.currency)
-  # 
-  #     gateway_id = gw.create(Money.new(subscription.billing_amount, subscription.currency), card, payment_options, recurring_options)
-  #     if !gateway_id.nil?
-  #       sp = SubscriptionProfile.new
-  #       sp.subscription_id = subscription.id
-  #       sp.recurring_payment_profile_id = RecurringPaymentProfile.find_by_gateway_reference(gateway_id).id
-  #       sp.save
-  #       subscription.status = 'ok'
-  #       subscription.save
-  #     else
-  #       raise StandardError, 'Recurring payment creation error: ' + gw.last_response.message
-  #     end
-  #     
-  #     
-  #   end
+protected
 
+  def profile
+    throw "Billing profile cannot be created for unsaved account" if self.new_record?
+    
+    if(self.customer_profile_id.blank?)
+      response = authorize_net_cim_gateway.create_customer_profile( :profile => {
+        :merchant_customer_id => self.id,
+        :email => self.email,
+        :description => self.organization
+      })
+      self.update_attribute(:customer_profile_id,response.params['customer_profile_id']) if response.success?      
+    end
+    
+    self.customer_profile_id
+  end
+  
+  def credit_card_profile
+    self.payment_profile || PaymentProfile.create(:account => self)
+  end
+
+  def create_payment_profile(options = {})
+    gateway = authorize_net_cim_gateway    
+    response = gateway.create_customer_payment_profile({ :customer_profile_id => self.profile, :payment_profile => options})
+    
+    self.credit_card_profile.update_attribute(:customer_payment_profile_id,response.params['customer_payment_profile_id']) if response.success?
+  end
+  
+  def update_payment_profile(options = {})
+    gateway = authorize_net_cim_gateway
+    options[:customer_payment_profile_id] = self.customer_payment_profile_id
+    gateway.update_customer_payment_profile( :customer_profile_id => self.profile, :payment_profile => options, :customer_payment_profile_id => self.credit_card_profile.customer_payment_profile_id )
+  end
+  
+  def create_or_update_cim_profile(options = {})
+    if !self.cim_payment_profile_id
+      self.create_cim_profile options
+    else
+      self.update_cim_profile options
+    end
+  end
+
+  def authorize_net_cim_gateway
+    ActiveMerchant::Billing::AuthorizeNetCimGateWay.new(:login => "", :password => "", :test => true)
+  end
 end

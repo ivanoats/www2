@@ -35,17 +35,10 @@ class GreenHostingStoreController < ApplicationController
     #TODO -total charge for order?  total charge for Account?  subscriptions belong to ... Account?  Purchase?  Order?
     
     if @order.valid? && @credit_card.valid?
-      gateway = @order.paypal? ? paypal_gateway : authorize_net_gateway
-      amount = @order.total_charge_in_pennies
-      response = response = gateway.authorize(amount, @credit_card, {:address => @address,:ip => '127.0.0.1'}.merge!(purchase_tracking))
-      
+      response = @order.authorized?(@credit_card)
       if response.success?
-        gateway.capture(amount, response.authorization)
-        @order.paid!
-        
-        session[:credit_card] = nil
-        
-        Notification.deliver_purchase(@order)
+        @account.save_credit_card(@credit_card)
+        @order.make_payment(@credit_card,response.authorization)
         redirect_to :action => 'thanks' and return
       end
       flash[:error] = response.message
