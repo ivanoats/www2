@@ -66,7 +66,7 @@ module Synthesis
 
       def delete_all
         @@asset_packages_yml.keys.each do |asset_type|
-          @@asset_packages_yml[asset_type].each { |p| self.new(asset_type, p).delete_previous_build }
+          @@asset_packages_yml[asset_type].each { |p| self.new(asset_type, p).delete_all_builds }
         end
       end
 
@@ -102,38 +102,61 @@ module Synthesis
       @asset_path = ($asset_base_path ? "#{$asset_base_path}/" : "#{RAILS_ROOT}/public/") +
           "#{@asset_type}#{@target_dir.gsub(/^(.+)$/, '/\1')}"
       @extension = get_extension
-      @file_name = "#{@target}_packaged.#{@extension}"
-      @full_path = File.join(@asset_path, @file_name)
+      @match_regex = Regexp.new("\\A#{@target}_\\d+.#{@extension}\\z")
     end
   
-    def package_exists?
-      File.exists?(@full_path)
-    end
-
     def current_file
-      build unless package_exists?
-
-      path = @target_dir.gsub(/^(.+)$/, '\1/')
-      "#{path}#{@target}_packaged"
+      @target_dir.gsub(/^(.+)$/, '\1/') +
+          Dir.new(@asset_path).entries.delete_if { |x| ! (x =~ @match_regex) }.sort.reverse[0].chomp(".#{@extension}")
     end
 
     def build
-      delete_previous_build
+      delete_old_builds
       create_new_build
     end
+  
+    def delete_old_builds
+      Dir.new(@asset_path).entries.delete_if { |x| ! (x =~ @match_regex) }.each do |x|
+        File.delete("#{@asset_path}/#{x}") unless x.index(revision.to_s)
+      end
+    end
 
-    def delete_previous_build
-      File.delete(@full_path) if File.exists?(@full_path)
+    def delete_all_builds
+      Dir.new(@asset_path).entries.delete_if { |x| ! (x =~ @match_regex) }.each do |x|
+        File.delete("#{@asset_path}/#{x}")
+      end
     end
 
     private
-      def create_new_build
-        new_build_path = "#{@asset_path}/#{@target}_packaged.#{@extension}"
-        if File.exists?(new_build_path)
-          log "Latest version already exists: #{new_build_path}"
+      def revision
+        unless @revision
+          revisions = [1]
+          @sources.each do |source|
+            revisions << get_file_revision("#{@asset_path}/#{source}.#{@extension}")
+          end
+          @revision = revisions.max
+        end
+        @revision
+      end
+  
+      def get_file_revision(path)
+        if File.exists?(path)
+          begin
+            `svn info #{path}`[/Last Changed Rev: (.*?)\n/][/(\d+)/].to_i
+          rescue # use filename timestamp if not in subversion
+            File.mtime(path).to_i
+          end
         else
-          File.open(new_build_path, "w") {|f| f.write(compressed_file) }
-          log "Created #{new_build_path}"
+          0
+        end
+      end
+
+      def create_new_build
+        if File.exists?("#{@asset_path}/#{@target}_#{revision}.#{@extension}")
+          log "Latest version already exists: #{@asset_path}/#{@target}_#{revision}.#{@extension}"
+        else
+          File.open("#{@asset_path}/#{@target}_#{revision}.#{@extension}", "w") {|f| f.write(compressed_file) }
+          log "Created #{@asset_path}/#{@target}_#{revision}.#{@extension}"
         end
       end
 
@@ -156,7 +179,7 @@ module Synthesis
 
       def compress_js(source)
         jsmin_path = "#{RAILS_ROOT}/vendor/plugins/asset_packager/lib"
-        tmp_path = "#{RAILS_ROOT}/tmp/#{@target}_packaged"
+        tmp_path = "#{RAILS_ROOT}/tmp/#{@target}_#{revision}"
       
         # write out to a temp file
         File.open("#{tmp_path}_uncompressed.js", "w") {|f| f.write(source) }
@@ -177,7 +200,7 @@ module Synthesis
   
       def compress_css(source)
         source.gsub!(/\s+/, " ")           # collapse space
-        source.gsub!(/\/\*(.*?)\*\//, "")  # remove comments - caution, might want to remove this if using css hacks
+        source.gsub!(/\/\*(.*?)\*\/ /, "") # remove comments - caution, might want to remove this if using css hacks
         source.gsub!(/\} /, "}\n")         # add line breaks
         source.gsub!(/\n$/, "")            # remove last break
         source.gsub!(/ \{ /, " {")         # trim inside brackets

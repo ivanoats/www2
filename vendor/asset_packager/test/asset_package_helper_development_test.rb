@@ -9,12 +9,13 @@ require 'mocha'
 require 'action_controller/test_process'
 
 ActionController::Base.logger = nil
+ActionController::Base.ignore_missing_templates = false
 ActionController::Routing::Routes.reload rescue nil
 
 $asset_packages_yml = YAML.load_file("#{RAILS_ROOT}/vendor/plugins/asset_packager/test/asset_packages.yml")
 $asset_base_path = "#{RAILS_ROOT}/vendor/plugins/asset_packager/test/assets"
 
-class AssetPackageHelperDevelopmentTest < Test::Unit::TestCase
+class AssetPackageHelperProductionTest < Test::Unit::TestCase
   include ActionView::Helpers::TagHelper
   include ActionView::Helpers::AssetTagHelper
   include Synthesis::AssetPackageHelper
@@ -23,18 +24,24 @@ class AssetPackageHelperDevelopmentTest < Test::Unit::TestCase
     Synthesis::AssetPackage.any_instance.stubs(:log)
 
     @controller = Class.new do
-      def request
-        @request ||= ActionController::TestRequest.new
+      attr_reader :request
+      def initialize
+        @request = Class.new do
+          def relative_url_root
+            ""
+          end
+        end.new
       end
+
     end.new
   end
   
   def build_js_expected_string(*sources)
-    sources.map {|s| javascript_include_tag(s) }.join("\n")
+    sources.map {|s| %(<script src="/javascripts/#{s}.js" type="text/javascript"></script>) }.join("\n")
   end
     
   def build_css_expected_string(*sources)
-    sources.map {|s| stylesheet_link_tag(s) }.join("\n")
+    sources.map {|s| %(<link href="/stylesheets/#{s}.css" rel="Stylesheet" type="text/css" media="screen" />) }.join("\n")
   end
     
   def test_js_basic
