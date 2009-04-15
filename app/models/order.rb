@@ -56,17 +56,17 @@ class Order < ActiveRecord::Base
       
     end
     
-    
-    if response.success?
-      gateway.capture(amount, response.authorization)
-      @order.paid!
-      
-      #session[:credit_card] = nil
-      #Notification.deliver_purchase(@order)
-      redirect_to :action => 'thanks' and return
-    end
-    flash[:error] = response.message
-    
+  def huh?
+    # if response.success?
+    #   gateway.capture(amount, response.authorization)
+    #   @order.paid!
+    #   
+    #   #session[:credit_card] = nil
+    #   #Notification.deliver_purchase(@order)
+    #   redirect_to :action => 'thanks' and return
+    # end
+    # flash[:error] = response.message
+  end
 
   private
 

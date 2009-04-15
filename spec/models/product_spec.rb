@@ -20,7 +20,7 @@ describe Product do
     lambda { Product.create!(@valid_attributes.merge(:name => '')) }.should raise_error
   end
   
-  it "should only allow cost as integer" do
+  it "should only allow cost as an integer" do
     lambda { Product.create!(@valid_attributes.merge(:cost => '')) }.should raise_error
     lambda { Product.create!(@valid_attributes.merge(:cost => 0.99)) }.should raise_error
     lambda { Product.create!(@valid_attributes.merge(:cost => 1)) }.should_not raise_error
@@ -34,7 +34,31 @@ describe Product do
     Product::STATUS.should == %w(active disabled)
   end
   
+  it "should include only valid choices for status" do
+    Product::STATUS.each do |expected|
+      lambda { Product.create!(@valid_attributes.merge(:status => expected)) }.should_not raise_error
+    end
+    
+    lambda { Product.create!(@valid_attributes.merge(:status => 'cool!')) }.should raise_error
+    lambda { Product.create!(@valid_attributes.merge(:status => 1)) }.should raise_error
+    lambda { Product.create!(@valid_attributes.merge(:status => true)) }.should raise_error
+    lambda { Product.create!(@valid_attributes.merge(:status => false)) }.should raise_error
+    lambda { Product.create!(@valid_attributes.merge(:status => nil)) }.should raise_error
+  end
+  
   it "should have a list of kinds" do
     Product::KINDS.should == %w(package add-on)
+  end
+  
+  it "should include only valid choises for kind" do
+    Product::KINDS.each do |expected|
+      lambda { Product.create!(@valid_attributes.merge(:kind => expected)) }.should_not raise_error
+    end
+    
+    lambda { Product.create!(@valid_attributes.merge(:status => 'cool!')) }.should raise_error
+    lambda { Product.create!(@valid_attributes.merge(:status => 1)) }.should raise_error
+    lambda { Product.create!(@valid_attributes.merge(:status => true)) }.should raise_error
+    lambda { Product.create!(@valid_attributes.merge(:status => false)) }.should raise_error
+    lambda { Product.create!(@valid_attributes.merge(:status => nil)) }.should raise_error
   end
 end
