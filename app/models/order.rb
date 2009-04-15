@@ -45,6 +45,28 @@ class Order < ActiveRecord::Base
       (self.total_charge * 100).to_i
     end
 
+    def authorized?(credit_card)
+      gateway = self.paypal? ? paypal_gateway : authorize_net_gateway
+      amount = self.total_charge_in_pennies
+      response = gateway.authorize(amount, credit_card, {:address => '',:ip => '127.0.0.1'}.merge!(purchase_tracking))
+      
+    end
+    
+    def make_payment
+      
+    end
+    
+  def huh?
+    # if response.success?
+    #   gateway.capture(amount, response.authorization)
+    #   @order.paid!
+    #   
+    #   #session[:credit_card] = nil
+    #   #Notification.deliver_purchase(@order)
+    #   redirect_to :action => 'thanks' and return
+    # end
+    # flash[:error] = response.message
+  end
   private
 
     def self.generate_invoice_number

@@ -32,7 +32,7 @@ class Account < ActiveRecord::Base
   def authorized?(order)
     gateway = authorize_net_gateway #self.paypal? ? paypal_gateway : authorize_net_gateway
     amount = self.total_charge_in_pennies
-    response = gateway.authorize(amount, credit_card, {:address => '',:ip => '127.0.0.1'}.merge!(purchase_tracking))
+    response = gateway.authorize(amount, self.credit_card_profile.customer_payment_profile_id, {:address => '',:ip => '127.0.0.1'}.merge!(purchase_tracking))
     
   end
   
@@ -97,12 +97,12 @@ protected
   def authorize_net_gateway
     AuthorizeNetGateway.new(
       if RAILS_ENV == 'production'
-        { :login => 'prod',
-          :password => 'pass'
+        { :login => '2N3439BNayw56ndw',
+          :password => 'smk510'
         }
       else
-        { :login => 'devel',
-          :password => 'pass',
+        { :login => '2N3439BNayw56ndw',
+          :password => 'smk510',
           :test => true
         }
       end)
