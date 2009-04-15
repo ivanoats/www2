@@ -53,15 +53,6 @@ Rails::Initializer.run do |config|
     :secret      => 'c9ba017060e99fd4e23621a963dfe5d05e7975c732e622924b4a9b86a6b6d60ca6c067429f937c06675480f3181fc39f0d5328a73b559c3879cc2d9bee662c9d'
   }
   
-  config.action_mailer.delivery_method = :sendmail # :smtp | :sendmail | :test
-  # ActionMailer::Base.server_settings = {
-  #   :address => "mail.authsmtp.com",
-  #   :port => 2525,
-  #   :authentication => :plain,
-  #   :user_name => "ac32450",
-  #   :password => "xpps7zhdw"
-  # }
-
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
   # (create the session table with "rake db:sessions:create")
