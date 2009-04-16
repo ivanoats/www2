@@ -15,12 +15,12 @@ describe CartController do
     end
   end
 
-  describe "GET 'add_product'" do
-    it "should be successful" do
-      get 'add_product'
-      response.should be_success
-    end
-  end
+  # describe "GET 'add_product'" do
+  #   it "should be successful" do
+  #     get 'add_product'
+  #     response.should be_success
+  #   end
+  # end
 
   describe "GET 'remove_cart_item'" do
     it "should be successful" do
