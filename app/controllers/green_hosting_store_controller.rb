@@ -4,6 +4,8 @@ class GreenHostingStoreController < ApplicationController
 
   #maybe these should be more along the lines of add_to_cart, remove_from_cart
   def choose_domain
+    @domain = Domain.new
+    @cart = Cart.new
   end
 
   def choose_package

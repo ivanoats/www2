@@ -1,2 +1,9 @@
-<h1>GreenHostingStore#choose_domain</h1>
-<p>Find me in app/views/green_hosting_store/choose_domain.html.erb</p>
+<h1>Choose Your Domain</h1>
+
+<% form_remote_for @domain, :url => { :controller => 'cart', :action => "add_product" } do |f| -%>
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name %>
+  <%= f.submit "Add to Cart", :disable_with => 'Adding to Cart...' %>
+<% end -%>
+
+<%= render 'cart/index' %>
