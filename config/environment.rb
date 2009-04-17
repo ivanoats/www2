@@ -24,18 +24,8 @@ Rails::Initializer.run do |config|
   # They can then be installed with "rake gems:install" on new installations.
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "aws-s3", :lib => "aws/s3"
-  config.gem "capistrano-ext", :lib => "capistrano"
-  # david chelimsky says not to include them here
-  # config.gem "dchelimsky-rspec-rails",
-  #              :lib => "rspec-rails",
-  #              :source => "http://gems.github.com"
-  #  config.gem "dchelimsky-rspec",
-  #              :lib => "rspec",
-  #              :source => "http://gems.github.com"
-  #  config.gem "activemerchant", :lib => "active_merchant"
-  config.gem "aslakhellesoy-cucumber",
-              :lib => "cucumber",
-              :source => "http://gems.github.com"
+  config.gem "capistrano-ext", :lib => "capistrano"  
+  config.gem "activemerchant", :lib => "active_merchant"
   config.gem "mlightner-universal_ruby_whois",
               :lib => 'universal_ruby_whois',
               :source => "http://gems.github.com"
@@ -43,7 +33,6 @@ Rails::Initializer.run do |config|
   config.gem "mofo"
   config.gem "packet"
   config.gem "ruby-openid", :lib => "openid", :version => "2.1.4"
-  
   
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.

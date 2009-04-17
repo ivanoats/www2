@@ -27,10 +27,8 @@ class ApplicationController < ActionController::Base
       }
       cookie_hash[:domain] = '.sustainablewebsites.com' if ENV['RAILS_ENV'] != 'development'
       #cookie_hash[:domain] = 'localhost:3000'    # does not seem to work in development
-      cookies[:referrer_id] = cookie_hash  
-      puts cookies[:referrer_id]
+      cookies[:referrer_id] = cookie_hash
     end
-    
   end
 
   def require_account
