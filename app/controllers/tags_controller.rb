@@ -15,8 +15,8 @@ class TagsController < ApplicationController
   end
 
   def show 
-    @tag = params[:id]
-    @articles = Article.find_tagged_with(@tag)
+    @tag = Tag.find_by_name(params[:id])
+    @articles = Article.find_tagged_with(@tag.name)
     respond_to do |wants| 
       wants.html 
       wants.xml { render :xml => @article.to_xml } 

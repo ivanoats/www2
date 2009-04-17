@@ -1,0 +1,8 @@
+<%= error_messages_for :tag %> 
+
+<% form_for @tag do |f| -%> 
+  <p>Name:<br /><%= f.text_field :name, :size => 60 %></p> 
+  <p>Body:<br /><%= f.text_area :description, :rows => 20, :cols => 60</p> 
+   
+  <%= submit_tag 'Save' %> or <%= link_to 'cancel', tags_url %> 
+<% end -%>
