@@ -52,12 +52,5 @@ class GreenHostingStoreController < ApplicationController
 
   def confirmation
   end
-  
-private
 
-  def purchase_tracking
-    { :customer => "#{@account.first_name} #{@account.last_name}",
-      :order_id => @order.invoice_number
-    }
-  end
 end

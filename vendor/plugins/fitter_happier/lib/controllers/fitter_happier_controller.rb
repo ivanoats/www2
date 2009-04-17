@@ -1,5 +1,4 @@
 class FitterHappierController < ActionController::Base
-  session :off
   layout nil
   
   def index

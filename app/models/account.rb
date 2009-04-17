@@ -25,15 +25,18 @@ class Account < ActiveRecord::Base
       :zip => '',
       :country => self.country
     }
-    create_or_update_cim_profile(options)
+    update_credit_card_profile(options)
   end
 
+  def credit_card
+    return nil if self.credit_card_profile.customer_payment_profile_id.blank?
+    authorize_net_cim_gateway.get_customer_payment_profile({:customer_profile_id => self.customer_profile_id, :customer_payment_profile_id => self.credit_card_profile.customer_payment_profile_id})
+  end
 
   def authorized?(order)
     gateway = authorize_net_gateway #self.paypal? ? paypal_gateway : authorize_net_gateway
-    amount = self.total_charge_in_pennies
-    response = gateway.authorize(amount, self.credit_card_profile.customer_payment_profile_id, {:address => '',:ip => '127.0.0.1'}.merge!(purchase_tracking))
-    
+    amount = order.total_charge_in_pennies
+    response = gateway.authorize(amount, self.credit_card, {:address => '',:ip => '127.0.0.1'}.merge!(purchase_tracking(order)))    
   end
   
   def pay(order, authorization)
@@ -48,12 +51,11 @@ class Account < ActiveRecord::Base
   end
   
   def email
-    return self.users.first.email unless self.users.empty?
-    return ""
+    self.users.empty? ? "" : self.users.first.email
   end
   
 protected
-
+  
   def profile
     throw "Billing profile cannot be created for unsaved account" if self.new_record?
     
@@ -73,29 +75,19 @@ protected
     self.payment_profile || PaymentProfile.create(:account => self)
   end
 
-  def create_payment_profile(options = {})
+  def update_credit_card_profile(options = {})
     gateway = authorize_net_cim_gateway    
-    response = gateway.create_customer_payment_profile({ :customer_profile_id => self.profile, :payment_profile => options})
-    
-    self.credit_card_profile.update_attribute(:customer_payment_profile_id,response.params['customer_payment_profile_id']) if response.success?
-  end
-  
-  def update_payment_profile(options = {})
-    gateway = authorize_net_cim_gateway
-    options[:customer_payment_profile_id] = self.customer_payment_profile_id
-    gateway.update_customer_payment_profile( :customer_profile_id => self.profile, :payment_profile => options, :customer_payment_profile_id => self.credit_card_profile.customer_payment_profile_id )
-  end
-  
-  def create_or_update_cim_profile(options = {})
-    if !self.cim_payment_profile_id
-      self.create_cim_profile options
+    if !self.credit_card_profile.customer_payment_profile_id
+      response = gateway.create_customer_payment_profile({ :customer_profile_id => self.profile, :payment_profile => options})     
+      self.credit_card_profile.update_attribute(:customer_payment_profile_id,response.params['customer_payment_profile_id']) if response.success?
     else
-      self.update_cim_profile options
+      options[:customer_payment_profile_id] = self.customer_payment_profile_id
+      gateway.update_customer_payment_profile( :customer_profile_id => self.profile, :payment_profile => options, :customer_payment_profile_id => self.credit_card_profile.customer_payment_profile_id )
     end
   end
   
   def authorize_net_gateway
-    AuthorizeNetGateway.new(
+    ActiveMerchant::Billing::AuthorizeNetGateway.new(
       if RAILS_ENV == 'production'
         { :login => '2N3439BNayw56ndw',
           :password => 'smk510'
@@ -109,7 +101,7 @@ protected
   end
   
   def paypal_gateway
-    PaypalExpressGateway.new(
+    ActiveMerchant::Billing::PaypalExpressGateway.new(
       if RAILS_ENV == 'production'
         { :login => 'prod',
           :password => 'pass'
@@ -123,6 +115,14 @@ protected
   end
   
   def authorize_net_cim_gateway
-    ActiveMerchant::Billing::AuthorizeNetCimGateWay.new(:login => "", :password => "", :test => true)
+    ActiveMerchant::Billing::AuthorizeNetCimGateway.new(:login => "2N3439BNayw56ndw", :password => "smk510", :test => true)
   end
+  
+  
+  def purchase_tracking(order)
+    { :customer => "#{self.first_name} #{self.last_name}",
+      :order_id => order.invoice_number
+    }
+  end
+  
 end

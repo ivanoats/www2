@@ -23,7 +23,7 @@ class Order < ActiveRecord::Base
       order = Order.new
       cart.cart_items.each do |item|
         if item.product
-          values[:quantity].times do 
+          item.quantity.times do 
             order.purchases << Purchase.new(:product => item.product)
           end
         end
