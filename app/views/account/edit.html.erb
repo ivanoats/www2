@@ -1,0 +1,12 @@
+<%= render :partial => 'navigation'%>
+
+<% uni_form_for :account, :url => {:action => 'update', :id => @account} do |f| %>
+  <% f.fieldset :type => "inline" do %>
+  
+  <%= f.text_field :organization %>
+  
+  <%= f.text_field :email %>
+  
+  <%= f.submit "Update"%>
+  <% end %>
+<% end %>

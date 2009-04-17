@@ -1,0 +1,9 @@
+<h2>Create an additional account</h2>
+
+<% form_for :new_account, :url => {:action => 'create'} do |f| %>
+  <%= f.label :organization %>
+
+  <%= f.text_field :organization %>
+  <%= f.submit "Create"%>
+<% end %>
+

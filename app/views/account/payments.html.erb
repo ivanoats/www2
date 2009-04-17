@@ -1,0 +1,26 @@
+<%= render :partial => 'navigation'%>
+<h3>Reoccuring Billing</h3>
+<div>
+  <ul>
+    <li>Next payment on <%= @account.last_payment_on ? @account.last_payment_on + 1.month : "never" %></li>
+    <li>Active since: <%= @account.created_at.to_formatted_s :human_date %></li>
+    <li>
+      Balance 
+      <% if @account.balance > 0 %>
+        <%= number_to_currency @account.balance %>
+      <% else %>
+      due <%= number_to_currency -@account.balance %>
+      <% end %>
+    </li>
+  </ul>
+</div>
+
+<h3>Payments</h3>
+<%= link_to "Make Payment"%>
+<% unless @account.payments.empty? %>
+<ul>
+<% @account.payments.each do |payment| %>
+  <li><%= payment.amount %> <%= payment.state %></li>
+<% end%>
+</ul>
+<% end %>

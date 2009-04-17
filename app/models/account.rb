@@ -11,7 +11,69 @@ class Account < ActiveRecord::Base
   
   has_many :payments
   has_one :payment_profile
+  
+  def store_card(creditcard, gw_options = {})
+    # Clear out payment info if switching to CC from PayPal
+    destroy_gateway_record(paypal) if paypal?
+    
+    @response = if billing_id.blank?
+      gateway.store(creditcard, gw_options)
+    else
+      gateway.update(billing_id, creditcard, gw_options)
+    end
+    
+    if @response.success?
+      self.card_number = creditcard.display_number
+      self.card_expiration = "%02d-%d" % [creditcard.expiry_date.month, creditcard.expiry_date.year]
+      set_billing
+    else
+      errors.add_to_base(@response.message)
+      false
+    end
+  end
+  
+  # Charge the card on file any amount you want.  Pass in a dollar
+  # amount (1.00 to charge $1).  A SubscriptionPayment record will
+  # be created, but the subscription itself is not modified.
+  def charge(amount)
+    if amount == 0 || (@response = gateway.purchase((amount.to_f * 100).to_i, billing_id)).success?
+      payments.create(:account => account, :amount => amount, :transaction_id => @response.authorization, :misc => true)
+      true
+    else
+      errors.add_to_base(@response.message)
+      false
+    end
+  end
+  
+  def start_paypal(return_url, cancel_url)
+    if (@response = paypal.setup_authorization(:return_url => return_url, :cancel_return_url => cancel_url, :description => AppConfig['app_name'])).success?
+      paypal.redirect_url_for(@response.params['token'])
+    else
+      errors.add_to_base("PayPal Error: #{@response.message}")
+      false
+    end
+  end
+  
+  def complete_paypal(token)
+    if (@response = paypal.details_for(token)).success?
+      if (@response = paypal.create_billing_agreement_for(token)).success?
+        # Clear out payment info if switching to PayPal from CC
+        destroy_gateway_record(cc) unless paypal?
 
+        self.card_number = 'PayPal'
+        self.card_expiration = 'N/A'
+        set_billing
+      else
+        errors.add_to_base("PayPal Error: #{@response.message}")
+        false
+      end
+    else
+      errors.add_to_base("PayPal Error: #{@response.message}")
+      false
+    end
+  end
+  
+  
   def save_credit_card(credit_card)
     options = {}
     options[:payment] = {:credit_card => credit_card}
@@ -52,6 +114,10 @@ class Account < ActiveRecord::Base
   
   def email
     self.users.empty? ? "" : self.users.first.email
+  end
+  
+  def balance
+    self['balance'] || 0
   end
   
 protected

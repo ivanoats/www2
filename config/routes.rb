@@ -31,6 +31,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :invoices
   map.resources :comments
   map.resources :pages
+  map.resources :accounts
  
   map.page_permalink '/page/:permalink', :controller => 'pages', :action => 'permalink'
   
