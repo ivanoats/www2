@@ -1,4 +1,6 @@
 class AccountController < ApplicationController
+  include ActiveMerchant::Billing
+  
   before_filter :login_required
   before_filter :require_account, :except => [:index, :new, :create]
   
@@ -76,7 +78,7 @@ class AccountController < ApplicationController
   
   def billing
     @address = @account.billing_address || @account.build_billing_address
-    @credit_card = ActiveMerchant::Billing::CreditCard.new(params[:credit_card])
+    @credit_card = CreditCard.new(params[:credit_card])
     
     if request.post?
       

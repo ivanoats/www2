@@ -1,6 +1,11 @@
 <%= render :partial => 'navigation'%>
 
-<h2>Credit Card</h2>
+<% unless @account.card_number.blank? %>
+  Credit Card on File
+  <%= @account.card_number%>
+  <%= @account.card_expiration%>
+<% end %>
+
 <%= error_messages_for :account, :address, :credit_card %>
 <% z_form_for :account do |f| %>
   <% f.fieldset :type => "inline" do %>

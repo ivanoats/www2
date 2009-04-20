@@ -1,5 +1,6 @@
 class GreenHostingStoreController < ApplicationController
-
+  include ActiveMerchant::Billing
+  
   before_filter :require_account, :only => [:checkout, :payment]
 
   #maybe these should be more along the lines of add_to_cart, remove_from_cart

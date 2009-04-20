@@ -18,6 +18,9 @@ class Account < ActiveRecord::Base
   accepts_nested_attributes_for :address
   accepts_nested_attributes_for :billing_address
   
+  named_scope :payment_due, :conditions => ['balance < ? and (last_payment_on IS NULL or last_payment_on < ?)',0,1.month.ago]
+  #payment period??
+  
   def store_card(creditcard, gw_options = {})
     # Clear out payment info if switching to CC from PayPal
     destroy_gateway_record(paypal) if paypal?
@@ -35,7 +38,8 @@ class Account < ActiveRecord::Base
     if @response.success?
       self.card_number = creditcard.display_number
       self.card_expiration = "%02d-%d" % [creditcard.expiry_date.month, creditcard.expiry_date.year]
-      set_billing
+      self.billing_id = @response.token unless @response.token.blank?
+      self.save
     else
       errors.add_to_base(@response.message)
       false
@@ -55,17 +59,9 @@ class Account < ActiveRecord::Base
     end
   end
   
-  
-
-  def authorized?(order)
-    gateway = authorize_net_gateway #self.paypal? ? paypal_gateway : authorize_net_gateway
+  def charge_order(order)
     amount = order.total_charge_in_pennies
-    response = gateway.authorize(amount, self.credit_card, {:address => '',:ip => '127.0.0.1'}.merge!(purchase_tracking(order)))    
-  end
-  
-  def pay(order)
-    amount = order.total_charge_in_pennies
-    if (@response = gateway.purchase(amount, billing_id)).success?
+    if amount == 0 || (@response = gateway.purchase(amount)).success?
       payments.create(:amount => amount, :transaction_id => @response.authorization, :order_id => order)
       order.paid!
       true
@@ -96,7 +92,8 @@ class Account < ActiveRecord::Base
 
         self.card_number = 'PayPal'
         self.card_expiration = 'N/A'
-        set_billing
+        self.billing_id = @response.token unless @response.token.blank?
+        
       else
         errors.add_to_base("PayPal Error: #{@response.message}")
         false
@@ -116,6 +113,8 @@ class Account < ActiveRecord::Base
   end
   
 protected
+  
+  
   
   def paypal?
     false
@@ -172,12 +171,12 @@ protected
   def authorize_net_gateway
     ActiveMerchant::Billing::Base.gateway(:authorize_net_cim).new(
     if RAILS_ENV == 'production'
-      { :login => '2N3439BNayw56ndw',
-        :password => 'smk510'
+      { :login => 'smk510',
+        :password => '2N3439BNayw56ndw'
       }
     else
-      { :login => '2N3439BNayw56ndw',
-        :password => 'smk510',
+      { :login => 'smk510',
+        :password => '2N3439BNayw56ndw',
         :test => true
       }
     end)
