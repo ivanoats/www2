@@ -1,3 +1,16 @@
+<% content_for :head do %>
+  <style type='text/css'>
+    #content { 
+      width: 500px;
+    }
+    #sidebar {width: auto;}
+  </style>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render 'cart/items' %>
+<% end %>
+
 <h1>Choose Your Domain</h1>
 
 <% form_remote_for @domain, :url => { :controller => 'cart', :action => "add_product" } do |f| -%>
@@ -6,4 +19,3 @@
   <%= f.submit "Add to Cart", :disable_with => 'Adding to Cart...' %>
 <% end -%>
 
-<%= render 'cart/index' %>
