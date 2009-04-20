@@ -6,7 +6,7 @@ class HiTrustNotificationTest < Test::Unit::TestCase
   def setup
     @notification = HiTrust::Notification.new(successful_response)
   end
-  
+
   def teardown
     ActiveMerchant::Billing::Base.integration_mode = :test
   end

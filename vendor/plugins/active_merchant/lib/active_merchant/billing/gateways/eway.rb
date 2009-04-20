@@ -155,7 +155,7 @@ module ActiveMerchant #:nodoc:
     
         commit(money, post)
       end
-    
+      
       private                       
       def add_creditcard(post, creditcard)
         post[:CardNumber]  = creditcard.number

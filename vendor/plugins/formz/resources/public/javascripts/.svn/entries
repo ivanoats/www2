@@ -1,0 +1,40 @@
+8
+
+dir
+155
+svn+ssh://padraic@eleanor.homeunix.net/var/svn/cause_on_rails/vendor/plugins/formz/resources/public/javascripts
+svn+ssh://padraic@eleanor.homeunix.net/var/svn
+
+
+
+2009-03-24T16:01:48.133682Z
+26
+padraic
+
+
+svn:special svn:externals svn:needs-lock
+
+uni-form.jquery.js
+file
+
+
+
+
+2009-03-22T20:34:52.000000Z
+82ce48eb990799f4cf4f5ab0e8622266
+2009-03-24T16:01:48.133682Z
+26
+padraic
+
+uni-form.prototype.js
+file
+
+
+
+
+2009-03-22T20:43:13.000000Z
+83c6650b42c651f6580eeb0dccd702ad
+2009-03-24T16:01:48.133682Z
+26
+padraic
+

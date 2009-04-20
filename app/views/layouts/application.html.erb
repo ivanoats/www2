@@ -7,7 +7,9 @@
 	<%= page_title %> 
 	<%= meta "description", meta_description %> 
 	<%= meta "keywords", meta_keywords %>
-	<%= stylesheet_link_tag "pagination", "users", "uni-form", "sw", 'live-search', :cache => true %>
+	<%= stylesheet_link_tag "pagination", "users", formz_stylesheets, "sw", 'live-search', "formtastic", "formtastic_changes", :cache => true %>
+
+	
 	<!--[if lt IE 8]>
 		<%= stylesheet_link_tag "ie", :cache => true %>
 	<![endif]-->
@@ -15,7 +17,7 @@
 	<% # Include TinyMCE before other JS to avoid problems -%>
 	<%# = yield :tinymce %>
 	<%= javascript_include_tag :defaults, :cache => true %> 
-  <%= javascript_include_tag 'jquery.dimensions.js','jquery.liveSearch.js', 'uni-form.jquery.js','jquery.corner.js', 'sw.js' %>
+  <%= javascript_include_tag 'jquery.dimensions.js','jquery.liveSearch.js', formz_javascripts,'jquery.corner.js', 'sw.js' %>
   <%= yield :head %> 
   
   <%= auto_discovery_link_tag(:rss, :controller => :articles, :action => 'index', :format => 'rss') %>

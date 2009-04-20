@@ -1,0 +1,28 @@
+8
+
+dir
+155
+svn+ssh://padraic@eleanor.homeunix.net/var/svn/cause_on_rails/vendor/plugins/formz/tasks
+svn+ssh://padraic@eleanor.homeunix.net/var/svn
+
+
+
+2009-03-24T16:01:48.133682Z
+26
+padraic
+
+
+svn:special svn:externals svn:needs-lock
+
+uni_form_tasks.rake
+file
+
+
+
+
+2007-09-07T14:35:11.000000Z
+0e5646084f45f876f381c9fc972faf78
+2009-03-24T16:01:48.133682Z
+26
+padraic
+

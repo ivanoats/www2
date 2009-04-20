@@ -367,10 +367,10 @@ class PaypalExpressTest < Test::Unit::TestCase
           <SeverityCode xmlns="urn:ebay:apis:eBLBaseComponents">Error</SeverityCode>
         </Errors>
          <Errors xmlns="urn:ebay:apis:eBLBaseComponents" xsi:type="ebl:ErrorType">
-            <ShortMessage xsi:type="xs:string">Shipping Address Invalid City State Postal Code</ShortMessage>
-            <LongMessage xsi:type="xs:string">A match of the Shipping Address City, State, and Postal Code failed.</LongMessage>
-            <ErrorCode xsi:type="xs:token">10736</ErrorCode>
-            <SeverityCode xmlns="urn:ebay:apis:eBLBaseComponents">Error</SeverityCode>
+          <ShortMessage xsi:type="xs:string">Shipping Address Invalid City State Postal Code</ShortMessage>
+          <LongMessage xsi:type="xs:string">A match of the Shipping Address City, State, and Postal Code failed.</LongMessage>
+          <ErrorCode xsi:type="xs:token">10736</ErrorCode>
+          <SeverityCode xmlns="urn:ebay:apis:eBLBaseComponents">Error</SeverityCode>
         </Errors>
         <Version xmlns="urn:ebay:apis:eBLBaseComponents">2.000000</Version>
         <Build xmlns="urn:ebay:apis:eBLBaseComponents">543066</Build>
@@ -378,5 +378,5 @@ class PaypalExpressTest < Test::Unit::TestCase
     </SOAP-ENV:Body>
   </SOAP-ENV:Envelope>
       RESPONSE
-    end  
+    end
 end

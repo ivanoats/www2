@@ -1,0 +1,71 @@
+/* Styles for form controls where labels are above the input elements */
+/* Set the class to the parent to .blockLabels */
+.blockLabels .zField{
+	padding-right: 10px;
+}
+
+.blockLabels label,
+.blockLabels .label{
+  display:block;
+  float:none;
+  margin:.3em 0; padding:0;
+  line-height:100%;
+  /*width:60%;*/
+	width: 100%;
+  /* user prefs */
+  font-weight:bold;
+  width:auto;
+}
+.blockLabels .label{
+  float:left;
+  margin-right:3em;
+}
+
+.blockLabels .textInput{
+  float:left;
+  /*width:60%;*/
+	width: 100%;
+  /* user prefs */
+  border:2px solid #dfdfdf;
+	margin-right: 10px;
+}
+
+.blockLabels .selectInput{
+  float:left;
+  /*width:60%;*/
+	width: 100%;
+  /* user prefs */
+  border:2px solid #dfdfdf;
+  
+}
+
+.blockLabels textarea{
+  display:block;
+  float:left;
+  /*width:60%;*/
+	width: 100%;
+  /* user prefs */
+  border:2px solid #dfdfdf;
+  height:12em;
+}
+
+.blockLabels .formHint{
+  float:right;
+  margin:0;
+  width:38%;
+  clear:none;
+  /* user prefs */
+  color:#999;
+  font-size:80%;
+  font-style:italic;
+}
+
+/* blockLabels esthetics */
+.blockLabels .zField{
+/*  border:1px solid #dfdfdf; border-width:1px 0;
+*/  margin-top:-1px;
+}
+
+.blockLabels .focused{
+/*  padding:7px 4px;*/
+}

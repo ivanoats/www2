@@ -1,0 +1,216 @@
+/* ### Uni-Form by Dragan Babic  - http://dnevnikeklektika.com/ ### */ 
+/* ### Some rights reserved - http://creativecommons.org/licenses/by-sa/2.5/ ### */
+
+/* Uni-Form styles are embeded here for viewing convenience */
+/* Edit below "user prefs" comment only for each selector */
+
+.zForm{
+  margin:0; padding:0;
+  position:relative;
+  width:100%;
+  /* user prefs */
+/*  padding:10px 0;
+*/}
+
+/* Some generals */
+.zForm fieldset{
+  border:none;
+  margin:0; padding:0;
+  /* user prefs */
+}
+
+.zForm fieldset legend{
+  color:#000; /* Reset IE */
+  margin:0; padding:0;
+  /* user prefs */
+  margin:0 4em .5em 0;
+  letter-spacing:.1em;
+	color: #837563;
+	font-weight: bold;
+}
+
+.zField, .zMultiField { /* This is the main unit that contains our form "modules" */
+  overflow:hidden;
+  margin:0; padding:0;
+  clear:both;
+  /* user prefs */
+  margin:0; padding:7px;
+}
+
+.buttonHolder{
+  overflow:hidden;
+  clear:both;
+  /* user prefs */
+  
+  padding:10px;
+  text-align:right;
+}
+
+.resetButton{
+  margin-right: 10px;
+}
+
+.submitButton{
+}
+
+.zForm .inlineLabel{
+  width:auto;
+  float:none;
+  display:inline;
+  /* user prefs */
+  margin:0 2em 0 0;
+  font-weight:normal;
+}
+
+
+/* Highlighting the rows on input focus */
+.focused{
+	background-color: #FFFCDF;
+/*  background:#FFFCDF url(/images/zform/uf_focused.png);
+*/  
+}
+
+
+/* styles for default zField */
+
+.zField .label,
+.zField label {
+	float:left;
+  margin:.3em 0 0 0; padding:0;
+  line-height:100%;
+  /* user prefs */
+  width:30%; 
+  font-weight:bold;
+}
+
+.zField .textInput,
+.zField .fileInput{
+  float:left;
+  /* user prefs */
+  width:68%;
+  border:2px solid #e1dbce;
+}
+.zField .fileInput > input{
+}
+
+.zField .selectInput{
+  float:left;
+  /* user prefs */
+  width:69%;
+  border:2px solid #b7ada1;
+}
+
+.zField textarea{
+  float:left;
+  width:68%;
+  /* user prefs */
+  border:2px solid #dfdfdf;
+  height:12em;
+}
+
+.zField .checkboxInput{
+  float:left;
+  /* user prefs */
+}
+
+.zField .formHint{
+  clear:both;
+  /* user prefs */
+  color:#999;
+  margin:.5em 0 0 30%; padding:3px 0;
+  font-size:80%;
+}
+
+
+/* Focus pseudoclasses */
+.zField .textInput:focus, .zField textarea:focus{
+  border-color:#b7ada1;
+}
+div.focused .textInput:focus{
+}
+div.focused .formHint{
+  color:#000;
+}
+
+/* Required asterisk styling, use if needed */
+label em,
+.label em{
+  display:block;
+  position:absolute; left:28%;
+  font-style:normal;
+  font-weight:bold;
+}
+.blockLabels label em,
+.blockLabels .label em{
+  position:static;
+  display:inline;
+}
+
+/* Messages */
+.zForm #errorMsg{
+  background:#ffdfdf url(/images/zform/uf_error.png);
+  border:1px solid #df7d7d; border-width:1px 0;
+  margin:0 0 1em 0; padding:1em;
+}
+.zForm .error,
+.zForm .blockLabels.zField.error{
+  background:#ffdfdf url(/images/zform/uf_error.png);
+  border:1px solid #df7d7d; border-width:1px 0;
+  position:relative;
+}
+.zForm #errorMsg dt,
+.zForm #errorMsg h3{
+  margin:0 0 .5em 0;
+  font-size:110%;
+  line-height:100%;
+  font-weight:bold;
+  color:#000;
+  padding:2px 0 2px 18px;
+  background:url(/images/zform/icon-error.png) 0 0 no-repeat;
+}
+.zForm #errorMsg dd{
+  margin:0; padding:0;
+}
+.zForm #errorMsg ol{
+  margin:0; padding:0;
+}
+.zForm #errorMsg ol li{
+    margin:0; padding:2px;
+    list-style-position:inside;
+    border-bottom:1px dotted #df7d7d;
+    position:relative;
+  }
+.zForm .errorField{
+  margin:0 0 3px 0;
+}
+.zForm .inlineLabels .errorField{
+  margin-left:30%;
+}
+.zForm .errorField strong{
+    background:#FFE2E2;
+    padding:1px 3px 3px 3px;
+}
+.zField.error input,
+.zField.error input:focus{
+ border-color:#DF7D7D;
+}
+.zField.error.focused{
+ padding:7px 4px;
+}
+
+.zForm #successMsg{
+/*  background:#FFFCDF url(/images/zform/uf_focused.png);
+*/  border:1px solid #009900; border-width:1px 0;
+  margin:0 0 1em 0; padding:1em;
+}
+.zForm #successMsg h3{
+  margin:0 0 .5em 0;
+  font-size:110%;
+  line-height:100%;
+  font-weight:bold;
+  color:#000;
+  padding:2px 0 2px 18px;
+  background:url(/images/zform/icon-check.jpg) 0 0 no-repeat;
+}
+
+.zForm input[type='checkbox'] { margin-right: 1em;}

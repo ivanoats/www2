@@ -1,7 +1,7 @@
 <%= error_messages_for :certificate_ticket %> 
 
-<% uni_form_for @certificate_ticket do |form| -%> 
-  <%= uniform_success_message flash[:notice] if flash[:notice] %>
+<% z_form_for @certificate_ticket do |form| -%> 
+  <%= zform_success_message flash[:notice] if flash[:notice] %>
   
   <% form.fieldset :type => "block", :legend => "" do %>
     <%= form.text_field :email, :required => true, :label => "Email address to send certificate to" %>

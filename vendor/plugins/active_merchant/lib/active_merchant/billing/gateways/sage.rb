@@ -4,7 +4,6 @@ require File.dirname(__FILE__) + '/sage/sage_virtual_check'
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     class SageGateway < Gateway
-      self.supported_countries = SageBankcardGateway.supported_countries
       self.supported_cardtypes = SageBankcardGateway.supported_cardtypes
 
       # Creates a new SageGateway

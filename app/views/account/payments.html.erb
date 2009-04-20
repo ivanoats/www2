@@ -16,7 +16,7 @@
 </div>
 
 <h3>Payments</h3>
-<%= link_to "Make Payment"%>
+<%= link_to "Make Payment", {:action => 'pay'}%>
 <% unless @account.payments.empty? %>
 <ul>
 <% @account.payments.each do |payment| %>

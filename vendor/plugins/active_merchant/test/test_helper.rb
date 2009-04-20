@@ -18,7 +18,11 @@ require 'digest/md5'
 require File.dirname(__FILE__) + '/../lib/active_merchant'
 
 begin
-  gem 'actionpack'
+  if respond_to? :gem
+    gem 'actionpack'
+  else
+    require_gem 'actionpack'
+  end
 rescue LoadError
   raise StandardError, "The view tests need ActionPack installed as gem to run"
 end
@@ -112,9 +116,8 @@ end
 module Test
   module Unit
     class TestCase
-      HOME_DIR = RUBY_PLATFORM =~ /mswin32/ ? ENV['HOMEPATH'] : ENV['HOME'] unless defined?(HOME_DIR)
-      LOCAL_CREDENTIALS = File.join(HOME_DIR.to_s, '.active_merchant/fixtures.yml') unless defined?(LOCAL_CREDENTIALS)
-      DEFAULT_CREDENTIALS = File.join(File.dirname(__FILE__), 'fixtures.yml') unless defined?(DEFAULT_CREDENTIALS)
+      LOCAL_CREDENTIALS = ENV['HOME'] + '/.active_merchant/fixtures.yml' unless defined?(LOCAL_CREDENTIALS)
+      DEFAULT_CREDENTIALS = File.dirname(__FILE__) + '/fixtures.yml' unless defined?(DEFAULT_CREDENTIALS)
       
       include ActiveMerchant::Billing
       include ActiveMerchant::Assertions
@@ -150,14 +153,14 @@ module Test
       
       def address(options = {})
         { 
-          :name     => 'Jim Smith',
+          :name => 'Jim Smith',
           :address1 => '1234 My Street',
           :address2 => 'Apt 1',
-          :company  => 'Widgets Inc',
-          :city     => 'Ottawa',
-          :state    => 'ON',
-          :zip      => 'K1C2N6',
-          :country  => 'CA',
+          :company => 'Widgets Inc',
+          :city => 'Ottawa',
+          :state => 'ON',
+          :zip => 'K1C2N6',
+          :country => 'CA',
           :phone    => '(555)555-5555',
           :fax      => '(555)555-6666'
         }.update(options)

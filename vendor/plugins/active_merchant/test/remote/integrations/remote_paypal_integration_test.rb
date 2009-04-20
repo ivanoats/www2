@@ -10,11 +10,11 @@ class RemotePaypalIntegrationTest < Test::Unit::TestCase
   def tear_down
     ActiveMerchant::Billing::Base.integration_mode = :test
   end
-  
+    
   def test_raw
     assert_equal "https://www.sandbox.paypal.com/cgi-bin/webscr", Paypal.service_url
     assert_nothing_raised do
-      assert_equal false, @paypal.acknowledge
+      assert_equal false, @paypal.acknowledge  
     end
   end
   

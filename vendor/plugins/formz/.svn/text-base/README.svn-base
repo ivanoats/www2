@@ -1,0 +1,91 @@
+UniForm
+=======
+
+A plugin for generating forms using http://dnevnikeklektika.com/uni-form/
+
+Please send bugs and feedback to marcus@marcusirven.com
+
+Usage
+=====
+
+$ rails testapp
+$ cd testapp
+$ script/plugin install http://svn.marcusirven.com/svn/uni_form/trunk/plugins/uni_form
+$ rake uni_form:upgrade_prototype					# Requires latest versions of prototype/scriptaculous, will overwrite exsitings ones!
+$ rake uni_form:install_assets
+$ script/generate model User first_name:string last_name:string address:string terms_of_conditions:boolean
+$ script/generate controller user new
+
+edit your databases.yml
+
+new.rhtml
+---------
+<html>
+
+<head>
+<%= javascript_include_tag :defaults %>
+<%= javascript_include_tag 'uni-form.prototype.js' %>
+
+<%= stylesheet_link_tag 'uni-form', :media => "all" %>	
+</head>
+
+<body>
+<% uni_form_for :user do |form| %>
+	<% form.fieldset :type => "block", :legend => "cool stuff" do %>
+		<%= form.text_field :first_name, :required => true, :label => "Your first name" %>
+		<%= form.text_field :last_name %>
+	<% end %>
+	<%= form.submit "save" %>
+<% end %>
+</body>
+</html>
+
+
+user_controller.rb
+-------------------
+class UserController < ApplicationController
+
+  def new
+      @user = User.new  
+	end
+end
+-----------------------------future work-------------------------------------
+
+<div class='zField'>
+  <label>Logo Fake</label>
+  <div class="fileInput">
+    <% if @company.logo %>
+    <%= image_tag @company.logo.public_filename %>
+    <%= link_to "Replace Logo "%>
+    <% end %>
+    
+    
+    
+    <%= file_field_tag ""%>
+    <input class="fileInput" id="company_logo" type="file" name="company[logo]">
+    <%= f.hidden_field :logo %>
+  </div>
+</div>
+
+<% @company = Company.first || Company.new %>
+<% form_for(@company, :multipart => true) do |f| %>
+  <%= f.error_messages %>
+
+  <% f.file_field :logo %>
+  
+  <%= f.submit "Update" %>
+  
+<% end %>
+
+<% remote_form_for(:asset, :url => assets_path, :html => { :multipart => true }) do |f| %>
+  <p>
+    <label for="uploaded_data">Upload a file:</label>
+    <%= form.file_field :uploaded_data %>
+  </p>
+  <p>
+    <%= submit_tag "Create" %>
+  </p>
+<% end %>
+<iframe id='upload_frame' name="upload_frame" style="width:1px;height:1px;border:0px" src="about:blank"></iframe>
+
+

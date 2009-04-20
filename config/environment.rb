@@ -25,7 +25,6 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "capistrano-ext", :lib => "capistrano"  
-  config.gem "activemerchant", :lib => "active_merchant"
   config.gem "mlightner-universal_ruby_whois",
               :lib => 'universal_ruby_whois',
               :source => "http://gems.github.com"

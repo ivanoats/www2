@@ -1,0 +1,95 @@
+/* Custom Form Widgets */
+
+.zForm .zMultiFieldContainer { width: 69%; float: left;}
+.zForm .blockLabels .zMultiFieldContainer { width: 100%;}
+.zForm .inlineLabels .zField .zMultiFieldContainer .blockLabel { width: auto; }
+
+
+.zInlineField { 
+	float: left;
+	width: 100%;
+	margin-bottom: 5px;
+/*	margin-right: 10px;*/
+}
+
+.zInlineLabel {
+	display:block;
+	float: left;
+	font-weight: normal;
+	font-size: 10pt;
+	color: #444;
+}
+
+.zInlineField label { 
+/*	float: none!important;
+*/
+	display:block;
+	float: left;
+	font-weight: normal;
+	font-size: 10pt;
+	color: #444;
+}
+
+.inlineLabels select {
+	float: left;
+}
+
+.zInlineField input, .zInlineField select {
+	clear: left;
+	width: 100%;
+}
+
+.inlineLabels .zMultiField .textInput,
+.inlineLabels .zMultiField .fileInput {
+	width: 100%;
+}
+
+.zInlineRow { width: 100%; clear: left;}
+
+.zInlineRow .zInlineField, .zInlineRow .zField {
+	width: auto;
+	min-width: 20px;
+}
+
+.zInlineRow .zInlineField input{
+	margin-right: 5px;
+}
+
+.zRowFields2 .zInlineField {
+	width: 48%;
+	margin-right: 4%;
+}
+
+.zRowFields3 .zInlineField {
+	width: 30%;
+	margin-right: 5%;
+}
+
+.zRowFields4 .zInlineField {
+	width: 22%;
+	margin-right: 4%;
+}
+
+.zRowFields5 .zInlineField {
+	width: 16%;
+	margin-right: 5%;
+}
+
+/* Phone number zMultiFieldContainer custom styles */
+.zForm .inlineLabels .zMultiFieldContainer .blockLabel #phone_ccode.textInput,
+.zForm .inlineLabels .zMultiFieldContainer .blockLabel #phone_area.textInput{ width: 40px; }
+.zForm .inlineLabels .zMultiFieldContainer .blockLabel #phone_area.textInput{ width: 40px; }
+.zForm .inlineLabels .zMultiFieldContainer .blockLabel #phone_num.textInput{ width: 110px; }
+
+.zForm textarea.street  { width: 100%; height: 40px;}
+
+.zForm .inlineLabels .phone input { width: 130px;}
+.zForm .inlineLabels .email { width: 100%;}
+.zForm .inlineLabels .first_name { width: 48%;}
+.zForm .inlineLabels .last_name { width: 48%;}
+/*.zForm .inlineLabels .name { width: 350px;}*/
+
+legend { border-bottom: 1px solid #837563; width: 100%; margin-top: 20px;}
+.zForm fieldset { margin-top: 10px;}
+
+.zForm .textInput.fullWidth { width: 650px;}

@@ -1,0 +1,7 @@
+
+<%= error_messages_for :account %>
+<%= form_tag %>
+  Amount <%= text_field_tag :amount, '0',:size => 5%>
+
+  <%= submit_tag "Charge", :disable => true%>
+</form>

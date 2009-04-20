@@ -195,8 +195,6 @@ module ActiveMerchant #:nodoc:
         authorization = authorize(money, creditcard, options)
         if authorization.success?
           capture(money, authorization.authorization)
-        else
-          authorization
         end
       end
 

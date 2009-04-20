@@ -12,9 +12,19 @@ class Account < ActiveRecord::Base
   has_many :payments
   has_one :payment_profile
   
+  belongs_to :address
+  belongs_to :billing_address, :class_name => "Address"
+  
+  accepts_nested_attributes_for :address
+  accepts_nested_attributes_for :billing_address
+  
   def store_card(creditcard, gw_options = {})
     # Clear out payment info if switching to CC from PayPal
     destroy_gateway_record(paypal) if paypal?
+    
+    gw_options = {
+      :billing_address => billing_address.attributes.merge({:first_name => first_name, :last_name => last_name})
+    }.merge(gw_options)
     
     @response = if billing_id.blank?
       gateway.store(creditcard, gw_options)
@@ -37,12 +47,36 @@ class Account < ActiveRecord::Base
   # be created, but the subscription itself is not modified.
   def charge(amount)
     if amount == 0 || (@response = gateway.purchase((amount.to_f * 100).to_i, billing_id)).success?
-      payments.create(:account => account, :amount => amount, :transaction_id => @response.authorization, :misc => true)
+      payments.create(:account => account, :amount => amount, :transaction_id => @response.authorization)
       true
     else
       errors.add_to_base(@response.message)
       false
     end
+  end
+  
+  
+
+  def authorized?(order)
+    gateway = authorize_net_gateway #self.paypal? ? paypal_gateway : authorize_net_gateway
+    amount = order.total_charge_in_pennies
+    response = gateway.authorize(amount, self.credit_card, {:address => '',:ip => '127.0.0.1'}.merge!(purchase_tracking(order)))    
+  end
+  
+  def pay(order)
+    amount = order.total_charge_in_pennies
+    if (@response = gateway.purchase(amount, billing_id)).success?
+      payments.create(:amount => amount, :transaction_id => @response.authorization, :order_id => order)
+      order.paid!
+      true
+    else
+      order.errors.add_to_base(@response.message)
+      false
+    end
+  end
+  
+  def needs_payment_info?
+    self.card_number.blank?
   end
   
   def start_paypal(return_url, cancel_url)
@@ -73,45 +107,6 @@ class Account < ActiveRecord::Base
     end
   end
   
-  
-  def save_credit_card(credit_card)
-    options = {}
-    options[:payment] = {:credit_card => credit_card}
-    options[:bill_to] = {
-      :first_name => self.first_name,
-      :last_name => self.last_name,
-      :company => self.organization,
-      :address => self.address,
-      :city => self.city,
-      :state => self.state,
-      :zip => '',
-      :country => self.country
-    }
-    update_credit_card_profile(options)
-  end
-
-  def credit_card
-    return nil if self.credit_card_profile.customer_payment_profile_id.blank?
-    authorize_net_cim_gateway.get_customer_payment_profile({:customer_profile_id => self.customer_profile_id, :customer_payment_profile_id => self.credit_card_profile.customer_payment_profile_id})
-  end
-
-  def authorized?(order)
-    gateway = authorize_net_gateway #self.paypal? ? paypal_gateway : authorize_net_gateway
-    amount = order.total_charge_in_pennies
-    response = gateway.authorize(amount, self.credit_card, {:address => '',:ip => '127.0.0.1'}.merge!(purchase_tracking(order)))    
-  end
-  
-  def pay(order, authorization)
-    throw "Cannot pay order with bad authorization" unless response.success?
-    gateway = authorize_net_gateway
-    gateway.capture(amount, reponse.authorization)
-    order.paid!
-  end
-  
-  def address
-    "#{self.address_1}\n #{self.address_2}"
-  end
-  
   def email
     self.users.empty? ? "" : self.users.first.email
   end
@@ -121,6 +116,14 @@ class Account < ActiveRecord::Base
   end
   
 protected
+  
+  def paypal?
+    false
+  end
+  
+  def gateway
+    authorize_net_gateway
+  end
   
   def profile
     throw "Billing profile cannot be created for unsaved account" if self.new_record?
@@ -137,37 +140,23 @@ protected
     self.customer_profile_id
   end
   
-  def credit_card_profile
-    self.payment_profile || PaymentProfile.create(:account => self)
-  end
 
-  def update_credit_card_profile(options = {})
-    gateway = authorize_net_cim_gateway    
-    if !self.credit_card_profile.customer_payment_profile_id
-      response = gateway.create_customer_payment_profile({ :customer_profile_id => self.profile, :payment_profile => options})     
-      self.credit_card_profile.update_attribute(:customer_payment_profile_id,response.params['customer_payment_profile_id']) if response.success?
-    else
-      options[:customer_payment_profile_id] = self.customer_payment_profile_id
-      gateway.update_customer_payment_profile( :customer_profile_id => self.profile, :payment_profile => options, :customer_payment_profile_id => self.credit_card_profile.customer_payment_profile_id )
-    end
+  
+  def destroy_gateway_record(gw = gateway)
+    return if customer_profile_id.blank?
+    gw.unstore(customer_profile_id)
+    self.card_number = nil
+    self.card_expiration = nil
+    self.customer_profile_id = nil
   end
   
-  def authorize_net_gateway
-    ActiveMerchant::Billing::AuthorizeNetGateway.new(
-      if RAILS_ENV == 'production'
-        { :login => '2N3439BNayw56ndw',
-          :password => 'smk510'
-        }
-      else
-        { :login => '2N3439BNayw56ndw',
-          :password => 'smk510',
-          :test => true
-        }
-      end)
+  def card_storage
+    self.store_card(@creditcard, :billing_address => @address.to_activemerchant) if @creditcard && @address && card_number.blank?
   end
   
+
   def paypal_gateway
-    ActiveMerchant::Billing::PaypalExpressGateway.new(
+    ActiveMerchant::Billing::Base.gateway(:paypal_express_reference_nv).new(
       if RAILS_ENV == 'production'
         { :login => 'prod',
           :password => 'pass'
@@ -180,10 +169,20 @@ protected
       end)
   end
   
-  def authorize_net_cim_gateway
-    ActiveMerchant::Billing::AuthorizeNetCimGateway.new(:login => "2N3439BNayw56ndw", :password => "smk510", :test => true)
+  def authorize_net_gateway
+    ActiveMerchant::Billing::Base.gateway(:authorize_net_cim).new(
+    if RAILS_ENV == 'production'
+      { :login => '2N3439BNayw56ndw',
+        :password => 'smk510'
+      }
+    else
+      { :login => '2N3439BNayw56ndw',
+        :password => 'smk510',
+        :test => true
+      }
+    end)
   end
-  
+
   
   def purchase_tracking(order)
     { :customer => "#{self.first_name} #{self.last_name}",

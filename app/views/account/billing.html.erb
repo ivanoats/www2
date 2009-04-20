@@ -1,35 +1,36 @@
 <%= render :partial => 'navigation'%>
 
 <h2>Credit Card</h2>
-<% uni_form_for :account, :url => {:action => 'update', :id => @account} do |f| %>
+<%= error_messages_for :account, :address, :credit_card %>
+<% z_form_for :account do |f| %>
   <% f.fieldset :type => "inline" do %>
   
-  <%= f.text_field :first_name %>
-  <%= f.text_field :last_name %>
+
+
+  <% z_fields_for :credit_card do |cc|%>
   
-  <label>Card Number</label>
-  <%= text_field :creditcard, :number, :size => 20 %>
-  <label>Type</label>
-  <%= select :creditcard, :type, [['Visa', 'visa'], ['MasterCard', 'master'], ['American Express', 'american_express']] %>
-  <label>Expiration</label>
-  <%= select :creditcard, :month, (1 .. 12) %>
-  <%= select :creditcard, :year, (Time.now.year .. 10.years.from_now.year) %>
-  <label>CVV</label>
-  <%= text_field :creditcard, :verification_value, :size => 4 %>
-  <%= image_tag('cvv.gif', :size => '51x31', :align => 'top') %>
-  <label>Address</label>
-  <%= text_field :address, :address1 %><br/>
-  <%= text_field :address, :address2 %>
-  <label>City</label>
-  <%= text_field :address, :city %>
-  <label>State</label>
-  <%= text_field :address, :state %>
-  <label>Zip</label>
-  <%= text_field :address, :zip %>
-  <label>Country</label>
-  <%= country_select :address, :country, ['United States', 'Canada'] %>
-  <label>Phone</label>
-  <%= text_field :address ,:phone %>
+  <% cc.multi_field "Credit Card" do%>
+    <% cc.row do %>
+      <%= cc.text_field :first_name%>
+      <%= cc.text_field :last_name%>
+    <% end %>
+    <%= cc.text_field :number, :size => 20 %>
+      <%= cc.select :type, [['Visa', 'visa'], ['MasterCard', 'master'], ['American Express', 'american_express']] %>
+      <% cc.row do %>
+        <%= cc.select :month, (1 .. 12) %>
+        <%= cc.select :year, (Time.now.year .. 10.years.from_now.year) %>
+      <% end %>
+      <% cc.row do%>
+        <%= cc.text_field :verification_value, :size => 4 %>
+        <%= cc.custom_field "\t",image_tag('cvv.gif', :size => '51x31', :align => 'top') %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <% z_fields_for :address do |address|%>
+  <%= address.address :label => "Billing Address" %>
+  <%= address.country_select :country, ['United States', 'Canada'] %>
+  <% end %>
+  <%= f.text_field:phone %>
   
   <%= f.submit "Update"%>
   <% end %>
