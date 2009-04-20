@@ -16,14 +16,17 @@ class CartController < ApplicationController
       :kind            => "package"
     }
     @product = Product.new(@product_attributes)
-    @cart = Cart.new
+
     # pull in the cart from the session
-    
+    @cart = Cart.find(session[:cart_id])
+
     # add it to cart
     @cart.add(@product)
     
     # render the cart items
-    render 'cart/items'
+    render :update do |page|
+      page.replace_html("cart", :partial => "cart/items", :object => @cart)
+    end
   end
 
   def remove_cart_item
