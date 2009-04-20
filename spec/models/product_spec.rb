@@ -5,7 +5,7 @@ describe Product do
     @valid_attributes = {
       :name            => "Basic Web Hosting",
       :description     => "1,000MB Storage, 10,000MB Bandwidth, Unlimited Emails, Unlimited Addons, Fantastico",
-      :cost            => 1000,
+      :cost_in_cents            => 1000,
       :recurring_month => 1,
       :status          => "active",
       :kind            => "package"
@@ -21,13 +21,13 @@ describe Product do
   end
   
   it "should only allow cost as an integer" do
-    lambda { Product.create!(@valid_attributes.merge(:cost => '')) }.should raise_error
-    lambda { Product.create!(@valid_attributes.merge(:cost => 0.99)) }.should raise_error
-    lambda { Product.create!(@valid_attributes.merge(:cost => 1)) }.should_not raise_error
+    lambda { Product.create!(@valid_attributes.merge(:cost_in_cents => '')) }.should raise_error
+    lambda { Product.create!(@valid_attributes.merge(:cost_in_cents => 0.99)) }.should raise_error
+    lambda { Product.create!(@valid_attributes.merge(:cost_in_cents => 1)) }.should_not raise_error
   end
   
   it "should only allow cost greater than 0" do
-    lambda { Product.create!(@valid_attributes.merge(:cost => 0)) }.should raise_error
+    lambda { Product.create!(@valid_attributes.merge(:cost_in_cents => 0)) }.should raise_error
   end
     
   it "should have a list of status" do
@@ -60,5 +60,16 @@ describe Product do
     lambda { Product.create!(@valid_attributes.merge(:status => true)) }.should raise_error
     lambda { Product.create!(@valid_attributes.merge(:status => false)) }.should raise_error
     lambda { Product.create!(@valid_attributes.merge(:status => nil)) }.should raise_error
+  end
+  
+  it "should find all packages" do
+    Product::KINDS.each do |kind|
+      Product.create!(@valid_attributes.merge(:kind => kind))
+    end
+    
+    expected = Product.packages
+    expected.size.should == 1
+    expected.first.kind.should == 'package'
+    
   end
 end

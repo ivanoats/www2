@@ -1,24 +1,18 @@
 class GreenHostingStoreController < ApplicationController
   include ActiveMerchant::Billing
+  include CartSystem
   
   before_filter :require_account, :only => [:checkout, :payment]
 
   #maybe these should be more along the lines of add_to_cart, remove_from_cart
   def choose_domain
     @domain = Domain.new
-    
-    # create a cart unless one exists (for this session)
-    # if there is a cart in the session, then find a cart by the cart id
-    if session[:cart_id]
-      @cart = Cart.find(session[:cart_id])
-    # if not, create a new cart
-    else
-      @cart = Cart.create!
-      session[:cart_id] = @cart.id
-    end # if session[:cart_id]
+    load_cart
   end
 
   def choose_package
+    load_cart
+    @packages = Product.packages
   end
 
   def choose_addon

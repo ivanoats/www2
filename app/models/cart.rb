@@ -20,11 +20,11 @@ class Cart < ActiveRecord::Base
       :product_id          => product.id,
       :cart_id             => self.id,
       :description         => "#{product.name}\n{#{product.description}}",
-      :unit_price_in_cents => product.cost,
+      :unit_price_in_cents => product.cost_in_cents,
       :quantity            => quantity,
       :quantity_unit       => quantity_unit
     }
-    cart_items.build(cart_item_attributes)
+    cart_items.create!(cart_item_attributes)  #TODO test database creation of the record
   end
 
   # Removes a +CartItem+ from itself given an id.  Returns the destroyed, frozen +CartItem+.
