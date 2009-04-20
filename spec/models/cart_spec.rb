@@ -23,10 +23,6 @@ describe Cart do
 
   it "should have many cart items"
 
-  it "should require a session" do
-    lambda { Cart.create!(@valid_attributes.merge(:session_id => '')) }.should raise_error
-  end
-
   it "should only allow referrer_id as an integer or nil" do
     lambda { Cart.create!(@valid_attributes.merge(:referrer_id => 1)) }.should_not raise_error
     lambda { Cart.create!(@valid_attributes.merge(:referrer_id => 0.99)) }.should raise_error

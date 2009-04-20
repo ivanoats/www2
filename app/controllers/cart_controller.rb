@@ -4,6 +4,9 @@ class CartController < ApplicationController
   end
 
   def add_product
+    
+    # create product
+    
     @product_attributes = {
       :name            => params[:domain][:name],
       :description     => "Domain registration",
@@ -14,9 +17,13 @@ class CartController < ApplicationController
     }
     @product = Product.new(@product_attributes)
     @cart = Cart.new
+    # pull in the cart from the session
+    
+    # add it to cart
     @cart.add(@product)
     
-    render 'cart/index'
+    # render the cart items
+    render 'cart/items'
   end
 
   def remove_cart_item

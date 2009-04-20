@@ -6,7 +6,16 @@ class GreenHostingStoreController < ApplicationController
   #maybe these should be more along the lines of add_to_cart, remove_from_cart
   def choose_domain
     @domain = Domain.new
-    @cart = Cart.new
+    
+    # create a cart unless one exists (for this session)
+    # if there is a cart in the session, then find a cart by the cart id
+    if session[:cart_id]
+      @cart = Cart.find(session[:cart_id])
+    # if not, create a new cart
+    else
+      @cart = Cart.create!
+      session[:cart_id] = @cart.id
+    end # if session[:cart_id]
   end
 
   def choose_package

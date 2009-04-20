@@ -1,5 +1,4 @@
 class Cart < ActiveRecord::Base
-  validates_presence_of :session_id
   validates_numericality_of :referrer_id, :only_integer => true, :greater_than => 0, :allow_nil => true
 
   has_many :cart_items
