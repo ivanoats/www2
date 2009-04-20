@@ -47,11 +47,10 @@ class Account < ActiveRecord::Base
   end
   
   # Charge the card on file any amount you want.  Pass in a dollar
-  # amount (1.00 to charge $1).  A SubscriptionPayment record will
-  # be created, but the subscription itself is not modified.
+  # amount (1.00 to charge $1).  
   def charge(amount)
     if amount == 0 || (@response = gateway.purchase((amount.to_f * 100).to_i, billing_id)).success?
-      payments.create(:account => account, :amount => amount, :transaction_id => @response.authorization)
+      payments.create(:account => @account, :amount => amount, :transaction_id => @response.authorization)
       true
     else
       errors.add_to_base(@response.message)
@@ -124,22 +123,6 @@ protected
     authorize_net_gateway
   end
   
-  def profile
-    throw "Billing profile cannot be created for unsaved account" if self.new_record?
-    
-    if(self.customer_profile_id.blank?)
-      response = authorize_net_cim_gateway.create_customer_profile( :profile => {
-        :merchant_customer_id => self.id,
-        :email => self.email,
-        :description => self.organization
-      })
-      self.update_attribute(:customer_profile_id,response.params['customer_profile_id']) if response.success?      
-    end
-    
-    self.customer_profile_id
-  end
-  
-
   
   def destroy_gateway_record(gw = gateway)
     return if customer_profile_id.blank?
@@ -180,13 +163,6 @@ protected
         :test => true
       }
     end)
-  end
-
-  
-  def purchase_tracking(order)
-    { :customer => "#{self.first_name} #{self.last_name}",
-      :order_id => order.invoice_number
-    }
   end
   
 end
