@@ -3,14 +3,13 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe Cart do
   before(:each) do
     @valid_attributes = {
-      :referrer_id => 1,
-      :session_id  => "value for session_id"
+      :referrer_id => 1
     }
 
     @valid_product_attributes = {
       :name            => "Basic Web Hosting",
       :description     => "1,000MB Storage, 10,000MB Bandwidth, Unlimited Emails, Unlimited Addons, Fantastico",
-      :cost            => 1000,
+      :cost_in_cents   => 1000,
       :recurring_month => 1,
       :status          => "active",
       :kind            => "package"
@@ -46,7 +45,7 @@ describe Cart do
     cart_item.product_id.should == product.id
     cart_item.cart_id.should == cart.id
     cart_item.description.should == "#{product.name}\n{#{product.description}}"
-    cart_item.unit_price_in_cents.should == product.cost
+    cart_item.unit_price_in_cents.should == product.cost_in_cents
     cart_item.quantity.should == 1
     cart_item.quantity_unit.should == nil
   end
@@ -61,7 +60,7 @@ describe Cart do
     cart_item.product_id.should == product.id
     cart_item.cart_id.should == cart.id
     cart_item.description.should == "#{product.name}\n{#{product.description}}"
-    cart_item.unit_price_in_cents.should == product.cost
+    cart_item.unit_price_in_cents.should == product.cost_in_cents
     cart_item.quantity.should == quantity
     cart_item.quantity_unit.should == nil
   end
@@ -77,7 +76,7 @@ describe Cart do
     cart_item.product_id.should == product.id
     cart_item.cart_id.should == cart.id
     cart_item.description.should == "#{product.name}\n{#{product.description}}"
-    cart_item.unit_price_in_cents.should == product.cost
+    cart_item.unit_price_in_cents.should == product.cost_in_cents
     cart_item.quantity.should == quantity
     cart_item.quantity_unit.should == quantity_unit
   end

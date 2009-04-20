@@ -38,7 +38,7 @@ class Order < ActiveRecord::Base
     end
 
     def total_charge
-      self.products.to_a.sum(&:cost)
+      self.products.to_a.sum(&:cost_in_cents)
     end
 
     def total_charge_in_pennies

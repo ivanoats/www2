@@ -108,7 +108,7 @@ describe Account do
   #     )
   # 
   #     @account.store_card(@credit_card)
-  #     @order = Order.new(:purchases => [Purchase.new(:product => Product.new(:name => "Product Name", :cost => 700, :status => 'active', :kind => 'package'))])
+  #     @order = Order.new(:purchases => [Purchase.new(:product => Product.new(:name => "Product Name", :cost_in_cents => 700, :status => 'active', :kind => 'package'))])
   #     assert @account.charge_order(@order)
   #   end
 end
