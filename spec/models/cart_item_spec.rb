@@ -5,7 +5,8 @@ describe CartItem do
     @valid_attributes = {
       :product_id          => 1,
       :cart_id             => 1,
-      :description         => "Basic Web Hosting\n1,000MB Storage, 10,000MB Bandwidth, Unlimited Emails, Unlimited Addons, Fantastico",
+      :name                => "Basic Web Hosting",
+      :description         => "1,000MB Storage, 10,000MB Bandwidth, Unlimited Emails, Unlimited Addons, Fantastico",
       :unit_price_in_cents => 1000,
       :quantity            => 1,
       :quantity_unit       => "month"
@@ -19,6 +20,10 @@ describe CartItem do
   it "should belong to a cart"
   
   it "should have one product"
+  
+  it "should require a name" do
+    lambda { CartItem.create!(@valid_attributes.merge(:name => '')) }.should raise_error
+  end
   
   it "should require a description" do
     lambda { CartItem.create!(@valid_attributes.merge(:description => '')) }.should raise_error

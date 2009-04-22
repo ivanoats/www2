@@ -94,7 +94,7 @@ namespace :db do
   desc 'Dumps the production database to db/production_data.sql on the remote server'
   task :remote_db_dump, :roles => :db, :only => { :primary => true } do
     run "cd #{deploy_to}/#{current_dir} && " +
-      "rake RAILS_ENV=#{rails_env} db:database_dump --trace" 
+      "rake RAILS_ENV=production db:database_dump --trace" 
   end
 
   desc 'Downloads db/production_data.sql from the remote production environment to your local machine'

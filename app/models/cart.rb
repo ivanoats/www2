@@ -19,7 +19,8 @@ class Cart < ActiveRecord::Base
     cart_item_attributes = {
       :product_id          => product.id,
       :cart_id             => self.id,
-      :description         => "#{product.name}\n{#{product.description}}",
+      :name                => product.name,
+      :description         => product.description,
       :unit_price_in_cents => product.cost_in_cents,
       :quantity            => quantity,
       :quantity_unit       => quantity_unit

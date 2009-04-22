@@ -2,11 +2,12 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe "/green_hosting_store/choose_package" do
   before(:each) do
-    render 'green_hosting_store/choose_package'
+    #render 'green_hosting_store/choose_package'
   end
+
+  it "should use 50/50 2 column layout"
   
-  #Delete this example and add some real ones or delete this file
-  it "should tell you where to find the file" do
-    response.should have_tag('p', %r[Find me in app/views/green_hosting_store/choose_package])
-  end
+  it "should render the cart"
+  
+  it "should render package choices form"
 end

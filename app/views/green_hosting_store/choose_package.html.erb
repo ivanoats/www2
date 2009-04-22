@@ -1,2 +1,46 @@
-<h1>GreenHostingStore#choose_package</h1>
-<p>Find me in app/views/green_hosting_store/choose_package.html.erb</p>
+<% content_for :head do %>
+  <style type='text/css'>
+    #content { 
+      width: 500px;
+    }
+    #sidebar {width: auto;}
+  </style>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render 'cart/items' %>
+<% end %>
+
+<h1>Choose Your Package</h1>
+
+<% form_remote_for @package, :url => { :controller => 'cart', :action => "add_package" } do |f| -%>
+  <% for package in @packages %>
+  <div class="package" onclick="select_package(<%= package.id %>, this);">
+    <p>some text</p>
+    <div><%= h package.name %></div>
+    <div><%= h package.description %></div>
+    <!-- MONEY GEM? -->
+    <div><%= number_to_currency(package.cost_in_cents / 100) %></div>
+    <div>
+    <%- if package.recurring_month == 1 -%>
+      Monthly
+    <%- else -%>
+      Yearly
+    <%- end -%>  
+    </div>
+  </div>
+  <% end #for package %>
+  <%= f.submit "Add to Cart", :disable_with => 'Adding to Cart...' %>
+  <input name="package_id" id="package_chosen" type="hidden" value=""/>
+<% end  #form -%>
+
+
+<script type="text/javascript" charset="utf-8">
+<!--
+      function select_package(package_id, package_div) {
+        $('#package_chosen').val(package_id);
+        $('.selectedPackage').removeClass("selectedPackage").addClass("package"); 
+        $(package_div).removeClass().addClass("selectedPackage");
+      }
+//-->  
+</script>

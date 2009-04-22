@@ -11,6 +11,7 @@ class GreenHostingStoreController < ApplicationController
 
   def choose_package
     load_cart
+    @package = Product.new
     @packages = Product.packages
   end
 

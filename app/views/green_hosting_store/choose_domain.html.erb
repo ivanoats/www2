@@ -13,7 +13,7 @@
 
 <h1>Choose Your Domain</h1>
 
-<% form_remote_for @domain, :url => { :controller => 'cart', :action => "add_product" } do |f| -%>
+<% form_remote_for @domain, :url => { :controller => 'cart', :action => "add_domain" } do |f| -%>
   <%= f.label :name, "Name" %>
   <%= f.text_field :name %>
   <%= f.submit "Add to Cart", :disable_with => 'Adding to Cart...' %>

@@ -18,6 +18,28 @@ namespace :bootstrap do
     account = Account.create! :first_name => "Admin", :last_name => "istrator", :organization => "Test Organization", :users => [User.first]
   end
 
+  desc "Bootstrap initial products"
+  task :products => :environment do
+    puts "bootstrapping products"
+    
+    Product.create!( {
+      :name            => "Basic Web Hosting Subscription",
+      :description     => "Basic Web Hosting Description",
+      :cost_in_cents   => 1000,
+      :recurring_month => 1,
+      :status          => "active",
+      :kind            => "package"
+    })
+    
+    Product.create!( {
+      :name            => "Small Business Web Hosting Subscription",
+      :description     => "Small Business Web Hosting Description",
+      :cost_in_cents   => 2000,
+      :recurring_month => 1,
+      :status          => "active",
+      :kind            => "package"
+    })
+  end
 
   desc "Run all bootstrap tasks"
   task :all do

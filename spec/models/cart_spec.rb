@@ -44,7 +44,8 @@ describe Cart do
     cart_item.should == cart.cart_items.first
     cart_item.product_id.should == product.id
     cart_item.cart_id.should == cart.id
-    cart_item.description.should == "#{product.name}\n{#{product.description}}"
+    cart_item.name.should == product.name
+    cart_item.description.should == product.description
     cart_item.unit_price_in_cents.should == product.cost_in_cents
     cart_item.quantity.should == 1
     cart_item.quantity_unit.should == nil
@@ -59,7 +60,8 @@ describe Cart do
     cart_item.should == cart.cart_items.first
     cart_item.product_id.should == product.id
     cart_item.cart_id.should == cart.id
-    cart_item.description.should == "#{product.name}\n{#{product.description}}"
+    cart_item.name.should == product.name
+    cart_item.description.should == product.description
     cart_item.unit_price_in_cents.should == product.cost_in_cents
     cart_item.quantity.should == quantity
     cart_item.quantity_unit.should == nil
@@ -75,7 +77,8 @@ describe Cart do
     cart_item.should == cart.cart_items.first
     cart_item.product_id.should == product.id
     cart_item.cart_id.should == cart.id
-    cart_item.description.should == "#{product.name}\n{#{product.description}}"
+    cart_item.name.should == product.name
+    cart_item.description.should == product.description
     cart_item.unit_price_in_cents.should == product.cost_in_cents
     cart_item.quantity.should == quantity
     cart_item.quantity_unit.should == quantity_unit
