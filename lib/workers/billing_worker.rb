@@ -15,15 +15,13 @@ class BillingWorker < BackgrounDRb::MetaWorker
 
 private
 
-  def hostings
-    #TODO active/expired accounts 
-    Hosting.all.each { |hosting| hosting.charge if hosting.should_charge? }
-  end
   
   def accounts
-    Account.all.each { |account| account.check_subscription }
+    Account.active.payment_due.each { |account| account.check_subscription }
   end
-  
-  #these should also eventually handle mailings
+
+  def hostings
+    Hosting.active.fee_due.each { |hosting| hosting.charge }
+  end
 end
 

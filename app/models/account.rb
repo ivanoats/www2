@@ -1,4 +1,5 @@
 class Account < ActiveRecord::Base
+  include AASM
   #This is an organization level account that can have many users and hosting accounts
   #likewise an individual user can be associated with multiple accounts
   
@@ -18,8 +19,32 @@ class Account < ActiveRecord::Base
   accepts_nested_attributes_for :address
   accepts_nested_attributes_for :billing_address
   
+  named_scope :active, :conditions => ["state = ?",'active']
   named_scope :payment_due, :conditions => ['balance < ? and (last_payment_on IS NULL or last_payment_on < ?)',0,1.month.ago]
+  
+  
+  
+  
   #payment period??
+  
+  aasm_column :state
+  aasm_initial_state :active
+  aasm_state :active
+  aasm_state :suspended
+  aasm_state :deleted
+
+    
+  aasm_event :suspend do
+    transitions :from => [:ordered, :active], :to => :suspended
+  end
+  
+  aasm_event :delete do
+    transitions :from => [:ordered, :active, :suspended], :to => :deleted
+  end
+
+  aasm_event :unsuspend do
+    transitions :from => :suspended, :to => :active
+  end
   
   def store_card(creditcard, gw_options = {})
     # Clear out payment info if switching to CC from PayPal

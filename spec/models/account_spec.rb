@@ -93,6 +93,33 @@ describe Account do
   end
   
   
+  describe "when the balance is not negative" do
+    it "should not be due for payment" do
+      account = create_account(:balance => 0, :last_payment_on => 32.days.ago)
+      assert_equal Account.payment_due, []
+    end
+  end
+  
+  describe "when the balance is negative and payment was over a month ago" do
+    it "should be due for payment" do
+      account = create_account(:balance => -1000, :last_payment_on => 32.days.ago)
+      assert_equal Account.payment_due, [account]
+    end
+  end
+  
+  describe "when the balance is negative and payment was over a year ago" do
+    it "should be due for payment" do
+      account = create_account(:balance => -1000, :last_payment_on => 366.days.ago)
+      assert_equal Account.payment_due, [account]
+    end
+  end
+  
+  describe "when the balance is negative and payment was within a month" do
+    it "should not be due for payment" do
+      account = create_account(:balance => -1000, :last_payment_on => 25.days.ago)
+      assert_equal Account.payment_due, []
+    end
+  end
     
   
   

@@ -1,4 +1,9 @@
 module FixtureReplacement
+  
+  attributes_for :account do |a|
+    a.users = [default_user]
+	end
+  
   attributes_for :article do |a|
     a.title = String.random(10)
     a.synopsis = 'Rut Ro'
@@ -20,7 +25,11 @@ module FixtureReplacement
   attributes_for :four_oh_four do |a|
     
 	end
-
+  
+  attributes_for :hosting do |a|
+    a.account = default_account
+	end
+  
   attributes_for :page do |a|
     
 	end
