@@ -78,25 +78,3 @@ ExceptionNotifier.exception_recipients = %w(ivanoats@gmail.com)
 ExceptionNotifier.sender_address = %("Application Error" <app.error@sustainablewebsites.com>) 
 ExceptionNotifier.email_prefix = "[www2] " 
 
-
-
-  ###################
- # ServiceMerchant #
-###################
-
-# Only needed for rake tasks, not used directly
-ODM_PATH = File.dirname(__FILE__) + '/../..'
-$: << ODM_PATH
-
-# require 'subscription_management'
-# 
-# SubscriptionManager = SubscriptionManagement.new(
-#           :tariff_plans_config  => RAILS_ROOT + '/config/subscriptions/tariffs.yml',
-#           :taxes_config         => RAILS_ROOT + '/config/subscriptions/taxes.yml',
-#           :gateways_config      => RAILS_ROOT + '/config/subscriptions/gateways.yml',
-#           :gateway => :paypal
-#           )
-
-#Mime::Type.register 'application/pdf', :pdf
-#require 'htmldoc'
-
