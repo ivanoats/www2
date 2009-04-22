@@ -60,6 +60,7 @@
   </div><!--/container-->
   <%= render :partial => 'layouts/footer' %>
   <div><!--/wrapper-->
+<!-- Start Google Analytics tag -->
 	<script type="text/javascript">
 	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -71,5 +72,17 @@
 	pageTracker._initData();
 	pageTracker._trackPageview();
 	</script>
+  <!-- End Google Analytics tag -->
+	<!-- Start Quantcast tag -->
+  <script type="text/javascript">
+  _qoptions={
+  qacct:"p-57Y289nCshqhE"
+  };
+  </script>
+  <script type="text/javascript" src="//secure.quantserve.com/quant.js"></script>
+  <noscript>
+  <img src="//secure.quantserve.com/pixel/p-57Y289nCshqhE.gif" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/>
+  </noscript>
+  <!-- End Quantcast tag -->
 </body>
 </html>
