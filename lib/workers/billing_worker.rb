@@ -17,7 +17,14 @@ private
 
   
   def accounts
-    Account.active.payment_due.each { |account| account.check_subscription }
+    Account.active.payment_due.each do |account| 
+      balance = account.balance
+      if account.charge_balance 
+        BillingMailer.charge_success(account,balance)
+      else
+        BillingMailer.charge_failure(account,balance)        
+      end
+    end
   end
 
   def hostings

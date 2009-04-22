@@ -83,6 +83,10 @@ class Account < ActiveRecord::Base
     end
   end
   
+  def charge_balance
+    charge(balance)
+  end
+  
   def charge_order(order)
     amount = order.total_charge_in_pennies
     if amount == 0 || (@response = gateway.purchase(amount)).success?

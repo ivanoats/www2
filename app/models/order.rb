@@ -12,7 +12,7 @@ class Order < ActiveRecord::Base
   aasm_initial_state :pending
   
   aasm_state :pending
-  aasm_state :paid
+  aasm_state :paid, :enter => :order_was_paid
   aasm_state :cancelled
   
   aasm_event :paid do
@@ -33,10 +33,6 @@ class Order < ActiveRecord::Base
       order
     end
 
-    def paypal?
-      false
-    end
-
     def total_charge
       self.products.to_a.sum(&:cost_in_cents)
     end
@@ -46,7 +42,11 @@ class Order < ActiveRecord::Base
     end    
 
   private
-
+  
+    def order_was_paid
+      self.purchases.each { |purchase| purchase.redeem }
+    end
+    
     def self.generate_invoice_number
       now = Time.now
       year_days_seconds_milliseconds = now.strftime('%Y%j-') + now.to_f.to_s.delete('.')
