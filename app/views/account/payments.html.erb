@@ -1,20 +1,28 @@
-<h3>Reoccuring Billing</h3>
-<div>
-  <ul>
-    <li>Next payment on <%= @account.last_payment_on ? @account.last_payment_on + 1.month : "never" %></li>
-    <li>Active since: <%= @account.created_at.to_formatted_s :human_date %></li>
-    <li>
-      Balance 
-      <% if @account.balance > 0 %>
-        <%= number_to_currency @account.balance %>
+<table class='account_table' style='font-size: 90%'>
+  <tr>
+    <th style='width: 25%;'>Next Payment</th>
+    <th>Payment Info</th>
+    <th>Balance</th>
+  </tr>
+  <tr>
+    <td><%= @account.last_payment_on ? @account.last_payment_on + 1.month : "never" %></td>
+    <td style='text-align: left'>
+      <% if @account.needs_payment_info? %>
+        No credit card on file, <%= link_to "setup billing", {:action => 'billing'} %>.
       <% else %>
-      due <%= number_to_currency -@account.balance %>
+        Credit Card <%= @account.card_number %> <br/>
+        Expires <%= @account.card_expiration %> <br/>
+        <%= link_to "Update my billing information", {:action => 'billing'} %>
       <% end %>
-    </li>
-  </ul>
-</div>
+    </td>
+    <td><% if @account.balance > 0 %>
+      <%= number_to_currency @account.balance %>
+    <% else %>
+      <%= number_to_currency -@account.balance %> due
+    <% end %></td>
+  </tr>
+</table>
 
-<h3>Payments</h3>
 <%= link_to "Make Payment", {:action => 'pay'}%>
 <% unless @account.payments.empty? %>
 <table class='account_table' style='font-size: 90%'>
@@ -22,7 +30,6 @@
     <th style='width: 25%;'>Date</th>
     <th>Description</th>
     <th style='width: 15%;'>Amount</th>
-    <th style='width: 15%;'>Balance</th>
   </tr>  
 <% @account.payment_history.each do |item| %>
 
@@ -30,7 +37,6 @@
     <td><%= item.created_at.to_formatted_s :human_date %></td>
     <td style='text-align: left'><%= item.description %></td>
     <td><%= number_to_currency item.amount %></td>
-    <td></td>
   </tr>  
 <% end%>
 </table>
