@@ -15,9 +15,9 @@
         <%= simple_format(word_wrap(h(cart_item.name) , :line_width => line_width )) %><br>
         <%= simple_format(word_wrap(h(cart_item.description), :line_width => line_width )) %>
       </td>
-      <td><%= number_to_currency(cart_item.unit_price_in_cents / 100) %></td>
+      <td><%= number_to_currency(cart_item.unit_price) %></td>
       <td><%= h(cart_item.quantity) %> <%= h(cart_item.quantity_unit) %></td>
-      <td><%= number_to_currency(cart_item.unit_price_in_cents * cart_item.quantity / 100) %></td>
+      <td><%= number_to_currency(cart_item.unit_price * cart_item.quantity) %></td>
     </tr>
       <% end %>
     <% else %>

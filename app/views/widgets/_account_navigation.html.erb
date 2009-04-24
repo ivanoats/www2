@@ -1,0 +1,23 @@
+<% render_navigation :account, :generate_css => false, :separator => '' do 
+    add_item do |i|
+      i.named 'Settings'
+      i.links_to( {:action => 'edit'} )
+    end
+    
+    add_item do |i|
+      i.named 'Payments'
+      i.links_to( {:action => 'payments'} )
+    end
+    
+    add_item do |i|
+      i.named 'Billing'
+      i.links_to( {:action => 'billing'} )
+    end
+    
+    add_item do |i|
+      i.named 'Hosting'
+      i.links_to( {:action => 'hosting'} )
+    end
+    
+end 
+%>

@@ -7,7 +7,7 @@ describe CartItem do
       :cart_id             => 1,
       :name                => "Basic Web Hosting",
       :description         => "1,000MB Storage, 10,000MB Bandwidth, Unlimited Emails, Unlimited Addons, Fantastico",
-      :unit_price_in_cents => 1000,
+      :unit_price          => 10.00,
       :quantity            => 1,
       :quantity_unit       => "month"
     }
@@ -29,14 +29,14 @@ describe CartItem do
     lambda { CartItem.create!(@valid_attributes.merge(:description => '')) }.should raise_error
   end
 
-  it "should only allow unit_price_in_cents as an integer" do
-    lambda { CartItem.create!(@valid_attributes.merge(:unit_price_in_cents => '')) }.should raise_error
-    lambda { CartItem.create!(@valid_attributes.merge(:unit_price_in_cents => 0.99)) }.should raise_error
-    lambda { CartItem.create!(@valid_attributes.merge(:unit_price_in_cents => 1)) }.should_not raise_error
+  it "should only allow unit_price as a decimal" do
+    lambda { CartItem.create!(@valid_attributes.merge(:unit_price => '')) }.should raise_error
+    lambda { CartItem.create!(@valid_attributes.merge(:unit_price => 0.99)) }.should_not raise_error
+    lambda { CartItem.create!(@valid_attributes.merge(:unit_price => 1)) }.should_not raise_error
   end  
   
-  it "should only allow unit_price_in_cents greater than or equal to 0" do
-    lambda { CartItem.create!(@valid_attributes.merge(:unit_price_in_cents => 0)) }.should_not raise_error
+  it "should only allow unit_price greater than or equal to 0" do
+    lambda { CartItem.create!(@valid_attributes.merge(:unit_price => 0)) }.should_not raise_error
   end
   
   it "should only allow quantity as an integer" do

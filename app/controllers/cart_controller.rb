@@ -13,7 +13,7 @@ class CartController < ApplicationController
   #   @product_attributes = {
   #     :name            => params[:domain][:name],
   #     :description     => "Domain registration",
-  #     :cost_in_cents            => 1000,
+  #     :cost            => 10.00,
   #     :recurring_month => 0,
   #     :status          => "active",
   #     :kind            => "package"
@@ -39,7 +39,7 @@ class CartController < ApplicationController
     @product_attributes = {
       :name            => params[:domain][:name],
       :description     => "Domain registration",
-      :cost_in_cents            => 1000,
+      :cost            => 10.00,
       :recurring_month => 0,
       :status          => "active",
       :kind            => "package"

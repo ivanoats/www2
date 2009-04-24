@@ -28,7 +28,7 @@ private
   end
 
   def hostings
-    Hosting.active.fee_due.each { |hosting| hosting.charge }
+    Hosting.active.charge_due.each { |hosting| hosting.charge }
   end
 end
 

@@ -76,7 +76,7 @@ describe Account do
     it "should charge an order" do
       @response.expects(:authorization).returns("AUTHORIZED")
       @order = Order.new
-      @order.stubs(:total_charge_in_pennies).returns(1325)
+      @order.stubs(:total_charge_in_cents).returns(1325)
       @order.expects(:paid!)
       assert @account.charge_order(@order)
     end
@@ -85,7 +85,7 @@ describe Account do
       @response.stubs(:success?).returns(false)
       @response.expects(:message).returns("ERRRR")
       @order = Order.new
-      @order.stubs(:total_charge_in_pennies).returns(1325)
+      @order.stubs(:total_charge_in_cents).returns(1325)
       assert !@account.charge_order(@order)
       assert_equal @order.errors.on_base, "ERRRR"
     end

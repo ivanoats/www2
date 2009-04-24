@@ -15,7 +15,9 @@ namespace :bootstrap do
 
   task :test_account => :environment do
     puts "Creating test account"
-    account = Account.create! :first_name => "Admin", :last_name => "istrator", :organization => "Test Organization", :users => [User.first]
+    account = Account.create! :first_name => "Admin", :last_name => "istrator", :organization => "Test Organization", :users => [User.first], :balance => -100
+    account.payments << Payment.new(:amount => 50)
+    account.charges << Charge.new(:amount => 150)
   end
 
   desc "Bootstrap initial products"
@@ -25,7 +27,7 @@ namespace :bootstrap do
     Product.create!( {
       :name            => "Basic Web Hosting Subscription",
       :description     => "Basic Web Hosting Description",
-      :cost_in_cents   => 1000,
+      :cost   => 10.00,
       :recurring_month => 1,
       :status          => "active",
       :kind            => "package"
@@ -34,7 +36,7 @@ namespace :bootstrap do
     Product.create!( {
       :name            => "Small Business Web Hosting Subscription",
       :description     => "Small Business Web Hosting Description",
-      :cost_in_cents   => 2000,
+      :cost   => 20.00,
       :recurring_month => 1,
       :status          => "active",
       :kind            => "package"
@@ -42,7 +44,7 @@ namespace :bootstrap do
   end
 
   desc "Run all bootstrap tasks"
-  task :all do
+  task :all => ['db:schema:load'] do
     tasks = tasks_in_namespace("bootstrap")
     tasks.each do |task|
       Rake::Task["#{task.name}"].invoke

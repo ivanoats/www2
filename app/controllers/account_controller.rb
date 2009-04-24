@@ -59,7 +59,7 @@ class AccountController < ApplicationController
   
   
   def payments
-    
+    @history = @account.payment_history
   end
   
   def pay

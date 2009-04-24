@@ -19,8 +19,7 @@
     <p>some text</p>
     <div><%= h package.name %></div>
     <div><%= h package.description %></div>
-    <!-- MONEY GEM? -->
-    <div><%= number_to_currency(package.cost_in_cents / 100) %></div>
+    <div><%= number_to_currency(package.cost) %></div>
     <div>
     <%- if package.recurring_month == 1 -%>
       Monthly

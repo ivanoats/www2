@@ -11,6 +11,7 @@ class Account < ActiveRecord::Base
   attr_protected :balance
   
   has_many :payments
+  has_many :charges
   has_one :payment_profile
   
   belongs_to :address
@@ -44,6 +45,11 @@ class Account < ActiveRecord::Base
 
   aasm_event :unsuspend do
     transitions :from => :suspended, :to => :active
+  end
+  
+  def payment_history
+    (self.payments + self.charges).sort { |a,b| a.created_at <=> b.created_at }
+    #self.payments.find(:all, :joins => :charges, :order => "created_at desc")
   end
   
   def store_card(creditcard, gw_options = {})
@@ -88,7 +94,7 @@ class Account < ActiveRecord::Base
   end
   
   def charge_order(order)
-    amount = order.total_charge_in_pennies
+    amount = order.total_charge
     if amount == 0 || (@response = gateway.purchase(amount)).success?
       payments.create(:amount => amount, :transaction_id => @response.authorization, :order_id => order)
       order.paid!

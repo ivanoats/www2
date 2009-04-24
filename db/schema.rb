@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090422071442) do
+ActiveRecord::Schema.define(:version => 20090423213749) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 20090422071442) do
     t.string   "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "balance"
+    t.decimal  "balance",            :precision => 10, :scale => 2, :default => 0.0
     t.date     "last_payment_on"
     t.string   "payment_period"
     t.string   "billing_id"
@@ -72,11 +72,11 @@ ActiveRecord::Schema.define(:version => 20090422071442) do
     t.integer  "cart_id"
     t.text     "name"
     t.text     "description"
-    t.integer  "unit_price_in_cents"
     t.integer  "quantity"
     t.string   "quantity_unit"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "unit_price",    :precision => 10, :scale => 2, :default => 0.0
   end
 
   create_table "carts", :force => true do |t|
@@ -104,6 +104,16 @@ ActiveRecord::Schema.define(:version => 20090422071442) do
     t.datetime "updated_at"
   end
 
+  create_table "charges", :force => true do |t|
+    t.integer  "account_id"
+    t.integer  "chargable_id"
+    t.string   "chargable_type"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.decimal  "amount",         :precision => 10, :scale => 2, :default => 0.0
+  end
+
   create_table "comments", :force => true do |t|
     t.string   "title",            :default => ""
     t.text     "comment"
@@ -118,21 +128,6 @@ ActiveRecord::Schema.define(:version => 20090422071442) do
   end
 
   add_index "comments", ["user_id"], :name => "fk_comments_user"
-
-  create_table "customers", :force => true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "organization"
-    t.string   "address_1"
-    t.string   "address_2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "country"
-    t.string   "phone"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "discount_codes", :force => true do |t|
     t.string   "name"
@@ -234,7 +229,7 @@ ActiveRecord::Schema.define(:version => 20090422071442) do
   create_table "payments", :force => true do |t|
     t.integer  "account_id"
     t.integer  "order_id"
-    t.integer  "amount"
+    t.decimal  "amount",         :precision => 10, :scale => 2, :default => 0.0
     t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -244,12 +239,12 @@ ActiveRecord::Schema.define(:version => 20090422071442) do
   create_table "products", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "cost_in_cents"
     t.integer  "recurring_month"
     t.string   "status"
     t.string   "kind"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "cost",            :precision => 10, :scale => 2, :default => 0.0
   end
 
   create_table "purchases", :force => true do |t|
@@ -304,33 +299,6 @@ ActiveRecord::Schema.define(:version => 20090422071442) do
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
-  create_table "subscription_profiles", :force => true do |t|
-    t.integer  "subscription_id",              :null => false
-    t.integer  "recurring_payment_profile_id", :null => false
-    t.datetime "created_at",                   :null => false
-  end
-
-  add_index "subscription_profiles", ["subscription_id"], :name => "ix_subscription_profiles_subscription"
-
-  create_table "subscriptions", :force => true do |t|
-    t.string   "account_id",     :null => false
-    t.string   "tariff_plan_id", :null => false
-    t.string   "taxes_id",       :null => false
-    t.integer  "quantity",       :null => false
-    t.string   "currency",       :null => false
-    t.integer  "net_amount",     :null => false
-    t.integer  "taxes_amount",   :null => false
-    t.string   "periodicity",    :null => false
-    t.date     "starts_on",      :null => false
-    t.date     "ends_on"
-    t.string   "status",         :null => false
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at"
-    t.datetime "deleted_at"
-  end
-
-  add_index "subscriptions", ["account_id"], :name => "ix_subscription_account"
-
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -363,50 +331,6 @@ ActiveRecord::Schema.define(:version => 20090422071442) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "tracker_recurring_payment_profiles", :force => true do |t|
-    t.string   "gateway_reference"
-    t.string   "gateway"
-    t.text     "subscription_name"
-    t.text     "description"
-    t.string   "currency"
-    t.integer  "net_amount",                              :null => false
-    t.integer  "taxes_amount",                            :null => false
-    t.integer  "outstanding_balance"
-    t.integer  "total_payments_count"
-    t.integer  "complete_payments_count"
-    t.integer  "failed_payments_count"
-    t.integer  "remaining_payments_count"
-    t.string   "periodicity"
-    t.integer  "trial_days",               :default => 0
-    t.integer  "pay_on_day_x",             :default => 0
-    t.string   "status"
-    t.string   "problem_status"
-    t.string   "card_type"
-    t.string   "card_owner_memo"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.datetime "deleted_at"
-    t.datetime "last_synchronized_at"
-  end
-
-  add_index "tracker_recurring_payment_profiles", ["gateway"], :name => "ix_tracker_recurring_payment_profiles_gateway"
-  add_index "tracker_recurring_payment_profiles", ["gateway_reference"], :name => "uix_tracker_recurring_payment_profiles_gateway_reference", :unique => true
-
-  create_table "tracker_transactions", :force => true do |t|
-    t.integer  "recurring_payment_profile_id"
-    t.string   "gateway_reference"
-    t.string   "currency"
-    t.integer  "amount"
-    t.string   "result_code"
-    t.string   "result_text"
-    t.string   "card_type"
-    t.string   "card_owner_memo"
-    t.datetime "created_at"
-    t.datetime "recorded_at"
-  end
-
-  add_index "tracker_transactions", ["recurring_payment_profile_id"], :name => "index_tracker_transactions_on_recurring_payment_profile_id"
 
   create_table "users", :force => true do |t|
     t.string   "login",                     :limit => 40

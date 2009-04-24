@@ -12,7 +12,7 @@ describe Order do
   
   it "should create an order from a cart" do
     
-    @product = Product.new(:name => "Product Name", :cost_in_cents => 700, :status => 'active', :kind => 'package')
+    @product = Product.new(:name => "Product Name", :cost => 7.00, :status => 'active', :kind => 'package')
     
     @cart = Cart.new(:cart_items => [CartItem.new(:description => "A test item", :quantity => 1, :product => @product)])
     @order = Order.from_cart(cart)
