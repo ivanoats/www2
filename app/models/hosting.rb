@@ -6,7 +6,8 @@ class Hosting < ActiveRecord::Base
   has_many :charges, :as => :chargable
   #has_one :domain #maybe
   
-  named_scope :active, :conditions => ["state = ?",'active']  
+  named_scope :active, :conditions => ["state = ?",'active']
+  named_scope :visible, :conditions => {'state' => ['ordered', 'active', 'suspended']}
   named_scope :charge_due, :conditions => ['last_charge_on IS NULL or (charge_period = ? and last_charge_on < SUBDATE(CURDATE(),INTERVAL 1 MONTH)) or (charge_period = ? and last_charge_on < SUBDATE(CURDATE(),INTERVAL 1 YEAR))','monthly','yearly']
   
   aasm_column :state

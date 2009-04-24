@@ -4,7 +4,7 @@
     <th>Payment Info</th>
     <th>Balance</th>
   </tr>
-  <tr>
+  <tr class='odd'>
     <td><%= @account.last_payment_on ? @account.last_payment_on + 1.month : "never" %></td>
     <td style='text-align: left'>
       <% if @account.needs_payment_info? %>
@@ -31,7 +31,7 @@
     <th>Description</th>
     <th style='width: 15%;'>Amount</th>
   </tr>  
-<% @account.payment_history.each do |item| %>
+<% @account.transactions.each do |item| %>
 
   <tr class='<%= cycle("odd","even")%>'>
     <td><%= item.created_at.to_formatted_s :human_date %></td>

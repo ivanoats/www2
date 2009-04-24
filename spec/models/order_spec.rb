@@ -15,7 +15,7 @@ describe Order do
     @product = Product.new(:name => "Product Name", :cost => 7.00, :status => 'active', :kind => 'package')
     
     @cart = Cart.new(:cart_items => [CartItem.new(:description => "A test item", :quantity => 1, :product => @product)])
-    @order = Order.from_cart(cart)
+    @order = Order.from_cart(@cart)
     
     assert @order.purchases.first.product == @product
     assert @order.state == 'pending'

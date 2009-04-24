@@ -23,11 +23,6 @@ class Account < ActiveRecord::Base
   named_scope :active, :conditions => ["state = ?",'active']
   named_scope :payment_due, :conditions => ['balance < ? and (last_payment_on IS NULL or last_payment_on < ?)',0,1.month.ago]
   
-  
-  
-  
-  #payment period??
-  
   aasm_column :state
   aasm_initial_state :active
   aasm_state :active
@@ -47,9 +42,10 @@ class Account < ActiveRecord::Base
     transitions :from => :suspended, :to => :active
   end
   
-  def payment_history
-    (self.payments + self.charges).sort { |a,b| a.created_at <=> b.created_at }
-    #self.payments.find(:all, :joins => :charges, :order => "created_at desc")
+  def transactions(params = {})
+    transactions = (self.payments.find(:all,params.dup) + self.charges.find(:all,params))
+    transactions.sort! { |a,b| a.created_at <=> b.created_at }
+    transactions
   end
   
   def store_card(creditcard, gw_options = {})
@@ -81,7 +77,16 @@ class Account < ActiveRecord::Base
   # amount (1.00 to charge $1).  
   def charge(amount)
     if amount == 0 || (@response = gateway.purchase((amount.to_f * 100).to_i, billing_id)).success?
-      payments.create(:account => @account, :amount => amount, :transaction_id => @response.authorization)
+      
+      av = ActionView::Base.new(Rails::Configuration.new.view_path)
+      receipt = av.render(
+        :partial => "shared/payment_receipt", 
+        :locals => {:amount => amount,
+                    :previous_balance => self.balance,
+                    :transactions => self.transactions({:conditions => ['created_at > ?',self.last_payment_on]}),
+                    :new_balance => self.balance + amount})
+      
+      payments.create(:account => @account, :amount => amount, :transaction_id => @response.authorization, :receipt => receipt)
       true
     else
       errors.add_to_base(@response.message)
@@ -95,7 +100,7 @@ class Account < ActiveRecord::Base
   
   def charge_order(order)
     amount = order.total_charge
-    if amount == 0 || (@response = gateway.purchase(amount)).success?
+    if (@response = gateway.purchase(amount)).success?
       payments.create(:amount => amount, :transaction_id => @response.authorization, :order_id => order)
       order.paid!
       true

@@ -1,0 +1,14 @@
+Your account was successfully charged <%= number_to_currency amount %>.  
+
+Account Summary
+
+Previous Balance: <%= number_to_currency previous_balance %>
+
+<% transactions.each do |item| %>
+  <%= item.created_at.to_formatted_s :human_date %> <%= number_to_currency item.amount%> <%= item.description %>
+<% end %>
+Current Balance: <%= number_to_currency new_balance %>
+
+Sustainable Websites 
+http://www.sustainablewebsites.com
+
