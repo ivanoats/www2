@@ -1,8 +1,7 @@
 class BillingMailer < ActionMailer::Base
   
-  def charge_success(account,amount)
-    @subject    = 'Sustainablewebsites Payment Receipt'
-    payment = account.payments.last
+  def charge_success(account,payment)
+    @subject    = 'Sustainable Websites Payment Receipt'
     @body = payment.receipt
     @recipients = account.email
     @bcc = 'support@sustainablewebsites.com'
@@ -11,7 +10,7 @@ class BillingMailer < ActionMailer::Base
   end
   
   def charge_failure(account,amount)
-    @subject    = 'Sustainablewebsites Payment Failed'
+    @subject    = 'Sustainable Websites Payment Failed'
     @body["account"] = account
     @body["amount"] = amount
     @recipients = account.email

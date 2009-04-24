@@ -144,7 +144,7 @@ class Account < ActiveRecord::Base
   end
   
   def email
-    self.users.empty? ? "" : self.users.first.email
+    self['email']# || self.users.empty? ? "" : self.users.first.email
   end
   
   def balance

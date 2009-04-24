@@ -1,36 +1,22 @@
 # This file is copied to ~/spec when you run 'ruby script/generate rspec'
 # from the project root directory.
-ENV["RAILS_ENV"] = 'test'
-
-require File.dirname(__FILE__) + "/../config/environment" unless defined?(RAILS_ROOT)
-require 'spec/autorun'
+ENV["RAILS_ENV"] = "test"
+require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
+require 'spec'
 require 'spec/rails'
 
-require 'rspec_response_enhancer'
-require 'webrat'
-
-require "email_spec/helpers"
-require "email_spec/matchers"
-
-include AuthenticatedTestHelper
-include AuthenticatedSystem
-
-# Require all .rb files in /spec/shared and its sub-directories
-Dir[RAILS_ROOT + '/spec/shared/**/*.rb'].each { |f| require f }
+require File.expand_path(File.dirname(__FILE__) + "/model_factory.rb")
+require (Rails.root + '/../../lib/email_spec.rb')
 
 Spec::Runner.configure do |config|
+  config.include(Fixjour)
   # If you're not using ActiveRecord you should remove these
   # lines, delete config/database.yml and disable :active_record
   # in your config/boot.rb
-  config.use_transactional_fixtures = true
-  config.use_instantiated_fixtures  = false
-  config.fixture_path = RAILS_ROOT + '/spec/fixtures/'
-  
-  config.include RSpecResponseEnhancer
-  config.include FixtureReplacement
-  config.include Webrat::Matchers, :type => :views
-  config.include(EmailSpec::Helpers)
-  config.include(EmailSpec::Matchers)
+  #config.use_transactional_fixtures = true
+  #config.use_instantiated_fixtures  = false
+  #config.fixture_path = RAILS_ROOT + '/spec/fixtures/'
+
   # == Fixtures
   #
   # You can declare fixtures for each example_group like this:
@@ -62,18 +48,4 @@ Spec::Runner.configure do |config|
   # == Notes
   # 
   # For more information take a look at Spec::Runner::Configuration and Spec::Runner
-end
-
-def mock_ticket
-  mock_model(Ticket, :id => 1,
-    :email  => 'email@example.com',
-    :description => 'description that is long enough',
-    :domain_name => 'example.com',
-    :first_name => 'first name',
-    :last_name => 'last name',
-    :cpanel_username => 'cpanel name',
-    :cpanel_password => 'cpanel password',
-    :department => 'department',
-    :to_xml => "User-in-XML", :to_json => "User-in-JSON", 
-    :errors => [])
 end

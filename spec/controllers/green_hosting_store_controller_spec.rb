@@ -44,6 +44,7 @@ describe GreenHostingStoreController do
       response.should be_success
     end
   end
+  
   describe 'when an account is required' do
     before(:each) do
       @user = User.new
@@ -60,12 +61,12 @@ describe GreenHostingStoreController do
         response.should be_success
       end
     end
-
-    describe "GET 'confirmation'" do
-      it "should be successful" do
-        get 'confirmation'
-        response.should be_success
-      end
+  end
+  
+  describe "GET 'confirmation'" do
+    it "should be successful" do
+      get 'confirmation'
+      response.should be_success
     end
   end
 end
