@@ -1,2 +1,38 @@
-<h1>GreenHostingStore#choose_addon</h1>
-<p>Find me in app/views/green_hosting_store/choose_addon.html.erb</p>
+<% render :partial => "head_and_sidebar" %>
+
+<h1>Choose any additional services</h1>
+
+<% form_remote_for @addon, :url => { :controller => 'cart', :action => "add_addon" } do |f| -%>
+  <% for addon in @addons %>
+  <div class="addon" onclick="select_addon(<%= addon.id %>, this);">
+    <div><%= h addon.name %></div>
+    <div><%= sanitize addon.description, :tags => %w(a strong em), :attributes => %w(id class style)
+      %></div>
+    <div><%= number_to_currency(addon.cost) %></div>
+    <div>
+    <%- if addon.recurring_month == 1 -%>
+      Monthly
+    <%- elsif addon.recurring_month == 0 -%>
+      One-Time
+    <%- else -%>
+      Yearly
+    <%- end -%>  
+    </div>
+  </div>
+  <% end #for addon %>
+  <%= f.submit "Add to Cart", :disable_with => 'Adding to Cart...' %>
+  <input name="addon_id" id="addon_chosen" type="hidden" value=""/>
+<% end  #form -%>
+
+
+<script type="text/javascript" charset="utf-8">
+<!--
+
+function select_addon(addon_id, addon_div) {
+  $('#addon_chosen').val(addon_id);
+  $('.selectedAddon').removeClass("selectedAddon").addClass("addon"); 
+  $(addon_div).removeClass().addClass("selectedAddon");
+}
+
+//-->  
+</script>

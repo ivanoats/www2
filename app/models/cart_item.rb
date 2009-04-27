@@ -4,5 +4,5 @@ class CartItem < ActiveRecord::Base
   validates_numericality_of :quantity, :only_integer => true, :greater_than => 0
   
   belongs_to :cart
-  has_one :product
+  belongs_to :product
 end

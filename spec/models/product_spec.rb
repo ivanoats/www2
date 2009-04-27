@@ -47,7 +47,7 @@ describe Product do
   end
   
   it "should have a list of kinds" do
-    Product::KINDS.should == %w(package add-on)
+    Product::KINDS.should == %w(package addon)
   end
   
   it "should include only valid choises for kind" do
@@ -66,10 +66,19 @@ describe Product do
     Product::KINDS.each do |kind|
       Product.create!(@valid_attributes.merge(:kind => kind))
     end
-    
+        
     expected = Product.packages
     expected.size.should == 1
-    expected.first.kind.should == 'package'
-    
+    expected.first.kind.should == 'package'    
+  end
+  
+  it "should find all addons" do
+    Product::KINDS.each do |kind|
+      Product.create!(@valid_attributes.merge(:kind => kind))
+    end
+  
+    expected = Product.addons
+    expected.size.should == 1
+    expected.first.kind.should == 'addon'  
   end
 end

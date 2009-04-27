@@ -11,9 +11,12 @@
       <% for cart_item in @cart.cart_items %>
     <tr>
       <td>
-        <% line_width = 45 %>
+        <% line_width = 40 %>
         <%= simple_format(word_wrap(h(cart_item.name) , :line_width => line_width )) %><br>
-        <%= simple_format(word_wrap(h(cart_item.description), :line_width => line_width )) %>
+        <%# TODO get this working if cart item descriptions are needed
+        #- unless cart_item.product.kind == "addon" -%>
+          <%#= simple_format(word_wrap(h(cart_item.description), :line_width => line_width )) %>
+        <%#- end -%>
       </td>
       <td><%= number_to_currency(cart_item.unit_price) %></td>
       <td><%= h(cart_item.quantity) %> <%= h(cart_item.quantity_unit) %></td>

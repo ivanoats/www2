@@ -1,15 +1,4 @@
-<% content_for :head do %>
-  <style type='text/css'>
-    #content { 
-      width: 500px;
-    }
-    #sidebar {width: auto;}
-  </style>
-<% end %>
-
-<% content_for :sidebar do %>
-  <%= render 'cart/items' %>
-<% end %>
+<% render :partial => "head_and_sidebar" %>
 
 <h1>Choose Your Package</h1>
 
@@ -35,11 +24,11 @@
 
 <script type="text/javascript" charset="utf-8">
 <!--
-$(document).ready(function(){
-  $('.package').click(function (event) {
-    alert('clicked:' + event.target);
-  });
-});
+// $(document).ready(function(){
+//   $('.package').click(function (event) {
+//     alert('clicked:' + event.target);
+//   });
+// });
 
 function select_package(package_id, package_div) {
   $('#package_chosen').val(package_id);
