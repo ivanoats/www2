@@ -30,6 +30,9 @@ class GreenHostingStoreController < ApplicationController
   end
 
   def choose_addon
+    load_cart
+    @addon = Product.new
+    @addons = Product.addons
   end
 
   def checkout

@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
   STATUS = %w(active disabled)
-  KINDS = %w(package add-on)
+  KINDS = %w(package addon)
   
   validates_presence_of :name
   validates_numericality_of :cost, :greater_than => 0
@@ -8,4 +8,6 @@ class Product < ActiveRecord::Base
   validates_inclusion_of :kind, :in => KINDS, :message => "%s is not a valid kind"
   
   named_scope :packages, :conditions => {:kind => 'package'}
+  
+  named_scope :addons, :conditions => {:kind => 'addon'}
 end
