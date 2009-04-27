@@ -16,7 +16,6 @@
 <% form_remote_for @package, :url => { :controller => 'cart', :action => "add_package" } do |f| -%>
   <% for package in @packages %>
   <div class="package" onclick="select_package(<%= package.id %>, this);">
-    <p>some text</p>
     <div><%= h package.name %></div>
     <div><%= h package.description %></div>
     <!-- MONEY GEM? -->
@@ -37,10 +36,17 @@
 
 <script type="text/javascript" charset="utf-8">
 <!--
-      function select_package(package_id, package_div) {
-        $('#package_chosen').val(package_id);
-        $('.selectedPackage').removeClass("selectedPackage").addClass("package"); 
-        $(package_div).removeClass().addClass("selectedPackage");
-      }
+$(document).ready(function(){
+  $('.package').click(function (event) {
+    alert('clicked:' + event.target);
+  });
+});
+
+function select_package(package_id, package_div) {
+  $('#package_chosen').val(package_id);
+  $('.selectedPackage').removeClass("selectedPackage").addClass("package"); 
+  $(package_div).removeClass().addClass("selectedPackage");
+}
+
 //-->  
 </script>

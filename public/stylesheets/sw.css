@@ -322,7 +322,7 @@ display: block;
     display: block;
 }
 
-.package :hover {
+.package:hover {
     background-color: #cfc;
     cursor: pointer;
 }
