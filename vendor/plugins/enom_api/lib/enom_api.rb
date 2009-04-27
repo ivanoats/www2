@@ -71,6 +71,10 @@ module EnomApi
       set_single_item()
     end
     
+    def available?
+      get_single_item("check",'RRPText') == 'Domain available'
+    end
+    
     private
     
     def get_single_item(enom_command, xml_field_name)

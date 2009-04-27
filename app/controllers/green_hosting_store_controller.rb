@@ -9,6 +9,19 @@ class GreenHostingStoreController < ApplicationController
     @domain = Domain.new
     load_cart
   end
+  
+  def check_domain
+    @domain = Domain.new(params[:domain])
+    render :update do |page|
+      if @domain.available?
+        page << 'allow_purchase_domain()'
+        page.replace_html 'choose_domain_message' , "<span style='color: green'>Domain #{@domain.name} is available</span>"
+      else
+        page << 'allow_check_domain()'
+        page.replace_html 'choose_domain_message' , "<span style='color: red'>Domain #{@domain.name} is not available</span>"
+      end
+    end
+  end
 
   def choose_package
     load_cart
