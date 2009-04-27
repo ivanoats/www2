@@ -3,11 +3,12 @@ class Hosting < ActiveRecord::Base
 
   belongs_to :account
   has_many :add_ons
-  
+  has_many :charges, :as => :chargable
   #has_one :domain #maybe
   
-  named_scope :active, :conditions => ["state = ?",'active']  
-  named_scope :fee_due, :conditions => ['last_charge_on IS NULL or (charge_period = ? and last_charge_on < SUBDATE(CURDATE(),INTERVAL 1 MONTH)) or (charge_period = ? and last_charge_on < SUBDATE(CURDATE(),INTERVAL 1 YEAR))','monthly','yearly']
+  named_scope :active, :conditions => ["state = ?",'active']
+  named_scope :visible, :conditions => {'state' => ['ordered', 'active', 'suspended']}
+  named_scope :charge_due, :conditions => ['last_charge_on IS NULL or (charge_period = ? and last_charge_on < SUBDATE(CURDATE(),INTERVAL 1 MONTH)) or (charge_period = ? and last_charge_on < SUBDATE(CURDATE(),INTERVAL 1 YEAR))','monthly','yearly']
   
   aasm_column :state
   aasm_initial_state :ordered
@@ -46,7 +47,7 @@ class Hosting < ActiveRecord::Base
     Hosting.transaction do
       #prevent charge time creeping forward each period
       charge_time = (DateTime.now - next_charge < 1.day) ? next_charge : DateTime.now
-      
+      self.account.charges.create(:amount => self.cost, :chargable => self)
       self.update_attribute(:last_charge_on, charge_time)
       self.account.update_attribute(:balance, self.account.balance - self.cost)
     end

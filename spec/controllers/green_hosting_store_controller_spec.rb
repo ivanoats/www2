@@ -44,14 +44,25 @@ describe GreenHostingStoreController do
       response.should be_success
     end
   end
-
-  describe "GET 'checkout'" do
-    it "should be successful" do
-      get 'checkout'
-      response.should be_success
+  
+  describe 'when an account is required' do
+    before(:each) do
+      @user = User.new
+      @account = Account.new
+      @user.accounts << @account
+      @user.stubs(:valid?).returns(true)
+      @controller.stubs(:current_user).returns(@user)
+    end
+        
+    describe "GET 'checkout'" do
+      it "should be successful" do
+      
+        get 'checkout'
+        response.should be_success
+      end
     end
   end
-
+  
   describe "GET 'confirmation'" do
     it "should be successful" do
       get 'confirmation'

@@ -9,8 +9,7 @@ class BillingWorker < BackgrounDRb::MetaWorker
     hostings
     logger.info "Completed hostings at #{Time.now}"    
     accounts
-    logger.info "Completed accounts at #{Time.now}"
-    logger.info "Billing worker completed.  "
+    logger.info "Billing worker completed at #{Time.now}.  "
   end
 
 private
@@ -18,17 +17,17 @@ private
   
   def accounts
     Account.active.payment_due.each do |account| 
-      balance = account.balance
+      amount = account.balance
       if account.charge_balance 
-        BillingMailer.charge_success(account,balance)
+        BillingMailer.charge_success(account)
       else
-        BillingMailer.charge_failure(account,balance)        
+        BillingMailer.charge_failure(account,amount)        
       end
     end
   end
 
   def hostings
-    Hosting.active.fee_due.each { |hosting| hosting.charge }
+    Hosting.active.charge_due.each { |hosting| hosting.charge }
   end
 end
 

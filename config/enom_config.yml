@@ -1,14 +1,14 @@
 development:
   url: http://resellertest.enom.com/interface.asp?
-  username: yourusername
-  password: yourpassword
+  username: greenwebserver
+  password: coo2man
 
 test:
     url: http://resellertest.enom.com/interface.asp?
-    username: yourusername
-    password: yourpassword
+    username: greenwebserver
+    password: coo2man
     
 production:
     url: http://reseller.enom.com/interface.asp?
-    username: yourusername
-    password: yourpassword
+    username: greenwebserver
+    password: coo2man

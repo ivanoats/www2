@@ -47,6 +47,19 @@ describe Account do
     assert_equal @account.balance, 0
   end
   
+  it "should return transactions" do
+    @account = Account.create(@valid_attributes)
+    @account.update_attribute(:balance, 25.0)
+    @account.payments << Payment.new(:created_at => 1.month.ago, :amount => 100.0)
+    @account.charges << Charge.new(:created_at => 25.days.ago, :amount => 25.00)
+    @account.charges << Charge.new(:created_at => 20.days.ago, :amount => 25.00)
+    
+    @account.transactions.size.should == 3
+    #test specific query
+    @account.transactions(:conditions => {:amount => 100.0}).should == @account.payments
+    #test for all activity since last payment
+    @account.transactions(:conditions => ['created_at > ?',@account.payments.first.created_at]).should == @account.charges
+  end
   
   describe "when making a fake purchase" do
     
@@ -76,7 +89,7 @@ describe Account do
     it "should charge an order" do
       @response.expects(:authorization).returns("AUTHORIZED")
       @order = Order.new
-      @order.stubs(:total_charge_in_pennies).returns(1325)
+      @order.stubs(:total_charge_in_cents).returns(1325)
       @order.expects(:paid!)
       assert @account.charge_order(@order)
     end
@@ -85,13 +98,12 @@ describe Account do
       @response.stubs(:success?).returns(false)
       @response.expects(:message).returns("ERRRR")
       @order = Order.new
-      @order.stubs(:total_charge_in_pennies).returns(1325)
+      @order.stubs(:total_charge_in_cents).returns(1325)
       assert !@account.charge_order(@order)
       assert_equal @order.errors.on_base, "ERRRR"
     end
     
   end
-  
   
   describe "when the balance is not negative" do
     it "should not be due for payment" do
@@ -121,8 +133,6 @@ describe Account do
     end
   end
     
-  
-  
   # it "should run a live test - this should be somewhere else" do
   #     @account = Account.new(@more_attributes)
   #     @credit_card = ActiveMerchant::Billing::CreditCard.new(

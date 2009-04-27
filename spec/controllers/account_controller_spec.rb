@@ -1,9 +1,13 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
+include ActiveMerchant::Billing
 
 describe AccountController do
   
   before(:each) do
-    @user = User.new(:accounts => [Account.new])
+    @user = User.new()
+    @account = Account.new
+    @user.accounts << @account
+    @user.stubs(:valid?).returns(true)
     @controller.stubs(:current_user).returns(@user)
   end
   
@@ -59,20 +63,19 @@ describe AccountController do
   end
   
   describe 'billing' do
-    it 'should work' do
+    it 'should GET' do
       get 'billing', {}, {:user_id => 30}
       response.should be_success
     end
     
     it "should update billing" do
-      post 'billing', {}
-      
       credit_card = mock('cc')
-      credit_card.expects(:valid?).returns(true)
-      ActiveMerchant::Billing::CreditCard.stubs(:new).returns(credit_card)
+      credit_card.stubs(:valid?).returns(true)
+      CreditCard.stubs(:new).returns(credit_card)
       
       @account.expects(:store_card).returns(true)
       
+      post 'billing', {:user_id => 30}
       response.should redirect_to(:action => "billing")
     end
   end

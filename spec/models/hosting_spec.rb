@@ -13,28 +13,28 @@ describe Hosting do
   describe "when the fee was last charged over a month ago for monthly billing" do
     it "should be due for feeing" do
       hosting = create_hosting(:last_charge_on => 32.days.ago, :charge_period => 'monthly')
-      assert_equal Hosting.fee_due, [hosting]
+      assert_equal Hosting.charge_due, [hosting]
     end
   end
   
   describe "when the fee was last charged less than a month ago for monthly billing" do
     it "should not be due for feeing" do
       hosting = create_hosting(:last_charge_on => 25.days.ago, :charge_period => 'monthly')
-      assert_equal Hosting.fee_due, []
+      assert_equal Hosting.charge_due, []
     end
   end
   
   describe "when the fee was last charged over a month ago for yearly billing" do
     it "should be due for feeing" do
       hosting = create_hosting(:last_charge_on => 366.days.ago, :charge_period => 'yearly')
-      assert_equal Hosting.fee_due, [hosting]
+      assert_equal Hosting.charge_due, [hosting]
     end
   end
   
   describe "when the fee was last charged less than a month ago for yearly billing" do
     it "should not be due for feeing" do
       hosting = create_hosting(:last_charge_on => 364.days.ago, :charge_period => 'yearly')
-      assert_equal Hosting.fee_due, []
+      assert_equal Hosting.charge_due, []
     end
   end
   

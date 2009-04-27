@@ -5,6 +5,7 @@ class Order < ActiveRecord::Base
   
   has_many :purchases
   has_many :products, :through => :purchases
+  has_one :payment, :as => :payable
   
   before_create :create_invoice_number
   
@@ -34,10 +35,10 @@ class Order < ActiveRecord::Base
     end
 
     def total_charge
-      self.products.to_a.sum(&:cost_in_cents)
+      self.products.to_a.sum(&:cost)
     end
 
-    def total_charge_in_pennies
+    def total_charge_in_cents
       (self.total_charge * 100).to_i
     end    
 

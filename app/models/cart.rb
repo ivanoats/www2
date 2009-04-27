@@ -21,7 +21,7 @@ class Cart < ActiveRecord::Base
       :cart_id             => self.id,
       :name                => product.name,
       :description         => product.description,
-      :unit_price_in_cents => product.cost_in_cents,
+      :unit_price          => product.cost,
       :quantity            => quantity,
       :quantity_unit       => quantity_unit
     }

@@ -9,6 +9,9 @@ require 'spec/rails'
 require 'rspec_response_enhancer'
 require 'webrat'
 
+require "email_spec/helpers"
+require "email_spec/matchers"
+
 include AuthenticatedTestHelper
 include AuthenticatedSystem
 
@@ -26,7 +29,8 @@ Spec::Runner.configure do |config|
   config.include RSpecResponseEnhancer
   config.include FixtureReplacement
   config.include Webrat::Matchers, :type => :views
-
+  config.include(EmailSpec::Helpers)
+  config.include(EmailSpec::Matchers)
   # == Fixtures
   #
   # You can declare fixtures for each example_group like this:

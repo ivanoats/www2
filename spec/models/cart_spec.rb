@@ -9,7 +9,7 @@ describe Cart do
     @valid_product_attributes = {
       :name            => "Basic Web Hosting",
       :description     => "1,000MB Storage, 10,000MB Bandwidth, Unlimited Emails, Unlimited Addons, Fantastico",
-      :cost_in_cents   => 1000,
+      :cost            => 10.00,
       :recurring_month => 1,
       :status          => "active",
       :kind            => "package"
@@ -46,7 +46,7 @@ describe Cart do
     cart_item.cart_id.should == cart.id
     cart_item.name.should == product.name
     cart_item.description.should == product.description
-    cart_item.unit_price_in_cents.should == product.cost_in_cents
+    cart_item.unit_price.should == product.cost
     cart_item.quantity.should == 1
     cart_item.quantity_unit.should == nil
   end
@@ -62,7 +62,7 @@ describe Cart do
     cart_item.cart_id.should == cart.id
     cart_item.name.should == product.name
     cart_item.description.should == product.description
-    cart_item.unit_price_in_cents.should == product.cost_in_cents
+    cart_item.unit_price.should == product.cost
     cart_item.quantity.should == quantity
     cart_item.quantity_unit.should == nil
   end
@@ -79,7 +79,7 @@ describe Cart do
     cart_item.cart_id.should == cart.id
     cart_item.name.should == product.name
     cart_item.description.should == product.description
-    cart_item.unit_price_in_cents.should == product.cost_in_cents
+    cart_item.unit_price.should == product.cost
     cart_item.quantity.should == quantity
     cart_item.quantity_unit.should == quantity_unit
   end

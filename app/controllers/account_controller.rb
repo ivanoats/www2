@@ -59,7 +59,7 @@ class AccountController < ApplicationController
   
   
   def payments
-    
+    @history = @account.transactions
   end
   
   def pay
@@ -73,7 +73,6 @@ class AccountController < ApplicationController
   end
   
   def hosting
-    
   end
   
   def billing

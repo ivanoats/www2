@@ -1,1 +1,20 @@
-<%= render :partial => 'navigation'%>
+<table class='account_table' style='font-size: 90%'>
+  <tr>
+    <th>Start Date</th>
+    <th>Renewal Period</th>
+    <th>Renewal Fee</th>
+    <th>Last Renewed</th>
+    <th>Status</th>
+
+  </tr>  
+<% @account.hostings.visible.each do |item| %>
+
+  <tr class='<%= cycle("odd","even")%>'>
+    <td><%= item.created_at.to_formatted_s :human_date %></td>
+    <td><%= item.charge_period %></td>
+    <td><%= number_to_currency item.product.cost %></td>
+    <td><%= item.last_charge_on.to_formatted_s :human_date %></td>
+    <td><%= item.state.capitalize %></td>
+  </tr>  
+<% end%>
+</table>

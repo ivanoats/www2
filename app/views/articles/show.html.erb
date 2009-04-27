@@ -40,7 +40,7 @@
     <% end %>
   </div>
 
-  <% uni_remote_form_for :comment, :url => {:controller => "comments", :action => "create", :commentable_id => @article.id, :commentable_type => @article.class.name}, :html => {:id => 'comment_form'} do |form| %>
+  <% z_remote_form_for :comment, :url => {:controller => "comments", :action => "create", :commentable_id => @article.id, :commentable_type => @article.class.name}, :html => {:id => 'comment_form'} do |form| %>
     <div id="commentMessage"></div>
     
     <% form.fieldset :type => "inline", :legend => "leave a comment" do %>
