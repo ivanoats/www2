@@ -2,8 +2,8 @@ class GreenHostingStoreController < ApplicationController
   include ActiveMerchant::Billing
   include CartSystem
   
-  before_filter :login_required, :only => [:checkout, :billing, :payment]
-  before_filter :require_account, :only => [:checkout, :billing, :payment]
+  before_filter :login_required, :only => [ :billing, :payment]
+  before_filter :require_account, :only => [ :billing, :payment]
 
   def choose_domain
     @domain = Domain.new
@@ -26,8 +26,15 @@ class GreenHostingStoreController < ApplicationController
   def choose_package
     load_cart
     @package = Product.new
-    @packages = Product.packages
+     # find all monthly sorted by price
+    packages_monthly = Product.find(:all, :conditions => {:recurring_month => 1,:kind => 'package'}, :order => 'cost') 
+    packages_yearly = Product.find(:all, :conditions => {:recurring_month => 12,:kind => 'package'}, :order => 'cost')
+    # create a nested array of packages ordered by cost and grouped by package
+    # for example [1,2,3].zip [4,5,6] => [[1, 4], [2, 5], [3, 6]]
+    @packages = packages_monthly.zip packages_yearly
+     
   end
+   
 
   def choose_addon
     load_cart
@@ -36,6 +43,8 @@ class GreenHostingStoreController < ApplicationController
   end
 
   def checkout
+    load_cart
+    
   end
   
   def billing

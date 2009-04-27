@@ -118,4 +118,19 @@ describe Cart do
     changed_cart_item.should be_frozen
     cart.cart_items.find_by_id(cart_item.id).should be_nil
   end
+  
+  it "should calculate total price for a cart with items in it" do
+    cart      = Cart.create!(@valid_attributes)
+    product   = Product.create!(@valid_product_attributes)  # 10.00
+    product2  = Product.create!(@valid_product_attributes.merge({:cost => 33}))
+    cart_item = cart.add(product)
+    cart_item2 = cart.add(product2, 3) # 3 times 33 = 99
+    cart.save
+    
+    expected = cart.cart_items.inject(0) do |total,cart_item|
+      total += cart_item.unit_price * cart_item.quantity
+    end
+    
+    cart.total_price.should == expected
+  end
 end

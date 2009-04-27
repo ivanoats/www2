@@ -24,6 +24,7 @@ namespace :bootstrap do
   task :products => :environment do
     puts "bootstrapping products"
     
+    # Monthly packages
     Product.create!( {
       :name            => "Basic Web Hosting Subscription",
       :description     => "Basic Web Hosting Description",
@@ -41,6 +42,45 @@ namespace :bootstrap do
       :status          => "active",
       :kind            => "package"
     })
+
+    Product.create!( {
+      :name            => "Professional Web Hosting Subscription",
+      :description     => "Professional Web Hosting Description",
+      :cost            => 30.00,
+      :recurring_month => 1,
+      :status          => "active",
+      :kind            => "package"
+    })
+
+    # Yearly packages
+    Product.create!( {
+      :name            => "Basic Web Hosting Subscription",
+      :description     => "Basic Web Hosting Yearly",
+      :cost            => 100.00,
+      :recurring_month => 12,
+      :status          => "active",
+      :kind            => "package"
+    })
+    
+    Product.create!( {
+      :name            => "Small Business Web Hosting Subscription",
+      :description     => "Small Business Web Hosting Yearly",
+      :cost            => 199.00,
+      :recurring_month => 12,
+      :status          => "active",
+      :kind            => "package"
+    })
+
+    Product.create!( {
+      :name            => "Professional Web Hosting Subscription",
+      :description     => "Professional Web Hosting Yearly",
+      :cost            => 299.00,
+      :recurring_month => 12,
+      :status          => "active",
+      :kind            => "package"
+    })
+
+
     
     Product.create!( {
       :name            => "Dedicated IP Address",

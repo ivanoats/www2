@@ -59,4 +59,10 @@ class Cart < ActiveRecord::Base
     cart_items[index] = cart_item
     cart_item
   end
+  
+  def total_price
+    cart_items.inject(0) do |total,cart_item|
+      total += cart_item.unit_price * cart_item.quantity
+    end
+  end
 end

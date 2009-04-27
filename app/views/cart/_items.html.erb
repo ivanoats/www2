@@ -23,6 +23,10 @@
       <td><%= number_to_currency(cart_item.unit_price * cart_item.quantity) %></td>
     </tr>
       <% end %>
+      <tr>
+        <td colspan="3">Total: </td>
+        <td><%= number_to_currency( @cart.total_price ) %></td>
+      </tr>
     <% else %>
     <tr style="border:2px; border-style:dotted;">
       <td colspan="4">Your cart is empty.</td>
