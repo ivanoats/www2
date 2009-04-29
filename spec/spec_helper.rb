@@ -83,3 +83,17 @@ def mock_ticket
     :to_xml => "User-in-XML", :to_json => "User-in-JSON", 
     :errors => [])
 end
+
+# See http://www.blognow.com.au/q/67540/Reflect_on_association_one_liner_to_check_association_details.html
+module ActiveRecord
+    module Reflection
+      class AssociationReflection
+        def to_hash
+          {
+            :macro      => @macro,
+            :class_name => @class_name || @name.to_s.singularize.camelize
+          }
+        end
+      end
+    end
+  end

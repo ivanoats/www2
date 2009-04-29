@@ -20,7 +20,13 @@ describe Cart do
     Cart.create!(@valid_attributes)
   end
 
-  it "should have many cart items"
+  it "should have many cart items" do
+    association_results = {
+      :macro      => :has_many,
+      :class_name => "CartItem"
+    }
+    Cart.reflect_on_association(:cart_items).to_hash.should == association_results
+  end
 
   it "should only allow referrer_id as an integer or nil" do
     lambda { Cart.create!(@valid_attributes.merge(:referrer_id => 1)) }.should_not raise_error

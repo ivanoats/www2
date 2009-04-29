@@ -17,9 +17,21 @@ describe CartItem do
     CartItem.create!(@valid_attributes)
   end
   
-  it "should belong to a cart"
+  it "should belong to a cart" do
+    association_results = {
+      :macro      => :belongs_to,
+      :class_name => "Cart"
+    }
+    CartItem.reflect_on_association(:cart).to_hash.should == association_results
+  end
   
-  it "should have one product"
+  it "should belong to a product" do
+    association_results = {
+      :macro      => :belongs_to,
+      :class_name => "Product"
+    }
+    CartItem.reflect_on_association(:product).to_hash.should == association_results
+  end
   
   it "should require a name" do
     lambda { CartItem.create!(@valid_attributes.merge(:name => '')) }.should raise_error
