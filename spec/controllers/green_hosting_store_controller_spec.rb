@@ -1,8 +1,28 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-describe GreenHostingStoreController do
+module CartSystemHelperSpecMethods
+  def should_test_for_new_cart_on(action)
+    get action
+    
+    session[:cart_id].should_not be_nil
+    Cart.find(session[:cart_id]).should_not be_nil
+    assigns[:cart].id.should == session[:cart_id]
+  end
+  
+  def should_test_for_existing_cart_on(action)
+    expected_cart = Cart.create!
+    session[:cart_id] = expected_cart.id
+    
+    get action
+    
+    session[:cart_id].should == expected_cart.id
+    assigns[:cart].id.should == expected_cart.id
+  end
+end
 
-  #Delete these examples and add some real ones
+describe GreenHostingStoreController do
+  include CartSystemHelperSpecMethods
+  
   it "should use GreenHostingStoreController" do
     controller.should be_an_instance_of(GreenHostingStoreController)
   end
@@ -15,20 +35,12 @@ describe GreenHostingStoreController do
     end
     
     it "should create a new cart for a new user session" do
-      get 'choose_domain'
-      session[:cart_id].should_not be_nil
-      Cart.find(session[:cart_id]).should_not be_nil
-      assigns[:cart].id.should == session[:cart_id]
+      should_test_for_new_cart_on 'choose_domain'
     end
     
-    it "should find an existing cart for an previous user session" do
-      expected_cart = Cart.create!
-      session[:cart_id] = expected_cart.id
-      get 'choose_domain'
-      session[:cart_id].should == expected_cart.id
-      assigns[:cart].id.should == expected_cart.id
-    end
-    
+    it "should load an existing cart for an previous user session" do
+      should_test_for_existing_cart_on 'choose_domain'
+    end    
   end
 
   describe "GET 'choose_package'" do
@@ -36,12 +48,28 @@ describe GreenHostingStoreController do
       get 'choose_package'
       response.should be_success
     end
+    
+    it "should create a new cart for a new user session" do
+      should_test_for_new_cart_on 'choose_domain'
+    end
+    
+    it "should load an existing cart for an previous user session" do
+      should_test_for_existing_cart_on 'choose_domain'
+    end
   end
 
   describe "GET 'choose_addon'" do
     it "should be successful" do
       get 'choose_addon'
       response.should be_success
+    end
+
+    it "should create a new cart for a new user session" do
+      should_test_for_new_cart_on 'choose_domain'
+    end
+    
+    it "should load an existing cart for an previous user session" do
+      should_test_for_existing_cart_on 'choose_domain'
     end
   end
   
@@ -56,9 +84,16 @@ describe GreenHostingStoreController do
         
     describe "GET 'checkout'" do
       it "should be successful" do
-      
         get 'checkout'
         response.should be_success
+      end
+      
+      it "should create a new cart for a new user session" do
+        should_test_for_new_cart_on 'choose_domain'
+      end
+
+      it "should load an existing cart for an previous user session" do
+        should_test_for_existing_cart_on 'choose_domain'
       end
     end
   end
@@ -67,6 +102,14 @@ describe GreenHostingStoreController do
     it "should be successful" do
       get 'confirmation'
       response.should be_success
+    end
+    
+    it "should create a new cart for a new user session" do
+      should_test_for_new_cart_on 'choose_domain'
+    end
+    
+    it "should load an existing cart for an previous user session" do
+      should_test_for_existing_cart_on 'choose_domain'
     end
   end
 end
