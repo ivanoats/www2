@@ -15,6 +15,12 @@ require "email_spec/matchers"
 include AuthenticatedTestHelper
 include AuthenticatedSystem
 
+# quiets the following ActiveRecord version 2.3.2 deprecation warning
+# DEPRECATION WARNING: using %s in messages is deprecated; use {{value}} instead.. (called from 
+# interpolate at /opt/local/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/
+# i18n_interpolation_deprecation.rb:17)
+ActiveSupport::Deprecation.silenced = true
+
 # Require all .rb files in /spec/shared and its sub-directories
 Dir[RAILS_ROOT + '/spec/shared/**/*.rb'].each { |f| require f }
 
