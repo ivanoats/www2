@@ -1,4 +1,5 @@
-<% render :partial => "head_and_sidebar" %>
+<%= render "head_and_sidebar" %>
+<%= render 'navigation' %>
 
 <h1>Choose Your Domain</h1>
 
@@ -18,6 +19,8 @@
   <%= submit_to_remote :add_to_cart, "Add to Cart", :disable_with => 'Adding to Cart...', :html => {:style => 'display:none', :disabled => true, :id => 'add_domain_button'}, :url => { :controller => 'cart', :action => "add_domain" } %>
 <% end -%>
 <%= observe_field :domain_name, :function => "allow_check_domain()"%>
+
+<%= link_to "Continue", :action => "choose_package" %>
 
 <%= javascript_tag "
   var allow_check_domain = function() {

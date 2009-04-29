@@ -1,4 +1,5 @@
-<% render :partial => "head_and_sidebar" %>
+<%= render "head_and_sidebar" %>
+<%= render 'navigation' %>
 
 <h1>Choose any additional services</h1>
 
@@ -24,6 +25,7 @@
   <input name="addon_id" id="addon_chosen" type="hidden" value=""/>
 <% end  #form -%>
 
+<%= link_to "Continue", :action => "checkout" %>
 
 <script type="text/javascript" charset="utf-8">
 <!--

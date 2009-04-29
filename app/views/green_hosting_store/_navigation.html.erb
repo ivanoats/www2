@@ -1,0 +1,8 @@
+<%- separator = " &gt;&gt; " -%>
+<div>
+  <%= link_to_unless_current "Choose Domain", :action => "choose_domain" %> <%= separator %>
+  <%= link_to_unless_current "Choose Package", :action => "choose_package" %> <%= separator %>
+  <%= link_to_unless_current "Choose Add-ons", :action => "choose_addon" %> <%= separator %>
+  <%= link_to_unless_current "Checkout", :action => "checkout" %> <%= separator %>
+  <%= link_to_unless_current "Confirmation", :action => "confirmation" %>
+</div>
