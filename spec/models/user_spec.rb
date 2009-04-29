@@ -279,9 +279,10 @@ describe User do
       @user.reload.unsuspend!
       @user.should be_pending
     end
+    
+    it "should have one customer"
+    
   end
-  
-  it "should have one customer"
 
 protected
   def create_user(options = {})
