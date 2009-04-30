@@ -22,7 +22,7 @@ render_tabnav :admin,
   #if url_options_authenticate?
   
   
-  %w(Accounts Pages Products Redirects Servers Tags Tickets Users).each do |name|
+  %w(Accounts Products Redirects Servers Tags Tickets Users).each do |name|
     add_tab do |t|
       t.named name.camelize
       t.titled "Go to #{name.camelize}"

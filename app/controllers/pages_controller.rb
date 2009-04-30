@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
   
-  layout 'admin'
   attr_accessor :splash_on
   
   require_role "Administrator", :except => [:show, :home, :permalink]

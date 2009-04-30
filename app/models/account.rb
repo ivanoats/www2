@@ -143,14 +143,7 @@ class Account < ActiveRecord::Base
     end
   end
   
-  def email
-    self['email']# || self.users.empty? ? "" : self.users.first.email
-  end
-  
-  def balance
-    self['balance'] || 0
-  end
-  
+
 protected
   
   

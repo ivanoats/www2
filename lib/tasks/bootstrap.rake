@@ -20,6 +20,11 @@ namespace :bootstrap do
     account.payments << Payment.new(:amount => 50)
     account.charges << Charge.new(:amount => 150)
   end
+  
+  task :server => :environment do
+    puts "Creating Whm Server"
+    server = Server.create! :name => "Test Server", :ip_address => '174.132.225.221', :whm_user => 'wpdnet', :whm_pass => 'coo2man'
+  end
 
   desc "Bootstrap initial products"
   task :products => :environment do
