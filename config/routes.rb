@@ -24,7 +24,10 @@ ActionController::Routing::Routes.draw do |map|
   
   # Application Resources
   map.resources :redirects
-  map.resources :servers
+  
+  map.resources :servers do |servers|
+    servers.resources :hostings
+  end
   map.resources :products
   map.resources :tags
   map.resources :tickets

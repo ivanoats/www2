@@ -2,9 +2,10 @@ class Hosting < ActiveRecord::Base
   include AASM
 
   belongs_to :account
+  belongs_to :server
   has_many :add_ons
   has_many :charges, :as => :chargable
-  #has_one :domain #maybe
+  has_one :domain #maybe
   
   named_scope :active, :conditions => ["state = ?",'active']
   named_scope :visible, :conditions => {'state' => ['ordered', 'active', 'suspended']}
@@ -13,13 +14,13 @@ class Hosting < ActiveRecord::Base
   aasm_column :state
   aasm_initial_state :ordered
   aasm_state :ordered
-  aasm_state :active
-  aasm_state :suspended
-  aasm_state :deleted
+  aasm_state :active, :enter => :create_cpanel_account
+  aasm_state :suspended, :enter => :suspend_cpanel_account, :exit => :unsuspend_cpanel_account
+  aasm_state :deleted, :enter => :delete_cpanel_account
 
     
   aasm_event :activate do
-    transitions :from => :ordered, :to => :active 
+    transitions :from => :ordered, :to => :active, :guard => Proc.new {|u| !u.server.nil? }
   end
   
   aasm_event :suspend do
@@ -56,6 +57,26 @@ class Hosting < ActiveRecord::Base
   def cost
     #TODO build cost from add_ons
     10
+  end
+
+private
+
+  def create_cpanel_account
+    #TODO create default cpanel_user
+    self.update_attribute(:cpanel_user, "testing#{rand(1000)}")
+    self.server.whm.create_account(:username => self.cpanel_user, :domain => 'example.com')
+  end
+  
+  def suspend_cpanel_account
+    self.server.whm.suspend_account(:user => self.cpanel_user)
+  end
+  
+  def unsuspend_cpanel_account
+    self.server.whm.unsuspend_account(:user => self.cpanel_user)
+  end
+  
+  def delete_cpanel_account
+    self.server.whm.terminate_account(:user => self.cpanel_user)
   end
 
 end

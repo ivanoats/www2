@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090424084641) do
+ActiveRecord::Schema.define(:version => 20090430072353) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 20090424084641) do
     t.string   "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "balance",            :default => 0.0
+    t.integer  "balance",            :limit => 10, :precision => 10, :scale => 0, :default => 0
     t.date     "last_payment_on"
     t.string   "payment_period"
     t.string   "billing_id"
@@ -167,6 +167,8 @@ ActiveRecord::Schema.define(:version => 20090424084641) do
     t.string   "charge_period"
     t.string   "state"
     t.integer  "account_id"
+    t.integer  "server_id"
+    t.string   "cpanel_user"
   end
 
   create_table "lead_sources", :force => true do |t|
@@ -230,7 +232,7 @@ ActiveRecord::Schema.define(:version => 20090424084641) do
   create_table "payments", :force => true do |t|
     t.integer  "account_id"
     t.integer  "order_id"
-    t.decimal  "amount",         :default => 0.0
+    t.integer  "amount",         :limit => 10, :precision => 10, :scale => 0, :default => 0
     t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"

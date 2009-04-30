@@ -2,8 +2,8 @@ class GreenHostingStoreController < ApplicationController
   include ActiveMerchant::Billing
   include CartSystem
   
-  before_filter :login_required, :only => [ :billing, :payment]
-  before_filter :require_account, :only => [ :billing, :payment]
+  before_filter :login_required, :only => [ :checkout, :billing, :payment]
+  before_filter :require_account, :only => [:checkout, :billing, :payment]
 
   def choose_domain
     @domain = Domain.new

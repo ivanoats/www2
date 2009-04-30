@@ -1,0 +1,12 @@
+<h1>Editing hosting</h1>
+
+<% form_for([@server,@hosting]) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @hosting %> |
+<%= link_to 'Back', server_hostings_path %>
