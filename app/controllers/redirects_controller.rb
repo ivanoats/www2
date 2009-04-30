@@ -1,5 +1,5 @@
 class RedirectsController < ApplicationController
-  
+  layout 'admin'
   require_role "Administrator"
   
   # GET /redirects

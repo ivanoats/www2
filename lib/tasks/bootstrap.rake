@@ -8,6 +8,7 @@ namespace :bootstrap do
     Role.create! :name => "Editor"
     
     admin = User.create! :login => "admin", :password => "password", :password_confirmation => "password", :email => "admin@sample.com"
+    admin.roles << Role.administrator
     admin.register!
     admin.activate!
     

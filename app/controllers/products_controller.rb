@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  layout 'admin'
   require_role "Administrator"
   
   before_filter :login_required

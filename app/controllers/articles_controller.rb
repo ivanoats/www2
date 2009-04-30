@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   
+  layout 'admin'
   require_role "Editor", :except => [:index, :show, :permalink, :livesearch]
   
   ssl_allowed :livesearch
