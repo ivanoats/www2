@@ -3,14 +3,15 @@
 
 <h1>Checking out</h1>
 
-<% unless @account.card_number.blank? %>
-  Credit Card on File
+
+<% unless @account.needs_payment_info? %>
+  Use Credit Card on File
   <%= @account.card_number%>
   <%= @account.card_expiration%>
 <% end %>
 
 <%= error_messages_for :account, :address, :credit_card %>
-<% z_form_for :account do |f| %>
+<% z_form_for :account, :action => :checkout do |f| %>
   <% f.fieldset :type => "inline" do %>
   
 

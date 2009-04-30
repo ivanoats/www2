@@ -4,7 +4,7 @@ class Order < ActiveRecord::Base
   belongs_to :account
   
   has_many :purchases
-  has_many :products, :through => :purchases
+  has_many :products, :through => :purchases, :as => :purchasable
   has_one :payment, :as => :payable
   
   before_create :create_invoice_number
@@ -35,7 +35,8 @@ class Order < ActiveRecord::Base
     end
 
     def total_charge
-      self.products.to_a.sum(&:cost)
+      self.purchases.collect { |purchase| purchase.product }.sum(&:cost)
+      #self.products.to_a.sum(&:cost)
     end
 
     def total_charge_in_cents

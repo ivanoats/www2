@@ -100,7 +100,7 @@ class Account < ActiveRecord::Base
   
   def charge_order(order)
     amount = order.total_charge
-    if (@response = gateway.purchase(amount)).success?
+    if (@response = gateway.purchase(amount,billing_id)).success?
       payments.create(:amount => amount, :transaction_id => @response.authorization, :order_id => order)
       order.paid!
       true

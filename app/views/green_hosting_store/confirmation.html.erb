@@ -1,5 +1,10 @@
 <%# render "head_and_sidebar" %>
 <%= render 'navigation' %>
 
-<h1>GreenHostingStore#confirmation</h1>
-<p>Find me in app/views/green_hosting_store/confirmation.html.erb</p>
+Confirm your order and complete your purchase.
+
+<%= error_messages_for :account, :order %>
+
+<%= form_tag :action => 'payment' %>
+  <%= submit_tag "Purchase", :disable_with => "Purchasing..."%>
+</form>
