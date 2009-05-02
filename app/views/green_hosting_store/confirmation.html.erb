@@ -5,6 +5,13 @@ Confirm your order and complete your purchase.
 
 <%= error_messages_for :account, :order %>
 
+
+<%= @account.card_number%>
+<%= @account.card_expiration%>
+<%= link_to "Change Billing Information", :action => "billing"%>
+
+Total Charge is <%= number_to_currency @cart.total_price %>
+
 <%= form_tag :action => 'payment' %>
   <%= submit_tag "Purchase", :disable_with => "Purchasing..."%>
 </form>

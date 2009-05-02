@@ -105,6 +105,13 @@ class Account < ActiveRecord::Base
       order.paid!
       true
     else
+      pp gateway
+      pp gateway.test?
+      logger.error << pp( @response)
+      
+      #attr_reader :params, :message, :test, :authorization, :avs_result, :cvv_result
+      
+      
       order.errors.add_to_base(@response.message)
       false
     end

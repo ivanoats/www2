@@ -2,9 +2,9 @@ class GreenHostingStoreController < ApplicationController
   include ActiveMerchant::Billing
   include CartSystem
   
-  before_filter :login_required, :only => [ :checkout, :billing, :payment]
-  before_filter :require_account, :only => [:checkout, :billing, :payment]
-
+  before_filter :login_required, :only => [  :billing, :payment, :confirmation]
+  before_filter :require_account, :only => [ :billing, :payment, :confirmation]
+  before_filter :load_cart
   def choose_domain
     @domain = Domain.new
     load_cart
@@ -42,14 +42,41 @@ class GreenHostingStoreController < ApplicationController
     @addons = Product.addons
   end
 
+
   def checkout
-    load_cart
     
+    if logged_in?
+      if request.post?
+        if params[:use_existing_account] == "true"
+          #use existing account
+          account = current_user.accounts.find(params[:account][:id])
+          session[:account] = account.id
+          redirect_to( account.needs_payment_info? ? {:action => :billing} : {:action => :confirmation}) and return
+        else
+          #create a new account
+          account = current_user.accounts.create!(params[:account])
+          session[:account] = account
+          redirect_to :action => :billing and return
+        end
+      end
+    else
+      @user = User.new
+      if request.post?
+        
+      end
+    end
+  end
+
+  def billing
+    load_cart
     @address = @account.billing_address || @account.build_billing_address
     @credit_card = CreditCard.new(params[:credit_card])
+
     
     if request.post?
-      if params[:paypal].blank?
+      if params[:use_existing_credit_card]
+        redirect_to :action => "confirmation"
+      else
         if @account.update_attributes(params[:account]) && @address.update_attributes(params[:address]) && @credit_card.valid?          
           if @account.store_card(@credit_card, :ip => request.remote_ip)
             flash[:notice] = "Please Confirm your order"
@@ -58,17 +85,13 @@ class GreenHostingStoreController < ApplicationController
             flash[:notice] = "Failed to store credit card."
           end
         end
-      else
-        if redirect_url = @subscription.start_paypal(paypal_account_url, billing_account_url)
-          redirect_to redirect_url
-        end
       end
     end
-
-    
   end
 
   def confirmation
+    
+    
   end
 
   def payment

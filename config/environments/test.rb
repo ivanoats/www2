@@ -36,3 +36,7 @@ config.gem "aslakhellesoy-cucumber",
 #  config.gem "dchelimsky-rspec",
 #              :lib => "rspec",
 #              :source => "http://gems.github.com"
+
+config.after_initialize do
+  ActiveMerchant::Billing::Base.gateway_mode = :test
+end
