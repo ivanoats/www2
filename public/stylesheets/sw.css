@@ -163,7 +163,8 @@ padding-top:5px;
 #nav li#services ul, #nav li#about ul, #nav li#contact ul {margin: 0 0 0 0px; padding: 0 0 0 20px; background: #d1ebb1;}
 #nav li#services li a, #nav li#about li a, #nav li#contact li a {height: auto; padding: 10px 0; color: #77a143;}
 #nav li#services ul a:hover, #nav li#about ul a:hover, #nav li#contact ul a:hover {color: #305305; background: none;}
-#nav li ul {position: absolute; width: 100px; left: -999em;}
+#nav li ul {position: absolute; width: 140px; left: -999em;}
+/*#nav li#contact ul li ul {position: absolute; width: 100px; left: -999em;}*/
 #nav li:hover ul, #nav li.sfhover ul {left: auto;}
 #nav li ul {float: none; clear: both; margin: 0;}
 

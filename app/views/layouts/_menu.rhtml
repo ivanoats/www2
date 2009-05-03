@@ -1,7 +1,12 @@
 <div id="nav-wrapper">
 	<ul id="nav">
 		<li id="home"><%= menu_link '','/'%></li>
-		<li id="services"><%= menu_link '','/green-web-hosting-services' %></li>
+		<li id="services"><%= menu_link '','/green-web-hosting-services' %>
+		  <ul>
+		    <li><%= menu_link 'Shared Web Hosting', '/green-web-hosting-services' %></li>
+		    <li><%= menu_link 'Consulting Login', 'https://sm.projectpath.com' %></li>
+		  </ul>
+		</li>
 		<li id="blog"><%= menu_link '','/blog'%></li>
 		<li id="about"><%= menu_link '','/about-us'%></li>
 		<li id="contact"><%= menu_link '', '/contact'%>
