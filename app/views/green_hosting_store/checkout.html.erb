@@ -21,19 +21,17 @@
   <% end %>
 <% else %>  
   Create a new user account to manage your hosting.  If you wish to add this purchase to an existing account, <%= link_to "sign in", login_url %>
+  <%= error_messages_for :user, :account %>
   <% z_form_for :user do |f| %>
-    <% f.fieldset :type => "inline" do %>
-      <% z_fields_for :user do |u|%>
-      
-      <%= u.login %>
-      <%= u.name %>
-      <%= u.email %>
-      <%= u.password %>
-      <%= u.password_confirmation :label => "Confirm Password" %>
-      <% end %>
+    <% f.fieldset :legend => 'Create your Account', :type => "inline" do %>
+      <%= f.text_field :email %>
+      <%= f.text_field :login %>
+      <%= f.password_field :password %>
+      <%= f.password_field :password_confirmation, :label => "Confirm Password" %>
       <% z_fields_for :account do |a| %>
         <%=  a.text_field :organization%>
       <% end %>
+      <%= f.submit "Create Account"%>
     <% end %>
   <% end %>
 <% end %>

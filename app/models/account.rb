@@ -23,6 +23,8 @@ class Account < ActiveRecord::Base
   named_scope :active, :conditions => ["state = ?",'active']
   named_scope :payment_due, :conditions => ['balance < ? and (last_payment_on IS NULL or last_payment_on < ?)',0,1.month.ago]
   
+  validates_presence_of :organization
+  
   aasm_column :state
   aasm_initial_state :active
   aasm_state :active
@@ -198,8 +200,8 @@ protected
         :password => '2N3439BNayw56ndw'
       }
     else
-      { :login => 'smk510',
-        :password => '2N3439BNayw56ndw',
+      { :login => 'nationalbankcard11',
+        :password => 'Authorize13',
         :test => true
       }
     end)

@@ -5,9 +5,14 @@ class GreenHostingStoreController < ApplicationController
   before_filter :login_required, :only => [  :billing, :payment, :confirmation]
   before_filter :require_account, :only => [ :billing, :payment, :confirmation]
   before_filter :load_cart
+  before_filter :cart_not_empty, :only => [:checkout, :billing, :payment, :confirmation]
+  
+  def index
+    redirect_to :action => "choose_domain"
+  end
+  
   def choose_domain
     @domain = Domain.new
-    load_cart
   end
   
   def check_domain
@@ -24,7 +29,6 @@ class GreenHostingStoreController < ApplicationController
   end
 
   def choose_package
-    load_cart
     @package = Product.new
      # find all monthly sorted by price
     packages_monthly = Product.find(:all, :conditions => {:recurring_month => 1,:kind => 'package'}, :order => 'cost') 
@@ -37,14 +41,12 @@ class GreenHostingStoreController < ApplicationController
    
 
   def choose_addon
-    load_cart
     @addon = Product.new
     @addons = Product.addons
   end
 
 
   def checkout
-    
     if logged_in?
       if request.post?
         if params[:use_existing_account] == "true"
@@ -60,15 +62,23 @@ class GreenHostingStoreController < ApplicationController
         end
       end
     else
-      @user = User.new
+      @user = User.new(params[:user])
+      @account = Account.new(params[:account])
       if request.post?
-        
+        if @user.valid? and @account.valid?
+          @user.save
+          @user.accounts << @account
+          @user.register!
+          @user.activate!
+          session[:user_id] = @user.id
+          session[:account] = @account.id
+          redirect_to :action => "billing"
+        end
       end
     end
   end
 
   def billing
-    load_cart
     @address = @account.billing_address || @account.build_billing_address
     @credit_card = CreditCard.new(params[:credit_card])
 
@@ -95,12 +105,19 @@ class GreenHostingStoreController < ApplicationController
   end
 
   def payment
-    load_cart
     @order = Order.from_cart(@cart)
     if @order.valid? 
       redirect_to :action => 'thanks' and return if @account.charge_order(@order)
     end
     render :action => 'confirmation'
   end
-
+private
+  
+  def cart_not_empty
+    if @cart.cart_items.empty?
+      flash[:notice] = "Please choose a hosting package before checking out"
+      redirect_to :action => 'choose_package' 
+    end
+  end
+  
 end
