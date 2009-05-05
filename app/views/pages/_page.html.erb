@@ -7,6 +7,9 @@
   
   <p> <%= f.check_box :hide_sidebar %> Hide Sidebar </p>
   <p> <%= f.check_box :flip_sidebar %> Flip Sidebar </p>
+  <p> <%= f.check_box :show_teaser %> Show Teaser </p>
+  <p>Teaser:<br /> <%= f.text_field :teaser, :size => 60 %></p>
+  
    
   <%= submit_tag 'Save' %> <%= submit_to_remote "save_and_continue", "Save and Continue" , :url => (@page.new_record? ? pages_url : page_url(@page)), :before => "tinyMCE.triggerSave(false,true);" %> or <%= link_to 'cancel', pages_url %> 
 <% end -%>

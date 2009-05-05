@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090430072353) do
+ActiveRecord::Schema.define(:version => 20090505191841) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 20090430072353) do
     t.string   "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "balance",            :limit => 10, :precision => 10, :scale => 0, :default => 0
+    t.decimal  "balance",            :precision => 10, :scale => 2, :default => 0.0
     t.date     "last_payment_on"
     t.string   "payment_period"
     t.string   "billing_id"
@@ -187,9 +187,9 @@ ActiveRecord::Schema.define(:version => 20090430072353) do
   end
 
   create_table "open_id_authentication_nonces", :force => true do |t|
-    t.integer "timestamp",  :null => false
+    t.integer "timestamp",                  :null => false
     t.string  "server_url"
-    t.string  "salt",       :null => false
+    t.string  "salt",       :default => "", :null => false
   end
 
   create_table "orders", :force => true do |t|
@@ -210,6 +210,8 @@ ActiveRecord::Schema.define(:version => 20090430072353) do
     t.datetime "updated_at"
     t.boolean  "hide_sidebar"
     t.boolean  "flip_sidebar"
+    t.boolean  "show_teaser"
+    t.string   "teaser"
   end
 
   create_table "passwords", :force => true do |t|
@@ -232,7 +234,7 @@ ActiveRecord::Schema.define(:version => 20090430072353) do
   create_table "payments", :force => true do |t|
     t.integer  "account_id"
     t.integer  "order_id"
-    t.integer  "amount",         :limit => 10, :precision => 10, :scale => 0, :default => 0
+    t.decimal  "amount",         :precision => 10, :scale => 2, :default => 0.0
     t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -294,7 +296,7 @@ ActiveRecord::Schema.define(:version => 20090430072353) do
   end
 
   create_table "sessions", :force => true do |t|
-    t.string   "session_id", :null => false
+    t.string   "session_id", :default => "", :null => false
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
