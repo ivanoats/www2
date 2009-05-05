@@ -197,11 +197,11 @@ protected
     ActiveMerchant::Billing::Base.gateway(:authorize_net_cim).new(
     if RAILS_ENV == 'production'
       { :login => 'smk510',
-        :password => '2N3439BNayw56ndw'
+        :password => '2hQZ2464wGgAgM65'
       }
     else
-      { :login => 'nationalbankcard11',
-        :password => 'Authorize13',
+      { :login => '4W39zX64qJha',
+        :password => '4BjK7mTD3h25K6v7',
         :test => true
       }
     end)
