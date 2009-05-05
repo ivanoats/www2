@@ -106,6 +106,31 @@ padding:10px;
 
 #spacer {margin-top: 10px; padding-top: 10px;}
 
+/* Nav ################################################################## */
+
+#nav {height: 46px; width: 552px; margin-top: 32px; clear: right; float: right; background: url(../images/bg_nav.gif) bottom no-repeat;}
+#nav ul {margin: 0; padding: 0;}
+#nav li {list-style: none; float: left;}
+#nav a {display: block; text-decoration: none;}
+#nav a:hover {background: url(../images/bg_nav_hover.gif) no-repeat; }
+#nav #home a {height: 46px; width: 120px;}
+#nav #home a:hover {background: url(../images/bg_nav_hover.gif) no-repeat; background-position: 0;}
+#nav #services a {height: 46px; width: 130px;}
+#nav #services a:hover {background: url(../images/bg_nav_hover.gif) no-repeat; background-position: -120px 0;}
+#nav #blog a {height: 46px; width: 80px;}
+#nav #blog a:hover {background: url(../images/bg_nav_hover.gif) no-repeat; background-position: -250px 0;}
+#nav #about a {height: 46px; width: 100px;}
+#nav #about a:hover {background: url(../images/bg_nav_hover.gif) no-repeat; background-position: -330px 0}
+#nav #contact a {height: 46px; width: 120px;}
+#nav #contact a:hover {background: url(../images/bg_nav_hover.gif) no-repeat; background-position: -430px 0}
+#nav li#services ul, #nav li#about ul, #nav li#contact ul {margin: 0 0 0 0px; padding: 0 0 0 20px; background: #d1ebb1;}
+#nav li#services li a, #nav li#about li a, #nav li#contact li a {height: auto; padding: 10px 0; color: #77a143;}
+#nav li#services ul a:hover, #nav li#about ul a:hover, #nav li#contact ul a:hover {color: #305305; background: none;}
+#nav li ul {position: absolute; width: 140px; left: -999em;}
+/*#nav li#contact ul li ul {position: absolute; width: 100px; left: -999em;}*/
+#nav li:hover ul, #nav li.sfhover ul {left: auto;}
+#nav li ul {float: none; clear: both; margin: 0;}
+
 /* === FLASH MESSAGES === */
 div#flash-notice {}
 div#flash-warning {}
