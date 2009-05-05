@@ -1,0 +1,125 @@
+/***
+
+	Font Palette
+	***************************************
+	body: 'Trebuchet MS', sans-serif;
+
+	Color Palette
+	***************************************
+	dropdown green color: #305305;
+	footer light green color: #e0ead3;
+
+***/
+
+/* Reset Reloaded: http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/ */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, font, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td {margin: 0;padding: 0;border: 0;outline: 0;font-weight: inherit;font-style: inherit;font-size: 100%;font-family: inherit;vertical-align: baseline;}
+:focus {outline: 0;}
+body {line-height: 1;color: black;background: white;}
+ol, ul {list-style: none;}
+table {border-collapse: separate;border-spacing: 0;}
+caption, th, td {text-align: left;font-weight: normal;}
+blockquote:before, blockquote:after, q:before, q:after {content: "";}
+blockquote, q {quotes: "" "";}
+
+/* General ################################################################## */
+
+body {font: small "Helvetica Neue", Helvetica, Arial, sans-serif; color:#333333;}
+h1, h2, h3, h4, h5, h6 {font-weight:normal; font-family: 'Trebuchet MS', sans-serif;}
+h1 {margin: 0; padding-bottom: 8px; font-size: 1.7em;}
+h2 {font-size:1.5em;margin: 0 0 10px;}
+h3 {font-size:1.3em;margin-bottom: 10px; line-height:1;}
+h4 {font-size:1.2em;line-height:1.25;margin-bottom:1.25em;height:1.25em;}
+h5 {font-size:1em;font-weight:bold;margin-bottom:1.5em;}
+h6 {font-size:1em;font-weight:bold;}
+h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {margin:0;}
+h2.page-title {margin: 1em 0 1em;}
+h2.entry-title {margin: 0 0 .2em;}
+h2.search-title {padding-top: 3px;}
+h3 a {color: #000000;} /* blog titles */
+h3 a:hover {background: #eeeeee;}
+strong {font-weight: bold;}
+
+#content p {margin:0 0 1em;}
+/* #content p img {margin:1.5em 1em 1.5em 0;padding:0;} */
+#content p img.right {float:right;margin:1.5em 0 1.5em 1.5em;}
+#content a, a:focus, a:hover {width:0; height:0;outline:0; /* removes outline */}
+#content a {text-decoration:none;}
+#content a:hover {text-decoration: underline;}
+blockquote {margin:1.5em;color:#666;font-style:italic;}
+img {border:none;}
+#content ul li {list-style: disc outside;}
+#content ol li {list-style: decimal outside;}
+a img {border: none;}
+
+.clearfix:after {content: ".";display: block;clear: both;visibility: hidden;line-height: 0;height: 0;}
+.clearfix {display: inline-block;}
+
+html[xmlns] .clearfix {display: block;}
+* html .clearfix {height: 1%;}
+
+/* Layout ################################################################## */
+
+#wrapper {margin: 0; padding: 0; background: url(../images/bg.jpg) top center repeat-x;}
+	#pages_home #wrapper {margin: 0; padding: 0; background: url(../images/bg_home.jpg) top center repeat-x;}
+#container {width: 1000px; margin: 0 auto; padding-bottom: 10px; font-size: 1em; overflow: hidden;}
+#header {height: 110px;}
+#header img {margin: 0; padding-left: 1%; float: left;}
+#top p {float: right; margin: 0; padding: 10px 20px 0 0; display: inline; font-size: 1em;}
+#top_login, #top_login a {color: #00b160; text-decoration: none;}
+#top_twitter {color: #008265;}
+
+#splash-wrap {height: 330px;width: 100%; }
+
+#splash {background-image: url(../images/bg_splash.jpg); background-repeat:no-repeat;}
+#splash ul {margin: 0; padding: 190px 0 0 745px;}
+#splash li {margin: 0; padding: 0; list-style: none;}
+#splash a {display: block;}
+#splash #signup a {height: 67px; width: 240px;}
+#splash #learn_more a {height: 67px; width: 240px;}
+
+#content ul {margin-left: 15px;}
+#sidebar {float: left; width: 20%; margin: 20px 0; padding: 0 1% 0 3%; text-align: right;}
+#sidebar ul, 
+#sidebar li {margin: 0; padding: 0; list-style: none;}
+#sidebar p img {
+border:medium none;
+margin:10px;
+padding:10px;
+}
+#footer {margin: 0; padding-bottom: 2%; clear: left; background: url(../images/ft_bg.gif) top repeat-x #82aa51; color: #e0ead3; font-size: 1.3em;}
+#footer-inner {width: 1000px; margin: 0 auto; padding-left: 30px; clear: both;}
+.footer-block {margin: 0; padding: 30px 0; border-bottom: 1px solid #9bbd71; clear: both; font-size: 1em;}
+.footer-block p, 
+.footer-block ul {padding-left: 70px;}
+.footer-block li {list-style:none;}
+.footer-block h1 {font-size: 1em; font-weight: bold;}
+.footer-block a {color: #e0ead3; text-decoration: none;}
+.footer_headline_link {color: #115511}
+.tiny {font-size: .6em;}
+.fb1 {font-size: 1.2em; background: url(../images/fb1_bg.gif) left no-repeat;}
+.fb2 {padding: 30px 0 30px; margin: 0; font: .8em arial, helvetica, sans-serif; background: url(../images/fb2_bg.gif) left center no-repeat;}
+.fb2 ul.first {padding-left: 70px;}
+.fb2 ul {float: left; margin: 0; padding-left: 5%;}
+.fb3 {color: #4a602f; background: url(../images/fb3_bg.gif) left no-repeat; border: none;}
+
+#spacer {margin-top: 10px; padding-top: 10px;}
+
+/* === FLASH MESSAGES === */
+div#flash-notice {}
+div#flash-warning {}
+div#flash-error {	}
+
+/* === ERROR MESSAGES === */
+div#errorExplanation {}
+div#errorExplanation h2 {}
+div#errorExplanation p {}
+div#errorExplanation ul {}
+div#errorExplanation ul li {}
+
+/* === FORMS === */
+div.fieldWithErrors {}
+div.fieldWithErrors label {}
+div.fieldWithErrors input, div.fieldWithErrors select, 
+div.fieldWithErrors textarea{}
