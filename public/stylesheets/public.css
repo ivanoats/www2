@@ -1,0 +1,230 @@
+
+#content ul li {margin-left: 20px;}
+#content ol li {margin-left: 20px;}
+
+#content {float: left; width: 650px; margin: 30px 0;  padding: 0 40px 0 20px; border: 1px solid #dedede; font-size: 1.2em; border-width: 0 1px 0 0;  }
+
+
+/* Hosting Table ################################################################## */
+
+/* Teaser *****/
+#content #hosting-10-tease {background: #f9ffb9 url(../images/tb_10.gif) no-repeat;}
+#content #hosting-20-tease {background: #f9ffb9 url(../images/tb_20.gif) no-repeat;}
+#content #hosting-30-tease {background: #f9ffb9 url(../images/tb_30.gif) no-repeat;}
+#content .hosting-tease {margin:0; padding:0; *min-height: 100px;}
+#content .hosting-tease p {margin: 0; padding: 60px 0px 0px 30px; *padding: 60px 0px 0px 30px;width: 480px; color: #77A143; font-style: italic; font-weight: bold; line-height: 1.5em;}
+/* end-Teaser *****/
+
+#content .hosting-table {height: 100%; width: 650px; margin: 0 0 50px;}
+#content .hosting-table .syn-bg-bott {position:relative; top: 0px; height: 20px; background: url(../images/tb_syn_bott.gif) bottom center no-repeat;} 
+#content .hosting-table-list p {width: 490px; margin: 0; padding: 0; background: none;}
+#content ul.hosting-table-list {width: 630px; margin: 20px 10px 30px;}
+#content ul.hosting-table-list li {margin: 0px 0px 10px 0px; padding:10px 100px 10px 40px; *padding: 10px 100px 10px 30px; list-style: none inside; background: #F5FCFF url(../images/tb_bg_row.jpg) repeat-x;} 
+#content ul.hosting-table-list li span.tooltip {position:relative; top: 4px; margin: 0 10px;} /* tooltip */
+#content ul.hosting-table-list li p.check {width: 490px; margin: 0; padding: 10px 70px 10px 0; background: url(../images/tb_check.jpg) right center no-repeat;} /* check */
+#content .signup-button {text-align:right; position: relative; right:20px;}
+.hosting_plan_name { font-size: 1.5em }
+
+/* Blog ################################################################## */
+
+.article_meta { font-size: .8em; margin-top: 15px; color: #999;}
+.comment_time { font-size: .8em; margin-top: 5px; }
+.pagination {margin: 20px 0;}
+.hentry {margin: 20px 0 30px;}
+#article_body {margin: 20px 0;}
+
+.synopsis, .alert {padding: 10px 20px; color: #77a143; font-style: italic; background: #f9ffb9; font-size: .9em; font-weight: bold; text-align: left;}
+.alert {font-size: 1em;}
+
+.comment {
+border-top: 1px dotted #555; 
+padding-top:5px; 
+}
+
+
+
+/* Forms ################################################################## */
+
+input, input.title, textarea, select {margin:0.5em 0;border:1px solid #bbb;}
+input:active, input:focus, input.title:focus, textarea:focus, select:focus {border:1px solid #666;}
+input.title {font-size:1.5em;}
+
+/* Comment Form Overrides */
+.uniForm {border-top: 2px solid #DFDFDF; padding: 20px 0;}
+.ctrlHolder {background: none; padding: 7px 0;}
+label em, .label em {color: red;}
+
+
+/* User Table ################################################################## */
+
+table#users { width: 100%;} 
+table#users th { font-size: 95%; } 
+table#users td { font-size: 90%; } 
+
+/* defaults for rails scaffolding */
+table.scaffold { border-collapse: separate; }
+table.scaffold td { padding: 5px; }
+table.scaffold th { padding: 5px; }
+
+/************** support ticket form ***************/
+
+.field_description { color: #555; font-size: .8em; margin-bottom: 2px; display: block;}
+.field_description_radio { color: #555; font-size: .8em; margin-bottom: 2px; display: inline;}
+
+div#support_form ul {
+ font-size: .9em;
+ margin-bottom: 20px;
+}
+
+div#support_form li {
+ list-style-position: outside;
+ list-style-type: disc;
+ margin-left: 15px;
+ margin-bottom: 10px;
+}
+
+div#support_form input {
+ background-color: #cfc;
+ display: inline; /* was block */
+ }
+
+div#support_form input.sffocus,
+div#support_form input:focus, 
+div#support_form textarea.sffocus,
+div#support_form textarea:focus {
+	background-color: #e8ffe8;
+}
+
+div#support_form div {
+	margin-bottom: 15px;
+}
+
+div#support_form fieldset {
+	border: none;
+}
+
+div#support_form textarea {
+background-color: #cfc;
+display: block;
+
+}
+
+.errorExplanation { color: red; margin-bottom: 15px;}
+
+#support_sidebar {
+	margin-top: 10px;
+	text-align: left;
+}
+
+#support_sidebar li {
+	margin: 10px 0 0;
+	padding: 0px 0 0 30px;
+	background: url(../images/info.png) top left no-repeat;
+}
+
+/******************* rails flash (error messages) ********************/
+
+#notice { color: green; }
+.fieldWithErrors { background-color: red;  }
+.radio .fieldWithErrors { display: inline; background-color: red; }
+.radio .fieldWithErrors input { display: inline; background-color: red; }
+
+
+/******************* tag clouds *************************************/
+.css1 { font-size: 1.0em; }
+.css2 { font-size: 1.2em; }
+.css3 { font-size: 1.4em; }
+.css4 { font-size: 1.6em; }
+
+#top_tags_sidebar { text-align: left; margin-bottom: 15px }
+
+/******************  text buttons *****************/
+#content a.signup {
+	font-weight: bold;
+	display: block; 
+	border: 1px solid black;
+	border-bottom: 1px solid black;
+	background: #ccffcc;
+	width: 225px;
+	height: 20px;
+	padding: 10px;
+	margin: 10px;
+}
+#content a.signup:hover {
+	background: #ffccff;
+}
+/****************** graphic buttons *****************/
+#content .sign-up {
+	height:31px;
+	margin:-4px 0 24px 0;
+	}
+#content .sign-up a {
+	display:block;
+	width:137px;
+	height:31px;
+/*	float:right;*/
+	background:transparent url(../images/btn-signup.gif) no-repeat 0 0;
+	text-indent:-9999em;
+	border:none;
+	}
+#content .sign-up a:hover {
+	display:block;
+	background:transparent url(../images/btn-signup.gif) no-repeat -137px 0;
+	border:none;
+	}
+#content .learn-more {
+	height:31px;
+	margin:10px 0 24px 0;
+	}
+#content .learn-more a {
+	display:block;
+	width:137px;
+	height:31px;
+/*	float:right;*/
+	background:transparent url(../images/btn-learn-more.gif) no-repeat 0 0;
+	text-indent:-9999em;
+	border:none;
+	}
+#content .learn-more a:hover {
+	display:block;
+	background:transparent url(../images/btn-learn-more.gif) no-repeat -137px 0;
+	border:none;
+	}
+/****************** Green Web Hosting Store *****************/
+.addon {
+    border: 1px solid #000;
+    padding: 10px;
+    margin: 10px;
+    display: block;
+}
+
+.package-group {
+    border: 1px solid #000;
+    padding: 10px;
+    margin: 10px;
+    display: block;
+    height: 90px;
+}
+
+.package {
+    float: left;
+    border: 1px solid #000;
+    padding: 10px;
+    margin: 10px;
+}
+
+.package:hover, .addon:hover {
+    background-color: #cfc;
+    cursor: pointer;
+}
+
+.selectedPackage, .selectedAddon {
+    border: 1px solid #000;
+    padding: 10px;
+    margin: 10px;
+    display: block;
+    background-color: #ffc;
+}
+
+.float-left { float: left;}
+.float-right {float: right;}

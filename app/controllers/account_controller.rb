@@ -2,16 +2,11 @@ class AccountController < ApplicationController
   include ActiveMerchant::Billing
   
   before_filter :login_required
-  before_filter :require_account, :except => [:index, :new, :create]
+  before_filter :require_account, :except => [:new, :create]
   
   def index
-   @accounts = Account.all
-
-   respond_to do |format|
-     format.html # index.html.erb
-     format.xml  { render :xml => @redirects }
-   end
- end
+    redirect_to :action => :manage
+  end
   
   def new
     @new_account = Account.new
