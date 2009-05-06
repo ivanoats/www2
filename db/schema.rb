@@ -54,17 +54,17 @@ ActiveRecord::Schema.define(:version => 20090505191841) do
 
   create_table "articles", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "category_id"
     t.string   "title"
-    t.string   "permalink"
-    t.string   "cached_tag_list"
     t.text     "synopsis"
     t.text     "body"
     t.boolean  "published",        :default => false
-    t.datetime "published_at"
-    t.boolean  "comments_enabled"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "published_at"
+    t.integer  "category_id",      :default => 1
+    t.string   "permalink"
+    t.boolean  "comments_enabled"
+    t.string   "cached_tag_list"
   end
 
   create_table "cart_items", :force => true do |t|
@@ -171,11 +171,33 @@ ActiveRecord::Schema.define(:version => 20090505191841) do
     t.string   "cpanel_user"
   end
 
+  create_table "invoices", :force => true do |t|
+    t.integer  "amount",       :limit => 10, :precision => 10, :scale => 0
+    t.date     "due_date"
+    t.integer  "user_id"
+    t.integer  "line_item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "lead_sources", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "old_users", :force => true do |t|
+    t.string   "username",        :limit => 64,  :default => "",   :null => false
+    t.string   "email",           :limit => 128, :default => "",   :null => false
+    t.string   "hashed_password", :limit => 64
+    t.boolean  "enabled",                        :default => true, :null => false
+    t.text     "profile"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "last_login_at"
+  end
+
+  add_index "old_users", ["username"], :name => "index_users_on_username"
 
   create_table "open_id_authentication_associations", :force => true do |t|
     t.integer "issued"
@@ -187,9 +209,9 @@ ActiveRecord::Schema.define(:version => 20090505191841) do
   end
 
   create_table "open_id_authentication_nonces", :force => true do |t|
-    t.integer "timestamp",                  :null => false
+    t.integer "timestamp",  :null => false
     t.string  "server_url"
-    t.string  "salt",       :default => "", :null => false
+    t.string  "salt",       :null => false
   end
 
   create_table "orders", :force => true do |t|
@@ -204,10 +226,9 @@ ActiveRecord::Schema.define(:version => 20090505191841) do
     t.string   "title"
     t.string   "permalink"
     t.text     "body"
-    t.integer  "user_id"
-    t.boolean  "restricted"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "restricted"
     t.boolean  "hide_sidebar"
     t.boolean  "flip_sidebar"
     t.boolean  "show_teaser"
@@ -296,7 +317,7 @@ ActiveRecord::Schema.define(:version => 20090505191841) do
   end
 
   create_table "sessions", :force => true do |t|
-    t.string   "session_id", :default => "", :null => false
+    t.string   "session_id", :null => false
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"

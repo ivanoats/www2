@@ -24,8 +24,7 @@
 </head>
 <body id="<%= controller.controller_name.to_s + "_" + controller.action_name.to_s %>">
   <div id="wrapper">
-  <div id="container">
-  	<div id="container-inner">
+
   	<div id="header">
   		<a href="/"><img src="/images/logo.gif"></a>
   		<div id="top">
@@ -34,6 +33,15 @@
   		</div><!--/top-->
   		<%= render :partial => 'layouts/menu' %>
   	</div><!--/header-->
+  	  <div id="container">
+  	<div id="container-inner">
+	 
+	<% if @show_teaser then %>
+		<div id="teaser">
+	  		<span><%= @teaser %></span>
+	  	</div>
+	<% end #if show_teaser %>
+  	
   	<% if @splash_on then %>
 	<div id="splash-wrap">
   	<div id="splash">
