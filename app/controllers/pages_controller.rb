@@ -36,7 +36,9 @@ class PagesController < ApplicationController
   def show
     @page = Page.find(params[:id])
     @page_title = @page.title
-    render :partial => 'show', :layout => "application"
+    @show_teaser = @page.show_teaser
+    @teaser = @page.teaser
+    render :partial => 'show', :layout => "application" , :locals => { :show_teaser => @page.show_teaser , :teaser => @page.teaser }
   end
   
   
