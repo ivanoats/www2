@@ -68,8 +68,7 @@ class GreenHostingStoreController < ApplicationController
         if @user.valid? and @account.valid?
           @user.save
           @user.accounts << @account
-          @user.register!
-          @user.activate!
+          @user.register_from_checkout!
           session[:user_id] = @user.id
           session[:account] = @account.id
           redirect_to :action => "billing"
@@ -100,17 +99,20 @@ class GreenHostingStoreController < ApplicationController
   end
 
   def confirmation
-    
-    
   end
 
   def payment
     @order = Order.from_cart(@cart)
+    
     if @order.valid? 
       redirect_to :action => 'thanks' and return if @account.charge_order(@order)
     end
     render :action => 'confirmation'
   end
+  
+  def thanks
+  end
+  
 private
   
   def cart_not_empty

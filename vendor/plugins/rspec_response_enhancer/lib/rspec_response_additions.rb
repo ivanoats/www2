@@ -66,7 +66,8 @@ module Spec
         # - rendered addresses/index
         def render_info
           return unless @actual.success?
-          " - rendered #{@actual.rendered_file}"
+          #" - rendered #{@actual.rendered_file}"
+          "- rendered #{@actual.rendered}"
         end
       
         #Status should be success but was 302(redirect)
