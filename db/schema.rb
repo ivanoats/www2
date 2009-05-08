@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090505191841) do
+ActiveRecord::Schema.define(:version => 20090508164335) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -54,17 +54,17 @@ ActiveRecord::Schema.define(:version => 20090505191841) do
 
   create_table "articles", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "category_id"
     t.string   "title"
-    t.string   "permalink"
-    t.string   "cached_tag_list"
     t.text     "synopsis"
     t.text     "body"
     t.boolean  "published",        :default => false
-    t.datetime "published_at"
-    t.boolean  "comments_enabled"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "published_at"
+    t.integer  "category_id",      :default => 1
+    t.string   "permalink"
+    t.boolean  "comments_enabled"
+    t.string   "cached_tag_list"
   end
 
   create_table "cart_items", :force => true do |t|
@@ -187,9 +187,9 @@ ActiveRecord::Schema.define(:version => 20090505191841) do
   end
 
   create_table "open_id_authentication_nonces", :force => true do |t|
-    t.integer "timestamp",  :null => false
+    t.integer "timestamp",                  :null => false
     t.string  "server_url"
-    t.string  "salt",       :null => false
+    t.string  "salt",       :default => "", :null => false
   end
 
   create_table "orders", :force => true do |t|
@@ -204,14 +204,10 @@ ActiveRecord::Schema.define(:version => 20090505191841) do
     t.string   "title"
     t.string   "permalink"
     t.text     "body"
-    t.integer  "user_id"
-    t.boolean  "restricted"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "restricted"
     t.boolean  "hide_sidebar"
-    t.boolean  "flip_sidebar"
-    t.boolean  "show_teaser"
-    t.string   "teaser"
   end
 
   create_table "passwords", :force => true do |t|
@@ -241,6 +237,18 @@ ActiveRecord::Schema.define(:version => 20090505191841) do
     t.integer  "transaction_id"
     t.text     "receipt"
   end
+
+  create_table "photos", :force => true do |t|
+    t.integer  "article_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "data_file_name"
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.datetime "data_updated_at"
+  end
+
+  add_index "photos", ["article_id"], :name => "index_photos_on_article_id"
 
   create_table "products", :force => true do |t|
     t.string   "name"
@@ -296,7 +304,7 @@ ActiveRecord::Schema.define(:version => 20090505191841) do
   end
 
   create_table "sessions", :force => true do |t|
-    t.string   "session_id", :null => false
+    t.string   "session_id", :default => "", :null => false
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -317,7 +325,6 @@ ActiveRecord::Schema.define(:version => 20090505191841) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
-    t.text   "description"
   end
 
   create_table "tickets", :force => true do |t|

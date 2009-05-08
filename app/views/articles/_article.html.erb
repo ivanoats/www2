@@ -1,19 +1,28 @@
 <%= error_messages_for :article %>
 
-<% form_for @article do |f| -%> 
+<% form_for @article, :html => { :multipart => true } do |f| -%> 
   <p>Title:<br /><%= f.text_field :title, :size => 60 %></p> 
   <p>Permalink:<br /><%= f.text_field :permalink, :size => 60 %></p> 
   <p>Synopsis:<br /><%= f.text_area :synopsis, :rows => 4, :cols => 60 %></p> 
   <p>Body: <%#= link_to_function "Toggle editor", "toggleEditor('article_body');"%><br />
-  <%= f.text_area :body, :rows => 20, :cols => 60, :class => "mce-editor" %></p> 
+  <%= f.text_area :body, :rows => 20, :cols => 60 %></p> 
   <p>Category:<br /> 
     <%= f.collection_select :category_id, 
           Category.find(:all), :id, :name, :include_blank => true %></p> 
   <p>Published? <%= f.check_box :published %></p> 
   <p>Comments enabled? <%= f.check_box :comments_enabled %></p>  
   <p>Tags: <%= f.text_field :tag_list %></p>
+  
+  <div id="photos">
+    <%= render :partial => 'photo', :collection => @article.photos %>
+  </div>
+  
+  <%= link_to_function "Add Photo" do |page|
+    page.insert_html :bottom, :photos, :partial => 'photo', :object => Photo.new
+  end %>
+  
   <%= submit_tag 'Save' %> 
-  <%= submit_to_remote "save_and_continue", "Save and Continue" , :url => (@article.new_record? ? articles_url : article_url(@article)), :before => "tinyMCE.triggerSave(false,true);" %> 
+  <%= submit_to_remote "save_and_continue", "Save and Continue" , :url => (@article.new_record? ? articles_url : article_url(@article)) %> 
   <%= submit_tag "Preview", :onclick => "$(this).parent().attr('action','#{ url_for( :action => "preview", :id => @article.id)}'); $(this).parent().submit();"  %> 
    or <%= link_to 'cancel', articles_url %> 
 <% end -%> 
