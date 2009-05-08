@@ -4,6 +4,8 @@ class ArticlesController < ApplicationController
   
   ssl_allowed :livesearch
   
+  before_filter :protect_form_from_spam, :only => [:show, :permalink]
+  
   def index
     @article_tags = Article.tag_counts :order => 'count desc', :at_least => 3 
     if params[:category_id]

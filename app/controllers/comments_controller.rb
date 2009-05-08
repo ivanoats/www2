@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
-  	
-  	def create
-  	  # ensure what user is commenting ON is passed to new comment 
+  
+  def create
+      # ensure what user is commenting ON is passed to new comment 
       comment_hash = params[:comment]
       #comment_hash[:commentable_id] = params[:commentable_id]
       #comment_hash[:commentable_type] = params[:commentable_type]
@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
             page.insert_html :bottom, 'comments', :partial => 'comments/comment', :locals => {:comment => @comment}
             page.visual_effect :highlight, 'comments', :duration => 3
             page << "$('#comment_form')[0].reset()"
-            page.replace_html 'commentMessage', uniform_success_message(flash[:notice])
+            page.replace_html 'commentMessage', zform_success_message(flash[:notice])
           end
           }
         else

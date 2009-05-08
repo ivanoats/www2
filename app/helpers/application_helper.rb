@@ -37,7 +37,7 @@ module ApplicationHelper
   end
   
   def meta_keywords 
-    if @article and !@article.new_record? 
+    if @article and !@article.new_record? and !@article.user.nil?
       [@article.title, 
        @article.user.name, 
        @article.tag_list].join(',') 

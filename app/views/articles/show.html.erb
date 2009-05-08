@@ -13,12 +13,13 @@
   </p> 
 <% end %>
 
-<p id="author">Author: <%=  if @article.user.name == ""
-		link_to(@article.user.login, show_user_path(@article.user.login))
-	else
-		link_to(@article.user.name, show_user_path(@article.user.login))
-	end   %></p>
-
+<% unless @article.user.nil? %>
+  <p id="author">Author: <%=  if @article.user.name == ""
+  		link_to(@article.user.login, show_user_path(@article.user.login))
+  	else
+  		link_to(@article.user.name, show_user_path(@article.user.login))
+  	end   %></p>
+<% end %>
 <div id="tags">Tags: 
 	<% @article.tag_list.each do |tag| %>
 		<%= link_to tag,tag_path(tag), :rel => 'tag' %>
