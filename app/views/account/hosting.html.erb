@@ -11,9 +11,9 @@
 
   <tr class='<%= cycle("odd","even")%>'>
     <td><%= item.created_at.to_formatted_s :human_date %></td>
-    <td><%= item.charge_period %></td>
+    <td><%= product. %></td>
     <td><%= number_to_currency item.product.cost %></td>
-    <td><%= item.last_charge_on.to_formatted_s :human_date %></td>
+    <td><%= item.last_charge_on.to_formatted_s :human_date unless item.last_charge_on.nil? %></td>
     <td><%= item.state.capitalize %></td>
   </tr>  
 <% end%>

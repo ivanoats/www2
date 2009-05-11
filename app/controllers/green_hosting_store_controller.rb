@@ -103,8 +103,8 @@ class GreenHostingStoreController < ApplicationController
 
   def payment
     @order = Order.from_cart(@cart)
-    
-    if @order.valid? 
+    @order.account = @account
+    if @order.save 
       redirect_to :action => 'thanks' and return if @account.charge_order(@order)
     end
     render :action => 'confirmation'

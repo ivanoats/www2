@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090505191841) do
+ActiveRecord::Schema.define(:version => 20090509000029) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -163,8 +163,7 @@ ActiveRecord::Schema.define(:version => 20090505191841) do
     t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "last_charge_on"
-    t.string   "charge_period"
+    t.date     "next_charge_on"
     t.string   "state"
     t.integer  "account_id"
     t.integer  "server_id"

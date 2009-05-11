@@ -2,6 +2,7 @@ module FixtureReplacement
   
   attributes_for :account do |a|
     a.users = [default_user]
+    a.organization = 'Organization'
 	end
   
   attributes_for :article do |a|
@@ -28,6 +29,7 @@ module FixtureReplacement
   
   attributes_for :hosting do |a|
     a.account = default_account
+    a.product = default_product
 	end
   
   attributes_for :page do |a|
@@ -39,7 +41,11 @@ module FixtureReplacement
 	end
 
   attributes_for :product do |a|
-    
+    a.recurring_month = 1
+    a.name = 'Package'
+    a.kind = 'package'
+    a.cost = 1
+    a.status = 'active'
 	end
 
   attributes_for :role do |a|

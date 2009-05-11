@@ -4,11 +4,15 @@
   <tr>
   </tr>
 
-<% @hostings.each do |hosting| %>
+<% @hostings.each do |@hosting| %>
   <tr>
-    <td><%= link_to 'Show', server_hosting_path(@server,hosting) %></td>
-    <td><%= link_to 'Edit', edit_server_hosting_path(@server,hosting) %></td>
-    <td><%= link_to 'Destroy', server_hosting_path(@server,hosting), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show', server_hosting_path(@server,@hosting) %></td>
+    <td><%= link_to 'Edit', edit_server_hosting_path(@server,@hosting) %></td>
+    <td><%= link_to 'Destroy', server_hosting_path(@server,@hosting), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td>
+      <%= select :"hosting[]", :state, Hosting.aasm_states_for_select %>
+      <%= observe_field "hosting_#{@hosting.id}_state", :url => server_hosting_path(@server,@hosting), :with => 'hosting[state]', :method => :put %>
+    </td>
   </tr>
 <% end %>
 </table>

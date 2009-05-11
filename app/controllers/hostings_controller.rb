@@ -64,6 +64,7 @@ class HostingsController < ApplicationController
     respond_to do |format|
       if @hosting.update_attributes(params[:hosting])
         flash[:notice] = 'Hosting was successfully updated.'
+        format.js { }
         format.html { redirect_to(@hosting) }
         format.xml  { head :ok }
       else
