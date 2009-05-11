@@ -1,6 +1,7 @@
 class Article < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
+  has_many   :photos
   
   acts_as_commentable
   acts_as_taggable
@@ -23,6 +24,11 @@ class Article < ActiveRecord::Base
     self.permalink = PermalinkFu.escape(self.permalink)
   end
   
+  def photo_attributes=(photo_attributes)
+    photo_attributes.each do |attributes|
+      photos.build(attributes)
+    end
+  end
     
   def self.per_page
     10

@@ -75,7 +75,8 @@ class ArticlesController < ApplicationController
   end
   
   def new  
-    @article = Article.new 
+    @article = Article.new
+    1.upto(3) { @article.photos.build} 
   end 
 
   def preview
