@@ -7,7 +7,7 @@
 	<%= page_title %> 
 	<%= meta "description", meta_description %> 
 	<%= meta "keywords", meta_keywords %>
-	<%= stylesheet_link_tag 'common', 'public', 'account', "pagination", "users", formz_stylesheets, 'live-search', :cache => true %>
+	<%= stylesheet_link_tag 'common', 'account', "pagination", "users", formz_stylesheets, 'live-search', :cache => true %>
 	<!--[if lt IE 8]>
 		<%= stylesheet_link_tag "ie", :cache => true %>
 	<![endif]-->
@@ -52,11 +52,10 @@
         <div id="error"><%= flash[:error] %></div> 
       <%# end -%> 
       <h2><%= @account.organization %></h2>
-      <%= navigation :account %>
+      <%= tabnav :account %>
        
       <%= yield %>
   	</div><!--/content-->
-  	<%= render :partial => 'layouts/sidebar' %>
   	</div>
   </div><!--/container-->
   <%= render :partial => 'layouts/footer' %>

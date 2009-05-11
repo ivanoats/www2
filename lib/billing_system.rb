@@ -1,7 +1,7 @@
 module BillingSystem
   
   def accounts
-    Account.active.payment_due.each do |account| 
+    Account.active.due.each do |account| 
       amount = account.balance
       if account.charge_balance 
         BillingMailer.charge_success(account)
@@ -12,7 +12,7 @@ module BillingSystem
   end
   
   def hostings
-    Hosting.active.charge_due.each { |hosting| hosting.charge }
+    Hosting.active.due.each { |hosting| hosting.charge }
     
   end
 end

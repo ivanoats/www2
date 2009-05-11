@@ -5,9 +5,10 @@ class Purchase < ActiveRecord::Base
   def redeem
     case product.kind
     when 'package'
-      hosting = Hosting.new(:product => self.product)
+      hosting = Hosting.create!(:product => self.product, :account => order.account)
       hosting.activate
-      order.account.hostings << hosting
+    when 'domain'
+      domain = Domain.create!(:product => self.product, :account => order.account, :name => self.product.name)
     when 'add-on'
       #TODO create add-on and attach to Hosting
     end

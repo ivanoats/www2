@@ -15,10 +15,10 @@ class CartController < ApplicationController
       :cost            => 10.00,
       :recurring_month => 0,
       :status          => "active",
-      :kind            => "package"
+      :kind            => "domain"
     }
-    @product = Product.new(@product_attributes)
-
+    @product = Product.create!(@product_attributes)
+    
     # pull in the cart from the session
     load_cart
 

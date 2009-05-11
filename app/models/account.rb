@@ -21,7 +21,7 @@ class Account < ActiveRecord::Base
   accepts_nested_attributes_for :billing_address
   
   named_scope :active, :conditions => ["state = ?",'active']
-  named_scope :payment_due, :conditions => ['balance < ? and (last_payment_on IS NULL or last_payment_on < ?)',0,1.month.ago]
+  named_scope :due, :conditions => ['balance < ? and (last_payment_on IS NULL or last_payment_on < ?)',0,1.month.ago]
   
   validates_presence_of :organization
   

@@ -20,43 +20,42 @@ class Order < ActiveRecord::Base
     transitions :to => :paid, :from => :pending
   end
   
-    def self.from_cart(cart)
-      order = Order.new
-      cart.cart_items.each do |item|
-        if item.product
-          item.quantity.times do 
-            order.purchases << Purchase.new(:product => item.product)
-          end
+  def self.from_cart(cart)
+    order = Order.new
+    cart.cart_items.each do |item|
+      if item.product
+        item.quantity.times do 
+          order.purchases << Purchase.new(:product => item.product)
         end
       end
-      order
     end
+    order
+  end
 
-    def total_charge
-      self.purchases.collect { |purchase| purchase.product }.sum(&:cost)
-      #self.products.to_a.sum(&:cost)
-    end
+  def total_charge
+    self.purchases.collect { |purchase| purchase.product }.sum(&:cost)
+  end
 
-    def total_charge_in_cents
-      (self.total_charge * 100).to_i
-    end    
+  def total_charge_in_cents
+    (self.total_charge * 100).to_i
+  end    
 
-  private
+private
+
+  def order_was_paid
+    self.purchases.each { |purchase| purchase.redeem }
+  end
   
-    def order_was_paid
-      self.purchases.each { |purchase| purchase.redeem }
-    end
-    
-    def self.generate_invoice_number
-      now = Time.now
-      year_days_seconds_milliseconds = now.strftime('%Y%j-') + now.to_f.to_s.delete('.')
+  def self.generate_invoice_number
+    now = Time.now
+    year_days_seconds_milliseconds = now.strftime('%Y%j-') + now.to_f.to_s.delete('.')
 
-      year_days_seconds_milliseconds
-    end
+    year_days_seconds_milliseconds
+  end
 
-    def create_invoice_number
-      self.invoice_number = Order.generate_invoice_number unless self.invoice_number
-    end  
-  
-  
+  def create_invoice_number
+    self.invoice_number = Order.generate_invoice_number unless self.invoice_number
+  end  
+
+
 end

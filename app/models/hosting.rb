@@ -13,12 +13,9 @@ class Hosting < ActiveRecord::Base
   
   named_scope :active, :conditions => ["state = ?",'active']
   named_scope :visible, :conditions => {'state' => ['ordered', 'active', 'suspended']}
-  named_scope :charge_due, :include => :product, :conditions => ['next_charge_on < CURDATE()']
+  named_scope :due, :include => :product, :conditions => ['next_charge_on < CURDATE()']
   
   before_create :set_next_charge, :unless => Proc.new { |a| a.attribute_present?("next_charge_on") }
-  
-  # '(last_charge_on < SUBDATE(CURDATE(),INTERVAL products.recurring_month MONTH))'
-  #(last_charge_on IS NULL and created_at < SUBDATE(CURDATE(),INTERVAL products.recurring_month MONTH)) or 
   
   aasm_column :state
   aasm_initial_state :ordered
@@ -49,10 +46,6 @@ class Hosting < ActiveRecord::Base
     self.next_charge < (Time.today + 1.day).at_beginning_of_day
   end
   
-  # def next_charge
-  #     (self.last_charge_on || self.created_at) + self.product.recurring_month.months
-  #   end
-  
   def charge
     Hosting.transaction do
       #prevent charge time creeping forward each period
@@ -76,7 +69,7 @@ class Hosting < ActiveRecord::Base
     end
   end
   
-  def period_words
+  def period_in_words
     case product.recurring_month
     when 12
       'yearly'

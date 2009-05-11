@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
   STATUS = %w(active disabled)
-  KINDS = %w(package addon)
+  KINDS = %w(package domain addon)
   
   validates_presence_of :name
   validates_numericality_of :cost, :greater_than => 0
@@ -9,4 +9,9 @@ class Product < ActiveRecord::Base
   
   named_scope :packages, :conditions => {:kind => 'package' }
   named_scope :addons, :conditions => {:kind => 'addon'}
+
+  def self.domain
+    Product.find_by_kind('domain') || Product.create!(:name => "Domain Name", :kind => 'domain', :cost => '10.00', :recurring_month => 1, :status =>  'active')
+  end
+  
 end

@@ -3,6 +3,7 @@ class AccountController < ApplicationController
   
   before_filter :login_required
   before_filter :require_account, :except => [:new, :create]
+  before_filter :require_payment_information, :only => :pay
   
   def index
     redirect_to :action => :manage
@@ -58,12 +59,13 @@ class AccountController < ApplicationController
   end
   
   def pay
-    #return if @account.credit_card.blank?
-    
-    
     if request.post?
-      amount = params[:amount]
+      amount = params[:amount].to_i
       @account.charge(amount)
+      if @account.valid?
+        flash[:notice] = "Payment completed"
+        redirect_to :action => 'payments'
+      end
     end
   end
   
@@ -99,5 +101,8 @@ private
     @account = Account.find_by_id(session[:account]) || current_user.accounts.first
     redirect_to root_url and flash[:error] = "An account is required to view this page" if @account.nil?
   end
-
+  
+  def require_payment_information
+    redirect_to :action => "billing" and flash[:error] = "Billing Information required" if @account.needs_payment_info?
+  end
 end

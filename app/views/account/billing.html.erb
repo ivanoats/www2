@@ -1,7 +1,15 @@
-<% unless @account.card_number.blank? %>
-  Credit Card on File
-  <%= @account.card_number%>
-  <%= @account.card_expiration%>
+<% unless @account.needs_payment_info? %>
+<table class='account_table' style='font-size: 90%'>
+  <tr>
+    <th>Saved Credit Card</th>
+  </tr>
+  <tr class='odd'>
+    <td style='text-align: left'>
+       <%= @account.card_number %> <br/>
+      Expires <%= @account.card_expiration %> <br/>
+    </td>
+  </tr>
+</table>
 <% end %>
 
 <%= error_messages_for :account, :address, :credit_card %>
