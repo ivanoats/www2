@@ -36,7 +36,7 @@
   <tr class='<%= cycle("odd","even")%>'>
     <td><%= item.created_at.to_formatted_s :human_date %></td>
     <td style='text-align: left'>
-      <%= item.description %> 
+      <%= item.description %> <%= link_to "View Order", {:action => "order", :id => item.order.id} if item.respond_to?(:order) && item.order%>
     </td>
     <td><%= number_to_currency item.amount %></td>
   </tr>  

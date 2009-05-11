@@ -58,11 +58,17 @@ class AccountController < ApplicationController
     @history = @account.transactions
   end
   
+  def order
+    @order = @account.orders.find(params[:id])
+  end
+  
   def pay
     if request.post?
       amount = params[:amount].to_i
       @account.charge(amount)
       if @account.valid?
+        @account.increment(:balance, amount)
+        @account.save
         flash[:notice] = "Payment completed"
         redirect_to :action => 'payments'
       end

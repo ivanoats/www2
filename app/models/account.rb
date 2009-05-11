@@ -6,7 +6,8 @@ class Account < ActiveRecord::Base
   has_and_belongs_to_many :users
   
   has_many :hostings
-  has_many :domains 
+  has_many :orders
+  has_many :domains
 
   attr_protected :balance
   
@@ -88,7 +89,7 @@ class Account < ActiveRecord::Base
                     :transactions => self.transactions({:conditions => ['created_at > ?',self.last_payment_on]}),
                     :new_balance => self.balance + amount})
       
-      payments.create(:account => @account, :amount => amount, :transaction_id => @response.authorization, :receipt => receipt)
+      self.payments.create(:amount => amount, :transaction_id => @response.authorization, :receipt => receipt)
       true
     else
       errors.add_to_base(@response.message)
@@ -103,7 +104,7 @@ class Account < ActiveRecord::Base
   def charge_order(order)
     amount = order.total_charge
     if (@response = gateway.purchase(amount,billing_id)).success?
-      payments.create(:amount => amount, :transaction_id => @response.authorization, :order_id => order)
+      self.payments.create(:amount => amount, :transaction_id => @response.authorization, :order_id => order)
       order.paid!
       true
     else
