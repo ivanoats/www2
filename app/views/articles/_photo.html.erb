@@ -1,9 +1,13 @@
-<div class="photo">
+<div id="photo_<%= photo.id %>" class="photo">
 <% fields_for "article[photo_attributes][]", photo do |p| %>
-  <p>
-    <%= p.label :Photo %><br />
-    <%= p.file_field :data, :index => nil %>
-    <%= link_to_function "delete", "remove_field($(this), ('.photo'))" %>
-  </p>
+    <% unless photo.new_record? %>
+      <%= image_tag photo.data.url(:thumb), :alt => "" %>
+      <p>Image URL: <%= photo.data.url %></p>
+      <%= link_to_remote "Remove Photo", :update => "photo_#{photo.id}", :confirm => "Are you sure you want to remove this photo permanently?", :url => { :action =>"remove_photo", :id => photo.id } %>
+    <% else %>
+      <%= p.label :Photo %><br />
+      <%= p.file_field :data, :index => nil %>
+      <%= link_to_function "delete", "remove_field($(this), ('.photo'))" %>
+    <% end # unless photo.new_record? %>
 <% end %>
 </div>

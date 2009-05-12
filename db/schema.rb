@@ -54,17 +54,17 @@ ActiveRecord::Schema.define(:version => 20090511171955) do
 
   create_table "articles", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "category_id"
     t.string   "title"
-    t.string   "permalink"
-    t.string   "cached_tag_list"
     t.text     "synopsis"
     t.text     "body"
     t.boolean  "published",        :default => false
-    t.datetime "published_at"
-    t.boolean  "comments_enabled"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "published_at"
+    t.integer  "category_id",      :default => 1
+    t.string   "permalink"
+    t.boolean  "comments_enabled"
+    t.string   "cached_tag_list"
   end
 
   create_table "cart_items", :force => true do |t|
@@ -188,9 +188,9 @@ ActiveRecord::Schema.define(:version => 20090511171955) do
   end
 
   create_table "open_id_authentication_nonces", :force => true do |t|
-    t.integer "timestamp",  :null => false
+    t.integer "timestamp",                  :null => false
     t.string  "server_url"
-    t.string  "salt",       :null => false
+    t.string  "salt",       :default => "", :null => false
   end
 
   create_table "orders", :force => true do |t|
@@ -205,14 +205,10 @@ ActiveRecord::Schema.define(:version => 20090511171955) do
     t.string   "title"
     t.string   "permalink"
     t.text     "body"
-    t.integer  "user_id"
-    t.boolean  "restricted"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "restricted"
     t.boolean  "hide_sidebar"
-    t.boolean  "flip_sidebar"
-    t.boolean  "show_teaser"
-    t.string   "teaser"
   end
 
   create_table "passwords", :force => true do |t|
@@ -309,7 +305,7 @@ ActiveRecord::Schema.define(:version => 20090511171955) do
   end
 
   create_table "sessions", :force => true do |t|
-    t.string   "session_id", :null => false
+    t.string   "session_id", :default => "", :null => false
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -330,7 +326,6 @@ ActiveRecord::Schema.define(:version => 20090511171955) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
-    t.text   "description"
   end
 
   create_table "tickets", :force => true do |t|

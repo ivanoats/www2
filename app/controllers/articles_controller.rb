@@ -152,4 +152,10 @@ class ArticlesController < ApplicationController
     @articles = Article.paginate(:page => params[:page], :per_page => 10, :order => 'published_at DESC, created_at DESC') 
   end 
  
+ def remove_photo
+   @photo = Photo.find(params[:id])
+   @photo.destroy
+   render( :text =>  "<p>Photo was Deleted</p>")
+ end
+ 
 end
