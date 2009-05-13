@@ -15,10 +15,11 @@ class AccountController < ApplicationController
   
   def create
     @account = Account.new(params[:account])
-    @account.users << current_user
+    
     
     respond_to do |format|
       if @account.save
+        @account.users << current_user
         session[:account] = @account.id
         flash[:notice] = 'Account was successfully created.'
         format.html { redirect_to({:action => :manage}) }

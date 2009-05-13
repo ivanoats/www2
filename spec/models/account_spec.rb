@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe Account do
   before(:each) do
     @valid_attributes = {
-      
+      :organization => "Not blank"
     }
     @more_attributes = @valid_attributes.merge({
       :first_name => "John",
@@ -20,6 +20,13 @@ describe Account do
 
   it "should create a new instance given valid attributes" do
     Account.create!(@valid_attributes)
+  end
+  
+  it 'should have some users' do
+    @account = Account.create(@valid_attributes)
+    @account.users << create_user
+    @account.save!
+    assert @account.valid?
   end
   
   it "should save a credit card" do
@@ -108,28 +115,28 @@ describe Account do
   describe "when the balance is not negative" do
     it "should not be due for payment" do
       account = create_account(:balance => 0, :last_payment_on => 32.days.ago)
-      assert_equal Account.payment_due, []
+      assert_equal Account.due, []
     end
   end
   
   describe "when the balance is negative and payment was over a month ago" do
     it "should be due for payment" do
       account = create_account(:balance => -1000, :last_payment_on => 32.days.ago)
-      assert_equal Account.payment_due, [account]
+      assert_equal Account.due, [account]
     end
   end
   
   describe "when the balance is negative and payment was over a year ago" do
     it "should be due for payment" do
       account = create_account(:balance => -1000, :last_payment_on => 366.days.ago)
-      assert_equal Account.payment_due, [account]
+      assert_equal Account.due, [account]
     end
   end
   
   describe "when the balance is negative and payment was within a month" do
     it "should not be due for payment" do
       account = create_account(:balance => -1000, :last_payment_on => 25.days.ago)
-      assert_equal Account.payment_due, []
+      assert_equal Account.due, []
     end
   end
     

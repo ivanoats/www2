@@ -50,7 +50,7 @@ input:active, input:focus, input.title:focus, textarea:focus, select:focus {bord
 input.title {font-size:1.5em;}
 
 /* Comment Form Overrides */
-.uniForm {border-top: 2px solid #DFDFDF; padding: 20px 0;}
+.zForm {border-top: 2px solid #DFDFDF; padding: 20px 0;}
 .ctrlHolder {background: none; padding: 7px 0;}
 label em, .label em {color: red;}
 

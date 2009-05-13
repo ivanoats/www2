@@ -51,6 +51,9 @@
       <%# if flash[:error] -%> 
         <div id="error"><%= flash[:error] %></div> 
       <%# end -%> 
+      <% if current_user.accounts.size > 1%>
+        Switch to another account <%= select_tag :account, current_user.accounts.collect { |acc| [acc.organization, acc.id]}%>
+      <% end %>
       <h2><%= @account.organization %></h2>
       <%= tabnav :account %>
        
