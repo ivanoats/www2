@@ -5,7 +5,6 @@ class Hosting < ActiveRecord::Base
   belongs_to :server
   has_many :add_ons
   has_many :charges, :as => :chargable
-  has_one :domain #maybe
   
   belongs_to :product
   
@@ -13,7 +12,7 @@ class Hosting < ActiveRecord::Base
   
   named_scope :active, :conditions => ["state = ?",'active']
   named_scope :visible, :conditions => {'state' => ['ordered', 'active', 'suspended']}
-  named_scope :due, :include => :product, :conditions => ['next_charge_on < CURDATE()']
+  named_scope :due, :include => :product, :conditions => ['next_charge_on <= CURDATE()']
   
   before_create :set_next_charge, :unless => Proc.new { |a| a.attribute_present?("next_charge_on") }
   

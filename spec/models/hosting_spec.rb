@@ -16,24 +16,24 @@ describe Hosting do
   describe 'when billing monthly' do
     it 'should be due' do
       hosting = create_hosting(:next_charge_on => 1.day.ago)
-      assert_equal Hosting.charge_due, [hosting]
+      assert_equal Hosting.due, [hosting]
     end
     
     it 'should not be due' do
       hosting = create_hosting(:next_charge_on => 1.day.from_now)
-      assert_equal Hosting.charge_due, []
+      assert_equal Hosting.due, []
     end
   end
   
   describe 'when billing yearly' do
     it 'should be due' do
       hosting = create_hosting(:product => default_product(:recurring_month => 12), :next_charge_on => 1.day.ago)
-      assert_equal Hosting.charge_due, [hosting]
+      assert_equal Hosting.due, [hosting]
     end
     
     it 'should not be due' do
       hosting = create_hosting(:product => default_product(:recurring_month => 12), :next_charge_on => 1.day.from_now)
-      assert_equal Hosting.charge_due, []
+      assert_equal Hosting.due, []
     end
     
   end
