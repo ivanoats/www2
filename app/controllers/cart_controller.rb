@@ -6,24 +6,11 @@ class CartController < ApplicationController
   end
 
   def add_domain
-    
-    # create product
-    
-    @product_attributes = {
-      :name            => params[:domain][:name],
-      :description     => "Domain registration",
-      :cost            => 10.00,
-      :recurring_month => 0,
-      :status          => "active",
-      :kind            => "domain"
-    }
-    @product = Product.create!(@product_attributes)
-    
     # pull in the cart from the session
     load_cart
 
     # add it to cart
-    @cart.add(@product)
+    @cart.add(Product.domain, 1, nil, {:domain => params[:domain][:name]})
     
     # render the cart items
     render_cart

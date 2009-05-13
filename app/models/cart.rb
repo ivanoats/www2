@@ -15,7 +15,7 @@ class Cart < ActiveRecord::Base
   # add(product)                #=> A new +CartItem+.
   # add(product, 94)            #=> A new +CartItem+ with a quantity of 94.
   # add(product, 12, "months")  #=> A new +CartItem+ with a quanity of 12 and quantity_units of "months".
-  def add(product, quantity = 1, quantity_unit = nil)
+  def add(product, quantity = 1, quantity_unit = nil, data = {})
     cart_item_attributes = {
       :product_id          => product.id,
       :cart_id             => self.id,
@@ -23,7 +23,8 @@ class Cart < ActiveRecord::Base
       :description         => product.description,
       :unit_price          => product.cost,
       :quantity            => quantity,
-      :quantity_unit       => quantity_unit
+      :quantity_unit       => quantity_unit,
+      :data                => data
     }
     cart_items.create!(cart_item_attributes)  #TODO test database creation of the record
   end

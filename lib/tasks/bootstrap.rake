@@ -37,7 +37,8 @@ namespace :bootstrap do
       :cost            => 10.00,
       :recurring_month => 1,
       :status          => "active",
-      :kind            => "package"
+      :kind            => "package",
+      :data            => {:package => 'wpdnet_basic'}
     })
     
     Product.create!( {
@@ -46,7 +47,9 @@ namespace :bootstrap do
       :cost            => 20.00,
       :recurring_month => 1,
       :status          => "active",
-      :kind            => "package"
+      :kind            => "package",
+      :data            => {:package => 'wpdnet_sb'}
+      
     })
 
     Product.create!( {
@@ -55,7 +58,9 @@ namespace :bootstrap do
       :cost            => 30.00,
       :recurring_month => 1,
       :status          => "active",
-      :kind            => "package"
+      :kind            => "package",
+      :data            => {:package => 'wpdnet_pro'}
+      
     })
 
     # Yearly packages
@@ -65,7 +70,8 @@ namespace :bootstrap do
       :cost            => 100.00,
       :recurring_month => 12,
       :status          => "active",
-      :kind            => "package"
+      :kind            => "package",
+      :data            => {:package => 'wpdnet_basic'}
     })
     
     Product.create!( {
@@ -74,7 +80,9 @@ namespace :bootstrap do
       :cost            => 199.00,
       :recurring_month => 12,
       :status          => "active",
-      :kind            => "package"
+      :kind            => "package",
+      :data            => {:package => 'wpdnet_sb'}
+      
     })
 
     Product.create!( {
@@ -83,7 +91,8 @@ namespace :bootstrap do
       :cost            => 299.00,
       :recurring_month => 12,
       :status          => "active",
-      :kind            => "package"
+      :kind            => "package",
+      :data            => {:package => 'wpdnet_pro'}
     })
 
 
