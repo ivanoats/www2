@@ -196,7 +196,7 @@ describe GreenHostingStoreController do
     
     describe 'POST payment' do
       it 'should be successful' do
-        @order = mock('order', {:valid? => true})
+        @order = mock('order', {:account= => true, :save => true})
         Order.expects(:from_cart).returns(@order)
         
         @account = mock('account', {:users => [@user]})
