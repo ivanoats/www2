@@ -19,7 +19,7 @@ class Cart < ActiveRecord::Base
     cart_item_attributes = {
       :product_id          => product.id,
       :cart_id             => self.id,
-      :name                => product.name,
+      :name                => data[:domain] || product.name,
       :description         => product.description,
       :unit_price          => product.cost,
       :quantity            => quantity,

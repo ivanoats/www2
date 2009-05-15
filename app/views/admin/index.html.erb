@@ -1,0 +1,33 @@
+<% unless @ordered.empty? %>
+<h2>List of New Hostings</h2>
+
+<%= form_tag :action => 'provision'%>
+Add Hosting to Server <%= select_tag :server, options_from_collection_for_select( Server.all, :id, :select_description, @server)%>
+
+  <% render :partial => 'server_details'%>
+
+  <table class='account_table' style='font-size: 90%'>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Purchase Date</th>
+      <th>Account</th>
+      <th>Status</th>
+    </tr>
+  <% @ordered.each do |hosting| %>
+    <tr class='<%= cycle("odd","even")%>'>  
+      <td><%= check_box_tag "hosting[#{hosting.id}]" %></td>
+      <td style='text-align: left'><%= hosting.product.name %></td>
+      <td><%= hosting.created_at.to_formatted_s :human_date %></td>
+      <td><%= link_to hosting.account.organization, hosting.account %></td>
+      <td><%= hosting.state.capitalize %></td>
+    </tr>  
+  <% end %>
+  </table>
+  <%= submit_tag "Provision"%>
+</form>
+<% else %>
+  All Hosting is provisioned.  
+<% end %>
+
+

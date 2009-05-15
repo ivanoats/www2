@@ -1,0 +1,27 @@
+class AdminController < ApplicationController
+  layout 'admin'
+  require_role "Administrator"
+  
+  before_filter :login_required
+  
+  def index
+    @ordered = Hosting.ordered
+    @server = Server.find_by_id(session[:provisioning_server]) || Server.last
+  end
+  
+  def provision
+    if request.post? && params[:hosting]
+      @server = Server.find(params[:server])
+      @hostings = Hosting.find(params[:hosting].keys)
+      @hostings.each { |hosting|
+        hosting.update_attribute(:server,@server)
+        hosting.activate!
+      }
+    end
+    redirect_to :action => :index
+  rescue => e
+    flash[:error] = e
+    redirect_to :action => :index
+  end
+
+end

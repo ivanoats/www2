@@ -5,7 +5,7 @@
     <th>Balance</th>
   </tr>
   <tr class='odd'>
-    <td><%= @account.last_payment_on ? @account.last_payment_on + 1.month : "never" %></td>
+    <td><%= @account.last_payment_on ? @account.last_payment_on + 1.month : "" %></td>
     <td style='text-align: left'>
       <% if @account.needs_payment_info? %>
         No credit card on file, <%= link_to "setup billing", {:action => 'billing'} %>.

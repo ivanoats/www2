@@ -13,7 +13,7 @@ class Product < ActiveRecord::Base
   named_scope :addons, :conditions => {:kind => 'addon'}
 
   def self.domain
-    Product.find_by_kind('domain') || Product.create!(:name => "Domain Name", :kind => 'domain', :cost => '10.00', :recurring_month => 1, :status =>  'active')
+    Product.find_by_kind('domain') || Product.create!(:name => "Domain Name", :description => "Domain Name", :kind => 'domain', :cost => '10.00', :recurring_month => 1, :status =>  'active')
   end
   
 end

@@ -9,8 +9,7 @@ class Hosting < ActiveRecord::Base
   belongs_to :product
   
   validates_presence_of :product_id
-  
-  named_scope :active, :conditions => ["state = ?",'active']
+
   named_scope :visible, :conditions => {'state' => ['ordered', 'active', 'suspended']}
   named_scope :due, :include => :product, :conditions => ['next_charge_on <= CURDATE()']
   
@@ -80,11 +79,12 @@ class Hosting < ActiveRecord::Base
   end
 
 private
-
+  
+  
   def create_cpanel_account
     #TODO create default cpanel_user
-    self.update_attribute(:cpanel_user, "testing#{rand(1000)}")
-    self.server.whm.create_account(:username => self.cpanel_user, :domain => 'example.com')
+    self.update_attribute(:cpanel_user, "u#{self.id}")
+    self.server.whm.create_account(:username => self.cpanel_user, :domain => "fakedomain#{self.id}.com")
   end
   
   def suspend_cpanel_account
