@@ -7,7 +7,7 @@ describe Comment do
       :name => "comment tester", 
       :email => "valid_comment@email.com", 
       :comment => "stub for comment test",
-      :commentable => mock_model(Article)
+      :commentable => create_article
     }
   end
   

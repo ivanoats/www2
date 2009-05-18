@@ -47,7 +47,7 @@ describe Product do
   end
   
   it "should have a list of kinds" do
-    Product::KINDS.should == %w(package addon)
+    Product::KINDS.should == %w(package domain addon)
   end
   
   it "should include only valid choises for kind" do

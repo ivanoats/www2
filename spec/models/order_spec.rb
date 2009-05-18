@@ -18,7 +18,6 @@ describe Order do
     @order = Order.from_cart(@cart)
     
     assert @order.purchases.first.product == @product
-    assert @order.state == 'pending'
   end
 
   it "should create a invoice number" do
