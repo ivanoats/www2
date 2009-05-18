@@ -328,6 +328,7 @@ ActiveRecord::Schema.define(:version => 20090513120500) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
+    t.string "description"
   end
 
   create_table "tickets", :force => true do |t|

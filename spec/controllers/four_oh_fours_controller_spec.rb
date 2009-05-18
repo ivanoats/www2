@@ -13,7 +13,7 @@ describe FourOhFoursController do
       expected = mock(Redirect, methods)
       slug     = 'test-slug'
       
-      Redirect.should_receive(:find_by_slug).with(slug).and_return(expected)
+      Redirect.expects(:find_by_slug).with(slug).returns(expected)
       get 'index', :path => [slug]
       response.should redirect_to(expected.url)
       response.status.should include('301')
@@ -29,14 +29,14 @@ describe FourOhFoursController do
     
     it "should request a page by name" do
       page = mock(Page)
-      Page.should_receive(:find_by_permalink).and_return(Page.new(:permalink => "that_article"))
+      Page.expects(:find_by_permalink).returns(Page.new(:permalink => "that_article"))
       get 'index', :path => ["that_page"]
       response.should be_success
       response.should render_template('pages/show')
     end
     
     it "should request an article by name" do
-      Article.should_receive(:find_by_permalink).and_return(Article.new(:permalink => "that_article"))
+      Article.expects(:find_by_permalink).returns(Article.new(:permalink => "that_article"))
       get 'index', :path => ["that_article"]
       response.should redirect_to(permalink_url('that_article'))
     end

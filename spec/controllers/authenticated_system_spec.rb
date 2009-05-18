@@ -5,7 +5,7 @@ describe SessionsController do
   
   before do
     # FIXME -- sessions controller not testing xml logins 
-    stub!(:authenticate_with_http_basic).and_return nil
+    stub!(:authenticate_with_http_basic).returns nil
   end    
   describe "logout_killing_session!" do
     before do
@@ -71,24 +71,24 @@ describe SessionsController do
       set_remember_token 'hello!', 5.minutes.from_now
     end    
     it 'logs in with cookie' do
-      stub!(:cookies).and_return({ :auth_token => 'hello!' })
+      stub!(:cookies).returns({ :auth_token => 'hello!' })
       logged_in?.should be_true
     end
     
     it 'fails cookie login with bad cookie' do
-      should_receive(:cookies).at_least(:once).and_return({ :auth_token => 'i_haxxor_joo' })
+      should_receive(:cookies).at_least(:once).returns({ :auth_token => 'i_haxxor_joo' })
       logged_in?.should_not be_true
     end
     
     it 'fails cookie login with no cookie' do
       set_remember_token nil, nil
-      should_receive(:cookies).at_least(:once).and_return({ })
+      should_receive(:cookies).at_least(:once).returns({ })
       logged_in?.should_not be_true
     end
     
     it 'fails expired cookie login' do
       set_remember_token 'hello!', 5.minutes.ago
-      stub!(:cookies).and_return({ :auth_token => 'hello!' })
+      stub!(:cookies).returns({ :auth_token => 'hello!' })
       logged_in?.should_not be_true
     end
   end

@@ -10,11 +10,11 @@ describe UsersHelper do
   
   describe "if_authorized" do 
     it "yields if authorized" do
-      should_receive(:authorized?).with('a','r').and_return(true)
+      expects(:authorized?).with('a','r').returns(true)
       if_authorized?('a','r'){|action,resource| [action,resource,'hi'] }.should == ['a','r','hi']
     end
     it "does nothing if not authorized" do
-      should_receive(:authorized?).with('a','r').and_return(false)
+      expects(:authorized?).with('a','r').returns(false)
       if_authorized?('a','r'){ 'hi' }.should be_nil
     end
   end
@@ -24,7 +24,7 @@ describe UsersHelper do
       lambda { link_to_user(nil) }.should raise_error('Invalid user')
     end
     it "should link to the given user" do
-      should_receive(:user_path).at_least(:once).and_return('/users/1')
+      expects(:user_path).at_least_once.returns('/users/1')
       link_to_user(@user).should have_tag("a[href='/users/1']")
     end
     it "should use given link text if :content_text is specified" do
@@ -81,10 +81,10 @@ describe UsersHelper do
 
   describe "link_to_current_user, When logged in" do
     before do
-      stub!(:current_user).and_return(@user)
+      stubs(:current_user).returns(@user)
     end
     it "should link to the given user" do
-      should_receive(:user_path).at_least(:once).and_return('/users/1')
+      expects(:user_path).at_least_once.returns('/users/1')
       link_to_current_user().should have_tag("a[href='/users/1']")
     end
     it "should use given link text if :content_text is specified" do
@@ -114,7 +114,7 @@ describe UsersHelper do
 
   describe "link_to_current_user, When logged out" do
     before do
-      stub!(:current_user).and_return(nil)
+      stubs(:current_user).returns(nil)
     end
     it "should link to the login_path" do
       link_to_current_user().should have_tag("a[href='/login']")

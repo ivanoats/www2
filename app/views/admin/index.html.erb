@@ -2,7 +2,9 @@
 <h2>List of New Hostings</h2>
 
 <%= form_tag :action => 'provision'%>
+<% if @server %>
 Add Hosting to Server <%= select_tag :server, options_from_collection_for_select( Server.all, :id, :select_description, @server)%>
+<% end %>
 
   <% render :partial => 'server_details'%>
 

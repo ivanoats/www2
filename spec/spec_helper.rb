@@ -7,6 +7,7 @@ require 'spec/autorun'
 require 'spec/rails'
 
 require 'rspec_response_enhancer'
+require 'rspec_rails_mocha'
 require 'webrat'
 
 require "email_spec/helpers"

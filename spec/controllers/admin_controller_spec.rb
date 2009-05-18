@@ -1,21 +1,20 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe AdminController do
-
-  #Delete these examples and add some real ones
-  it "should use AdminController" do
-    controller.should be_an_instance_of(AdminController)
+  before :each do
+    @user = mock('User', {:has_role? => true})
+    @controller.stubs(:current_user).returns(@user)
   end
-
 
   describe "GET 'index'" do
     it "should be successful" do
-      get 'index'
+      get 'index', {}, {:user_id => 1}
+      response.should have_been_success
       response.should be_success
     end
   end
   
   describe 'POST provision' do
-    it 'should '
+    
   end
 end

@@ -3,10 +3,14 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe TicketsController do
   fixtures :users, :pages, :roles, :roles_users
   
+  def mock_ticket(stubs={})
+    @mock_ticket ||= mock_model(Ticket, stubs)
+  end
+  
   before :each do
     @ticket = Ticket.new
-    Ticket.stub!(:find).with(:all).and_return [@ticket]
-    Ticket.stub!(:find).and_return @ticket
+    Ticket.stubs(:find).with(:all).returns [@ticket]
+    Ticket.stubs(:find).returns @ticket
   end
   
   describe "Anybody" do
@@ -22,11 +26,10 @@ describe TicketsController do
     end
     
     it "should create a ticket" do
-      ticket = Ticket.new
-      Ticket.should_receive(:new).and_return ticket
-      ticket.should_receive(:save).and_return true
+      @ticket = mock_ticket(:save => true)
+      Ticket.expects(:new).returns @ticket
       post :create, :id => 1
-      response.should redirect_to(tickets_url)
+      response.should redirect_to(ticket_url(@ticket))
     end
   end
   
@@ -41,9 +44,11 @@ describe TicketsController do
     end
 
     it "should update a ticket" do
-      @ticket.should_receive(:update_attributes).and_return true
+      @ticket = mock_ticket(:update_attributes => true)
+      Ticket.expects(:find).returns @ticket
       post :update, :id => 1
-      response.should redirect_to(tickets_url)
+      response.should have_been_redirect
+      response.should redirect_to(ticket_url(@ticket))
     end
   end
   
