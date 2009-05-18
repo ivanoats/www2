@@ -10,7 +10,7 @@ describe FourOhFoursController do
   describe "with Redirects" do
     it "should find by slug and redirect permanently" do
       methods  = { :slug => "test-slug", :url => "http://test-url.com" }
-      expected = mock(Redirect, methods)
+      expected = mock_model(Redirect, methods)
       slug     = 'test-slug'
       
       Redirect.expects(:find_by_slug).with(slug).returns(expected)
@@ -28,7 +28,7 @@ describe FourOhFoursController do
     end
     
     it "should request a page by name" do
-      page = mock(Page)
+      page = mock_model(Page)
       Page.expects(:find_by_permalink).returns(Page.new(:permalink => "that_article"))
       get 'index', :path => ["that_page"]
       response.should be_success

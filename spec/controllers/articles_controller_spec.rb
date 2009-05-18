@@ -105,7 +105,9 @@ describe ArticlesController do
     describe "responding to GET new" do
 
       it "should expose a new article as @article" do
-        Article.expects(:new).returns(mock_article)
+        photos = mock('photos')
+        photos.stubs({:build => nil})
+        Article.expects(:new).returns(mock_article(:photos => photos))
         get :new
         assigns[:article].should equal(mock_article)
       end

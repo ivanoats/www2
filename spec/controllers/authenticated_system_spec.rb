@@ -5,19 +5,19 @@ describe SessionsController do
   
   before do
     # FIXME -- sessions controller not testing xml logins 
-    stub!(:authenticate_with_http_basic).returns nil
+    stubs(:authenticate_with_http_basic).returns nil
   end    
   describe "logout_killing_session!" do
     before do
       login_as :quentin
-      stub!(:reset_session)
+      stubs(:reset_session)
     end
-    it 'resets the session'         do should_receive(:reset_session);         logout_killing_session! end
-    it 'kills my auth_token cookie' do should_receive(:kill_remember_cookie!); logout_killing_session! end
+    it 'resets the session'         do expects(:reset_session);         logout_killing_session! end
+    it 'kills my auth_token cookie' do expects(:kill_remember_cookie!); logout_killing_session! end
     it 'nils the current user'      do logout_killing_session!; current_user.should be_nil end
     it 'kills :user_id session' do
-      session.stub!(:[]=)
-      session.should_receive(:[]=).with(:user_id, nil).at_least(:once)
+      session.stubs(:[]=)
+      session.expects(:[]=).with(:user_id, nil).at_least_once
       logout_killing_session!
     end
     it 'forgets me' do    
@@ -32,14 +32,14 @@ describe SessionsController do
   describe "logout_keeping_session!" do
     before do
       login_as :quentin
-      stub!(:reset_session)
+      stubs(:reset_session)
     end
-    it 'does not reset the session' do should_not_receive(:reset_session);   logout_keeping_session! end
-    it 'kills my auth_token cookie' do should_receive(:kill_remember_cookie!); logout_keeping_session! end
+    it 'does not reset the session' do expects(:reset_session).never;   logout_keeping_session! end
+    it 'kills my auth_token cookie' do expects(:kill_remember_cookie!); logout_keeping_session! end
     it 'nils the current user'      do logout_keeping_session!; current_user.should be_nil end
     it 'kills :user_id session' do
-      session.stub!(:[]=)
-      session.should_receive(:[]=).with(:user_id, nil).at_least(:once)
+      session.stubs(:[]=)
+      session.expects(:[]=).with(:user_id, nil).at_least_once
       logout_keeping_session!
     end
     it 'forgets me' do    
@@ -71,24 +71,24 @@ describe SessionsController do
       set_remember_token 'hello!', 5.minutes.from_now
     end    
     it 'logs in with cookie' do
-      stub!(:cookies).returns({ :auth_token => 'hello!' })
+      stubs(:cookies).returns({ :auth_token => 'hello!' })
       logged_in?.should be_true
     end
     
     it 'fails cookie login with bad cookie' do
-      should_receive(:cookies).at_least(:once).returns({ :auth_token => 'i_haxxor_joo' })
+      expects(:cookies).at_least_once.returns({ :auth_token => 'i_haxxor_joo' })
       logged_in?.should_not be_true
     end
     
     it 'fails cookie login with no cookie' do
       set_remember_token nil, nil
-      should_receive(:cookies).at_least(:once).returns({ })
+      expects(:cookies).at_least_once.returns({ })
       logged_in?.should_not be_true
     end
     
     it 'fails expired cookie login' do
       set_remember_token 'hello!', 5.minutes.ago
-      stub!(:cookies).returns({ :auth_token => 'hello!' })
+      stubs(:cookies).returns({ :auth_token => 'hello!' })
       logged_in?.should_not be_true
     end
   end
