@@ -25,7 +25,7 @@ class Order < ActiveRecord::Base
     cart.cart_items.each do |item|
       if item.product
         item.quantity.times do 
-          order.purchases << Purchase.new(:product => item.product)
+          order.purchases << Purchase.new(:product => item.product, :data => item.data)
         end
       end
     end
@@ -56,6 +56,5 @@ private
   def create_invoice_number
     self.invoice_number = Order.generate_invoice_number unless self.invoice_number
   end  
-
 
 end

@@ -2,7 +2,7 @@ class AccountController < ApplicationController
   include ActiveMerchant::Billing
   
   before_filter :login_required
-  before_filter :require_account, :except => [:new, :create]
+  before_filter :require_account, :except => [:new, :create, :switch_account]
   before_filter :require_payment_information, :only => :pay
   
   def index
@@ -99,6 +99,13 @@ class AccountController < ApplicationController
           redirect_to redirect_url
         end
       end
+    end
+  end
+  
+  def switch_account
+    session[:account] = params[:id] if current_user.accounts.include? Account.find_by_id(params[:id])
+    render :update do |page|
+      page.redirect_to :action => :manage
     end
   end
   

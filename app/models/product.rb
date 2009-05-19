@@ -1,9 +1,7 @@
 class Product < ActiveRecord::Base
   STATUS = %w(active disabled)
   KINDS = %w(package domain addon)
-  
-  serialize :data, Hash
-  
+
   validates_presence_of :name
   validates_numericality_of :cost, :greater_than => 0
   validates_inclusion_of :status, :in => STATUS, :message => "%s is not a valid status"

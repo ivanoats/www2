@@ -29,6 +29,18 @@ describe Account do
     assert @account.valid?
   end
   
+  it 'should create and attach to user' do
+    @user = create_user
+    assert_equal @user.accounts, []
+    @account = @user.accounts.create()
+    assert !@account.valid?
+    @account = @user.accounts.create(@valid_attributes)
+    @user.reload
+    assert_equal @account.users, [@user]
+    assert_equal @user.accounts, [@account]
+    
+  end
+  
   it "should save a credit card" do
     @account = Account.new(@more_attributes)
     @credit_card = ActiveMerchant::Billing::CreditCard.new(

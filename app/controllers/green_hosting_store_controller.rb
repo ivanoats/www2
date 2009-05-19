@@ -56,11 +56,11 @@ class GreenHostingStoreController < ApplicationController
           redirect_to( account.needs_payment_info? ? {:action => :billing} : {:action => :confirmation}) and return
         else
           #create a new account
-          @account = current_user.accounts.build(params[:account])
-          if @account.valid?
-            @account.save
+          begin
+            @account = current_user.accounts.create(params[:account])
             session[:account] = @account
             redirect_to :action => :billing and return
+          rescue
           end
         end
       end
