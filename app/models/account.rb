@@ -22,7 +22,8 @@ class Account < ActiveRecord::Base
   accepts_nested_attributes_for :billing_address
   
   named_scope :active, :conditions => ["state = ?",'active']
-  named_scope :due, :conditions => ['balance < ? and (last_payment_on IS NULL or last_payment_on < ?)',0,1.month.ago]
+  named_scope :due, :conditions => ['balance < ? and last_payment_on = ?',0,1.month.ago.to_date]
+  named_scope :overdue, :conditions => ['balance < ? and last_payment_on < ?',0,1.month.ago.to_date]
   
   validates_presence_of :organization
   
@@ -31,7 +32,7 @@ class Account < ActiveRecord::Base
   aasm_state :active
   aasm_state :suspended
   aasm_state :deleted
-
+  
     
   aasm_event :suspend do
     transitions :from => [:ordered, :active], :to => :suspended
@@ -43,6 +44,10 @@ class Account < ActiveRecord::Base
 
   aasm_event :unsuspend do
     transitions :from => :suspended, :to => :active
+  end
+  
+  def before_create
+    self.last_payment_on = Date.today
   end
   
   def transactions(params = {})
@@ -146,7 +151,10 @@ class Account < ActiveRecord::Base
     end
   end
   
-
+  def next_payment_on
+    self.last_payment_on + 1.month
+  end
+  
 protected
   
   

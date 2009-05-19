@@ -41,13 +41,13 @@ class Hosting < ActiveRecord::Base
     
 
   def should_charge?
-    self.next_charge < (Time.today + 1.day).at_beginning_of_day
+    self.next_charge_on < (Time.today + 1.day).at_beginning_of_day
   end
   
   def charge
     Hosting.transaction do
       #prevent charge time creeping forward each period
-      charge_time = (DateTime.now - next_charge < 1.day) ? next_charge : DateTime.now
+      charge_time = (DateTime.now - next_charge_on < 1.day) ? next_charge_on : DateTime.now
       self.account.charges.create(:amount => self.cost, :chargable => self)
       self.update_attribute(:next_charge_on, Time.now + self.period)
       self.account.update_attribute(:balance, self.account.balance - self.cost)

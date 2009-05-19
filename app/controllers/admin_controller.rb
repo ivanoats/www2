@@ -6,6 +6,8 @@ class AdminController < ApplicationController
   
   def index
     @ordered = Hosting.ordered
+    @due = Account.due
+    @overdue = Account.overdue
     @server = Server.find_by_id(session[:provisioning_server]) || Server.last
   end
   

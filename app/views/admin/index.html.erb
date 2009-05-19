@@ -1,10 +1,10 @@
 <% unless @ordered.empty? %>
-<h2>List of New Hostings</h2>
+  <h2>List of New Hostings</h2>
 
-<%= form_tag :action => 'provision'%>
-<% if @server %>
-Add Hosting to Server <%= select_tag :server, options_from_collection_for_select( Server.all, :id, :select_description, @server)%>
-<% end %>
+  <%= form_tag :action => 'provision'%>
+  <% if @server %>
+  Add Hosting to Server <%= select_tag :server, options_from_collection_for_select( Server.all, :id, :select_description, @server)%>
+  <% end %>
 
   <% render :partial => 'server_details'%>
 
@@ -32,4 +32,46 @@ Add Hosting to Server <%= select_tag :server, options_from_collection_for_select
   All Hosting is provisioned.  
 <% end %>
 
-
+<% unless @due.empty? %>
+  <h2>Due Accounts</h2>
+  This will be charged today.  
+  <table class='account_table' style='font-size: 90%'>
+    <tr>
+      <th>Name</th>
+      <th>Balance Due</th>
+    </tr>
+  <% @due.each do |account| %>
+    <tr class='<%= cycle("odd","even")%>'>  
+      <td style='text-align: left'><%= account.organization %></td>
+      <td><%= -account.balance %></td>
+    </tr>  
+  <% end %>
+  </table>
+</form>
+<% else %>
+  No accounts are due today.  
+<% end %>
+<br/>
+<% unless @overdue.empty? %>
+  <h2>Overdue Accounts</h2>
+  <table class='account_table' style='font-size: 90%'>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Balance Due</th>
+      <th>Due Date</th>
+    </tr>
+  <% @overdue.each do |account| %>
+    <tr class='<%= cycle("odd","even")%>'>  
+      <td><%= check_box_tag "account[#{account.id}]" %></td>
+      <td style='text-align: left'><%= account.organization %></td>
+      <td><%= -account.balance %></td>
+      <td><%= account.next_payment_on.to_formatted_s :human_date %></td>
+    </tr>  
+  <% end %>
+  </table>
+  <%= submit_tag "Suspend" %>
+</form>
+<% else %>
+  No accounts are past due.  
+<% end %>
