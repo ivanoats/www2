@@ -27,6 +27,8 @@ class Account < ActiveRecord::Base
   
   validates_presence_of :organization
   
+  before_create :set_last_payment, :unless => Proc.new { |a| a.attribute_present?("last_payment_on") }
+  
   aasm_column :state
   aasm_initial_state :active
   aasm_state :active
@@ -44,10 +46,6 @@ class Account < ActiveRecord::Base
 
   aasm_event :unsuspend do
     transitions :from => :suspended, :to => :active
-  end
-  
-  def before_create
-    self.last_payment_on = Date.today
   end
   
   def transactions(params = {})
@@ -207,6 +205,10 @@ protected
         :test => true
       }
     end)
+  end
+  
+  def set_last_payment
+    self.last_payment_on = Date.today
   end
   
 end

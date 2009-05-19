@@ -32,8 +32,6 @@ describe Account do
   it 'should create and attach to user' do
     @user = create_user
     assert_equal @user.accounts, []
-    @account = @user.accounts.create()
-    assert !@account.valid?
     @account = @user.accounts.create(@valid_attributes)
     @user.reload
     assert_equal @account.users, [@user]
@@ -132,15 +130,22 @@ describe Account do
   end
   
   describe "when the balance is negative and payment was over a month ago" do
-    it "should be due for payment" do
+    it "should be overdue for payment" do
       account = create_account(:balance => -1000, :last_payment_on => 32.days.ago)
-      assert_equal Account.due, [account]
+      assert_equal Account.overdue, [account]
+    end
+  end
+  
+  describe "when the balance is negative and payment was over a year ago" do
+    it "should be overdue for payment" do
+      account = create_account(:balance => -1000, :last_payment_on => 366.days.ago)
+      assert_equal Account.overdue, [account]
     end
   end
   
   describe "when the balance is negative and payment was over a year ago" do
     it "should be due for payment" do
-      account = create_account(:balance => -1000, :last_payment_on => 366.days.ago)
+      account = create_account(:balance => -1000, :last_payment_on => 1.month.ago)
       assert_equal Account.due, [account]
     end
   end

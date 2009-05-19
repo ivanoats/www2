@@ -24,7 +24,8 @@ describe CartController do
 
   describe "GET 'remove_cart_item'" do
     it "should be successful" do
-      get 'remove_cart_item'
+      Cart.stubs(:create!).returns(mock('cart', {:cart_items => [],:remove => true}))      
+      get 'remove_cart_item', :id => 1
       response.should be_success
     end
   end
