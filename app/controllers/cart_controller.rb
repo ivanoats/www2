@@ -1,6 +1,8 @@
 class CartController < ApplicationController
   include CartSystem
   
+  before_filter :load_cart, :only => [:add_domain, :add_package, :add_addon, :remove_cart_item]
+  
   def index
     @cart = Cart.new
   end
@@ -18,20 +20,20 @@ class CartController < ApplicationController
 
   def add_package
     @product = Product.find(params[:package_id])
-    load_cart
     @cart.add(@product)
     render_cart
   end
   
   def add_addon
     @product = Product.find(params[:addon_id])
-    load_cart
     @cart.add(@product)
     render_cart
   end
 
 
   def remove_cart_item
+    @cart.remove(params[:id])
+    render_cart
   end
 
   def change_cart_item_quantity

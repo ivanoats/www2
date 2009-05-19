@@ -21,6 +21,7 @@
       <td><%= number_to_currency(cart_item.unit_price) %></td>
       <td><%= h(cart_item.quantity) %> <%= h(cart_item.quantity_unit) %></td>
       <td><%= number_to_currency(cart_item.unit_price * cart_item.quantity) %></td>
+      <td><%= link_to_remote "Remove", :url => {:controller => "cart", :action => :remove_cart_item, :id => cart_item.id}%></td>
     </tr>
       <% end %>
       <tr>
