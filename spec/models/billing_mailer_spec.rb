@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe 'Payment Success' do
   before(:all) do
-    @account = Account.new(:email => 'something@example.com')
+    @account = create_account(:email => 'something@example.com')
     @payment = Payment.new(:amount => 125.78, :receipt => 'whatever is here')
     @email = BillingMailer.create_charge_success(@account, @payment)
   end
@@ -23,7 +23,7 @@ end
 
 describe 'Payment Failure' do
   before(:all) do
-    @account = Account.new(:email => 'something@example.com')
+    @account = create_account(:email => 'something@example.com')
     @amount = 392.55
     @email = BillingMailer.create_charge_failure(@account, @amount)
   end

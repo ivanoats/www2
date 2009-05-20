@@ -150,8 +150,9 @@ class Account < ActiveRecord::Base
   end
   
   def next_payment_on
-    self.last_payment_on + 1.month
+    (self.last_payment_on + 1.month).to_date
   end
+  
   
 protected
   

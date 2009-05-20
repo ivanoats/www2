@@ -67,9 +67,9 @@ module FixtureReplacement
   attributes_for :user do |a|
     a.password = 'testpass'
     a.password_confirmation = 'testpass'
-    a.login = 'testlogin'
+    a.login = String.random
     a.name = 'testauthor'
-    a.email = 'arealemail@boo.com'
+    a.email = "#{String.random}@boo.com"
 	end
 
 end
