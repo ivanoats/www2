@@ -50,7 +50,10 @@
   </table>
 </form>
 <% else %>
+<div class='message'>
   No accounts are due today.  
+  
+</div>
 <% end %>
 <br/>
 <% unless @overdue.empty? %>
@@ -67,7 +70,7 @@
     <tr class='<%= cycle("odd","even")%>'>  
       <td><%= check_box_tag "account[#{account.id}]" %></td>
       <td style='text-align: left'><%= account.organization %></td>
-      <td><%= -account.balance %></td>
+      <td><%= number_to_currency -account.balance %></td>
       <td><%= account.next_payment_on.to_formatted_s :human_date %></td>
       <td><%= account.state.capitalize %></td>
       

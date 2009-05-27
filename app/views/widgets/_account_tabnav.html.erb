@@ -12,7 +12,7 @@
 #   :html => aHash #=> sets html options for the tabnav's div (es :html => {:class=> 'myCssClass', :id=>'myCssId'}) 
 #     
 render_tabnav :account, 
-              :generate_css => true do 
+              :generate_css => false do 
   add_tab do |i|
     i.named 'Dashboard'
     i.links_to( {:action => 'manage'} )

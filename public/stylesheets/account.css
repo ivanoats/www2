@@ -106,4 +106,65 @@ table.account_table tfoot th em {
 .account_navigation a.active {
   font-weight: bold;
 }
+
+/* Tabs */
+
+.account_tabnav {
+	color: #000;
+	border-bottom: 2px solid #648c33;
+	margin: 5px 0px 0px 0px;
+	padding: 0px;
+	z-index: 1;
+	padding-left: 10px }
+
+.account_tabnav ul {
+	margin: 0px;
+	padding: 0px;
+}
+
+.account_tabnav li {
+	display: inline;
+	overflow: hidden;
+	list-style-type: none; }
+
+.account_tabnav li span.disabled {
+        color: #888888;
+        background: #FAFAFA;
+        border: 2px solid #DDDDDD;
+        border-bottom: none;
+        padding: 2px 5px 0px 5px;
+        margin: 0;
+      	text-decoration:none;}
+
+.account_tabnav a, account_tabnav a.active {
+	color: #000000;
+	font-weight: bold;
+	border: 2px solid #648c33;
+	padding: 2px 5px 0px 5px;
+	margin: 0;
+	text-decoration: none; }
+
+.account_tabnav a.active {
+	background: #FFFFFF;
+	border-bottom: 3px solid #FFFFFF; }
+
+.account_tabnav a:hover {
+	color: #FFFFFF;
+ }
+
+.account_tabnav a:visited {
+	color: #000000; }
+
+.account_tabnav a.active:hover {
+	background: #FFFFFF;
+	color: #000000; }
+
+.account_tabnav_content {
+	background: #FFFFFF;
+	padding: 20px;
+	border: 2px solid #648c33;
+	border-top: none;
+	z-index: 2;
+}
+
   

@@ -1,8 +1,14 @@
 
 <% if @account.balance >= 0 %>
-  No payments due.  
+  <div class='message'>
+  <h3>No payments due  </h3>
+  Thanks for staying on top of that!
+  </div>
 <% else %>
+  <div class='alert'>
+  <h3>Payment Due</h3>
   <%= number_to_currency -@account.balance %> is due now.  
+  </div>
 <% end %>
 
 <% if @account.needs_payment_info? %>

@@ -152,10 +152,20 @@ div.fieldWithErrors textarea{}
 
 /* Alert */
 
+.message {
+  border: 1px solid #82aa51;
+  background-color: #F0FAE3;
+  padding: 5px;
+  margin: 5px 0;
+}
+
+.message h3 { color: #0A400F;}
+
 .alert {
   border: 1px solid #f99;
   background-color: #fff5f5;
   padding: 5px;
+  margin: 5px 0;
 }
 .alert h3 { color: red; }
 .alert a { color: black;}
