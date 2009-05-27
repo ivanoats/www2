@@ -3,10 +3,6 @@ class CartController < ApplicationController
   
   before_filter :load_cart, :only => [:add_domain, :add_package, :add_addon, :remove_cart_item]
   
-  def index
-    @cart = Cart.new
-  end
-
   def add_domain
     # pull in the cart from the session
     load_cart

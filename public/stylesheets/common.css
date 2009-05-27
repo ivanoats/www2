@@ -81,7 +81,8 @@ html[xmlns] .clearfix {display: block;}
 #splash #learn_more a {height: 67px; width: 240px;}
 
 
-#sidebar {float: left; width: 20%; margin: 20px 0; padding: 0 1% 0 3%; text-align: right;}
+#sidebar {margin: 20px 0; text-align: right; float: right; width:268px;}
+/*#sidebar {float: left; width: 20%; margin: 20px 0; padding: 0 1% 0 3%; text-align: right;}*/
 #sidebar ul, 
 #sidebar li {margin: 0; padding: 0; list-style: none;}
 #sidebar p img {

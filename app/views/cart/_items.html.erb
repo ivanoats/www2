@@ -1,13 +1,16 @@
 <div id="cart">
-  <p>Your Shopping Cart</p>
-  <table style="border-width:2px; border-style:dotted; border-spacing: 5px;">
+<% if !@cart.cart_items.empty? %>
+  <%= image_tag 'cart/Shoppingcart_48x48.png', :style => "float:right; margin-top: -10px;"%>
+  <h1>Shopping Cart</h1>
+  <table>
     <tr>
-      <th>Description</th>
-      <th>Unit Price</th>
-      <th>#</th>
-      <th>Total Cost</th>
+      <th>Item</th>
+      <th>Quantity</th>
+      <th>Remove</th>
+      <th>Price</th>
+
     </tr>
-    <% if !@cart.cart_items.empty? %>
+
       <% for cart_item in @cart.cart_items %>
     <tr>
       <td>
@@ -18,21 +21,18 @@
           <%#= simple_format(word_wrap(h(cart_item.description), :line_width => line_width )) %>
         <%#- end -%>
       </td>
-      <td><%= number_to_currency(cart_item.unit_price) %></td>
       <td><%= h(cart_item.quantity) %> <%= h(cart_item.quantity_unit) %></td>
-      <td><%= number_to_currency(cart_item.unit_price * cart_item.quantity) %></td>
       <td><%= link_to_remote "Remove", :url => {:controller => "cart", :action => :remove_cart_item, :id => cart_item.id}%></td>
+
+      <td><%= number_to_currency(cart_item.unit_price * cart_item.quantity) %></td>
     </tr>
       <% end %>
       <tr>
         <td colspan="3">Total: </td>
         <td><%= number_to_currency( @cart.total_price ) %></td>
       </tr>
-    <% else %>
-    <tr style="border:2px; border-style:dotted;">
-      <td colspan="4">Your cart is empty.</td>
-    </tr>
-    <% end %>
-    
   </table>
+<% else %>
+  Your cart is empty.
+<% end %>
 </div>
