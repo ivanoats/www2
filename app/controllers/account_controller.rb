@@ -103,7 +103,7 @@ class AccountController < ApplicationController
   end
   
   def switch_account
-    session[:account] = params[:id] if current_user.accounts.include? Account.find_by_id(params[:id])
+    session[:account] = params[:id] if current_user.has_role?('Administrator') || current_user.accounts.include?( Account.find_by_id(params[:id]))
     render :update do |page|
       page.redirect_to :action => :manage
     end

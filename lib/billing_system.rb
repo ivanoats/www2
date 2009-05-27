@@ -4,7 +4,7 @@ module BillingSystem
     Account.active.due.each do |account| 
       amount = account.balance
       if account.charge_balance 
-        BillingMailer.deliver_charge_success(account, self.payments.last)
+        BillingMailer.deliver_charge_success(account, account.payments.last)
       else
         BillingMailer.deliver_charge_failure(account,amount)        
       end
@@ -13,7 +13,7 @@ module BillingSystem
     Account.active.overdue.each do |account|
       amount = account.balance
       if account.charge_balance
-        BillingMailer.deliver_charge_success(account, self.payments.last)
+        BillingMailer.deliver_charge_success(account, account.payments.last)
       else
         days_overdue = Date.today - account.next_payment_on
         case days_overdue

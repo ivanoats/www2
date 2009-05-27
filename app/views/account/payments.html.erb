@@ -5,7 +5,7 @@
     <th>Balance</th>
   </tr>
   <tr class='odd'>
-    <td><%= @account.next_payment.to_formatted_s :human_date %></td>
+    <td><%= @account.next_payment_on.to_formatted_s :human_date %></td>
     <td style='text-align: left'>
       <% if @account.needs_payment_info? %>
         No credit card on file, <%= link_to "setup billing", {:action => 'billing'} %>.

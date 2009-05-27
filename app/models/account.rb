@@ -101,7 +101,7 @@ class Account < ActiveRecord::Base
   end
   
   def charge_balance
-    charge(balance)
+    charge(-self.balance)
   end
   
   def charge_order(order)

@@ -1,1 +1,7 @@
-
+<p>
+<% if @account.balance >= 0 %>
+  No payments due.  
+<% else %>
+  <%= number_to_currency -@account.balance %> is due now.  
+<% end %>
+</p>
