@@ -7,7 +7,7 @@
 	<%= page_title %> 
 	<%= meta "description", meta_description %> 
 	<%= meta "keywords", meta_keywords %>
-	<%= stylesheet_link_tag 'common', 'account', "pagination", "users", formz_stylesheets, 'live-search', :cache => true %>
+	<%= stylesheet_link_tag 'common', 'public', "pagination", "users", formz_stylesheets, 'live-search', :cache => true %>
 	<!--[if lt IE 8]>
 		<%= stylesheet_link_tag "ie", :cache => true %>
 	<![endif]-->
@@ -24,8 +24,7 @@
 </head>
 <body id="<%= controller.controller_name.to_s + "_" + controller.action_name.to_s %>">
   <div id="wrapper">
-  <div id="container">
-  	<div id="container-inner">
+
   	<div id="header">
   		<a href="/"><img src="/images/logo.gif"></a>
   		<div id="top">
@@ -34,7 +33,15 @@
   		</div><!--/top-->
   		<%= render :partial => 'layouts/menu' %>
   	</div><!--/header-->
-    <div id="layout">
+  	  <div id="container">
+  	<div id="container-inner">
+	 
+	<% if @show_teaser then %>
+		<div id="teaser">
+	  		<span><%= @teaser %></span>
+	  	</div>
+	<% end #if show_teaser %>
+  	
   	<% if @splash_on then %>
 	<div id="splash-wrap">
   	<div id="splash">
@@ -45,26 +52,25 @@
   	</div><!--/splash-->
 	</div><!--/splash-wrap-->
   	<% end #if splash on %>
-      <div id="notice"><%= flash[:notice] %></div> 
-      <div id="error"><%= flash[:error] %></div> 
-      <div style='float: right'>
-      <% if current_user.has_role?('Administrator') %>
-        All accounts:  <%= select_tag :switch_account, options_from_collection_for_select(Account.active, :id, :organization, @account.id) %>
-        <%= observe_field :switch_account, :url => {:controller => :account, :action => :switch_account}, :with => :id %>
-        
-      <% elsif @account && current_user.accounts.size > 1 %>
-        Switch to another account <%= select_tag :switch_account, options_from_collection_for_select(current_user.accounts, :id, :organization, @account.id) %>
-        <%= observe_field :switch_account, :url => {:controller => :account, :action => :switch_account}, :with => :id %>
-      <% end %>
-      </div>
-      <h2 style='float: left; margin: 0;'><%= @account.organization %></h2>
-      <div style='clear: both;'></div>
-      <% tabnav :account do %>
-        <div id="content">
-      	<%= yield %>
-      	</div>
-      <% end %>
-      </div>
+  	<div id="notice"><%= flash[:notice] %></div> 
+    <div id="error"><%= flash[:error] %></div> 
+    <% content_for :head do %>
+      <style type='text/css'>
+        #content { 
+          width: 500px;
+        }
+        #sidebar {width: auto;}
+      </style>
+    <% end %>
+
+    <% content_for :sidebar do %>
+      <%= render 'cart/items' %>
+    <% end unless controller.action_name == 'confirmation' %>
+    <%= render 'navigation' %>
+    <div id="content">
+      <%= yield %>
+    </div><!--/content-->
+  	<%= render :partial => 'layouts/sidebar' %>
   	</div>
   </div><!--/container-->
   <%= render :partial => 'layouts/footer' %>

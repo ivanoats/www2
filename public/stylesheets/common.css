@@ -44,7 +44,7 @@ strong {font-weight: bold;}
 #content p {margin:0 0 1em;}
 /* #content p img {margin:1.5em 1em 1.5em 0;padding:0;} */
 #content p img.right {float:right;margin:1.5em 0 1.5em 1.5em;}
-#content a, a:focus, a:hover {width:0; height:0;outline:0; /* removes outline */}
+#content a, #content a:focus,#content a:hover {width:0; height:0;outline:0; /* removes outline */}
 #content a {text-decoration:none;}
 #content a:hover {text-decoration: underline;}
 blockquote {margin:1.5em;color:#666;font-style:italic;}
@@ -169,3 +169,45 @@ div.fieldWithErrors textarea{}
 }
 .alert h3 { color: red; }
 .alert a { color: black;}
+
+/* Breadcrumb */
+
+.breadcrumb { 
+  font: 11px Arial, Helvetica, sans-serif;
+  background-image:url('/images/breadcrumb/bc_bg.png'); 
+  background-repeat:repeat-x;
+  height:30px;
+  line-height:30px;
+  color:#9b9b9b;
+  border:solid 1px #cacaca;
+  width:100%;
+  overflow:hidden;
+  margin-top:10px;
+  padding:0px;
+}
+
+.breadcrumb li 
+{
+    list-style-type:none;
+    float:left;
+    padding-left:10px;
+}
+
+.breadcrumb a
+{
+    height:30px;
+    display:block;
+    background-image:url('/images/breadcrumb/bc_separator.png'); 
+    background-repeat:no-repeat; 
+    background-position:right;
+    padding-right: 15px;
+    text-decoration: none;
+    color:#454545;
+}
+.breadcrumb a.root {
+  color: black;
+  font-weight: bold;
+}
+.breadcrumb a.current {
+  color: #9b9b9b;
+}

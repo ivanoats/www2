@@ -1,11 +1,15 @@
 #content { 
   float: none;
-  margin: 30px 0;  
-  padding: 0 40px 0 20px; 
   border: 1px solid #dedede; 
   font-size: 1.2em; 
   border-width: 0 1px 0 0;  
   width: auto;
+}
+
+#layout {
+  padding: 0 40px 0 20px; 
+  margin: 30px 0;  
+  
 }
 
 /*  Account Table */

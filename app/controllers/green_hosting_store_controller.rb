@@ -103,6 +103,7 @@ class GreenHostingStoreController < ApplicationController
   end
 
   def confirmation
+    @sidebar = ''
   end
 
   def payment
