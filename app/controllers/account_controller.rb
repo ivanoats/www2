@@ -67,9 +67,7 @@ class AccountController < ApplicationController
     if request.post?
       amount = params[:amount].to_i
       @account.charge(amount)
-      if @account.valid?
-        @account.increment(:balance, amount)
-        @account.save
+      if @account.save
         flash[:notice] = "Payment completed"
         redirect_to :action => 'payments'
       end

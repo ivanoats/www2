@@ -91,7 +91,7 @@ class Account < ActiveRecord::Base
                     :previous_balance => self.balance,
                     :transactions => self.transactions({:conditions => ['created_at > ?',self.last_payment_on]}),
                     :new_balance => self.balance + amount})
-      
+      self.update_attribute(:balance, self.balance + amount)
       self.payments.create(:amount => amount, :transaction_id => @response.authorization, :receipt => receipt)
       true
     else

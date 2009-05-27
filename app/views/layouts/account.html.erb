@@ -62,9 +62,9 @@
       <% end %>
       
       <h2><%= @account.organization %></h2>
-      <%= tabnav :account %>
-       
-      <%= yield %>
+      <% tabnav :account do %>
+        <%= yield %>
+      <% end %>
   	</div><!--/content-->
   	</div>
   </div><!--/container-->

@@ -149,3 +149,13 @@ div.fieldWithErrors {}
 div.fieldWithErrors label {}
 div.fieldWithErrors input, div.fieldWithErrors select, 
 div.fieldWithErrors textarea{}
+
+/* Alert */
+
+.alert {
+  border: 1px solid #f99;
+  background-color: #fff5f5;
+  padding: 5px;
+}
+.alert h3 { color: red; }
+.alert a { color: black;}

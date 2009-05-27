@@ -1,7 +1,13 @@
-<p>
+
 <% if @account.balance >= 0 %>
   No payments due.  
 <% else %>
   <%= number_to_currency -@account.balance %> is due now.  
 <% end %>
-</p>
+
+<% if @account.needs_payment_info? %>
+<div class='alert'>
+  <h3>Billing Info Requires Update</h3>
+  <%= link_to "Click here to update your credit card for automated billing.  ", :action => :billing %>
+</div>
+<% end %>

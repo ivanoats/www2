@@ -39,6 +39,7 @@
     <tr>
       <th>Name</th>
       <th>Balance Due</th>
+      
     </tr>
   <% @due.each do |account| %>
     <tr class='<%= cycle("odd","even")%>'>  
@@ -60,6 +61,7 @@
       <th>Name</th>
       <th>Balance Due</th>
       <th>Due Date</th>
+      <th>State</th>
     </tr>
   <% @overdue.each do |account| %>
     <tr class='<%= cycle("odd","even")%>'>  
@@ -67,6 +69,8 @@
       <td style='text-align: left'><%= account.organization %></td>
       <td><%= -account.balance %></td>
       <td><%= account.next_payment_on.to_formatted_s :human_date %></td>
+      <td><%= account.state.capitalize %></td>
+      
     </tr>  
   <% end %>
   </table>
