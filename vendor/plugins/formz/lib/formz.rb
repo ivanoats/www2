@@ -163,7 +163,7 @@ module Formz #:nodoc:
       end
 
       @template.content_tag :div, 
-        options['prefix'].to_s + @template.content_tag(:button, value, { "type" => "submit", "name" => "commit", :class => "submitButton"}.update(options.stringify_keys)), 
+        options['prefix'].to_s + @template.content_tag(:button, @template.content_tag(:span,value), { "type" => "submit", "name" => "commit", :class => "submitButton button"}.update(options.stringify_keys)), 
         :class => "buttonHolder"
     end
     

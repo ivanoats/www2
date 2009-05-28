@@ -10,6 +10,6 @@ Confirm your order and complete your purchase.
 </div>
 Total Charge is <%= number_to_currency @cart.total_price %>
 
-<%= form_tag :action => 'payment' %>
+<%= form_tag :action => 'payment', :style => "float: right" %>
   <%= submit_tag "Purchase", :disable_with => "Purchasing..."%>
 </form>

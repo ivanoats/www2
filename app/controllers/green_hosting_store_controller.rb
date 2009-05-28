@@ -26,6 +26,11 @@ class GreenHostingStoreController < ApplicationController
         page.replace_html 'choose_domain_message' , "<span style='color: red'>Domain #{@domain.name} is not available</span>"
       end
     end
+  rescue => e
+    render :update do |page|
+      page << 'allow_check_domain()'
+      page.replace_html 'choose_domain_message' , "<span style='color: red'>Bad domain name</span>"
+    end
   end
 
   def choose_package
@@ -112,10 +117,12 @@ class GreenHostingStoreController < ApplicationController
     if @order.save 
       redirect_to :action => 'thanks' and return if @account.charge_order(@order)
     end
+    @sidebar = ''
     render :action => 'confirmation'
   end
   
   def thanks
+    @sidebar = ''
   end
   
 private

@@ -44,10 +44,10 @@ strong {font-weight: bold;}
 #content p {margin:0 0 1em;}
 /* #content p img {margin:1.5em 1em 1.5em 0;padding:0;} */
 #content p img.right {float:right;margin:1.5em 0 1.5em 1.5em;}
-#content a, #content a:focus,#content a:hover {width:0; height:0;outline:0; /* removes outline */}
+#content a, #content a:focus,#content a:hover {outline:0; /* removes outline */}
 #content a {text-decoration:none;}
-#content a:hover {text-decoration: underline;}
-blockquote {margin:1.5em;color:#666;font-style:italic;}
+/*#content a:hover {text-decoration: underline;}
+*/blockquote {margin:1.5em;color:#666;font-style:italic;}
 img {border:none;}
 #content ul li {list-style: disc outside;}
 #content ol li {list-style: decimal outside;}
@@ -63,9 +63,9 @@ html[xmlns] .clearfix {display: block;}
 
 #wrapper {margin: 0; padding: 0; background: url(../images/bg.jpg) top center repeat-x;}
 #header {width: 1000px; height: 110px; margin: 0 auto;}
-#container {padding-bottom: 10px; font-size: 1em; overflow: hidden;} /* no styles yet */
+#container {padding-bottom: 10px; font-size: 1em; overflow: hidden; min-height: 300px;} 
 #container-inner {width: 1000px; margin: 0 auto; }
-    #pages_home #container {background: url(../images/splash_home.jpg) top center repeat-x;}
+#pages_home #container {background: url(../images/splash_home.jpg) top center repeat-x;}
 #header img {margin: 0; padding-left: 1%; float: left;}
 #top p {float: right; margin: 0; padding: 10px 20px 0 0; display: inline; font-size: 1em;}
 #top_login, #top_login a {color: #00b160; text-decoration: none;}
@@ -170,6 +170,88 @@ div.fieldWithErrors textarea{}
 }
 .alert h3 { color: red; }
 .alert a { color: black;}
+
+/* Button */
+
+a.button {
+    background: transparent url('/images/button/bg_button_a.gif') no-repeat scroll top right;
+    color: #444;
+    display: block;
+    float: left;
+    font: normal 12px arial, sans-serif;
+    height: 24px;
+    margin-right: 6px;
+    padding-right: 18px; /* sliding doors padding */
+    text-decoration: none;
+}
+
+a.button span {
+    background: transparent url('/images/button/bg_button_span.gif') no-repeat;
+    display: block;
+    line-height: 14px;
+    padding: 5px 0 5px 18px;
+}
+
+a.button:active {
+    background-position: bottom right;
+    color: #000;
+    outline: none; /* hide dotted outline in Firefox */
+}
+
+a.button:active span {
+    background-position: bottom left;
+    padding: 6px 0 4px 18px; /* push text down 1px */
+}
+
+button { 
+  border:0; 
+  cursor:pointer; 
+  padding:0 20px 0 0; 
+  overflow: visible; /* removes extra side padding in IE */
+}
+
+button span { 
+  position:relative; 
+  display:block; 
+  white-space:nowrap; 
+  padding:0 0 0 20px; 
+}
+
+button::-moz-focus-inner {
+	border: none;  /* overrides extra padding in Firefox */
+}
+
+button.button {
+  background: transparent url('/images/button/bg_button_a.gif') no-repeat scroll top right;
+  background-position-top: -1px;
+  color: #444;
+  display: block;
+  float: left;
+  margin-right: 6px;
+  padding-right: 15px; /* sliding doors padding */
+  text-decoration: none;
+  border: 0;
+  text-align: center;
+  overflow: visible;
+  height: 24px;
+}
+
+button.button span {
+  background: transparent url('/images/button/bg_button_span.gif') no-repeat;
+  display: block;
+  line-height: 14px;
+  padding: 5px 0 5px 18px;
+  position: relative;
+  white-space: nowrap;
+}
+
+button.button:active {
+  background-position: bottom right;
+}
+
+button.button:active span {
+  background-position: bottom left;
+}
 
 /* Breadcrumb */
 
