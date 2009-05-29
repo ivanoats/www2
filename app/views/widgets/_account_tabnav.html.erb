@@ -25,17 +25,12 @@ render_tabnav :account,
   end
   
   add_tab do |i|
-    i.named 'Payments'
+    i.named 'Billing and Payments'
     i.links_to( {:action => 'payments'} )
   end
   
   add_tab do |i|
-    i.named 'Billing'
-    i.links_to( {:action => 'billing'} )
-  end
-  
-  add_tab do |i|
-    i.named 'Hosting'
+    i.named 'Websites'
     i.links_to( {:action => 'hosting'} )
   end
 

@@ -10,8 +10,9 @@ class CartController < ApplicationController
     # add it to cart
     @cart.add(Product.domain, 1, nil, {:domain => params[:domain][:name]})
     
-    # render the cart items
-    render_cart
+    render :update do |page|
+      page.redirect_to :controller => :green_hosting_store, :action => :choose_package
+    end
   end
 
   def add_package
@@ -25,7 +26,6 @@ class CartController < ApplicationController
     @cart.add(@product)
     render_cart
   end
-
 
   def remove_cart_item
     @cart.remove(params[:id])
