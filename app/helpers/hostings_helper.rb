@@ -1,2 +1,0 @@
-module HostingsHelper
-end

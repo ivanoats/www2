@@ -12,66 +12,7 @@
   
 }
 
-/*  Account Table */
 
-table.account_table a,
-table.account_table a:link,
-table.account_table a:visited {
-  border:none;
-  }             
-
-table.account_table {
-  width:100%;
-  border-top:1px solid #e5eff8;
-  border-right:1px solid #e5eff8;
-  margin:1em auto;
-    border-collapse:collapse;
-  }
-table.account_table tr.odd td {
-  background:#f7fbff
-  }
-table.account_table tr.odd .column1 {
-  background:#f4f9fe;
-  } 
-table.account_table .column1  {
-  background:#f9fcfe;
-  }
-table.account_table td {
-  color:#678197;
-  border-bottom:1px solid #e5eff8;
-  border-left:1px solid #e5eff8;
-  padding:.3em 1em;
-  text-align:right;
-  }       
-table.account_table th {
-  font-weight:normal;
-  color: #678197;
-  text-align:left;
-  border-bottom: 1px solid #e5eff8;
-  border-left:1px solid #e5eff8;
-  padding:.3em 1em;
-  }             
-table.account_table thead th {
-  background:#f4f9fe;
-  text-align:center;
-  font:bold 1.2em/2em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
-  color:#66a3d3
-  } 
-table.account_table tfoot th {
-  text-align:center;
-  background:#f4f9fe;
-  } 
-table.account_table tfoot th strong {
-  font:bold 1.2em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
-  margin:.5em .5em .5em 0;
-  color:#66a3d3;
-    }   
-table.account_table tfoot th em {
-  color:#f03b58;
-  font-weight: bold;
-  font-size: 1.1em;
-  font-style: normal;
-  }
   
 /* Navigation */  
 

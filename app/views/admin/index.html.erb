@@ -8,7 +8,7 @@
 
   <% render :partial => 'server_details'%>
 
-  <table class='account_table' style='font-size: 90%'>
+  <table class='model_table' style='font-size: 90%'>
     <tr>
       <th></th>
       <th>Name</th>
@@ -29,13 +29,15 @@
   <%= submit_tag "Provision"%>
 </form>
 <% else %>
-  All Hosting is provisioned.  
+  <div class='message'>
+    All Hosting is provisioned.  
+  </div>
 <% end %>
 
 <% unless @due.empty? %>
   <h2>Due Accounts</h2>
   This will be charged today.  
-  <table class='account_table' style='font-size: 90%'>
+  <table class='model_table' style='font-size: 90%'>
     <tr>
       <th>Name</th>
       <th>Balance Due</th>
@@ -52,13 +54,12 @@
 <% else %>
 <div class='message'>
   No accounts are due today.  
-  
 </div>
 <% end %>
-<br/>
 <% unless @overdue.empty? %>
+<br/>
   <h2>Overdue Accounts</h2>
-  <table class='account_table' style='font-size: 90%'>
+  <table class='model_table' style='font-size: 90%'>
     <tr>
       <th></th>
       <th>Name</th>
@@ -80,5 +81,7 @@
   <%= submit_tag "Suspend" %>
 </form>
 <% else %>
+<div class='message'>
   No accounts are past due.  
+</div>
 <% end %>
