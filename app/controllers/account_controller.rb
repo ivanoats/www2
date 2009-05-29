@@ -31,7 +31,9 @@ class AccountController < ApplicationController
     end
   end
   
-  
+  def users
+    
+  end
 
   def manage
     

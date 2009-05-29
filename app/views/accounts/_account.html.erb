@@ -1,3 +1,12 @@
 <% z_fields_for :account do |f| %>
   <%= f.text_field :organization %>
+  <%= f.select :state, Account.aasm_states_for_select %>
+  <%= f.name %>
+  <% z_fields_for :address do |address|%>
+  <%= address.address :label => "Address" %>
+  <%= address.country_select :country, ['United States', 'Canada'] %>
+  <% end %>
+
+  <%= f.text_field :phone %>
+  
 <% end %>

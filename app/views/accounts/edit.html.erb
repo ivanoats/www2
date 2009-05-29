@@ -2,11 +2,10 @@
 
 <% z_form_for(@account) do |f| %>
   <%= f.error_messages %>
-  <%= render @account %>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
+  <% f.fieldset :type => "inline" do %>
+    <%= render @account %>
+  <% end %>
+  <%= f.submit 'Update', :prefix => button( 'Back', accounts_path ) %>
+
 <% end %>
 
-<%= link_to 'Show', @account %> |
-<%= link_to 'Back', accounts_path %>

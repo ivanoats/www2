@@ -2,11 +2,10 @@
 
 <% z_form_for(@account) do |f| %>
   <%= f.error_messages %>
-  <%= render @account %>
-  
-  <%= f.submit 'Create', :after => button( 'Back', accounts_path ) %>
-  <%= button 'Back', accounts_path %>
-  
+  <% f.fieldset :type => "inline" do %>
+    <%= render @account %>
+  <% end %>
+  <%= f.submit 'Create', :prefix => button( 'Back', accounts_path ) %>  
   <br style='clear: both'/>
 <% end %>
 
