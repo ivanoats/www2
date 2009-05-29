@@ -1,2 +1,0 @@
-module CertificateTicketsHelper
-end

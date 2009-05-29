@@ -294,3 +294,66 @@ button.button:active span {
 .breadcrumb a.current {
   color: #9b9b9b;
 }
+
+/* Table */
+
+/*  Account Table */
+
+table.model_table a,
+table.model_table a:link,
+table.model_table a:visited {
+  border:none;
+  }             
+
+table.model_table {
+  width:100%;
+  border-top:1px solid #e5eff8;
+  border-right:1px solid #e5eff8;
+  margin:1em auto;
+    border-collapse:collapse;
+  }
+table.model_table tr.odd td {
+  background:#f7fbff
+  }
+table.model_table tr.odd .column1 {
+  background:#f4f9fe;
+  } 
+table.model_table .column1  {
+  background:#f9fcfe;
+  }
+table.model_table td {
+  color:#678197;
+  border-bottom:1px solid #e5eff8;
+  border-left:1px solid #e5eff8;
+  padding:.3em 1em;
+  text-align:right;
+  }       
+table.model_table th {
+  font-weight:normal;
+  color: #678197;
+  text-align:left;
+  border-bottom: 1px solid #e5eff8;
+  border-left:1px solid #e5eff8;
+  padding:.3em 1em;
+  }             
+table.model_table thead th {
+  background:#f4f9fe;
+  text-align:center;
+  font:bold 1.2em/2em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
+  color:#66a3d3
+  } 
+table.model_table tfoot th {
+  text-align:center;
+  background:#f4f9fe;
+  } 
+table.model_table tfoot th strong {
+  font:bold 1.2em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
+  margin:.5em .5em .5em 0;
+  color:#66a3d3;
+    }   
+table.model_table tfoot th em {
+  color:#f03b58;
+  font-weight: bold;
+  font-size: 1.1em;
+  font-style: normal;
+  }

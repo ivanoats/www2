@@ -1,4 +1,4 @@
-<table class='account_table' style='font-size: 90%'>
+<table class='model_table' style='font-size: 90%'>
   <tr>
     <th style='width: 25%;'>Next Payment</th>
     <th>Payment Info</th>
@@ -25,7 +25,7 @@
 
 <%= link_to "Make Payment", {:action => 'pay'}%>
 <% unless @account.payments.empty? %>
-<table class='account_table' style='font-size: 90%'>
+<table class='model_table' style='font-size: 90%'>
   <tr>
     <th style='width: 25%;'>Date</th>
     <th>Description</th>

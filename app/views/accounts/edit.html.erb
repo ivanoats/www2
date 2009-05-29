@@ -1,8 +1,8 @@
 <h1>Editing account</h1>
 
-<% form_for(@account) do |f| %>
+<% z_form_for(@account) do |f| %>
   <%= f.error_messages %>
-
+  <%= render @account %>
   <p>
     <%= f.submit 'Update' %>
   </p>
