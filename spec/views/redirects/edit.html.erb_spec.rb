@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe "/redirects/edit.html.erb" do
-  include RedirectsHelper
+  
   
   before(:each) do
     assigns[:redirect] = @redirect = stub_model(Redirect,

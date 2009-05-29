@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe "/products/index.html.erb" do
-  include ProductsHelper
+  
   
   before(:each) do
     assigns[:products] = [

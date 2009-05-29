@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe "/servers/edit.html.erb" do
-  include ServersHelper
+  
   
   before(:each) do
     assigns[:server] = @server = stub_model(Server,
