@@ -1,30 +1,21 @@
 
-<% form_tag session_path, :class => 'uniForm' do %>
-	<fieldset class='inlineLabels'>
-		<legend>Login</legend>
-		<div class="ctrlHolder">
-		  <%= label_tag 'login', 'Username' %>
-			<%= text_field_tag 'login', @login %>
-		</div>
-		<div class="ctrlHolder">
-		  <%= label_tag 'password' %>
-			<%= password_field_tag 'password', nil %>
-    </div>
-    <div class="ctrlHolder">
-      <%= label_tag 'remember_me', 'Remember me' %>
-			<%= check_box_tag 'remember_me', '1', @remember_me %>
-    </div>
-	</fieldset>
-	<fieldset class='inlineLabels'>
-		<legend>Login with OpenID</legend>
-    <div class="ctrlHolder">
-				<%= label_tag 'openid_url', 'OpenID URL' %>
-				<%= text_field_tag 'openid_url' %>
-    </div>
-	</fieldset>
-	<div class="buttonHolder">
-		<%= link_to 'Forgotten Password', forgot_password_path, :style => "float: left" %>
+<% form_tag session_path, :class => 'login' do %>
+	<div id="login_with_password">
+		Login 
+		  <%= label_tag 'login', text_field_tag( 'login', @login) +'Username' %>
+		  <%= label_tag 'password', password_field_tag( 'password', nil) + 'Password' %>
+      <%= label_tag 'remember_me', check_box_tag( 'remember_me', '1', @remember_me) + 'Remember me' %>
+	    <%= link_to_function "Login with OpenID instead", "$('#login_with_password, #login_with_openid ').slideToggle('slow');"%>
+	</div>
+	<div id="login_with_openid" style="display:none">
+		Login with OpenID 
+			<%= label_tag 'openid_url', text_field_tag( 'openid_url' ) +'OpenID URL' %>
+			<%= link_to_function "Login with a password instead", "$('#login_with_password, #login_with_openid ').slideToggle('slow');"%>
+	</div>
+	<div>
+		<%= button 'I Forgot my Password', forgot_password_path, :style => "float: left" %>
 
-		<%= submit_tag 'Login' %>
+		<%= submit_tag 'Login', :style => "float: right;" %>
 	</div>
 <% end -%>
+<div style='clear: both;'></div>

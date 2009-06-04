@@ -12,9 +12,9 @@ module ApplicationHelper
   def flash_messages
     messages = []
     %w(notice warning error).each do |msg|
-      messages << content_tag(:div, flash[msg.to_sym], :id => "flash-#{msg}") unless flash[msg.to_sym].blank?
+      messages << content_tag(:div,(flash[msg.to_sym].blank? ? '' : content_tag(:p, flash[msg.to_sym], :id => msg)), :class => msg, :id => msg)
     end
-    messages
+    content_tag(:div, messages, :id => 'flash_messages')
   end
   
   include TagsHelper  #from acts_as_taggable on steroids

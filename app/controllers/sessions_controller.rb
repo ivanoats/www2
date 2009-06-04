@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
   
   
   def new
+    @sidebar = ''
   end
 
   def create

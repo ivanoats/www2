@@ -1,0 +1,30 @@
+form.login {
+  width: 500px;
+  margin: auto;
+}
+
+form.login div{
+padding:10px;
+  font-size: 12pt;
+}
+form.login legend{
+font-weight:bold;
+font-size:9pt;
+}
+form.login label{
+display:block;
+height:2em;
+background-color:#E9E9E9;
+padding:10px 10px 0;
+}
+form.login input {
+border:1px solid #999999;
+float:right;
+clear:right;
+padding: 3px;
+font-size:12pt;
+}
+form.login input:focus,form.login input:hover {
+border:1px solid #333333;
+
+}

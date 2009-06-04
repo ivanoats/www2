@@ -17,12 +17,13 @@ class GreenHostingStoreController < ApplicationController
   
   def check_domain
     @domain = Domain.new(params[:domain])
+    @domain.name.gsub!('www.','')
     render :update do |page|
       if @domain.available?
-        page << 'allow_purchase_domain()'
-        page.replace_html 'choose_domain_message' , "<span style='color: green'>Domain #{@domain.name} is available</span>"
+        page.replace_html 'dialog', :partial => 'domain_available'
+        page << "jQuery('#dialog').dialog( 'destroy' );"
+        page << "jQuery('#dialog').dialog({ modal: true, draggable: false,resizeable: false, closeOnEscape: true, autoOpen: true, buttons: { 'Add To Cart': function(){ $.ajax({asyc:true, data:{domain: '#{@domain.name}', authenticity_token: '#{form_authenticity_token}'}, dataType: 'script', type:'post', url: '/cart/add_domain'})}, 'Cancel': function() { jQuery(this).dialog('close');} }});"
       else
-        page << 'allow_check_domain()'
         page.replace_html 'choose_domain_message' , "<span style='color: red'>Domain #{@domain.name} is not available</span>"
       end
     end
@@ -31,6 +32,10 @@ class GreenHostingStoreController < ApplicationController
       page << 'allow_check_domain()'
       page.replace_html 'choose_domain_message' , "<span style='color: red'>Bad domain name</span>"
     end
+  end
+  
+  def add_hosting
+    @package = Product.find(params[:id])
   end
 
   def choose_package
@@ -109,6 +114,7 @@ class GreenHostingStoreController < ApplicationController
 
   def confirmation
     @sidebar = ''
+    @terms_of_service = Page.find_by_permalink('terms_of_service')
   end
 
   def payment

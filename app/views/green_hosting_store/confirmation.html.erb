@@ -1,15 +1,19 @@
 
-Confirm your order and complete your purchase.
+<h2>Confirm your order and complete your purchase.</h2>
 
 <%= error_messages_for :account, :order %>
 
-<div style='padding: 10px 0'>
 <%= @account.card_number%>
 <%= @account.card_expiration%>
-<%= link_to "Change Billing Information", :action => "billing"%>
-</div>
 Total Charge is <%= number_to_currency @cart.total_price %>
+<br/>
+<br/>
+<%= check_box_tag :approve_terms_of_service, :click => "" %>
+I agree to the terms of service agreement.  <%= link_to "View Terms of Service", '/terms-of_service' %>
+<br/>
+<br/>
+<%= button "Back", {:action => :checkout} %>
 
 <%= form_tag :action => 'payment', :style => "float: right" %>
-  <%= submit_tag "Purchase", :disable_with => "Purchasing..."%>
+  <%= submit_tag "Complete Purchase", :disabled => true, :disable_with => "Purchasing..."%>
 </form>

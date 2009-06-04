@@ -1,5 +1,4 @@
 <div id="cart">
-<% if !@cart.cart_items.empty? %>
   <%= image_tag 'cart/Shoppingcart_48x48.png', :style => "float:right; margin-top: -10px;"%>
   <h1>Shopping Cart</h1>
   <table>
@@ -32,7 +31,4 @@
         <td><%= number_to_currency( @cart.total_price ) %></td>
       </tr>
   </table>
-<% else %>
-  Your cart is empty.
-<% end %>
 </div>

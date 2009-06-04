@@ -6,7 +6,6 @@ require 'yaml'
 
 set :application, "www2"
 
-set :deploy_to, "/var/www/#{application}"
 set :user, "deploy"
 set :domain, "www2.sustainablewebsites.com"
 
@@ -21,16 +20,15 @@ default_run_options[:pty] = true
 #	Staging Support
 #############################################################
 
-# set :stages, %w(staging production)
-# set :default_stage, "production"
-# require File.expand_path("#{File.dirname(__FILE__)}/../vendor/gems/capistrano-ext-1.2.1/lib/capistrano/ext/multistage")
+set :stages, %w(staging production)
+#set :default_stage, "staging"
+require File.expand_path("#{File.dirname(__FILE__)}/../vendor/gems/capistrano-ext-1.2.1/lib/capistrano/ext/multistage")
 
 
 #############################################################
 #	Tasks
 #############################################################
 
-before :deploy, "db:backup"
 after :deploy, "passenger:restart"
 after "deploy:update_code","deploy:symlink_configs"
 
@@ -44,19 +42,14 @@ after "deploy:update_code","deploy:symlink_configs"
 #	Repository
 #############################################################
 
-#set :repository,  "git@sw.unfuddle.com:sw/www2.git"
 set :scm, "git"
 set :repository, "ssh://git@sw.unfuddle.com/sw/www2.git"
-#set :git_shallow_clone, 1
 
 set :branch, "master"
 set :deploy_via, :remote_cache
 set :ssh_options, {  :port => 28822 }
 
 set :git_enable_submodules, 1
-
-#I finally got this working using a key on www2, lets just stick with that.
-#ssh_options[:forward_agent] = true
 
 #############################################################
 #	Passenger
@@ -82,14 +75,14 @@ namespace(:deploy) do
  end
  
  task :after_symlink do
-      run "ln -nfs #{shared_dir}/assets/images #{release_dir}/public/images"
-      run "ln -nfs #{shared_dir}/assets/videos #{release_dir}/public/videos"
-      run "ln -nfs #{shared_dir}/assets/tutorial_cpanel #{release_dir}/public/tutorial_cpanel"
-      run "ln -nfs #{shared_dir}/assets/tutorial_email #{release_dir}/public/tutorial_email"  
-      run "ln -nfs #{shared_dir}/assets/tutorial_wordpress #{release_dir}/public/tutorial_wordpress"
-      run "ln -nfs #{shared_dir}/assets/FlashHelp #{release_dir}/public/FlashHelp"    
-  end
- 
+       run "ln -nfs #{shared_dir}/assets/images #{release_dir}/public/images"
+       run "ln -nfs #{shared_dir}/assets/videos #{release_dir}/public/videos"
+       run "ln -nfs #{shared_dir}/assets/tutorial_cpanel #{release_dir}/public/tutorial_cpanel"
+       run "ln -nfs #{shared_dir}/assets/tutorial_email #{release_dir}/public/tutorial_email"  
+       run "ln -nfs #{shared_dir}/assets/tutorial_wordpress #{release_dir}/public/tutorial_wordpress"
+       run "ln -nfs #{shared_dir}/assets/FlashHelp #{release_dir}/public/FlashHelp"    
+   end
+  
 
  desc "restart override"
  task :restart, :roles => :app do
@@ -131,18 +124,7 @@ namespace :db do
     remote_db_download
     remote_db_cleanup
   end
-  
-  desc "Backup the remote production database"
-  task :backup, :roles => :db, :only => {:primary => true} do
-    filename = "#{application}.dump.#{Time.now.to_i}.sql.bz2"
-    file = "/var/backups/#{application}/#{filename}"
-    on_rollback { delete file }
-    #db = YAML::load(ERB.new(IO.read(File.join(File.dirname(__FILE__), 'database.yml'))).result)['production']
-    #run "mysqldump -u #{db['username']} --password=#{db['password']} #{db['database']} | bzip2 -c > #{file}"  do |ch, stream, data|
-    run "mysqldump -u root www2_sw_production | bzip2 -c > #{file}"  do |ch, stream, data|
-      puts data
-    end
-  end
+
   
 end
 

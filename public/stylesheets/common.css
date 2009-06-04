@@ -132,6 +132,7 @@ padding:10px;
 /*#nav li#contact ul li ul {position: absolute; width: 100px; left: -999em;}*/
 #nav li:hover ul, #nav li.sfhover ul {left: auto;}
 #nav li ul {float: none; clear: both; margin: 0;}
+#dialog { display: none;}
 
 /* === FLASH MESSAGES === */
 div#flash-notice {}

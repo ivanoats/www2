@@ -7,7 +7,10 @@
 	<%= page_title %> 
 	<%= meta "description", meta_description %> 
 	<%= meta "keywords", meta_keywords %>
-	<%= stylesheet_link_tag 'common', 'public', "pagination", "users", formz_stylesheets, 'live-search', :cache => true %>
+	<%= stylesheet_snippets %>
+	<% stylesheet_link_tag "snippets/", :cache => 'snippets' %>
+		
+	<%= stylesheet_link_tag 'common', 'public', "pagination", "users", formz_stylesheets, 'live-search', 'jquery-ui', :cache => true %>
 	<!--[if lt IE 8]>
 		<%= stylesheet_link_tag "ie", :cache => true %>
 	<![endif]-->
@@ -53,13 +56,9 @@
 	</div><!--/splash-wrap-->
   	<% end #if splash on %>
   	<div id="content">
-  	    <%# if flash[:notice] -%> 
-                    <div id="notice"><%= flash[:notice] %></div> 
-                  <%# end -%> 
-                  <%# if flash[:error] -%> 
-                    <div id="error"><%= flash[:error] %></div> 
-                  <%# end -%> 
-                  <%= yield %>
+  	  <%= content_tag(:div, '', :id => 'dialog')%>
+  	  <%= flash_messages %>
+      <%= yield %>
   	</div><!--/content-->
   	<%= render :partial => 'layouts/sidebar' %>
   	</div>

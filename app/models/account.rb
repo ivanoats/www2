@@ -48,6 +48,40 @@ class Account < ActiveRecord::Base
     transitions :from => :suspended, :to => :active
   end
   
+  # t.string   "first_name"
+  # t.string   "last_name"
+  # t.string   "organization"
+  # t.string   "state"
+  # t.string   "phone"
+  # t.datetime "created_at"
+  # t.datetime "updated_at"
+  # t.decimal  "balance",            :precision => 10, :scale => 2, :default => 0.0
+  # t.date     "last_payment_on"
+  # t.string   "payment_period"
+  # t.string   "billing_id"
+  # t.string   "email"
+  # t.string   "card_number"
+  # t.string   "card_expiration"
+  # t.integer  "billing_address_id"
+  # t.integer  "address_id"
+  
+  refresh_time 5
+  sort_by :last_name
+  search_by :first_name, :last_name
+  #filter_by :active, :store
+  #default_filter :active => true
+  list_columns :organization, :first_name, :last_name
+
+  admin_fieldset do |b|
+    b.text_field :first_name
+    b.text_field :last_name
+    b.auto_field :organization
+  end
+  admin_child_table 'Payments', :payments do |b|
+    b.static_text :payment_date
+  end
+  
+  
   def transactions(params = {})
     transactions = (self.payments.find(:all,params.dup) + self.charges.find(:all,params))
     transactions.sort! { |a,b| a.created_at <=> b.created_at }

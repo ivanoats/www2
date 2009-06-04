@@ -3,32 +3,15 @@
 
 <div id='choose_domain_message'></div>
 
-<% z_form_for :domain, :url => {:action => 'check_domain'}, :html => {:onsubmit => "
+<% form_for :domain, :url => {:action => 'check_domain'}, :html => {:onsubmit => "
   if($('#check_domain_button').is(':visible'))
     $.ajax({async:true, data:$.param($(this).serializeArray()) + '&authenticity_token=' + encodeURIComponent('#{form_authenticity_token}'), dataType:'script', type:'post', url:'#{url_for({:action => 'check_domain'})}'});
   else
     $.ajax({async:true, data:$.param($(this).serializeArray()) + '&authenticity_token=' + encodeURIComponent('#{form_authenticity_token}'), dataType:'script', type:'post', url:'#{url_for({:controller => 'cart', :action => "add_domain"})}'}); 
   return false;", 
     :id => 'choose_domain_form'} do |f| %>
-  <%= f.text_field :name, :label => "Domain" %>
-  <br/>
-  <%= submit_to_remote :check_domain_availability_button, "Check Domain Availability", :url => { :action => "check_domain" }, :button => true, :html =>{:id => 'check_domain_button'} %>
-  
-  <%= submit_to_remote :add_to_cart, "Add to Cart", :disable_with => 'Adding to Cart...', :html => {:style => 'display:none', :disabled => true, :id => 'add_domain_button'}, :button => true, :url => { :controller => 'cart', :action => "add_domain" } %>
-<% end -%>
-<%= observe_field :domain_name, :function => "allow_check_domain()"%>
+  <%= f.text_field :name, :label => "Domain", :style => 'float: left; font-size: 1em;' %>
+  <%= submit_to_remote( :check_domain_availability_button, "Check Domain Availability", :url => { :action => "check_domain" }, :button => true, :html =>{:id => 'check_domain_button'}) %>
+  <% end -%>
 
 <%= button "Continue",{ :action => "choose_package"}, :style => "float: right" %>
-
-<%= javascript_tag "
-  var allow_check_domain = function() {
-    $('#check_domain_button').show().removeAttr('disabled');
-    $('#add_domain_button').hide().attr('disabled','disabled');
-  };
-
-  var allow_purchase_domain =function() {
-    $('#add_domain_button').show().removeAttr('disabled');
-    $('#check_domain_button').hide().attr('disabled','disabled');
-  };
-
-"%>

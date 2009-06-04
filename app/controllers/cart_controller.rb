@@ -8,7 +8,7 @@ class CartController < ApplicationController
     load_cart
 
     # add it to cart
-    @cart.add(Product.domain, 1, nil, {:domain => params[:domain][:name]})
+    @cart.add(Product.domain, 1, nil, {:domain => params[:domain]})
     
     render :update do |page|
       page.redirect_to :controller => :green_hosting_store, :action => :choose_package

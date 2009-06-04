@@ -7,6 +7,7 @@
 	<%= page_title %> 
 	<%= meta "description", meta_description %> 
 	<%= meta "keywords", meta_keywords %>
+	<%= stylesheet_snippets %>
 	<%= stylesheet_link_tag 'common', 'account', "pagination", "users", formz_stylesheets, 'live-search', :cache => true %>
 	<!--[if lt IE 8]>
 		<%= stylesheet_link_tag "ie", :cache => true %>
@@ -45,9 +46,9 @@
   	</div><!--/splash-->
 	</div><!--/splash-wrap-->
   	<% end #if splash on %>
-      <div id="notice"><%= flash[:notice] %></div> 
-      <div id="error"><%= flash[:error] %></div> 
-      <div style='float: right'>
+      <%= content_tag(:div, '', :id => 'dialog')%>
+  	  <%= flash_messages %>
+  	  <div style='float: right'>
       <% if current_user.has_role?('Administrator') %>
         All accounts:  <%= select_tag :switch_account, options_from_collection_for_select(Account.active, :id, :organization, @account.id) %>
         <%= observe_field :switch_account, :url => {:controller => :account, :action => :switch_account}, :with => :id %>

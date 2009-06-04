@@ -6,34 +6,34 @@
   <% package_monthly, package_yearly = package_group %>
   <div class="package-group" >
     <div><%= h package_monthly.name %></div>
-    <div><%= h package_monthly.description %></div>
-    <div class="package float-left"  onclick="select_package(<%= package_monthly.id %>, this);">Monthly: 
-    <%= number_to_currency(package_monthly.cost) %>
-    </div>
-    <div class="package float-right" onclick="select_package(<%= package_yearly.id %>, this);">Yearly:
-    <%= number_to_currency(package_yearly.cost) %>
-    </div>
+    <div style='margin-bottom: 30px'><%= h package_monthly.description %></div>
+    <%= button_to_function "#{number_to_currency(package_monthly.cost)} Monthly" , "select_package(#{package_monthly.id})", {:class => 'button'} %>
+    <%= button_to_function "#{number_to_currency(package_yearly.cost)} Yearly", "select_package(#{package_yearly.id})", {:class => 'button', :style => 'float: right'} %>
   </div>
   <% end #for package %>
-  <%= f.submit "Add to Cart", :disable_with => 'Adding to Cart...' %>
+  <% f.submit "Add to Cart", :disable_with => 'Adding to Cart...' %>
   <input name="package_id" id="package_chosen" type="hidden" value=""/>
 <% end  #form -%>
 
 <%= button "Continue", {:action => "choose_addon"}, :style => "float: right" %>
 
 <script type="text/javascript" charset="utf-8">
-<!--
-// $(document).ready(function(){
-//   $('.package').click(function (event) {
-//     alert('clicked:' + event.target);
-//   });
-// });
 
-function select_package(package_id, package_div) {
-  $('#package_chosen').val(package_id);
-  $('.selectedPackage').removeClass("selectedPackage").addClass("package"); 
-  $(package_div).removeClass('package').addClass("selectedPackage");
-}
+  function select_package(package) {
+    <%= remote_function(:url => {:controller => 'green_hosting_store', :action => :add_hosting}, :update => 'dialog') %>
+  
+    jQuery("#dialog").dialog({ 
+      modal: true, 
+      draggable: false,
+      resizeable: false, 
+      closeOnEscape: true, 
+      autoOpen: true, 
+      buttons: { 
+        "Add To Cart": function(){ 
+        $.ajax({asyc:true, data:{domain: "#{@domain.name}", authenticity_token: encodeURIComponent('<%=form_authenticity_token%>')}, dataType: "script", type:"post", url: "/cart/add_domain"})}, 
+        "Cancel": function() { jQuery(this).dialog('close'); } 
+        }
+      });
+  }
 
-//-->  
 </script>
