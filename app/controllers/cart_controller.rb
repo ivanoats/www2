@@ -8,7 +8,7 @@ class CartController < ApplicationController
     load_cart
 
     # add it to cart
-    @cart.add(Product.domain, 1, nil, {:domain => params[:domain]})
+    @cart.add(Product.domain, params[:domain], {:domain => params[:domain]})
     
     render :update do |page|
       page.redirect_to :controller => :green_hosting_store, :action => :choose_package
@@ -16,14 +16,24 @@ class CartController < ApplicationController
   end
 
   def add_package
-    @product = Product.find(params[:package_id])
-    @cart.add(@product)
-    render_cart
+    @product = Product.find(params[:id])
+    @hosting = Hosting.new(params[:hosting])
+    @hosting.product = @product
+    if @hosting.valid?
+      @cart.add(@product,@product.name,params[:hosting])
+      render :update do |page|
+        page.redirect_to :controller => :green_hosting_store, :action => :choose_addon
+      end
+    else
+      render :update do |page|
+        page.replace_html 'error_messages_for_hosting', error_messages_for(:hosting) 
+      end
+    end
   end
   
   def add_addon
-    @product = Product.find(params[:addon_id])
-    @cart.add(@product)
+    @product = Product.find(params[:id])
+    @cart.add(@product,@product.name)
     render_cart
   end
 

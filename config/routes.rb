@@ -28,6 +28,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :servers do |servers|
     servers.resources :hostings
   end
+  map.resources :hostings
   map.resources :products
   map.resources :tags
   map.resources :tickets

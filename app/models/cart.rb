@@ -15,11 +15,11 @@ class Cart < ActiveRecord::Base
   # add(product)                #=> A new +CartItem+.
   # add(product, 94)            #=> A new +CartItem+ with a quantity of 94.
   # add(product, 12, "months")  #=> A new +CartItem+ with a quanity of 12 and quantity_units of "months".
-  def add(product, quantity = 1, quantity_unit = nil, data = {})
+  def add(product, name, data = {}, quantity = 1, quantity_unit = nil )
     cart_item_attributes = {
       :product_id          => product.id,
       :cart_id             => self.id,
-      :name                => data[:domain] || product.name,
+      :name                => name,
       :description         => product.description,
       :unit_price          => product.cost,
       :quantity            => quantity,

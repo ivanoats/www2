@@ -20,20 +20,8 @@
 <script type="text/javascript" charset="utf-8">
 
   function select_package(package) {
-    <%= remote_function(:url => {:controller => 'green_hosting_store', :action => :add_hosting}, :update => 'dialog') %>
-  
-    jQuery("#dialog").dialog({ 
-      modal: true, 
-      draggable: false,
-      resizeable: false, 
-      closeOnEscape: true, 
-      autoOpen: true, 
-      buttons: { 
-        "Add To Cart": function(){ 
-        $.ajax({asyc:true, data:{domain: "#{@domain.name}", authenticity_token: encodeURIComponent('<%=form_authenticity_token%>')}, dataType: "script", type:"post", url: "/cart/add_domain"})}, 
-        "Cancel": function() { jQuery(this).dialog('close'); } 
-        }
-      });
+    <%= remote_function(:url => {:controller => 'green_hosting_store', :action => :add_hosting}, :with => "'id=' + package"
+    ) %>
   }
 
 </script>

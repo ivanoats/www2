@@ -9,6 +9,12 @@ class Hosting < ActiveRecord::Base
   belongs_to :product
   
   validates_presence_of :product_id
+  validates_presence_of :username
+  validates_presence_of :password
+  validates_presence_of :domain
+  
+  validates_length_of :username, :maximum => 8
+  validates_uniqueness_of :username
 
   named_scope :visible, :conditions => {'state' => ['ordered', 'active', 'suspended']}
   named_scope :due, :include => :product, :conditions => ['next_charge_on <= CURDATE()']
@@ -59,23 +65,11 @@ class Hosting < ActiveRecord::Base
   end
   
   def period
-    case self.product.recurring_month
-    when 12
-      1.year # 1.year != 12.months
-    else
-      self.product.recurring_month.months
-    end
+    self.product.period
   end
   
   def period_in_words
-    case product.recurring_month
-    when 12
-      'yearly'
-    when 1
-      'monthly'
-    else
-      "every #{product.recurring_month} months"
-    end
+    self.product.period_in_words
   end
 
 private

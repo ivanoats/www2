@@ -14,4 +14,24 @@ class Product < ActiveRecord::Base
     Product.find_by_kind('domain') || Product.create!(:name => "Domain Name", :description => "Domain Name", :kind => 'domain', :cost => '10.00', :recurring_month => 1, :status =>  'active')
   end
   
+  def period
+    case self.recurring_month
+    when 12
+      1.year # 1.year != 12.months
+    else
+      self.recurring_month.months
+    end
+  end
+  
+  def period_in_words
+    case recurring_month
+    when 12
+      'yearly'
+    when 1
+      'monthly'
+    else
+      "every #{recurring_month} months"
+    end
+  end
+  
 end

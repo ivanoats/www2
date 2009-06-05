@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090528211413) do
+ActiveRecord::Schema.define(:version => 20090605195430) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -170,7 +170,9 @@ ActiveRecord::Schema.define(:version => 20090528211413) do
     t.string   "state"
     t.integer  "account_id"
     t.integer  "server_id"
-    t.string   "cpanel_user"
+    t.string   "username"
+    t.string   "password"
+    t.string   "domain"
   end
 
   create_table "lead_sources", :force => true do |t|

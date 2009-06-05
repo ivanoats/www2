@@ -1,0 +1,29 @@
+Add the <%= @package.name %>, for a <%= @package.period_in_words %> fee of <%= number_to_currency @package.cost %>
+<div id='error_messages_for_hosting'></div>
+<% z_form_for @hosting do |f| %>
+
+  <%= f.text_field :domain %>
+  <%= f.text_field :username %>
+  <%= f.text_field :password %>  
+  <%= f.submit :Enter, :style => "display: none"%><!-- this allows enter to submit for some odd reason -->
+<% end %>
+
+<%= javascript_tag "
+jQuery('#new_hosting').submit(function() { addToCart(); return false;});
+jQuery('#dialog').dialog('destroy');
+jQuery('#dialog').dialog({ 
+  modal: true, 
+  draggable: false,
+  resizeable: false, 
+  closeOnEscape: true, 
+  autoOpen: true, 
+  width: '500px',
+  buttons: { 
+    'Add To Cart': function() { addToCart(); return false; }, 
+    'Cancel': function() { jQuery(this).dialog('close'); } 
+    }
+  });
+  function addToCart() {
+    $.ajax({async:true, data:$.param($('#new_hosting').serializeArray()) + '&authenticity_token=' + encodeURIComponent('#{form_authenticity_token}'), dataType:'script', type:'post', url:'/cart/add_package/#{@package.id}'}); 
+  }
+"%>

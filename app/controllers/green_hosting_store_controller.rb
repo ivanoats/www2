@@ -36,6 +36,11 @@ class GreenHostingStoreController < ApplicationController
   
   def add_hosting
     @package = Product.find(params[:id])
+    @data = {}
+    @hosting = Hosting.new(params[:hosting])
+    render :update do |page|
+      page.replace_html 'dialog', :partial => 'hosting_details'
+    end
   end
 
   def choose_package
