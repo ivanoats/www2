@@ -75,14 +75,13 @@ namespace(:deploy) do
  end
  
  task :after_symlink do
-       run "ln -nfs #{shared_dir}/assets/images #{release_dir}/public/images"
-       run "ln -nfs #{shared_dir}/assets/videos #{release_dir}/public/videos"
-       run "ln -nfs #{shared_dir}/assets/tutorial_cpanel #{release_dir}/public/tutorial_cpanel"
-       run "ln -nfs #{shared_dir}/assets/tutorial_email #{release_dir}/public/tutorial_email"  
-       run "ln -nfs #{shared_dir}/assets/tutorial_wordpress #{release_dir}/public/tutorial_wordpress"
-       run "ln -nfs #{shared_dir}/assets/FlashHelp #{release_dir}/public/FlashHelp"    
-   end
-  
+   run "ln -nfs #{shared_path}/assets/images #{release_path}/public/images"
+   run "ln -nfs #{shared_path}/assets/videos #{release_path}/public/videos"
+   run "ln -nfs #{shared_path}/assets/tutorial_cpanel #{release_path}/public/tutorial_cpanel"
+   run "ln -nfs #{shared_path}/assets/tutorial_email #{release_path}/public/tutorial_email"  
+   run "ln -nfs #{shared_path}/assets/tutorial_wordpress #{release_path}/public/tutorial_wordpress"
+   run "ln -nfs #{shared_path}/assets/FlashHelp #{release_path}/public/FlashHelp"    
+ end
 
  desc "restart override"
  task :restart, :roles => :app do
