@@ -10,7 +10,7 @@
 	<%= stylesheet_snippets %>
 	<% stylesheet_link_tag "snippets/", :cache => 'snippets' %>
 		
-	<%= stylesheet_link_tag 'common', 'public', "pagination", "users", formz_stylesheets, 'live-search', 'jquery-ui', :cache => true %>
+	<%= stylesheet_link_tag 'common', 'public', "pagination", "users", formz_stylesheets, 'live-search', 'jquery-ui', :cache => 'application_cache' %>
 	<!--[if lt IE 8]>
 		<%= stylesheet_link_tag "ie", :cache => true %>
 	<![endif]-->

@@ -8,7 +8,7 @@
 	<%= meta "description", meta_description %> 
 	<%= meta "keywords", meta_keywords %>
 	<%= stylesheet_snippets %>
-	<%= stylesheet_link_tag 'common', 'account', "pagination", "users", formz_stylesheets, 'live-search', :cache => true %>
+	<%= stylesheet_link_tag 'common', 'account', "pagination", "users", formz_stylesheets, 'live-search', :cache => 'account_cache' %>
 	<!--[if lt IE 8]>
 		<%= stylesheet_link_tag "ie", :cache => true %>
 	<![endif]-->
