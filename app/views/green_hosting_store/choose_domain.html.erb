@@ -1,5 +1,7 @@
 
-<h1>Choose Your Domain</h1>
+<h1>Register A Domain</h1>
+
+Most domain names are $10.00 a year.  
 
 <div id='choose_domain_message'></div>
 
@@ -12,6 +14,7 @@
     :id => 'choose_domain_form'} do |f| %>
   <%= f.text_field :name, :label => "Domain", :style => 'float: left; font-size: 1em;' %>
   <%= submit_to_remote( :check_domain_availability_button, "Check Domain Availability", :url => { :action => "check_domain" }, :button => true, :html =>{:id => 'check_domain_button'}) %>
-  <% end -%>
-
+<% end -%>
+<div style='clear: both; margin-top: 40px'></div>
+If you already have a domain name then you can skip to the next step
 <%= button "Continue",{ :action => "choose_package"}, :style => "float: right" %>

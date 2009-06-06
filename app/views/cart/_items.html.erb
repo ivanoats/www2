@@ -4,7 +4,6 @@
   <table>
     <tr>
       <th>Item</th>
-      <th>Quantity</th>
       <th>Remove</th>
       <th>Price</th>
 
@@ -20,14 +19,13 @@
           <%#= simple_format(word_wrap(h(cart_item.description), :line_width => line_width )) %>
         <%#- end -%>
       </td>
-      <td><%= h(cart_item.quantity) %> <%= h(cart_item.quantity_unit) %></td>
       <td><%= link_to_remote "Remove", :url => {:controller => "cart", :action => :remove_cart_item, :id => cart_item.id}%></td>
 
       <td><%= number_to_currency(cart_item.unit_price * cart_item.quantity) %></td>
     </tr>
       <% end %>
       <tr>
-        <td colspan="3">Total: </td>
+        <td colspan="2">Total: </td>
         <td><%= number_to_currency( @cart.total_price ) %></td>
       </tr>
   </table>

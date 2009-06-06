@@ -14,6 +14,7 @@
   <% f.submit "Add to Cart", :disable_with => 'Adding to Cart...' %>
   <input name="package_id" id="package_chosen" type="hidden" value=""/>
 <% end  #form -%>
+<%= button "Back",{ :action => "choose_domain"}, :style => "float: left" %>
 
 <%= button "Continue", {:action => "choose_addon"}, :style => "float: right" %>
 

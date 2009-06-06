@@ -54,17 +54,17 @@ ActiveRecord::Schema.define(:version => 20090605195430) do
 
   create_table "articles", :force => true do |t|
     t.integer  "user_id"
+    t.integer  "category_id"
     t.string   "title"
+    t.string   "permalink"
+    t.string   "cached_tag_list"
     t.text     "synopsis"
     t.text     "body"
     t.boolean  "published",        :default => false
+    t.datetime "published_at"
+    t.boolean  "comments_enabled"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "published_at"
-    t.integer  "category_id",      :default => 1
-    t.string   "permalink"
-    t.boolean  "comments_enabled"
-    t.string   "cached_tag_list"
   end
 
   create_table "cart_items", :force => true do |t|
@@ -208,10 +208,14 @@ ActiveRecord::Schema.define(:version => 20090605195430) do
     t.string   "title"
     t.string   "permalink"
     t.text     "body"
+    t.integer  "user_id"
+    t.boolean  "restricted"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "restricted"
     t.boolean  "hide_sidebar"
+    t.boolean  "flip_sidebar"
+    t.boolean  "show_teaser"
+    t.string   "teaser"
   end
 
   create_table "passwords", :force => true do |t|
@@ -331,7 +335,7 @@ ActiveRecord::Schema.define(:version => 20090605195430) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
-    t.string "description"
+    t.text   "description"
   end
 
   create_table "tickets", :force => true do |t|
