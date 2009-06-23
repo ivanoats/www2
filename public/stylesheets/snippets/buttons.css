@@ -1,1 +1,86 @@
 button[type=hidden] { display: none!important;}
+
+a.button {
+    background: transparent url('/images/button/bg_button_a.gif') no-repeat scroll top right;
+    color: #444;
+    display: block;
+    float: left;
+    font: normal 12px arial, sans-serif;
+    height: 24px;
+    margin-right: 6px;
+    padding-right: 18px; /* sliding doors padding */
+    text-decoration: none;
+}
+
+a.button span {
+    background: transparent url('/images/button/bg_button_span.gif') no-repeat;
+    display: block;
+    line-height: 14px;
+    padding: 5px 0 5px 18px;
+}
+
+a.button:active {
+    background-position: bottom right;
+    color: #000;
+    outline: none; /* hide dotted outline in Firefox */
+}
+
+a.button:active span {
+    background-position: bottom left;
+    padding: 6px 0 4px 18px; /* push text down 1px */
+}
+
+button { 
+  border:0; 
+  cursor:pointer; 
+  padding:0 20px 0 0; 
+  overflow: visible; /* removes extra side padding in IE */
+}
+
+button span { 
+  position:relative; 
+  display:block; 
+  white-space:nowrap; 
+  padding:0 0 0 20px; 
+}
+
+button::-moz-focus-inner {
+	border: none;  /* overrides extra padding in Firefox */
+}
+
+button.button {
+  background: transparent url('/images/button/bg_button_a.gif') no-repeat scroll top right;
+  background-position-top: -1px;
+  color: #444;
+  display: block;
+  float: left;
+  margin-right: 6px;
+  padding-right: 15px; /* sliding doors padding */
+  text-decoration: none;
+  border: 0;
+  text-align: center;
+  overflow: visible;
+  height: 24px;
+}
+
+button.button span {
+  background: transparent url('/images/button/bg_button_span.gif') no-repeat;
+  display: block;
+  line-height: 14px;
+  padding: 5px 0 5px 18px;
+  position: relative;
+  white-space: nowrap;
+}
+
+button.button:active {
+  background-position: bottom right;
+}
+
+button.button:active span {
+  background-position: bottom left;
+}
+
+.button[disabled='disabled'] {
+  color: #999;
+}
+

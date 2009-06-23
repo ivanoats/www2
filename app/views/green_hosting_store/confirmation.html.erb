@@ -8,12 +8,34 @@
 Total Charge is <%= number_to_currency @cart.total_price %>
 <br/>
 <br/>
-<%= check_box_tag :approve_terms_of_service, :click => "" %>
-I agree to the terms of service agreement.  <%= link_to "View Terms of Service", '/terms-of_service' %>
+<%= check_box_tag :approve_terms_of_service %>
+<%= observe_field :approve_terms_of_service, :function => '
+if(value == 1)
+{  
+  jQuery("#payment_form").removeAttr("disabled");
+  
+
+}else{  
+  
+  jQuery("#payment_form").attr("disabled", "disabled");
+  
+ 
+}'%>
+I agree to the terms of service agreement.  <%= link_to "View Terms of Service", '/terms-of_service', :target => 'new_window' %>
 <br/>
 <br/>
 <%= button "Back", {:action => :checkout} %>
 
-<%= form_tag :action => 'payment', :style => "float: right" %>
-  <%= submit_tag "Complete Purchase", :disabled => true, :disable_with => "Purchasing..."%>
+<% button "Complete Purchase", {:action => 'payment'}, :method => :get, :disabled => "disabled", :id => 'complete_purchase', :style => 'float:right' %>
+<%= form_tag( {:action => 'payment'}, {:style => "float: right;", :id => "payment_form",:onsubmit => "
+  if(jQuery('#approve_terms_of_service').attr('checked'))
+  {
+    return true;
+  } else {
+    alert('Terms of Service must be approved.');
+    return false;
+  }
+  "}) %>
+  <%= submit_tag "Complete Purchase", :disable_with => "Purchasing...", :id => 'complete_purchase', :style => ''%>
+
 </form>
