@@ -49,22 +49,22 @@ class Account < ActiveRecord::Base
     transitions :from => :suspended, :to => :active
   end
   
-  refresh_time 5
-  sort_by :last_name
-  search_by :first_name, :last_name
-  #filter_by :active, :store
-  #default_filter :active => true
-  list_columns :organization, :first_name, :last_name
-
-  admin_fieldset do |b|
-    b.text_field :first_name
-    b.text_field :last_name
-    b.auto_field :organization
-  end
-  admin_child_table 'Payments', :payments do |b|
-    b.static_text :payment_date
-  end
-  
+  # refresh_time 5
+  #   sort_by :last_name
+  #   search_by :first_name, :last_name
+  #   #filter_by :active, :store
+  #   #default_filter :active => true
+  #   list_columns :organization, :first_name, :last_name
+  # 
+  #   admin_fieldset do |b|
+  #     b.text_field :first_name
+  #     b.text_field :last_name
+  #     b.auto_field :organization
+  #   end
+  #   admin_child_table 'Payments', :payments do |b|
+  #     b.static_text :payment_date
+  #   end
+    
   
   def transactions(params = {})
     transactions = (self.payments.find(:all,params.dup) + self.charges.find(:all,params))

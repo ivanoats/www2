@@ -33,7 +33,7 @@
     All Hosting is provisioned.  
   </div>
 <% end %>
-
+<br style='clear: left'/>
 <% unless @due.empty? %>
   <h2>Due Accounts</h2>
   This will be charged today.  
@@ -56,6 +56,8 @@
   No accounts are due today.  
 </div>
 <% end %>
+<div style='clear: left'></div>
+
 <% unless @overdue.empty? %>
 <br/>
   <h2>Overdue Accounts</h2>

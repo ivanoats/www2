@@ -76,7 +76,7 @@ private
   
   
   def create_cpanel_account
-    self.server.whm.create_account(:username => self.usernmae, :domain => self.domain)
+    self.server.whm.create_account(:username => self.username, :domain => self.domain)
   end
   
   def suspend_cpanel_account

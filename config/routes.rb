@@ -54,6 +54,7 @@ ActionController::Routing::Routes.draw do |map|
                   :action => 'show_by_login'
   
   # Shortcut Routes
+  map.admin '/administration', :controller => 'admin', :action => 'index'
   map.blog '/blog', :controller => 'articles', :action => 'index'
   map.help '/help', :controller => 'tickets', :action => 'new'
   map.support '/support', :controller => 'tickets', :action => 'new'
