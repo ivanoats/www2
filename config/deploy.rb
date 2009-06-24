@@ -24,6 +24,17 @@ set :stages, %w(staging production)
 #set :default_stage, "staging"
 require File.expand_path("#{File.dirname(__FILE__)}/../vendor/gems/capistrano-ext-1.2.1/lib/capistrano/ext/multistage")
 
+after "deploy:finalize_update", "deploy:set_rails_env"
+namespace :deploy do
+  task :set_rails_env do
+    tmp = "#{current_release}/tmp/environment.rb"
+    final = "#{current_release}/config/environment.rb"
+    run <<-BASH
+    echo 'RAILS_ENV = "#{rails_env}"' > #{tmp};
+    cat #{final} >> #{tmp} && mv #{tmp} #{final};
+    BASH
+  end
+end
 
 #############################################################
 #	Tasks

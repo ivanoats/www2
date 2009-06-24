@@ -8,6 +8,11 @@ test:
     username: greenwebserver
     password: coo2man
     
+staging:
+    url: http://resellertest.enom.com/interface.asp?
+    username: greenwebserver
+    password: coo2man
+    
 production:
     url: http://reseller.enom.com/interface.asp?
     username: greenwebserver
