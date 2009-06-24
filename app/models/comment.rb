@@ -15,7 +15,7 @@ class Comment < ActiveRecord::Base
 # commentable_type  varchar(255)  YES   NULL  
 
 # describe comments  
-  
+
   belongs_to :commentable, :polymorphic => true
   belongs_to :user
 
@@ -23,7 +23,129 @@ class Comment < ActiveRecord::Base
   validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message => "email is invalid"
   validates_presence_of :comment, :on => :create, :message => "can't be blank"
   validates_presence_of :commentable_id, :on => :create, :message => "you have to comment on something!"
-  
+  validate :does_not_include_badwords
+
+  # Helper method to check comments against a badword list
+  def does_not_include_badwords
+
+    badwords = %w(
+    -online
+    4u
+    5gighost.com
+    adipex
+    advicer
+    ativan
+    baccarrat
+    blackjack
+    bllogspot
+    booker
+    byob
+    car-rental-e-site
+    car-rentals-e-site
+    carisoprodol
+    casino
+    casinos
+    chatroom
+    cialis
+    citalopram
+    clonazepam
+    coolcoolhu
+    coolhu
+    credit-card-debt
+    credit-report-4u
+    cwas
+    cyclen
+    cyclobenzaprine
+    dating-e-site
+    day-trading
+    debt-consolidation
+    debt-consolidation-consultant
+    diazepam
+    discreetordering
+    duty-free
+    dutyfree
+    equityloans
+    fioricet
+    flowers-leading-site
+    freenet
+    freenet-shopping
+    gambling-
+    hair-loss
+    health-insurancedeals-4u
+    holdem
+    holdempoker
+    holdemsoftware
+    holdemtexasturbowilson
+    homeequityloans
+    homefinance
+    hotel-dealse-site
+    hotele-site
+    hotelse-site
+    incest
+    insurance-quotesdeals-4u
+    insurancedeals-4u
+    isuzuforums.com
+    jrcreations
+    kamagra
+    klonopin
+    levitra
+    lycos
+    lorazepam
+    macinstruct
+    metformin
+    metronidazole
+    mortgage-4-u
+    mortgagequotes
+    online-gambling
+    onlinegambling-4u
+    ottawavalleyag
+    ownsthis
+    palm-texas-holdem-game
+    paxil
+    penguinforum
+    penis
+    pharmacy
+    phentermine
+    poker-chip
+    poze
+    propecia
+    pussy
+    rental-car-e-site
+    ringtone
+    ringtones
+    roulette
+    shemale
+    shoes
+    slot-machine
+    tamiflu
+    texas-holdem
+    thorcarlson
+    top-e-site
+    top-site
+    tramadol
+    trim-spa
+    ultram
+    valeofglamorganconservatives
+    valium
+    viagra
+    vibramycin
+    vioxx
+    xanax
+    zolpidem
+    zolus
+    blogs.blackmarble.co.uk
+    personalloansbad
+    1freewebspace.com
+    associations.missouristate.edu
+    )
+    badwords.each do |bw|
+      if comment.downcase.include?(bw) 
+        errors.add_to_base("Comment Rejected") 
+        break
+      end
+    end
+  end
+
   # Helper class method to lookup all comments assigned
   # to all commentable types for a given user.
   def self.find_comments_by_user(userid)
