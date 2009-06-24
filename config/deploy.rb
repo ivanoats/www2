@@ -7,7 +7,7 @@ require 'yaml'
 set :application, "www2"
 
 set :user, "deploy"
-set :domain, "www2.sustainablewebsites.com"
+set :domain, "www.sustainablewebsites.com"
 
 server domain, :app, :web
 role :db, domain, :primary => true
