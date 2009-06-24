@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090605195430) do
+ActiveRecord::Schema.define(:version => 20090624121825) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -36,10 +36,10 @@ ActiveRecord::Schema.define(:version => 20090605195430) do
   end
 
   create_table "add_ons", :force => true do |t|
-    t.integer  "hosting_id"
     t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "account_id"
   end
 
   create_table "addresses", :force => true do |t|
@@ -54,17 +54,17 @@ ActiveRecord::Schema.define(:version => 20090605195430) do
 
   create_table "articles", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "category_id"
     t.string   "title"
-    t.string   "permalink"
-    t.string   "cached_tag_list"
     t.text     "synopsis"
     t.text     "body"
     t.boolean  "published",        :default => false
-    t.datetime "published_at"
-    t.boolean  "comments_enabled"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "published_at"
+    t.integer  "category_id",      :default => 1
+    t.string   "permalink"
+    t.boolean  "comments_enabled"
+    t.string   "cached_tag_list"
   end
 
   create_table "cart_items", :force => true do |t|
@@ -208,14 +208,10 @@ ActiveRecord::Schema.define(:version => 20090605195430) do
     t.string   "title"
     t.string   "permalink"
     t.text     "body"
-    t.integer  "user_id"
-    t.boolean  "restricted"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "restricted"
     t.boolean  "hide_sidebar"
-    t.boolean  "flip_sidebar"
-    t.boolean  "show_teaser"
-    t.string   "teaser"
   end
 
   create_table "passwords", :force => true do |t|
@@ -335,7 +331,7 @@ ActiveRecord::Schema.define(:version => 20090605195430) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
-    t.text   "description"
+    t.string "description"
   end
 
   create_table "tickets", :force => true do |t|

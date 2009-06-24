@@ -8,12 +8,12 @@ class Purchase < ActiveRecord::Base
   def redeem
     case product.kind
     when 'package'
-      hosting = Hosting.create!(data.merge({:product => self.product, :account => order.account}))
+      hosting = Hosting.create(data.merge({:product => self.product, :account => order.account}))
       hosting.activate
     when 'domain'
-      domain = Domain.create!(:product => self.product, :account => order.account, :name => self.data[:domain])
+      domain = Domain.create(:product => self.product, :account => order.account, :name => self.data[:domain])
     when 'add-on'
-      #TODO create add-on and attach to Hosting
+      add_on = AddOn.create(:product => self.product, :account => order.account)
     end
   end
   

@@ -1,12 +1,13 @@
+<% unless @account.hostings.empty? %>
 Hosting
 <table class='model_table' style='font-size: 90%'>
   <tr>
-    <th>Name</th>
-    <th>Start Date</th>
-    <th>Renewal Period</th>
-    <th>Renewal Fee</th>
-    <th>Due Next</th>
-    <th>Status</th>
+    <th style='width: 300px'>Name</th>
+    <th >Start Date</th>
+    <th >Renewal Period</th>
+    <th >Renewal Fee</th>
+    <th >Due Next</th>
+    <th >Status</th>
 
   </tr>  
 <% @account.hostings.visible.each do |item| %>
@@ -21,11 +22,13 @@ Hosting
   </tr>  
 <% end%>
 </table>
+<% end %>
 
+<% unless @account.domains.empty? %>
 Domains
 <table class='model_table' style='font-size: 90%'>
   <tr>
-    <th>Domain</th>
+    <th  style='width: 300px'>Domain</th>
     <th>Start Date</th>
     <th>Renewal Period</th>
     <th>Renewal Fee</th>
@@ -43,3 +46,18 @@ Domains
   </tr>  
 <% end%>
 </table>
+<% end %>
+
+<% unless @account.add_ons.empty? %>
+Add Ons
+<table class='model_table' style='font-size: 90%'>
+  <tr>
+    <th>Add On</th>
+  </tr>  
+<% @account.add_ons.each do |item| %>
+  <tr class='<%= cycle("odd","even")%>'>
+    <td style='text-align: left'><%= item.product.name %></td>
+  </tr>  
+<% end%>
+</table>
+<% end %>

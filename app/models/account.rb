@@ -8,6 +8,7 @@ class Account < ActiveRecord::Base
   has_many :hostings
   has_many :orders
   has_many :domains
+  has_many :add_ons
 
   attr_protected :balance
   
@@ -47,23 +48,6 @@ class Account < ActiveRecord::Base
   aasm_event :unsuspend do
     transitions :from => :suspended, :to => :active
   end
-  
-  # t.string   "first_name"
-  # t.string   "last_name"
-  # t.string   "organization"
-  # t.string   "state"
-  # t.string   "phone"
-  # t.datetime "created_at"
-  # t.datetime "updated_at"
-  # t.decimal  "balance",            :precision => 10, :scale => 2, :default => 0.0
-  # t.date     "last_payment_on"
-  # t.string   "payment_period"
-  # t.string   "billing_id"
-  # t.string   "email"
-  # t.string   "card_number"
-  # t.string   "card_expiration"
-  # t.integer  "billing_address_id"
-  # t.integer  "address_id"
   
   refresh_time 5
   sort_by :last_name
@@ -184,6 +168,7 @@ class Account < ActiveRecord::Base
   end
   
   def next_payment_on
+    self.update_attribute(:last_payment_on, 1.month.ago) if self.last_payment_on.nil?
     (self.last_payment_on + 1.month).to_date
   end
   

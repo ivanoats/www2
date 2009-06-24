@@ -76,21 +76,19 @@ private
   
   
   def create_cpanel_account
-    #TODO create default cpanel_user
-    self.update_attribute(:cpanel_user, "u#{self.id}")
-    self.server.whm.create_account(:username => self.cpanel_user, :domain => "fakedomain#{self.id}.com")
+    self.server.whm.create_account(:username => self.usernmae, :domain => self.domain)
   end
   
   def suspend_cpanel_account
-    self.server.whm.suspend_account(:user => self.cpanel_user)
+    self.server.whm.suspend_account(:user => self.username)
   end
   
   def unsuspend_cpanel_account
-    self.server.whm.unsuspend_account(:user => self.cpanel_user)
+    self.server.whm.unsuspend_account(:user => self.username)
   end
   
   def delete_cpanel_account
-    self.server.whm.terminate_account(:user => self.cpanel_user)
+    self.server.whm.terminate_account(:user => self.username)
   end
   
   def set_next_charge
