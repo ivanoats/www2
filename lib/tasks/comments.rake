@@ -5,7 +5,31 @@ namespace :comments do
     puts "Starting Comment cleaner at #{Time.now}"
     #loop through comments
     #check for badwords
-    badwords = %w(viagra cialis isuzuforums.com phentermine ativan xanax valium tamiflu tramadol diazepam lorazepam zolpidem klonopin clonazepam)
+    badwords = %w(
+ viagra
+ cialis
+ isuzuforums.com
+ phentermine
+ ativan
+ xanax
+ ringtones
+ levitra
+ propecia
+ valium
+ tamiflu
+ tramadol
+ diazepam
+ lorazepam
+ zolpidem
+ klonopin
+ vibramycin
+ metronidazole
+ kamagra
+ penguinforum
+ clonazepam
+ metformin
+ citalopram
+ clonazepam)
     #delete if they have badwords
     comments = Comment.find(:all)
     comments.each do |c|
