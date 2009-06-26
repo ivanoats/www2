@@ -1,5 +1,5 @@
 set :deploy_to, "/var/www/#{application}_staging"
-set :rails_env, "staging"
+set :rails_env, "production"
 set :production_deploy_to, "/var/www/#{application}"
 
 namespace :copy do
