@@ -23,6 +23,13 @@ test:
   database: www2_development
   username: root
   password:
+  
+whmap:
+    adapter: mysql
+    encoding: utf8
+    database: billing
+    username: root  
+    password: 
 
 staging:
   # Sqlite3 Settings    
