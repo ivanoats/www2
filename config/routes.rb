@@ -1,6 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :accounts
-
+  map.resources :whmapuser, :active_scaffold => true
+  map.resources :whmaphostingorder, :active_scaffold => true
+  map.resources :whmapinvoice, :active_scaffold => true
   
   # Restful Authentication Rewrites
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
