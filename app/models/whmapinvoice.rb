@@ -16,6 +16,27 @@ class Whmapinvoice < Whmap
     end
   end
   
+  def formatted_due_date
+    Time.at(self.due_date).strftime('%Y-%m-%d')
+  end
+  
+  def formatted_created
+    Time.at(self.created).strftime('%Y-%m-%d')
+  end
+  
+  def formatted_payment_method
+    case self.payment_method
+    when 8 then "Authorize.net"
+    when 6 then "2Checkout"
+    when 4 then "Mail in"
+    when 1 then "PayPal"
+    end
+  end
+  
+  def formatted_status
+    self.status == 1 ? "paid" : "unpaid"
+  end
+  
   def paid?
     self.status == 1
   end
