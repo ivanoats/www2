@@ -123,7 +123,7 @@ class Account < ActiveRecord::Base
   end
   
   def charge_order(order)
-    amount = order.total_charge
+    amount = order.total_charge_in_cents
     if (@response = gateway.purchase(amount,billing_id)).success?
       self.payments.create(:amount => amount, :transaction_id => @response.authorization, :order_id => order)
       order.paid!

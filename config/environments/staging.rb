@@ -27,3 +27,6 @@ REST_AUTH_DIGEST_STRETCHES = 10
 config.after_initialize do
   ActiveMerchant::Billing::Base.gateway_mode = :test
 end
+
+
+SslRequirement.disable_ssl_check = true
