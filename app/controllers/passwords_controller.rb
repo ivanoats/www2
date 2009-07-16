@@ -1,11 +1,14 @@
 class PasswordsController < ApplicationController
   def new
     @password = Password.new
+    @sidebar = ''
   end
 
   def create
     @password = Password.new(params[:password])
     @password.user = User.find_by_email(@password.email)
+    @sidebar = ''
+    flash[:error] = "User not found for #{@password.email}" and render :action => :new and return if @password.user.nil?
     
     if @password.save
       PasswordMailer.deliver_forgot_password(@password)
