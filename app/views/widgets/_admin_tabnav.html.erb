@@ -23,14 +23,29 @@ render_tabnav :admin,
    t.links_to :controller => 'admin'
   end
   
-  %w(Accounts Products Redirects Servers Tags Tickets Users).each do |name|
+  %w(Accounts Domains Products Redirects Servers Tags Tickets Users).each do |name|
     add_tab do |t|
       t.named name.camelize
       t.titled "Go to #{name.camelize}"
       t.links_to send("hash_for_#{name.downcase}_path")
     end if url_options_authenticate?(send("hash_for_#{name.downcase}_path"))
   end 
-         
+  
+  add_tab do |t|
+    t.named 'WHM Users'
+    t.links_to :controller => :whmapuser   
+  end
+           
+  add_tab do |t|
+    t.named 'WHM Orders'
+    t.links_to :controller => :whmaphostingorder   
+  end
+  
+  add_tab do |t|
+    t.named 'WHM Invoices'
+    t.links_to :controller => :whmapinvoice   
+  end
+  
   #add_tab do |t|
   #  t.named 'Home'
   #  t.titled 'Home Page'

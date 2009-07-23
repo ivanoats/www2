@@ -1,0 +1,9 @@
+<h1>Listing domains</h1>
+
+<% model_table( Domain.all, {:fields => ['Domain', 'status', '']} ) do |domain| %>
+  <td><%= domain.name %></td>
+  <td><%= domain.state %></td>
+  <td><%= link_to 'Show', domain %></td>
+<% end %>
+
+<%= button 'New domain', new_domain_path %>
