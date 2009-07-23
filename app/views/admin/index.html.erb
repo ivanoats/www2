@@ -87,3 +87,33 @@
   No accounts are past due.  
 </div>
 <% end %>
+
+<% unless @domains.empty? %>
+  <h2>List of New Domains</h2>
+  
+  <%= form_tag :action => 'approve'%>
+  <table class='model_table' style='font-size: 90%'>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Purchase Date</th>
+      <th>Account</th>
+      <th>Status</th>
+    </tr>
+  <% @domains.each do |domain| %>
+    <tr class='<%= cycle("odd","even")%>'>  
+      <td><%= check_box_tag "domain[#{domain.id}]" %></td>
+      <td style='text-align: left'><%= domain.name %></td>
+      <td><%= domain.created_at.to_formatted_s :human_date %></td>
+      <td><%= link_to domain.account.organization, domain.account %></td>
+      <td><%= domain.state.capitalize %></td>
+    </tr>  
+  <% end %>
+  </table>
+  <%= submit_tag "Purchase"%>
+</form>
+<% else %>
+  <div class='message'>
+    No new domains.  
+  </div>
+<% end %>

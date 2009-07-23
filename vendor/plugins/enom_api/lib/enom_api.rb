@@ -21,11 +21,13 @@ module EnomApi
     }
     
     def expiration_date
-      get_single_item('GetDomainExp', 'ExpirationDate').to_datetime
+      response = api_call('GetDomainExp')
+      response['interface_response']['expiration_date'].to_datetime
     end
     
     def nameservers
-      get_collection_of_items('GetDNS', 'dns')
+      response = api_call('GetDNS')
+      response['interface_response']['dns']
     end
     
     def nameservers=(nameservers)    
@@ -64,7 +66,8 @@ module EnomApi
     end
     
     def locked?
-      get_single_item('GetRegLock', 'reg-lock') == true
+      response = api_call('GetRegLock')
+      response['interface_response']['reg_lock'] == '1'
     end
     
     def locked=(locked)
@@ -72,23 +75,16 @@ module EnomApi
     end
     
     def available?
-      get_single_item("check",'RRPText') == 'Domain available'
+      response = api_call('check')
+      !response.has_errors? && response['rrp_code'] == 210
     end
     
-    private
-    
-    def get_single_item(enom_command, xml_field_name)
-      response = api_call(enom_command)
-      REXML::XPath.first(response, "//#{xml_field_name}").text
-    end
-    
-    def get_collection_of_items(enom_command, xml_field_name)
-      response = api_call(enom_command)
-      items = []
-      response.elements.each("interface-response/#{xml_field_name}") { |element| 
-        items << element.text
-      }
-      return items
+    def purchase!(options)
+      response = api_call('purchase', options)
+      
+      #throw response.errors.first if response.has_errors?# && response['rrp_code'] == 210
+      
+      response
     end
     
     def get_contact_info_for(contact_type)
@@ -107,24 +103,38 @@ module EnomApi
     
     end
     
-    def api_call(enom_command)
+    def api_call(enom_command, options = {})
       split = name.split('.')
       sld = split.first
       tld = split.last
-      values = @@values.merge!({
+      values = @@values.merge({
         'Command' => enom_command,
         'SLD' => sld,
         'TLD' => tld
-      })
-      REXML::Document.new(HTTPClient.new.get_content(URI.parse(@@url + values.to_query)))
+      }).merge(options)
+      
+      Response.from_xml(HTTPClient.new.get_content(URI.parse(@@url + values.to_query)))
     end
     
     def domain_exists_in_enom_account?
-      all_domains = get_collection_of_items('GetAllDomains', 'GetAllDomains/DomainDetail/DomainName')
+      response = api_call('GetAllDomains')
+      all_domains = response['interface_response']['get_all_domains']['domain_detail']['domain_name']
       unless all_domains.include?(name)
         errors.add_to_base('Domain does not exist in your Enom account.')
       end
     end
   end
+  
+  class Response < Hash
+    def errors
+      err_count = self["ErrCount"].to_i
+      (1..err_count).map { |err| self["errors"]["Err#{err}"]}
+    end
+    
+    def has_errors?
+      !errors.empty?
+    end
+  end
+  
 end
 ActiveRecord::Base.send :include, EnomApi
