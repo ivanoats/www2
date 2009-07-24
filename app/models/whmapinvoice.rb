@@ -24,6 +24,10 @@ class Whmapinvoice < Whmap
     Time.at(self.created).strftime('%Y-%m-%d')
   end
   
+  def formatted_date_paid
+    Time.at(self.daite_paid).strftime('%Y-%m-%d')
+  end
+  
   def formatted_payment_method
     case self.payment_method
     when 8 then "Authorize.net"
