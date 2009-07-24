@@ -79,3 +79,4 @@ ExceptionNotifier.exception_recipients = %w(ivanoats@gmail.com)
 ExceptionNotifier.sender_address = %("Application Error" <app.error@sustainablewebsites.com>) 
 ExceptionNotifier.email_prefix = "[www2] " 
 
+require 'hash_extensions'

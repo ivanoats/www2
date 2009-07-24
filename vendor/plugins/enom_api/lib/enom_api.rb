@@ -30,7 +30,18 @@ module EnomApi
       response['interface_response']['dns']
     end
     
-    def nameservers=(nameservers)    
+    def nameservers=(nameservers = [])    
+      if nameservers == []
+        response = api_call('ModifyNS', {'UseDNS' => 'Default'}) #use enom nameservers
+      else
+        options = {}
+        nameservers.each_with_index { |nameserver,index|
+          options["NS#{index}"] = nameserver
+        }
+        response = api_call('ModifyNS', options)
+      end
+      
+      response
     end
     
     def registrant_contact
@@ -88,21 +99,21 @@ module EnomApi
     end
     
     def get_contact_info_for(contact_type)
-      
+      response = api_call('GetContacts')
+      fields = response['interface_response']['get_contacts'][contact_type]
+    
+      #fields are prefixed with contact_type and that is silly
+      fields.collect! {|key,values|
+        new_key = key.gsub("#{contact_type}_",'')
+        [new_key,values]
+      }
+      fields
     end
     
     def set_contact_info_for(contact_type, contact_data)
       
     end
-    
-    def set_single_item(enom_command)
-    
-    end
-    
-    def set_collection_of_items(enom_command)
-    
-    end
-    
+        
     def api_call(enom_command, options = {})
       split = name.split('.')
       sld = split.first

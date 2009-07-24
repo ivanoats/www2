@@ -1,1 +1,28 @@
-Show Domain
+<h2><%= @domain.name %></h2>
+
+<h3>Nameservers</h3>
+<ol>
+<% for nameserver in @domain.nameservers %>
+  <li><%= nameserver%></li>
+<% end %>
+</ol>
+
+<% for contact_type in %w(registrant admin billing aux_billing tech) do%>
+  <% @fields = @domain.get_contact_info_for(contact_type) %>
+  <h3><%= contact_type.capitalize %></h3>
+  <p>
+  <%= @fields['first_name'] %>  <%= @fields['last_name'] %><br/>
+  <%= @fields['email_address'] %>
+  </p>
+  <b>Address</b>
+  <p>
+  <%= @fields['address1'] %><br/>
+  <%= @fields['address2'] %><br/>
+  <%= @fields['city'] %>  <%= @fields['state_province'] %>   <%= @fields['postal_code'] %>
+  </p>
+  <b>Phone</b>
+  <p>
+  <%= @fields['phone'] %>
+  </p>
+<% end %>  
+  
