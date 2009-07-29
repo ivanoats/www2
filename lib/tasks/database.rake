@@ -1,5 +1,7 @@
 require 'rake'
 
+#   replace localhost with #{abcs[RAILS_ENV]["host"]} if you don't use localhost
+ 
 namespace :db do
   desc "Dump the current database to a MySQL file" 
   task :database_dump do
@@ -10,9 +12,9 @@ namespace :db do
       ActiveRecord::Base.establish_connection(abcs[RAILS_ENV])
       File.open("db/#{RAILS_ENV}_data.sql", "w+") do |f|
         if abcs[RAILS_ENV]["password"].blank?
-          f << `mysqldump -h #{abcs[RAILS_ENV]["host"]} -u #{abcs[RAILS_ENV]["username"]} #{abcs[RAILS_ENV]["database"]}`
+          f << `mysqldump -h localhost -u #{abcs[RAILS_ENV]["username"]} #{abcs[RAILS_ENV]["database"]}`
         else
-          f << `mysqldump -h #{abcs[RAILS_ENV]["host"]} -u #{abcs[RAILS_ENV]["username"]} -p#{abcs[RAILS_ENV]["password"]} #{abcs[RAILS_ENV]["database"]}`
+          f << `mysqldump -h localhost -u #{abcs[RAILS_ENV]["username"]} -p#{abcs[RAILS_ENV]["password"]} #{abcs[RAILS_ENV]["database"]}`
         end
       end
     when 'sqlite3'
