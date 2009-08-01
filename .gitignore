@@ -10,3 +10,8 @@ config/database.yml
 db/*.sqlite3
 assets/*
 www2.tmproj
+www2.esproj
+www2.kpf
+.tmtags
+.idea/*
+tmp/restart.txt

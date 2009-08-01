@@ -36,6 +36,7 @@ class Comment < ActiveRecord::Base
     advicer
     ativan
     baccarrat
+    blowjob
     blackjack
     bllogspot
     booker
@@ -81,26 +82,33 @@ class Comment < ActiveRecord::Base
     hotel-dealse-site
     hotele-site
     hotelse-site
+    hydrocodone
     incest
     insurance-quotesdeals-4u
     insurancedeals-4u
     isuzuforums.com
     jrcreations
     kamagra
+    kaboodle.com
     klonopin
     levitra
     lycos
+    lesbian
+    lezbian
+    loans
     lorazepam
     macinstruct
     metformin
     metronidazole
     mortgage-4-u
     mortgagequotes
+    musicstation
     online-gambling
     onlinegambling-4u
     ottawavalleyag
     ownsthis
     palm-texas-holdem-game
+    paydal
     paxil
     penguinforum
     penis
@@ -108,7 +116,9 @@ class Comment < ActiveRecord::Base
     phentermine
     poker-chip
     poze
+    porn
     propecia
+    profiles.friendster.com
     pussy
     rental-car-e-site
     ringtone
@@ -129,6 +139,7 @@ class Comment < ActiveRecord::Base
     valium
     viagra
     vibramycin
+    vicodin
     vioxx
     xanax
     zolpidem
@@ -137,6 +148,43 @@ class Comment < ActiveRecord::Base
     personalloansbad
     1freewebspace.com
     associations.missouristate.edu
+    arcadepages
+    jestmaster
+    Staphcillin
+    amoxil
+    baclofen
+    lamictal
+    levaquin
+    toprol
+    diovan
+    arimidex
+    augmentin
+    voltaren
+    remeron
+    zantac
+    zofran
+    phenergan
+    dostinex
+    proscar
+    tegretol
+    creditonlinepersonalloans
+    cipro
+    vytorin
+    accutane
+    flagyl
+    dvxuser.com
+    buspar
+    fosamax
+    toradol
+    adultsex
+    jizz
+    nojazzfest
+    comment1
+    comment2
+    comment3
+    comment4
+    comment5
+    comment6
     )
     badwords.each do |bw|
       if comment.downcase.include?(bw) 
