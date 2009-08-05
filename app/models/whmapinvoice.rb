@@ -29,7 +29,7 @@ class Whmapinvoice < Whmap
   end
   
   def formatted_payment_method
-    case self.payment_method
+    case self.payment_method.to_i
     when 8 then "Authorize.net"
     when 6 then "2Checkout"
     when 4 then "Mail in"
