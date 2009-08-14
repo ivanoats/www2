@@ -1,7 +1,7 @@
 
 <h2>Confirm your order and complete your purchase.</h2>
 
-<%= error_messages_for :account, :order %>
+<%= error_messages_for [:account, :order] %>
 
 <%= @account.card_number%>
 <%= @account.card_expiration%>

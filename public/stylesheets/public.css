@@ -7,6 +7,13 @@
 
 /* Hosting Table ################################################################## */
 
+.tooltip_text {
+    display: none;
+    position: absolute;
+    background-color: lightYellow;
+    border: 1px solid black;
+}
+
 /* Teaser *****/
 #content #hosting-10-tease {background: #f9ffb9 url(../images/tb_10.gif) no-repeat;}
 #content #hosting-20-tease {background: #f9ffb9 url(../images/tb_20.gif) no-repeat;}

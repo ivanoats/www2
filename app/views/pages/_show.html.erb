@@ -1,4 +1,15 @@
 <% content_for :head do %>
+  <script type="text/javascript"><![CDATA[
+    jQuery('.tooltip').live('mouseover', function () {
+      jQuery(this).find('tooltip_text').fadeIn(1000,function() {
+        jQuery(this).animate({opacity: 1.0},1000).fadeOut();
+      });
+    });
+  //]]></script>
+  
+<% end # if page id is 7 ?! for services page %>  
+
+<% content_for :head do %>
   <style type='text/css'>
     #sidebar { display:none;}
     #content { 
