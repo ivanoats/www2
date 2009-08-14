@@ -27,7 +27,7 @@ module EnomApi
     
     def nameservers
       response = api_call('GetDNS')
-      response['interface_response']['dns']
+      response['interface_response']['dns'] || []
     end
     
     def nameservers=(nameservers = [])    
