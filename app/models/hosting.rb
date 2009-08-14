@@ -61,15 +61,31 @@ class Hosting < ActiveRecord::Base
   end
   
   def cost
-    self.product.cost
+    self.custom_cost || self.product.cost 
   end
   
   def period
-    self.product.period
+    case recurring_month
+    when 12
+      1.year # 1.year != 12.months
+    else
+      recurring_month.months
+    end
+  end
+  
+  def recurring_month
+    self.custom_recurring_month || self.product.recurring_month
   end
   
   def period_in_words
-    self.product.period_in_words
+    case recurring_month
+    when 12
+      'yearly'
+    when 1
+      'monthly'
+    else
+      "every #{recurring_month} months"
+    end
   end
 
 private

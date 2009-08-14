@@ -15,23 +15,23 @@ render_tabnav :account,
               :generate_css => false do 
   add_tab do |i|
     i.named 'Dashboard'
-    i.links_to( {:action => 'manage'} )
+    i.links_to( {:controller => 'account', :action => 'manage'} )
   end
 
 
   add_tab do |i|
     i.named 'Settings'
-    i.links_to( {:action => 'edit'} )
+    i.links_to( {:controller => 'account', :action => 'edit'} )
   end
   
   add_tab do |i|
     i.named 'Billing and Payments'
-    i.links_to( {:action => 'payments'} )
+    i.links_to( {:controller => 'account', :action => 'payments'} )
   end
   
   add_tab do |i|
     i.named 'Websites'
-    i.links_to( {:action => 'hosting'} )
+    i.links_to( {:controller => 'account', :action => 'hosting'} )
   end
 
 end 

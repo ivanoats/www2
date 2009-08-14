@@ -1,31 +1,19 @@
-<h1>Listing hostings</h1>
+<h1>Listing Hostings</h1>
 
 <table>
   <tr>
   </tr>
 
-<% @server.whm.accounts.each do |account| %>
-  <tr>
-    <td><%= debug account.attributes %></td>
-  </tr>
-<% end %>
-
-<% @server.whm.packages.each do |plan| %>
-  <tr>
-    <td><%= debug plan.attributes %></td>
-  </tr>
-<% end %>
-
 <% @hostings.each do |@hosting| %>
 
   <tr>
-    <td><%= link_to 'Show', server_hosting_path(@server,@hosting) %></td>
+    <td><%= link_to 'Show', hosting_path(@hosting) %></td>
 
-    <td><%= link_to 'Edit', edit_server_hosting_path(@server,@hosting) %></td>
-    <td><%= link_to 'Destroy', server_hosting_path(@server,@hosting), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Edit', edit_hosting_path(@hosting) %></td>
+    <td><%= link_to 'Destroy', hosting_path(@hosting), :confirm => 'Are you sure?', :method => :delete %></td>
     <td>
       <%= select :"hosting[]", :state, Hosting.aasm_states_for_select %>
-      <%= observe_field "hosting_#{@hosting.id}_state", :url => server_hosting_path(@server,@hosting), :with => 'hosting[state]', :method => :put %>
+      <%= observe_field "hosting_#{@hosting.id}_state", :url => hosting_path(@hosting), :with => 'hosting[state]', :method => :put %>
     </td>
   </tr>
 <% end %>
@@ -33,4 +21,4 @@
 
 <br />
 
-<%= link_to 'New hosting', new_server_hosting_path %>
+<%= link_to 'New Hosting', new_hosting_path %>

@@ -1,3 +1,72 @@
+    
 
-<%= link_to 'Edit', edit_server_hosting_path(@hosting) %> |
-<%= link_to 'Back', server_hostings_path %>
+<table class='model_table'>
+  <tr>
+    <th colspan='2'>Account Details</th>
+  </tr>
+  <tr class='odd'>
+    <td style='text-align: left'>
+      Name
+    </td>
+    <td style='text-align: left'>
+      <%= @hosting.username %>      
+    </td>
+  </tr>
+  <tr class='odd'>
+    <td style='text-align: left'>
+      Plan
+    </td>
+    <td style='text-align: left'>
+      <%= @hosting.product.name %>      
+    </td>
+  </tr>
+  <tr class='odd'>
+    <td style='text-align: left'>
+      Start Date
+    </td>
+    <td style='text-align: left'>
+      <%= @hosting.created_at.to_formatted_s :human_date %>      
+    </td>
+  </tr>
+  <tr class='odd'>
+    <td style='text-align: left'>
+      Renewal Period
+    </td>
+    <td style='text-align: left'>
+      <%= @hosting.period_in_words %>      
+    </td>
+  </tr>
+  <tr class='odd'>
+    <td style='text-align: left'>
+      Renewal Fee
+    </td>
+    <td style='text-align: left'>
+      <%= number_to_currency @hosting.product.cost %>      
+    </td>
+  </tr>
+  
+  <tr class='odd'>
+    <td style='text-align: left'>
+      Due Next
+    </td>
+    <td style='text-align: left'>
+      <%= @hosting.next_charge_on.to_formatted_s :human_date unless @hosting.next_charge_on.nil? %>      
+    </td>
+  </tr>
+  <tr class='odd'>
+    <td style='text-align: left'>
+      Status
+    </td>
+    <td style='text-align: left'>
+      <%= @hosting.state.capitalize %>      
+    </td>
+  </tr>
+</table>
+<div class='actions'>
+<%= button_to 'Cancel Hosting Package', {:controller => "hostings", :action => 'cancel', :id => @hosting}, :method => :post, :confirm => "Are you sure you want to cancel this web hosting package?  This will take your site offline and delete your data.  " if ['ordered', 'active', 'suspended'].include? @hosting.state%>
+</div>
+
+
+<%= link_to 'Back', {:controller => "account", :action => "hosting"} %>
+
+

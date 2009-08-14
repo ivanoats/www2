@@ -4,6 +4,10 @@ class Whmaphostingorder < Whmap
   belongs_to :whmapuser, :foreign_key => "uid"
   has_many :whmapinvoice, :foreign_key => "oid"
   
+  named_scope :active, :conditions => {:status => 1}
+  named_scope :unknown, :conditions => {:status => 2}
+  named_scope :cancelled, :conditions => "reason_for_cancel != '' " # status == 5?  
+  
   def formatted_payment_method
     case self.payment_method.to_i
       when 8 then "Authorize.net"

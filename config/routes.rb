@@ -1,5 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :accounts
   map.resources :whmapuser, :active_scaffold => true
   map.resources :whmaphostingorder, :active_scaffold => true
   map.resources :whmapinvoice, :active_scaffold => true
@@ -27,11 +26,8 @@ ActionController::Routing::Routes.draw do |map|
   
   # Application Resources
   map.resources :redirects
-  
-  map.resources :servers do |servers|
-    servers.resources :hostings
-  end
   map.resources :hostings
+  map.resources :servers
   map.resources :products
   map.resources :tags
   map.resources :tickets
@@ -67,6 +63,7 @@ ActionController::Routing::Routes.draw do |map|
   map.knowledgebase '/knowledgebase', :controller => 'articles', :action => 'index', :category_id => 2
   map.livesearch '/search/:search', :controller => 'articles', :action => 'livesearch', :search => nil
   map.certificate_signing_request '/certificate_signing_request', :controller => 'certificate_tickets', :action => "new"
+  
   # Home Page
   map.root :controller => 'pages', :action => 'home'
 

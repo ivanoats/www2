@@ -3,7 +3,6 @@ Hosting
 <table class='model_table' style='font-size: 90%'>
   <tr>
     <th style='width: 300px'>Name</th>
-    <th >Start Date</th>
     <th >Renewal Period</th>
     <th >Renewal Fee</th>
     <th >Due Next</th>
@@ -13,8 +12,7 @@ Hosting
 <% @account.hostings.visible.each do |item| %>
 
   <tr class='<%= cycle("odd","even")%>'>
-    <td style='text-align: left'><%= item.product.name %></td>
-    <td><%= item.created_at.to_formatted_s :human_date %></td>
+    <td style='text-align: left'><%= link_to "#{item.product.name} (#{item.username})", item %></td>
     <td><%= item.period_in_words %></td>
     <td><%= number_to_currency item.product.cost %></td>
     <td><%= item.next_charge_on.to_formatted_s :human_date unless item.next_charge_on.nil? %></td>
@@ -29,7 +27,6 @@ Domains
 <table class='model_table' style='font-size: 90%'>
   <tr>
     <th  style='width: 300px'>Domain</th>
-    <th>Start Date</th>
     <th>Renewal Period</th>
     <th>Renewal Fee</th>
     <th>Due Next</th>
@@ -37,8 +34,7 @@ Domains
   </tr>  
 <% @account.domains.each do |item| %>
   <tr class='<%= cycle("odd","even")%>'>
-    <td style='text-align: left'><%= item.name %></td>
-    <td><%= item.created_at.to_formatted_s :human_date %></td>
+    <td style='text-align: left'><%= link_to item.name, item %></td>
     <td>yearly</td>
     <td><%= number_to_currency item.product.cost %></td>
     <td></td>

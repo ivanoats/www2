@@ -1,6 +1,6 @@
-<h1>Editing hosting</h1>
+<h1>Editing Hosting</h1>
 
-<% form_for([@server,@hosting]) do |f| %>
+<% form_for([@hosting]) do |f| %>
   <%= f.error_messages %>
 
   <p>
@@ -9,4 +9,4 @@
 <% end %>
 
 <%= link_to 'Show', @hosting %> |
-<%= link_to 'Back', server_hostings_path %>
+<%= link_to 'Back', hostings_path %>

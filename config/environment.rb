@@ -31,8 +31,8 @@ Rails::Initializer.run do |config|
   config.gem "httpclient"
   config.gem "mofo"
   config.gem "packet"
-  config.gem "ivanoats-whm_xml", :lib => "whm"
-  #config.gem 'whm_xml', :lib => 'whm'
+  #config.gem "ivanoats-whm_xml", :lib => "whm"
+  config.gem 'whm_xml', :lib => 'whm'
   
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
