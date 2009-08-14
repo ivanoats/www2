@@ -6,4 +6,6 @@ private
   def get_server
     @server = Server.find(params[:server_id])
   end
+  
+  
 end

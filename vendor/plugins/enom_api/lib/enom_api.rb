@@ -87,7 +87,7 @@ module EnomApi
     
     def available?
       response = api_call('check')
-      !response.has_errors? && response['rrp_code'] == 210
+      !response.has_errors? && response['interface_response']['rrp_code'] == '210'
     end
     
     def purchase!(options)
@@ -124,7 +124,7 @@ module EnomApi
         'TLD' => tld
       }).merge(options)
       
-      Response.from_xml(HTTPClient.new.get_content(URI.parse(@@url + values.to_query)))
+      Response.new(Hash.from_xml(HTTPClient.new.get_content(URI.parse(@@url + values.to_query))))
     end
     
     def domain_exists_in_enom_account?
@@ -137,6 +137,11 @@ module EnomApi
   end
   
   class Response < Hash
+    
+    def initialize(hash)
+      self.replace(hash)
+    end
+    
     def errors
       err_count = self["ErrCount"].to_i
       (1..err_count).map { |err| self["errors"]["Err#{err}"]}

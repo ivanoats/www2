@@ -27,11 +27,11 @@ class GreenHostingStoreController < ApplicationController
         page.replace_html 'choose_domain_message' , "<span style='color: red'>Domain #{@domain.name} is not available</span>"
       end
     end
-  rescue => e
-    render :update do |page|
-      page << 'allow_check_domain()'
-      page.replace_html 'choose_domain_message' , "<span style='color: red'>Bad domain name</span>"
-    end
+  #rescue => e
+    # render :update do |page|
+    #     page << 'allow_check_domain()'
+    #     page.replace_html 'choose_domain_message' , "<span style='color: red'>Bad domain name</span>"
+      # end
   end
   
   def add_hosting
