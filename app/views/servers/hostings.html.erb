@@ -1,36 +1,74 @@
-<h1>Listing hostings</h1>
+<h1>Hostings</h1>
 
-<table>
+
+<table class='model_table'>
   <tr>
+    <th>
+      User
+    </th>
+    <th></th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
   </tr>
 
-<% @server.whm.accounts.each do |account| %>
-  <tr>
-    <td><%= debug account.attributes %></td>
-  </tr>
-<% end %>
 
-<% @server.whm.packages.each do |plan| %>
-  <tr>
-    <td><%= debug plan.attributes %></td>
-  </tr>
-<% end %>
 
-<% @hostings.each do |@hosting| %>
-
-  <tr>
-    <td><%= link_to 'Show', server_hosting_path(@server,@hosting) %></td>
-
-    <td><%= link_to 'Edit', edit_server_hosting_path(@server,@hosting) %></td>
-    <td><%= link_to 'Destroy', server_hosting_path(@server,@hosting), :confirm => 'Are you sure?', :method => :delete %></td>
+<% @server.hostings.each do |hosting| %>
+  <% @hosting = hosting %>
+  <tr class='<%= cycle('odd','even')%>'>
+    <td><%= hosting.username %></td>
+    <td><%= 
+      account = @accounts.find { |account| account.user == hosting.username}
+      if account
+        @accounts.delete(account)
+        debug account
+      else
+        "Account does not exist"
+      end
+       %></td>
     <td>
       <%= select :"hosting[]", :state, Hosting.aasm_states_for_select %>
-      <%= observe_field "hosting_#{@hosting.id}_state", :url => server_hosting_path(@server,@hosting), :with => 'hosting[state]', :method => :put %>
+      <%= observe_field "hosting_#{hosting.id}_state", :url => hosting_path(hosting), :with => 'hosting[state]', :method => :put %>
     </td>
+    <td><%= link_to 'Show', hosting_path(hosting) %></td>
+
+    <td><%= link_to 'Destroy', hosting_path(hosting), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
+<% end %>
+<% unless @accounts.empty? %>
+<tr class='<%= cycle('odd','even')%>'>
+  <td cols='5'>
+    These hostings are not managed.  
+  </td>
+</tr>
+<% end %>
+<% @accounts.each do |account| %>
+  <tr class='<%= cycle('odd','even')%>'>
+    <td><%= account.user %></td>
+    <td><%= debug account %></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New hosting', new_server_hosting_path %>
+<h1>Packages</h1>
+<% unless @packages.empty? %>
+<table class='model_table'>
+  <tr>
+    <% @packages.first.attributes.each_pair do |attribute,value| %>
+      <th><%= attribute %></th>
+    <% end %>
+  </tr>
+  <% @packages.each do |package| %>
+  <tr class='<%= cycle('odd','even')%>'>
+    <% package.attributes.each_pair do |attribute,value| %>
+      <td><%= value %></td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
+<% end %>
