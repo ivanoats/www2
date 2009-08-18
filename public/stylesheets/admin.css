@@ -42,6 +42,7 @@
 
 #search {
   padding: 0px!important;
+  margin-bottom: 20px;
 }
 
 #search #search_form input { float: left;}

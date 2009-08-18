@@ -9,9 +9,6 @@ class ServersController < ApplicationController
   before_filter :login_required
   
   def index
-    load_object
-
-
     get_sorted_objects(params, :table_headings => [['Name', 'name'],
     ['IP Address', 'ip_address'], ['Whm User','whm_user']])
     
