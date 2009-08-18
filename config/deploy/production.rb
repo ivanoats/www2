@@ -1,7 +1,7 @@
 set :deploy_to, "/var/www/#{application}"
+set :rails_env, "production"
 
 before :deploy, "db:backup"
-
 
 namespace :db do  
   desc "Backup the remote production database"
