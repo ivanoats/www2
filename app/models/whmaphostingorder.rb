@@ -5,7 +5,7 @@ class Whmaphostingorder < Whmap
   has_many :whmapinvoice, :foreign_key => "oid"
   
   named_scope :active, :conditions => {:status => 1}
-  named_scope :unknown, :conditions => {:status => 2}
+  named_scope :suspended, :conditions => {:status => 2}
   named_scope :cancelled, :conditions => "reason_for_cancel != '' " # status == 5?  
   
   def formatted_payment_method
