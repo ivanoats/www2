@@ -1,11 +1,5 @@
-<h1>Listing accounts</h1>
+<h1>Listing Accounts</h1>
 
-<% model_table( Account.all, {:fields => [:organization, 'status', '']} ) do |account| %>
-  <td><%= account.organization %></td>
-  <td><%= account.state %></td>
-  <td><%= button 'Show', account %>
-  <%= button 'Edit', edit_account_path(account) %>
-  <%= button 'Destroy', account, :confirm => 'Are you sure?', :method => :delete %></td>
-<% end %>
+<%= sortable_table %>
 
 <%= button 'New Account', new_account_path %>

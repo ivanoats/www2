@@ -8,6 +8,8 @@
   border: 1px solid #999;
 	background-position: center;
 	background-repeat:no-repeat;	
+	clear: left;
+	margin-bottom: 15px;
 }
 
 .sortableTable td {

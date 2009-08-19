@@ -2,6 +2,7 @@ class Whmaphostingorder < Whmap
   set_primary_key "oid"
   set_table_name "hosting_order"
   belongs_to :whmapuser, :foreign_key => "uid"
+  belongs_to :whmapserver, :foreign_key => "whm_id"
   has_many :whmapinvoice, :foreign_key => "oid"
   
   named_scope :active, :conditions => {:status => 1}
@@ -17,4 +18,6 @@ class Whmaphostingorder < Whmap
     end
   end
   
+  
 end
+

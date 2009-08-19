@@ -5,6 +5,13 @@ class AccountsController < ApplicationController
   require_role "Administrator"
   
   include ModelControllerMethods
+  sortable_table Account
+  
+  def index
+    get_sorted_objects(params, :table_headings => [
+    ['Organization', 'organization'], ['Status','state'], ['Balance','balance'],['Email','email']])
+    
+  end
   
   def show
     session[:account] = params[:id] if Account.find_by_id(params[:id])
