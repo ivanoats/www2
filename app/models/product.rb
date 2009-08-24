@@ -10,6 +10,8 @@ class Product < ActiveRecord::Base
   named_scope :packages, :conditions => {:kind => 'package' }
   named_scope :addons, :conditions => {:kind => 'addon'}
 
+  serialize :data, Hash
+
   def self.domain
     Product.find_by_kind('domain') || Product.create!(:name => "Domain Name", :description => "Domain Name", :kind => 'domain', :cost => '10.00', :recurring_month => 1, :status =>  'active')
   end

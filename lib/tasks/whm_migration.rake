@@ -1,12 +1,16 @@
 
 def create_hosting_from_order(order)
+  
+  
+  
   Hosting.new(:server => Server.find_by_ip_address(order.whmapserver.server_ip),
     :username => order.whm_username,
     :password => order.whm_password,
     :domain => order.domain_name,
     :next_charge_on => Time.at(order.next_due_date.to_i),
-    :custom_cost => order.total_due_reoccur,
-    :custom_recurring_month => (order.payment_term == 'Annual' ? 12 : 1)
+    :product => Product.all.find { |product| product.data[:package] == order.whm_package.whm_package_name }
+    #:custom_cost => order.total_due_reoccur,
+    #:custom_recurring_month => (order.payment_term == 'Annual' ? 12 : 1)
  )
 end
 
@@ -15,11 +19,35 @@ namespace :whm do
   desc 'Migrate Users'
   task :migrate => :environment do
     
+    Whmapproduct.all.each { |whmap_product|
+      unless Product.all.find { |product| product.data[:package] == whmap_product.whm_package_name }
+        if whmap_product.monthly_cost > 0 && whmap_product.annual_cost == 0
+          cost = whmap_product.monthly_cost
+          recurring_month = 1
+        elsif whmap_product.monthly_cost == 0 && whmap_product.annual_cost > 0
+          cost = whmap_product.annual_cost
+          recurring_month = 12
+        else
+          pp whmap_product
+          throw "Unsupported package!!!"
+        end
+        
+        
+        Product.create!({
+          :name            => whmap_product.package_name,
+          :description     => "",
+          :cost            => cost,
+          :recurring_month => recurring_month,
+          :status          => "active",
+          :kind            => "package",
+          :data            => {:package => whmap_product.whm_package_name}
+        })
+      end
+    }
     
-    
+    #Product.last.data[:package]
     
     #addons to determine price??
-    #custom_recurring_month??
     
     Whmapserver.find(:all).each { |server|
       Server.create!(:name => server.server_name,  :ip_address => server.server_ip, :primary_ns => server.primary_ns, :primary_ns_ip => server.primary_ns_ip, :secondary_ns => server.secondary_ns, :secondary_ns_ip => server.secondary_ns_ip, :max_accounts => server.max_accounts)
@@ -29,7 +57,15 @@ namespace :whm do
     #TODO setup_cost
     Whmapaddon.find(:all).each { |addon|
       #TODO ... some of these have $0 recurring cost ...
-      Product.create!(:name => addon.addon_name, :description => addon.addon_description, :recurring_month => 0, :kind => "addon", :cost => addon.addon_cost, :status => "active")
+      
+      if(addon.setup_cost == 0)
+        Product.create!(:name => addon.addon_name, :description => addon.addon_description, :recurring_month => 1, :kind => "addon", :cost => addon.addon_cost, :status => "active")
+      elsif(addon.addon_cost == 0)
+        Product.create!(:name => addon.addon_name, :description => addon.addon_description, :recurring_month => 0, :kind => "addon", :initial_cost => addon.setup_cost, :cost => addon.addon_cost, :status => "active")
+      else
+        pp addon
+        throw "Unsupported addon!!!"
+      end
     }
     
     #TODO find users that are active vs inactive

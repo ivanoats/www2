@@ -4,6 +4,7 @@ class Whmaphostingorder < Whmap
   belongs_to :whmapuser, :foreign_key => "uid"
   belongs_to :whmapserver, :foreign_key => "whm_id"
   has_many :whmapinvoice, :foreign_key => "oid"
+  belongs_to :whmappackage, :foreign_key => "pid"
   
   named_scope :active, :conditions => {:status => 1}
   named_scope :suspended, :conditions => {:status => 2}
