@@ -11,6 +11,12 @@ class UserMailer < ActionMailer::Base
     @body[:url] = APP_CONFIG[:site_url]
   end
   
+  def billing_transfer(user, password)
+    setup_email(user)
+    @subject << "Your account has been transferred to the new billing system"
+    @body[:password] = password
+  end
+  
   protected
   
   def setup_email(user)
