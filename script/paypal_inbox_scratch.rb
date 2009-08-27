@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'net/pop'
-#require File.dirname(__FILE__) + '/../config/environment'
+require File.dirname(__FILE__) + '/../config/environment'
 
 logger = RAILS_DEFAULT_LOGGER
 
@@ -12,7 +12,7 @@ def find_after_until(haystack, needle, end_char )
   haystack[start_position..end_position]
 end
 
-logger.info "Running Mail Importer Test..." 
+#logger.info "Running Mail Importer Test..." 
 email = ""
 Net::POP3.start("server.sustainablewebsites.com", nil, "paypal-received@sustainablewebsites.com", "BIB3UkW:umGH") do |pop|
   email = pop.mails.first.pop
@@ -49,4 +49,4 @@ end
 pp order
 
 
-logger.info "Finished Mail Importer Test."
+#logger.info "Finished Mail Importer Test."

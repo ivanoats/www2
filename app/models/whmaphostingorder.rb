@@ -8,7 +8,7 @@ class Whmaphostingorder < Whmap
   
   named_scope :active, :conditions => {:status => 1}
   named_scope :suspended, :conditions => {:status => 2}
-  named_scope :cancelled, :conditions => "reason_for_cancel != '' " # status == 5?  
+  named_scope :cancelled, :conditions => {:status => 5} # "reason_for_cancel != '' "  
   
   def formatted_payment_method
     case self.payment_method.to_i
