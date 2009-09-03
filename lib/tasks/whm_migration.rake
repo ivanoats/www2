@@ -5,7 +5,11 @@ def create_hosting_from_order(order)
     :password => order.whm_password,
     :domain => order.domain_name,
     :next_charge_on => Time.at(order.next_due_date.to_i),
-    :product => Product.all.find { |product| product.data[:package] == order.whmappackage.whm_package_name }
+    :product => begin
+      Product.all.find { |product| product.data[:package] == order.whmappackage.whm_package_name }
+    rescue => e
+      throw "Product not found for #{order.whmappackage.whm_package_name}"
+    end
     #:custom_cost => order.total_due_reoccur,
     #:custom_recurring_month => (order.payment_term == 'Annual' ? 12 : 1)
  )
@@ -42,6 +46,16 @@ namespace :whm do
           :kind            => "package",
           :data            => {:package => whmap_product.whm_package_name}
         }) if whmap_product.annual_cost > 0
+        
+        Product.create!({
+          :name            => whmap_product.package_name,
+          :description     => "",
+          :cost            => 0,
+          :recurring_month => 0,
+          :status          => "active",
+          :kind            => "package",
+          :data            => {:package => whmap_product.whm_package_name}
+        }) if whmap_product.monthly_cost == 0 &&  whmap_product.annual_cost == 0
       end
     }
 
@@ -61,10 +75,12 @@ namespace :whm do
     Server.destroy_all
     
     Whmapserver.find(:all, :conditions => {:server_name => ['sustainablewebsites','swcom3','swcom7','swcom11','swcom13','uk1sw']}).each { |server|
-      Server.create!(:name => server.server_name,  :ip_address => server.server_ip, :primary_ns => server.primary_ns, :primary_ns_ip => server.primary_ns_ip, :secondary_ns => server.secondary_ns, :secondary_ns_ip => server.secondary_ns_ip, :max_accounts => server.max_accounts, :whm_user => '', :whm_pass => '')
+      Server.create!(:name => server.server_name,  :ip_address => server.server_ip, :primary_ns => server.primary_ns, :primary_ns_ip => server.primary_ns_ip, :secondary_ns => server.secondary_ns, :secondary_ns_ip => server.secondary_ns_ip, :max_accounts => server.max_accounts, :whm_user => 'wpdnet', :whm_pass => 'coo2man')
     }
 
-    
+    Server.create! :name => "Test Server", :ip_address => '174.132.225.221', :whm_user => 'wpdnet', :whm_pass => 'coo2man'
+
+
     # "sustainw"," sustainablewebsites"," 74.55.133.197","yes","server.sustainablewebsites.com","main server new accounts go here"
     #     "greenweb"," greenwebserver.com",0,"no",,"old server - accounts were migrated to sustainw"
     #     "ecobr"," ecobreeze",0," no",," ""old server - accounts were migrated to sustainw"""
@@ -100,7 +116,7 @@ namespace :whm do
     
     User.find_by_email('padraicmcgee@gmail.com').destroy
     
-    Whmapuser.find(:all, :limit => 1, :include => :whmaphostingorder, :conditions => ['hosting_order.status = ?',1]).each { |user| 
+    Whmapuser.find(:all, :include => :whmaphostingorder, :conditions => ['hosting_order.status = ?',1]).each { |user| 
       
         #TESTING
         user.email = 'padraicmcgee@gmail.com'
@@ -131,20 +147,31 @@ namespace :whm do
         #TODO mail to user with login and password
         
         user.whmaphostingorder.active.each { |order|
-         @hosting = create_hosting_from_order(order)
-         @account.hostings << @hosting
-         order.addon_choices.split('|').each {|id|
-           add_on = Whmapaddon.find(id)
-           @account.add_ons << AddOn.new(:product => Product.find(:first, :conditions => {:name => add_on.addon_name, :description => addon.addon_description, :cost => add_on.addon_cost}))
-         }
-         @hosting.update_attribute('state', 'active')
+         if ["greenwebserver.com","ecobreeze", "windpowerhostnet"].include? order.whmapserver.server_name
+          
+         elsif Server.find_by_ip_address(order.whmapserver.server_ip) #only create if we have an active server
+           @hosting = create_hosting_from_order(order)
+           @account.hostings << @hosting
+           order.addon_choices.split('|').each {|id|
+             add_on = Whmapaddon.find(id)
+             @account.add_ons << AddOn.new(:product => Product.find(:first, :conditions => {:name => add_on.addon_name, :description => addon.addon_description, :cost => add_on.addon_cost}))
+           }
+           @hosting.update_attribute('state', 'active')
+         else
+           throw "Server not found for ip address #{order.whmapserver.server_ip} #{order.whmapserver.server_name}"
+         end
+         
+         #     "greenweb"," greenwebserver.com",0,"no",,"old server - accounts were migrated to sustainw"
+         #     "ecobr"," ecobreeze",0," no",," ""old server - accounts were migrated to sustainw"""
+         #     "wphnet"," windpowerhostnet",0,"no",," ""old server - accounts were migrated to sustainw"""
+         
         }
         
-        user.whmaphostingorder.suspended.each { |order|
-         @hosting = create_hosting_from_order(order)
-         @account.hostings << @hosting
-         @hosting.update_attribute('state', 'suspended')
-        }
+        # user.whmaphostingorder.suspended.each { |order|
+        #          @hosting = create_hosting_from_order(order)
+        #          @account.hostings << @hosting
+        #          @hosting.update_attribute('state', 'suspended')
+        #         }
       }
     
   end
