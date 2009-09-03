@@ -17,7 +17,7 @@ end
 
 namespace :whm do
   
-  
+  desc 'Migrate supporting objects'
   task :scaffold => :environment do
     Product.destroy_all
     
@@ -60,11 +60,21 @@ namespace :whm do
     
     Server.destroy_all
     
-    Whmapserver.find(:all).each { |server|
-      Server.create!(:name => server.server_name,  :ip_address => server.server_ip, :primary_ns => server.primary_ns, :primary_ns_ip => server.primary_ns_ip, :secondary_ns => server.secondary_ns, :secondary_ns_ip => server.secondary_ns_ip, :max_accounts => server.max_accounts)
-      # missing whm_user whm_pass whm_key
+    Whmapserver.find(:all, :conditions => {:server_name => ['sustainablewebsites','swcom3','swcom7','swcom11','swcom13','uk1sw']}).each { |server|
+      Server.create!(:name => server.server_name,  :ip_address => server.server_ip, :primary_ns => server.primary_ns, :primary_ns_ip => server.primary_ns_ip, :secondary_ns => server.secondary_ns, :secondary_ns_ip => server.secondary_ns_ip, :max_accounts => server.max_accounts, :whm_user => '', :whm_pass => '')
     }
+
     
+    # "sustainw"," sustainablewebsites"," 74.55.133.197","yes","server.sustainablewebsites.com","main server new accounts go here"
+    #     "greenweb"," greenwebserver.com",0,"no",,"old server - accounts were migrated to sustainw"
+    #     "ecobr"," ecobreeze",0," no",," ""old server - accounts were migrated to sustainw"""
+    #     "wphnet"," windpowerhostnet",0,"no",," ""old server - accounts were migrated to sustainw"""
+    #     "swcom3"," swcom3"," 70.47.89.20","yes","r9.nswebhost.com","reseller access, not root"
+    #     "swcom7"," swcom7","69.73.144.27","yes","r12.nswebhost.com","reseller access, not root"
+    #     "swcom11"," swcom11","207.210.64.55","yes","r8.nswebhost.com","reseller access, not root"
+    #     "swcom13"," swcom13","207.210.64.50","yes","r15.nswebhost.com","reseller access, not root"
+    #     "uk1sw"," uk1sw","77.74.195.152","yes","london.nswebhost.com","reseller access, not root"
+    #     
     
     
   end
