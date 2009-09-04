@@ -27,7 +27,8 @@ Rails::Initializer.run do |config|
   config.gem "capistrano-ext", :lib => "capistrano"  
   config.gem "mlightner-universal_ruby_whois",
               :lib => 'universal_ruby_whois',
-              :source => "http://gems.github.com"
+              :source => "http://gems.github.com",
+              :version => "1.2.6"
   config.gem "httpclient"
   config.gem "mofo"
   config.gem "packet"

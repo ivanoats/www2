@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# require 'active_record'
+require 'ruby-debug'
 require 'net/pop'
 require File.dirname(__FILE__) + '/../config/environment'
 
@@ -19,6 +21,7 @@ Net::POP3.start("server.sustainablewebsites.com", nil, "paypal-received@sustaina
 end
 email_parsed = TMail::Mail.parse(email)
 email_body = email_parsed.parts[0].body
+debugger
 puts email_body
 puts "/----------------------------------/"
 amount =  find_after_until(email_body,"Amount: $"," ").to_i
