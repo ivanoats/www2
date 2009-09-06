@@ -80,6 +80,13 @@ namespace :whm do
 
     Server.create! :name => "Test Server", :ip_address => '174.132.225.221', :whm_user => 'wpdnet', :whm_pass => 'coo2man'
 
+    Server.find_by_name('sustainablewebsites').update_attributes({:whm_user => 'sustainw', :whm_pass => 'CitizenSpace420!!'})
+    Server.find_by_name('swcom3').update_attributes({:whm_user => 'swcom3', :whm_pass => 'CitizenSpace420!!'})
+    Server.find_by_name('swcom7').update_attributes({:whm_user => 'swcom7', :whm_pass => 'CitizenSpace420!!'})
+    Server.find_by_name('swcom11').update_attributes({:whm_user => 'swcom11', :whm_pass => 'CitizenSpace420!!'})
+    #Server.find_by_name('swcom13').update_attributes({:whm_user => 'swcom13', :whm_pass => 'CitizenSpace420!!'})
+    #Server.find_by_name('uk1sw').update_attributes({:whm_user => 'uk1sw', :whm_pass => 'CitizenSpace420!!'})
+
 
     # "sustainw"," sustainablewebsites"," 74.55.133.197","yes","server.sustainablewebsites.com","main server new accounts go here"
     #     "greenweb"," greenwebserver.com",0,"no",,"old server - accounts were migrated to sustainw"
@@ -154,11 +161,11 @@ namespace :whm do
            @account.hostings << @hosting
            order.addon_choices.split('|').each {|id|
              add_on = Whmapaddon.find(id)
-             @account.add_ons << AddOn.new(:product => Product.find(:first, :conditions => {:name => add_on.addon_name, :description => addon.addon_description, :cost => add_on.addon_cost}))
+             @account.add_ons << AddOn.new(:product => Product.find(:first, :conditions => {:name => add_on.addon_name, :description => add_on.addon_description, :cost => add_on.addon_cost}))
            }
            @hosting.update_attribute('state', 'active')
          else
-           throw "Server not found for ip address #{order.whmapserver.server_ip} #{order.whmapserver.server_name}"
+           puts "Server not found for ip address #{order.whmapserver.server_ip} #{order.whmapserver.server_name}"
          end
          
          #     "greenweb"," greenwebserver.com",0,"no",,"old server - accounts were migrated to sustainw"

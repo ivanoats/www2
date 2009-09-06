@@ -1,42 +1,48 @@
 <h1>Listing tickets</h1>
 
-<table>
-  <tr>
-    <th>Subject</th>
-    <th>Description</th>
-    <th>Domain name</th>
-    <th>First name</th>
-    <th>Last name</th>
-    <th>Phone</th>
-    <th>Timezone</th>
-    <th>Priority</th>
-    <th>Cpanel username</th>
-    <th>Cpanel password</th>
-    <th>Email</th>
-    <th>Email password</th>
-  </tr>
-
-<% for ticket in @tickets %>
-  <tr>
-    <td><%=h ticket.subject %></td>
-    <td><%=h ticket.description %></td>
-    <td><%=h ticket.domain_name %></td>
-    <td><%=h ticket.first_name %></td>
-    <td><%=h ticket.last_name %></td>
-    <td><%=h ticket.phone %></td>
-    <td><%=h ticket.timezone %></td>
-    <td><%=h ticket.priority %></td>
-    <td><%=h ticket.cpanel_username %></td>
-    <td><%=h ticket.cpanel_password %></td>
-    <td><%=h ticket.email %></td>
-    <td><%=h ticket.email_password %></td>
-    <td><%= link_to 'Show', ticket %></td>
-    <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
-    <td><%= link_to 'Destroy', ticket, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<div id='search'>
+<% form_tag({:action => @action}, {:method => 'get', :id => 'search_form'}) do %>
+  <%=text_field_tag("q", params['q'], :size => 30 ) %> 
+  <%=submit_tag 'Search'%>
 <% end %>
+</div>
+<table width="100%" class='sortableTable' cellpadding="0" cellspacing="0">
+  <thead>
+    <tr class='tableHeaderRow'>
+    	 <% @headings.each do |heading| %>
+        <% sort_class = sort_td_class_helper heading[1] %>
+     	  <td <%= "class='#{sort_class}'" if !sort_class.blank? %>>
+  		   <%= sort_link_helper @action, heading[0], heading[1], params %>
+  		  </td>
+  		<% end %>   
+  		<td></td>
+  		<td></td>
+      <td></td>
+  	</tr>    
+  </thead>
+  <tbody>
+	<%if @objects.size == 0%>
+  	  <tr><td colspan='<%= @headings.size %>'>No items in the list</td></tr>
+	<%else  
+	    @objects.each do |object|
+	        klass = cycle('odd', 'even')        
+        %>
+	    <tr id='<%=dom_id(object)%>' class='<%= klass %>'>
+         <% @headings.each do |heading| %>
+             <td>
+               <%= object.send(heading[1]) %>
+             </td>
+         <% end %>
+           <td><%= link_to 'Show', object %></td>
+           <td><%= link_to 'Edit', eval("edit_#{object.class.name.underscore}_path(object)") %></td>
+           <td><%= link_to 'Destroy', object, :confirm => 'Are you sure?', :method => :delete %></td>
+  		</tr>
+	<%  end
+	 end%>
+	</tbody>
 </table>
 
-<br />
+<%= will_paginate @objects %>
+<br/>
 
 <%= link_to 'New ticket', new_ticket_path %>

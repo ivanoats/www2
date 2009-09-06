@@ -23,7 +23,7 @@ render_tabnav :admin,
    t.links_to :controller => 'admin'
   end
   
-  %w(Accounts Domains Products Redirects Servers Tags Tickets Users).each do |name|
+  %w(Accounts Products Redirects Servers  Tickets Users).each do |name|
     add_tab do |t|
       t.named name.camelize
       t.titled "Go to #{name.camelize}"

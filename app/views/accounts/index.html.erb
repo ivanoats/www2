@@ -1,5 +1,47 @@
 <h1>Listing Accounts</h1>
 
-<%= sortable_table %>
+<div id='search'>
+<% form_tag({:action => @action}, {:method => 'get', :id => 'search_form'}) do %>
+  <%=text_field_tag("q", params['q'], :size => 30 ) %> 
+  <%=submit_tag 'Search'%>
+<% end %>
+</div>
+<table width="100%" class='sortableTable' cellpadding="0" cellspacing="0">
+  <thead>
+    <tr class='tableHeaderRow'>
+    	 <% @headings.each do |heading| %>
+        <% sort_class = sort_td_class_helper heading[1] %>
+     	  <td <%= "class='#{sort_class}'" if !sort_class.blank? %>>
+  		   <%= sort_link_helper @action, heading[0], heading[1], params %>
+  		  </td>
+  		<% end %>   
+  		<td></td>
+  		<td></td>
+      <td></td>
+  	</tr>    
+  </thead>
+  <tbody>
+	<%if @objects.size == 0%>
+  	  <tr><td colspan='<%= @headings.size %>'>No items in the list</td></tr>
+	<%else  
+	    @objects.each do |object|
+	        klass = cycle('odd', 'even')        
+        %>
+	    <tr id='<%=dom_id(object)%>' class='<%= klass %>'>
+         <% @headings.each do |heading| %>
+             <td>
+               <%= object.send(heading[1]) %>
+             </td>
+         <% end %>
+           <td><%= link_to 'Show', object %></td>
+           <td><%= link_to 'Edit', eval("edit_#{object.class.name.underscore}_path(object)") %></td>
+           <td><%= link_to 'Destroy', object, :confirm => 'Are you sure?', :method => :delete %></td>
+  		</tr>
+	<%  end
+	 end%>
+	</tbody>
+</table>
 
+<%= will_paginate @objects %>
+<br/>
 <%= button 'New Account', new_account_path %>
