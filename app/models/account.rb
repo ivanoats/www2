@@ -16,6 +16,8 @@ class Account < ActiveRecord::Base
   has_many :charges
   has_one :payment_profile
   
+  belongs_to :whmapuser
+  
   belongs_to :address
   belongs_to :billing_address, :class_name => "Address"
   

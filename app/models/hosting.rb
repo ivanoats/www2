@@ -7,6 +7,7 @@ class Hosting < ActiveRecord::Base
   has_many :charges, :as => :chargable
   
   belongs_to :product
+  belongs_to :whmaphostingorder
   
   validates_presence_of :product_id
   validates_presence_of :username
