@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
 # require 'active_record'
-require 'ruby-debug'
 require 'net/pop'
 require File.dirname(__FILE__) + '/../config/environment'
 
