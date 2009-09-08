@@ -1,23 +1,4 @@
-
-def create_hosting_from_order(order)
-  Hosting.new(:server => Server.find_by_ip_address(order.whmapserver.server_ip),
-    :username => order.whm_username,
-    :password => order.whm_password,
-    :domain => order.domain_name,
-    :next_charge_on => Time.at(order.next_due_date.to_i),
-    :product => begin
-      Product.all.find { |product| product.data[:package] == order.whmappackage.whm_package_name }
-    rescue => e
-      throw "Product not found for #{order.whmappackage.whm_package_name}"
-    end
-    #:custom_cost => order.total_due_reoccur,
-    #:custom_recurring_month => (order.payment_term == 'Annual' ? 12 : 1)
- )
-end
-
-def account_for_user(user)
-  
-end
+require 'pp'
 
 namespace :whm do
   
@@ -95,7 +76,14 @@ namespace :whm do
     
   end
   
-  
+  task :clear => :environment do
+    Account.delete_all
+    Hosting.delete_all
+    Domain.delete_all
+    Order.delete_all
+    Product.delete_all
+    
+  end
   
   desc 'Migrate Users'
   task :migrate => :environment do
@@ -114,7 +102,10 @@ namespace :whm do
     #       @hosting.update_attribute('state', 'active')
     #     }
     
-    User.find_by_email('padraicmcgee@gmail.com').destroy
+    begin
+      User.find_by_email('padraicmcgee@gmail.com').destroy
+    rescue
+    end  
     
     Whmapuser.find(:all, :include => :whmaphostingorder, :conditions => ['hosting_order.status = ?',1]).each { |user| 
       
@@ -126,7 +117,8 @@ namespace :whm do
                                :last_name => user.last_name,
                                :organization => user.organization_name,
                                :phone => user.phone,
-                               :email => user.email
+                               :email => user.email,
+                               :whmapuser => user
                                )
         @account.organization = "Organization" if @account.organization.blank?
         
@@ -148,17 +140,28 @@ namespace :whm do
         
         user.whmaphostingorder.active.each { |order|
          if ["greenwebserver.com","ecobreeze", "windpowerhostnet"].include? order.whmapserver.server_name
-          
+           puts "Ignoring order on #{order.whmapserver.server_name}"
+         elsif order.whmappackage.nil?
+           puts "!!! Ignoring order for missing package "
+           pp order
          elsif Server.find_by_ip_address(order.whmapserver.server_ip) #only create if we have an active server
-           @hosting = create_hosting_from_order(order)
+           @hosting = Hosting.new(:server => Server.find_by_ip_address(order.whmapserver.server_ip),
+             :username => order.whm_username,
+             :password => order.whm_password,
+             :domain => order.domain_name,
+             :next_charge_on => Time.at(order.next_due_date.to_i),
+             :whmaphostingorder => order,
+             :product => Product.all.find { |product| product.data[:package] == order.whmappackage.whm_package_name }
+          )
+          
            @account.hostings << @hosting
            order.addon_choices.split('|').each {|id|
              add_on = Whmapaddon.find(id)
-             @account.add_ons << AddOn.new(:product => Product.find(:first, :conditions => {:name => add_on.addon_name, :description => addon.addon_description, :cost => add_on.addon_cost}))
+             @account.add_ons << AddOn.new(:product => Product.find(:first, :conditions => {:name => add_on.addon_name, :description => add_on.addon_description, :cost => add_on.addon_cost}))
            }
            @hosting.update_attribute('state', 'active')
          else
-           throw "Server not found for ip address #{order.whmapserver.server_ip} #{order.whmapserver.server_name}"
+           puts "Server not found for ip address #{order.whmapserver.server_ip} #{order.whmapserver.server_name}"
          end
          
          #     "greenweb"," greenwebserver.com",0,"no",,"old server - accounts were migrated to sustainw"
@@ -175,4 +178,15 @@ namespace :whm do
       }
     
   end
+  
+  desc 'Verify Migration'
+  task :verify => :environment do
+    
+    #balances should be the same
+    Account.find(:first).each { |account|
+      
+    }
+    
+  end
+  
 end

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090824184811) do
+ActiveRecord::Schema.define(:version => 20090907205418) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20090824184811) do
     t.string   "card_expiration"
     t.integer  "billing_address_id"
     t.integer  "address_id"
+    t.integer  "whmapuser_id"
   end
 
   create_table "accounts_users", :id => false, :force => true do |t|
@@ -176,6 +177,7 @@ ActiveRecord::Schema.define(:version => 20090824184811) do
     t.string   "domain"
     t.decimal  "custom_cost",            :precision => 10, :scale => 2
     t.integer  "custom_recurring_month"
+    t.integer  "whmaphostingorder_id"
   end
 
   create_table "lead_sources", :force => true do |t|

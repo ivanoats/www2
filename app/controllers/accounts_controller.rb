@@ -8,7 +8,7 @@ class AccountsController < ApplicationController
   sortable_table Account
   
   def index
-    get_sorted_objects(params, :table_headings => [
+    get_sorted_objects(params, :per_page => 50, :table_headings => [
     ['Organization', 'organization'], ['Status','state'], ['Balance','balance'],['Email','email']])
     
   end
