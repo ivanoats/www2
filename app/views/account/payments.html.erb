@@ -24,7 +24,7 @@
 </table>
 
 <%= link_to "Make Payment", {:action => 'pay'}%>
-<% unless @account.payments.empty? %>
+<% unless @account.transactions.empty? %>
 <table class='model_table' style='font-size: 90%'>
   <tr>
     <th style='width: 25%;'>Date</th>

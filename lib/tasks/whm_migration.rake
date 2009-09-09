@@ -7,7 +7,7 @@ namespace :whm do
     Product.destroy_all
     
     Whmappackage.all.each { |whmap_product|
-      unless Product.all.find { |product| product.data[:package] == whmap_product.whm_package_name }
+      #unless Product.all.find { |product| product.data[:package] == whmap_product.whm_package_name }
         Product.create!({
           :name            => whmap_product.package_name,
           :description     => "",
@@ -15,7 +15,8 @@ namespace :whm do
           :recurring_month => 1,
           :status          => "active",
           :kind            => "package",
-          :data            => {:package => whmap_product.whm_package_name}
+          :data            => {:package => whmap_product.whm_package_name},
+          :whmappackage => whmap_product
         }) if whmap_product.monthly_cost > 0
         
         Product.create!({
@@ -25,7 +26,8 @@ namespace :whm do
           :recurring_month => 12,
           :status          => "active",
           :kind            => "package",
-          :data            => {:package => whmap_product.whm_package_name}
+          :data            => {:package => whmap_product.whm_package_name},
+          :whmappackage => whmap_product
         }) if whmap_product.annual_cost > 0
         
         Product.create!({
@@ -35,9 +37,10 @@ namespace :whm do
           :recurring_month => 0,
           :status          => "active",
           :kind            => "package",
-          :data            => {:package => whmap_product.whm_package_name}
+          :data            => {:package => whmap_product.whm_package_name},
+          :whmappackage => whmap_product
         }) if whmap_product.monthly_cost == 0 &&  whmap_product.annual_cost == 0
-      end
+      #end
     }
 
     Whmapaddon.find(:all).each { |addon|
@@ -60,6 +63,8 @@ namespace :whm do
     }
 
     Server.create! :name => "Test Server", :ip_address => '174.132.225.221', :whm_user => 'wpdnet', :whm_pass => 'coo2man'
+
+
 
 
     # "sustainw"," sustainablewebsites"," 74.55.133.197","yes","server.sustainablewebsites.com","main server new accounts go here"
@@ -151,14 +156,36 @@ namespace :whm do
              :domain => order.domain_name,
              :next_charge_on => Time.at(order.next_due_date.to_i),
              :whmaphostingorder => order,
-             :product => Product.all.find { |product| product.data[:package] == order.whmappackage.whm_package_name }
+             :product => order.whmappackage.product
           )
+          
+          throw "Product not found for #{order.whmappackage.whm_package_name}" if @hosting.product.nil?
           
            @account.hostings << @hosting
            order.addon_choices.split('|').each {|id|
              add_on = Whmapaddon.find(id)
              @account.add_ons << AddOn.new(:product => Product.find(:first, :conditions => {:name => add_on.addon_name, :description => add_on.addon_description, :cost => add_on.addon_cost}))
            }
+           
+           order.whmapinvoice.each { |invoice|
+             case invoice.status
+             when 0 #unpaid
+               Charge.create!(:account => @account, :chargable => @hosting, :amount => invoice.total_due_reoccur, :created_at => Time.at(invoice.created.to_i))
+               @account.balance -= invoice.total_due_reoccur
+             when 1 #paid
+               Charge.create!(:account => @account, :chargable => @hosting, :amount => invoice.total_due_reoccur, :created_at => Time.at(invoice.created.to_i))
+               Payment.create!(:account => @account, :amount => invoice.total_due_reoccur, :created_at => Time.at(invoice.date_paid.to_i))
+             else
+               pp order
+               pp invoice
+               puts "Unknown invoice status"
+             end
+             
+             #8610, uid: 631, oid: 620, due_date: 1230530400, payment_method: 8, txn_id: "", additional_information: "", invoice_details: "", invoice_terms: 0, status: 0, created: 1230530400, date_paid: 0, invoice_number: 18534, invoice_type: 0, total_due_today: 0.0, total_due_reoccur: 10.0, charge_tax: 0.0, tax_type: "", extras: "", master: 1, checkout_id: "">
+             
+             
+           }
+           @account.save
            @hosting.update_attribute('state', 'active')
          else
            puts "Server not found for ip address #{order.whmapserver.server_ip} #{order.whmapserver.server_name}"

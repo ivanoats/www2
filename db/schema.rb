@@ -273,6 +273,7 @@ ActiveRecord::Schema.define(:version => 20090907205418) do
     t.datetime "updated_at"
     t.decimal  "cost",            :precision => 10, :scale => 2, :default => 0.0
     t.text     "data"
+    t.integer  "whmappackage_id"
   end
 
   create_table "purchases", :force => true do |t|

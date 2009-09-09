@@ -2,6 +2,8 @@ class Product < ActiveRecord::Base
   STATUS = %w(active disabled)
   KINDS = %w(package domain addon coupon)
 
+  belongs_to :whmappackage
+
   validates_presence_of :name
   validates_inclusion_of :status, :in => STATUS, :message => "%s is not a valid status"
   validates_inclusion_of :kind, :in => KINDS, :message => "%s is not a valid kind"
@@ -9,7 +11,7 @@ class Product < ActiveRecord::Base
   named_scope :packages, :conditions => {:kind => 'package' }
   named_scope :addons, :conditions => {:kind => 'addon'}
   named_scope :coupons, :conditions => {:kind => 'coupon'}
-
+  
   serialize :data, Hash
 
   def self.domain

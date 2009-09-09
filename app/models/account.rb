@@ -70,7 +70,7 @@ class Account < ActiveRecord::Base
   
   def transactions(params = {})
     transactions = (self.payments.find(:all,params.dup) + self.charges.find(:all,params))
-    transactions.sort! { |a,b| a.created_at <=> b.created_at }
+    transactions.sort! { |a,b| b.created_at <=> a.created_at }
     transactions
   end
   
