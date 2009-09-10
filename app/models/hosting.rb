@@ -89,6 +89,10 @@ class Hosting < ActiveRecord::Base
     end
   end
 
+  def name
+    "Web Hosting #{self.username}"
+  end
+
 private
   
   
