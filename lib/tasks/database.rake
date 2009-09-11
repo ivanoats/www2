@@ -25,5 +25,23 @@ namespace :db do
     else
       raise "Task not supported by '#{abcs[RAILS_ENV]['adapter']}'" 
     end
-  end
+  end # task database_dump
+  
+  desc "Dump the billing database to a MySQL file and compress it" #only works on MySQL dbs
+  task :whmap_dump do
+    load 'config/environment.rb'
+    abcs = ActiveRecord::Base.configurations
+    ActiveRecord::Base.establish_connection(abcs['whmap'])
+    File.open("db/whmap_data.sql", "w+") do |f|
+      if abcs['whmap']["password"].blank?
+        f << `mysqldump -h localhost -u #{abcs['whmap']["username"]} #{abcs['whmap']["database"]}`
+      else
+        f << `mysqldump -h localhost -u #{abcs['whmap']["username"]} -p#{abcs['whmap']["password"]} #{abcs['whmap']["database"]}`
+      end #if
+    end # file open
+    tar_result = `tar -cvzf db/whmap_data.sql.tgz db/whmap_data.sql`
+    puts "error code was:" + $?.to_i unless $?.to_i == 0   # display any error codes
+    puts tar_result
+  # then compress the file
+  end # task
 end

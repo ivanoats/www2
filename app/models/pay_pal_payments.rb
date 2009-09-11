@@ -8,6 +8,8 @@ class PayPalPayments < ActionMailer::Base
     if haystack == "domain_name.com" 
       return "domain_name.com"
     end
+    
+    # normal find_after_until method
     start_position = haystack.index(needle) + needle.length
     end_position = haystack.index(end_char, start_position) - 1
     haystack[start_position..end_position]
@@ -17,9 +19,8 @@ class PayPalPayments < ActionMailer::Base
     email_parsed = TMail::Mail.parse(email)
     email_body = email_parsed.parts[0].body
     
-    # if email_parsed.messageid is not in PayPalEmailLogs table then
-    
-    if email_parsed.subject.downcase == "you have received a subscription payment" then
+    # if email_parsed.messageid is not in PayPalEmailLogs table and it's a payment notification email
+    if PayPalEmailLogs.find_by_messageid(email_parsed.messageid) == nil && email_parsed.subject.downcase == "you have received a subscription payment" then
       # read payment info from email. amount, txn_id (paypal subscription number)
       amount =  find_after_until(email_body,"Amount: $"," ").to_i
       subscription_number = find_after_until(email_body,"Subscription Number: ","\n")
@@ -46,11 +47,13 @@ class PayPalPayments < ActionMailer::Base
       # if there's only one unpaid invoice, mark that invoice as paid
       if unpaid_invoices.size == 1
         unpaid_invoices.first.status = 1
+        unpaid_invoices.first.date_paid = Time.now.to_i
+        # record email_parsed.messageid in PayPalEmailLog
         unpaid_invoices.first.save!
       else
       # if there's more than one unpaid invoice, mark the invoice that's in the same month as paid
         marked_as_paid = false
-        unpaid_invoices.each do |invoice|    # TODO: WHY IS IT NOT LOOPING THROUGH!?
+        unpaid_invoices.each do |invoice|
           # figger out month of invoice
           # if it matches the email date, mark it as paid, and exit loop
           if Time.at(invoice.due_date).month == email_parsed.date.month
@@ -58,12 +61,13 @@ class PayPalPayments < ActionMailer::Base
             invoice.date_paid = Time.now.to_i
             invoice.save!
             marked_as_paid = true
+            # record email_parsed.messageid in PayPalEmailLog
             break
           end # if
         end #each 
         # if i looped through all, didn't mark any as paid is false, and last is still unpaid, make an error
         unless marked_as_paid
-          if ( unpaid_invoices.size == 0 || unpaid_invoices.last.status == 0)
+          if ( unpaid_invoices.size == 0 || unpaid_invoices.last.status == 0  )
             debugger
             error_text = "[Billing Warning] : couldn't match paypal email with outstanding invoice for uid: " + order.uid.to_s +  "\n" + ", domain name: " + order.domain_name + "\n" + "Date: " + email_parsed.date.strftime('%Y-%m-%d') + "\n" + email_body
             logger.warn(error_text)

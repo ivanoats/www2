@@ -33,6 +33,7 @@ Rails::Initializer.run do |config|
   config.gem "mofo"
   config.gem "packet"
   config.gem "ivanoats-whm_xml", :lib => "whm"
+  config.gem 'searchlogic'
   #config.gem 'whm_xml', :lib => 'whm'
   
   # Only load the plugins named here, in the order given. By default, all plugins 
