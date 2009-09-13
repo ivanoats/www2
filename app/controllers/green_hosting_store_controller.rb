@@ -6,17 +6,44 @@ class GreenHostingStoreController < ApplicationController
   before_filter :require_account, :only => [ :billing, :payment, :confirmation]
   before_filter :load_cart
   before_filter :cart_not_empty, :only => [:checkout, :billing, :payment, :confirmation]
+
   
   def index
     redirect_to :action => "choose_domain"
   end
   
+  def choose_package
+    @package = Product.new
+     # find all monthly sorted by price
+    packages_monthly = Product.packages.enabled.find(:all, :conditions => {:recurring_month => 1}, :order => 'cost') 
+    packages_yearly = Product.packages.enabled.find(:all, :conditions => {:recurring_month => 12}, :order => 'cost')
+    # create a nested array of packages ordered by cost and grouped by package
+    # for example [1,2,3].zip [4,5,6] => [[1, 4], [2, 5], [3, 6]]
+    @packages = packages_monthly.zip packages_yearly
+  end
+
   def choose_domain
     @domain = Domain.new
+    
+    
+    # if this is a new package, we need to connect two cart items together?
+    # if this is a new domain, we need to connect it to 
+    
+    @packages = Product.packages.enabled.find(:all, :order => 'cost')
+    
+    if params[:package_id]
+      @product = Product.packages.enabled.find(params[:package_id])
+      @cart_item = CartItem.new(:product => @product)
+    elsif params[:id]
+      @cart_item = CartItem.find(params[:id])
+    end
+    
+    
   end
-  
+
   def check_domain
-    @domain = Domain.new(params[:domain])
+    
+    @domain = Domain.new(:name => params[:domain])
     @domain.name.gsub!('www.','')
     render :update do |page|
       if @domain.available?
@@ -34,6 +61,7 @@ class GreenHostingStoreController < ApplicationController
       # end
   end
   
+  
   def add_hosting
     @package = Product.find(params[:id])
     @data = {}
@@ -42,18 +70,15 @@ class GreenHostingStoreController < ApplicationController
       page.replace_html 'dialog', :partial => 'hosting_details'
     end
   end
-
-  def choose_package
-    @package = Product.new
-     # find all monthly sorted by price
-    packages_monthly = Product.find(:all, :conditions => {:recurring_month => 1,:kind => 'package'}, :order => 'cost') 
-    packages_yearly = Product.find(:all, :conditions => {:recurring_month => 12,:kind => 'package'}, :order => 'cost')
-    # create a nested array of packages ordered by cost and grouped by package
-    # for example [1,2,3].zip [4,5,6] => [[1, 4], [2, 5], [3, 6]]
-    @packages = packages_monthly.zip packages_yearly
-     
+  
+  def edit_package
+    @package = Product.find(params[:id])
+    @hosting = Hosting.new(params[:hosting])
+    @hosting.generate_password if @hosting.password.blank?
+    @hosting.generate_username if @hosting.username.blank?
+    @data = {}
   end
-   
+
 
   def choose_addon
     @addon = Product.new

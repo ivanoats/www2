@@ -1,7 +1,9 @@
 class CartItem < ActiveRecord::Base
   belongs_to :cart
   belongs_to :product
-
+  
+  acts_as_tree
+  
   serialize :data, Hash
 
   validates_presence_of :name, :description

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090907205418) do
+ActiveRecord::Schema.define(:version => 20090912001958) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(:version => 20090907205418) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "account_id"
+    t.date     "next_charge_on"
+    t.integer  "hosting_id"
   end
 
   create_table "addresses", :force => true do |t|
@@ -79,6 +81,7 @@ ActiveRecord::Schema.define(:version => 20090907205418) do
     t.datetime "updated_at"
     t.decimal  "unit_price",    :precision => 10, :scale => 2, :default => 0.0
     t.text     "data"
+    t.integer  "parent_id"
   end
 
   create_table "carts", :force => true do |t|
@@ -150,6 +153,9 @@ ActiveRecord::Schema.define(:version => 20090907205418) do
     t.integer  "account_id"
     t.integer  "product_id"
     t.string   "state"
+    t.date     "next_charge_on"
+    t.integer  "hosting_id"
+    t.boolean  "purchased"
   end
 
   create_table "four_oh_fours", :force => true do |t|
@@ -174,9 +180,6 @@ ActiveRecord::Schema.define(:version => 20090907205418) do
     t.integer  "server_id"
     t.string   "username"
     t.string   "password"
-    t.string   "domain"
-    t.decimal  "custom_cost",            :precision => 10, :scale => 2
-    t.integer  "custom_recurring_month"
     t.integer  "whmaphostingorder_id"
   end
 

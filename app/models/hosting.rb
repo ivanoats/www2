@@ -1,9 +1,13 @@
 class Hosting < ActiveRecord::Base
   include AASM
-
+  include Chargeable
+  before_create :initialize_next_charge, :unless => Proc.new { |a| a.attribute_present?("next_charge_on") }
+  
   belongs_to :account
   belongs_to :server
   has_many :add_ons
+  has_many :domains
+  
   has_many :charges, :as => :chargable
   
   belongs_to :product
@@ -19,8 +23,6 @@ class Hosting < ActiveRecord::Base
 
   named_scope :visible, :conditions => {'state' => ['ordered', 'active', 'suspended']}
   named_scope :due, :include => :product, :conditions => ['next_charge_on <= CURDATE()']
-  
-  before_create :set_next_charge, :unless => Proc.new { |a| a.attribute_present?("next_charge_on") }
   
   aasm_column :state
   aasm_initial_state :ordered
@@ -45,52 +47,24 @@ class Hosting < ActiveRecord::Base
   aasm_event :unsuspend do
     transitions :from => :suspended, :to => :active
   end
-    
-
-  def should_charge?
-    self.next_charge_on < (Time.today + 1.day).at_beginning_of_day
-  end
-  
-  def charge
-    Hosting.transaction do
-      #prevent charge time creeping forward each period
-      charge_time = (DateTime.now - next_charge_on < 1.day) ? next_charge_on : DateTime.now
-      self.account.charges.create(:amount => self.cost, :chargable => self)
-      self.update_attribute(:next_charge_on, Time.now + self.period)
-      self.account.update_attribute(:balance, self.account.balance - self.cost)
-    end
-  end
-  
-  def cost
-    self.custom_cost || self.product.cost 
-  end
-  
-  def period
-    case recurring_month
-    when 12
-      1.year # 1.year != 12.months
-    else
-      recurring_month.months
-    end
-  end
-  
-  def recurring_month
-    self.custom_recurring_month || self.product.recurring_month
-  end
-  
-  def period_in_words
-    case recurring_month
-    when 12
-      'yearly'
-    when 1
-      'monthly'
-    else
-      "every #{recurring_month} months"
-    end
-  end
 
   def name
     "Web Hosting #{self.username}"
+  end
+  
+  def generate_password
+    self.password = Base64.encode64(Digest::SHA1.digest("#{rand(1<<64)}/#{Time.now.to_f}/#{Process.pid}"))[0..7]
+    
+  end
+  
+  def generate_username
+    begin
+    self.username = Base64.encode64(Digest::SHA1.digest("#{rand(1<<64)}/#{Time.now.to_f}/#{Process.pid}"))[0..7]
+    end while !Hosting.find_by_username(self.username).nil?
+  end
+
+  def unmanaged_domain
+    true
   end
 
 private
@@ -120,10 +94,6 @@ private
     debugger
 
     #self.server.whm.terminate_account(:user => self.username)
-  end
-  
-  def set_next_charge
-    self.next_charge_on = Time.now + self.period
   end
 
 end

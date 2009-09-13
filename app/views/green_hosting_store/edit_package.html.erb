@@ -1,0 +1,44 @@
+<%= @package.name %>, for a <%= @package.period_in_words %> fee of <%= number_to_currency @package.cost %>
+<div id='error_messages_for_hosting'></div>
+<% z_form_for @hosting do |f| %>
+
+  <%= f.text_field :username %>
+  <%= f.text_field :password %>  
+  <%= f.submit :Enter, :style => "display: none"%><!-- this allows enter to submit for some odd reason -->
+
+  <% f.fields_for :domain do |domain| %>
+    <%= domain.check_box :purchased %> I have my own domain name
+
+    <%= domain.text_field :name %>
+    
+  <% end %>
+
+
+<% end %>
+
+
+<h1>Purchase A Domain</h1>
+
+Most domain names are $10.00 a year.  
+
+<div id='choose_domain_message'></div>
+
+<% form_for :domain, :url => {:action => 'check_domain'}, :html => {:onsubmit => "
+  if($('#check_domain_button').is(':visible'))
+    $.ajax({async:true, data:$.param($(this).serializeArray()) + '&authenticity_token=' + encodeURIComponent('#{form_authenticity_token}'), dataType:'script', type:'post', url:'#{url_for({:action => 'check_domain'})}'});
+  else
+    $.ajax({async:true, data:$.param($(this).serializeArray()) + '&authenticity_token=' + encodeURIComponent('#{form_authenticity_token}'), dataType:'script', type:'post', url:'#{url_for({:controller => 'cart', :action => "add_domain"})}'}); 
+  return false;", 
+    :id => 'choose_domain_form'} do |f| %>
+  <%= f.text_field :name, :label => "Domain", :style => 'float: left; font-size: 1em;' %>
+  <%= submit_to_remote( :check_domain_availability_button, "Check Domain Availability", :url => { :action => "check_domain" }, :button => true, :html =>{:id => 'check_domain_button'}) %>
+<% end -%>
+<div style='clear: both; margin-top: 40px'></div>
+If you already have a domain name then you can skip to the next step
+<%= button "Continue",{ :action => "choose_package"}, :style => "float: right" %>
+
+
+...username and password should be generated...
+
+-- Domain page should be register, or require entering in existing domain -- TIED TO HOSTING
+-- addons can be same, or checkboxes, but TIED TO HOSTING

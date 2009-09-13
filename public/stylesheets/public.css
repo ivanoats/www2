@@ -2,7 +2,7 @@
 #content ul li {margin-left: 20px;}
 #content ol li {margin-left: 20px;}
 
-#content {float: left; width: 650px; margin: 30px 10px 0;  padding: 0 40px 0 20px; border: 1px solid #dedede; font-size: 1.2em; border-width: 0 1px 0 0;  }
+#content {float: left; width: 650px; margin: 30px 10px 0;  padding: 0 40px 0 20px; border: 1px solid #dedede; border-width: 0 1px 0 0;  }
 
 
 /* Hosting Table ################################################################## */
@@ -240,4 +240,20 @@ display: block;
 #cart th { background-color: #dddddd; color: black; font-weight: bold;}
 #cart td { background-color: #eeeeee;}
 
+/* Tabs ----------------------------------*/
 
+#choose_domain.ui-tabs { padding: .2em; zoom: 1; border: 0px; }
+#choose_domain.ui-tabs .ui-tabs-nav { list-style: none; position: relative; padding: 0; margin-left: 0px; -moz-border-radius-bottomright:0px; -webkit-border-bottom-right-radius: 0px; }
+#choose_domain.ui-tabs .ui-tabs-nav li { position: relative;  border-bottom-width: 0 !important; margin: 0 0 -1px 0; padding: 0; list-style-type:none;  }
+#choose_domain.ui-tabs .ui-tabs-nav li a { float: left; text-decoration: none; padding: .5em 1em; }
+#choose_domain.ui-tabs .ui-tabs-nav li.ui-tabs-selected { padding-bottom: 1px; border-bottom-width: 0; }
+#choose_domain.ui-tabs .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs .ui-tabs-nav li.ui-state-processing a { cursor: text; }
+#choose_domain.ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { cursor: pointer; } /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
+#choose_domain.ui-tabs .ui-tabs-panel { padding: 1em 1.4em; display: block; border-width: 1px; border-top: none; background: none; }
+#choose_domain.ui-tabs .ui-tabs-hide { display: none !important; }
+#choose_domain.ui-tabs .ui-widget-header {
+  background: none;
+  border-top:none;
+  border-left: none;
+  border-right:none;
+}

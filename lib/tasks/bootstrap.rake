@@ -36,7 +36,6 @@ namespace :bootstrap do
       :description     => "Basic Web Hosting Description",
       :cost            => 10.00,
       :recurring_month => 1,
-      :status          => "active",
       :kind            => "package",
       :data            => {:package => 'wpdnet_basic'}
     })
@@ -46,7 +45,6 @@ namespace :bootstrap do
       :description     => "Small Business Web Hosting Description",
       :cost            => 20.00,
       :recurring_month => 1,
-      :status          => "active",
       :kind            => "package",
       :data            => {:package => 'wpdnet_sb'}
       
@@ -57,7 +55,6 @@ namespace :bootstrap do
       :description     => "Professional Web Hosting Description",
       :cost            => 30.00,
       :recurring_month => 1,
-      :status          => "active",
       :kind            => "package",
       :data            => {:package => 'wpdnet_pro'}
       
@@ -69,7 +66,6 @@ namespace :bootstrap do
       :description     => "Basic Web Hosting Yearly",
       :cost            => 100.00,
       :recurring_month => 12,
-      :status          => "active",
       :kind            => "package",
       :data            => {:package => 'wpdnet_basic'}
     })
@@ -79,7 +75,6 @@ namespace :bootstrap do
       :description     => "Small Business Web Hosting Yearly",
       :cost            => 199.00,
       :recurring_month => 12,
-      :status          => "active",
       :kind            => "package",
       :data            => {:package => 'wpdnet_sb'}
       
@@ -90,7 +85,6 @@ namespace :bootstrap do
       :description     => "Professional Web Hosting Yearly",
       :cost            => 299.00,
       :recurring_month => 12,
-      :status          => "active",
       :kind            => "package",
       :data            => {:package => 'wpdnet_pro'}
     })
@@ -102,7 +96,6 @@ namespace :bootstrap do
       :description     => "All accounts already come with a static shared IP. If you will be installing a secure certificate or have another need for a unique dedicated IP, you want this option. <strong>You do not need a dedicated IP address unless you have a SSL certificate already purchased and ready to install.</strong>",
       :cost            => 4.00,
       :recurring_month => 1,
-      :status          => "active",
       :kind            => "addon"
     })
     
@@ -111,7 +104,6 @@ namespace :bootstrap do
       :description     => "Professional installation of WordPress, including 10 of the most useful plugins and 10 site themes. Selecting this option will enable you to start editing your site right away with one of the most popular and effective systems available.  Use <a href=\"http://www.sustainablewebsites.com/wordpress-pie\">WordPress Pie</a> to learn to create a simple and effective website. Helps you grow your business, without needing to learn complex programming. Includes 30 minutes of telephone coaching and a 5 page tutorial document.",
       :cost            => 100.00,
       :recurring_month => 0,
-      :status          => "active",
       :kind            => "addon"
     })
   end

@@ -1,20 +1,50 @@
+<p>
+You have selected the <%= @product.name %>
+ <%= number_to_currency @product.cost %> <%= @product.period_in_words %>.  
+<%= link_to "Change Package", {:action => 'choose_package'}%>
+</p>
+<p>
+  Specify the domain name you will use for this package.  This is required but can be changed later.  
+</p>
+<div id="choose_domain">
+  <ul>
+    <li style='width: 319px'><%= link_to 'I have a domain name', '#use_domain' %></li>
+    <li style='width: 320px'><%= link_to 'Purchase a domain name', '#purchase_domain' %></li>
+  </ul>
+  <div id='use_domain'>
+    
+    <% form_tag :controller => 'cart', :action => 'add_package', :id => @product do |f| %>
 
-<h1>Register A Domain</h1>
+      <% select_tag :package_id, options_for_select(@packages.collect { |package| ["Web Hosting #{number_to_currency(package.cost)} #{package.period_in_words}", package.id]}, @product.id) %>
 
-Most domain names are $10.00 a year.  
+      <%= hidden_field_tag :purchased, false %> 
+      
+      <p>Enter your domain name (such as example.com)</p>
+      
+      <p><%= text_field_tag :domain, '', :size => 40, :label => "Domain", :style => 'font-size: 1em;' %></p>
 
-<div id='choose_domain_message'></div>
+      <%= submit_tag("Add To Cart",  :button => true, :style => 'float: right') %>
+      <br style='clear: both/'>
+    <% end -%> 
+  </div>
+  <div id='purchase_domain'>
+    <div id='choose_domain_message'></div>
+  
+    <% form_tag :action => 'check_domain', :id => @product do |f| %>
 
-<% form_for :domain, :url => {:action => 'check_domain'}, :html => {:onsubmit => "
-  if($('#check_domain_button').is(':visible'))
-    $.ajax({async:true, data:$.param($(this).serializeArray()) + '&authenticity_token=' + encodeURIComponent('#{form_authenticity_token}'), dataType:'script', type:'post', url:'#{url_for({:action => 'check_domain'})}'});
-  else
-    $.ajax({async:true, data:$.param($(this).serializeArray()) + '&authenticity_token=' + encodeURIComponent('#{form_authenticity_token}'), dataType:'script', type:'post', url:'#{url_for({:controller => 'cart', :action => "add_domain"})}'}); 
-  return false;", 
-    :id => 'choose_domain_form'} do |f| %>
-  <%= f.text_field :name, :label => "Domain", :style => 'float: left; font-size: 1em;' %>
-  <%= submit_to_remote( :check_domain_availability_button, "Check Domain Availability", :url => { :action => "check_domain" }, :button => true, :html =>{:id => 'check_domain_button'}) %>
-<% end -%>
-<div style='clear: both; margin-top: 40px'></div>
-If you already have a domain name then you can skip to the next step
-<%= button "Continue",{ :action => "choose_package"}, :style => "float: right" %>
+      <% select_tag :package_id, options_for_select(@packages.collect { |package| ["Web Hosting #{number_to_currency(package.cost)} #{package.period_in_words}", package.id]}, @product.id) %>
+
+      <%= hidden_field :purchased, true %> 
+      <p>Check the availability of a domain name (such as example.com)</p>
+      
+      <p><%= text_field_tag :domain, '',:size => 40,  :label => "Domain", :style => 'font-size: 1em;' %></p>
+
+      <%= submit_tag("Add To Cart",  :button => true, :style => 'float: right') %>
+      <br style='clear: both/'>
+      
+    <% end -%>
+  </div>
+</div>
+<%= javascript_tag "jQuery(function() {
+  jQuery('#choose_domain').tabs();
+});" %>

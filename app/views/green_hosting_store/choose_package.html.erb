@@ -1,28 +1,13 @@
 
 <h1>Choose Your Package</h1>
 
-<% form_remote_for @package, :url => { :controller => 'cart', :action => "add_package" } do |f| -%>
   <% for package_group in @packages %>
   <% package_monthly, package_yearly = package_group %>
   <div class="package-group" >
     <div><%= h package_monthly.name %></div>
     <div style='margin-bottom: 30px'><%= h package_monthly.description %></div>
-    <%= button_to_function "#{number_to_currency(package_monthly.cost)} Monthly" , "select_package(#{package_monthly.id})", {:class => 'button'} %>
-    <%= button_to_function "#{number_to_currency(package_yearly.cost)} Yearly", "select_package(#{package_yearly.id})", {:class => 'button', :style => 'float: right'} %>
+    <%= button "#{number_to_currency(package_monthly.cost)} Monthly", {:action => 'choose_domain', :package_id => package_monthly}, {:class => 'button'} %>
+    <%= button "#{number_to_currency(package_yearly.cost)} Yearly", {:action => 'choose_domain', :package_id => package_yearly}, {:style => 'float: right', :class => 'button'} %>
+    
   </div>
   <% end #for package %>
-  <% f.submit "Add to Cart", :disable_with => 'Adding to Cart...' %>
-  <input name="package_id" id="package_chosen" type="hidden" value=""/>
-<% end  #form -%>
-<%= button "Back",{ :action => "choose_domain"}, :style => "float: left" %>
-
-<%= button "Continue", {:action => "choose_addon"}, :style => "float: right" %>
-
-<script type="text/javascript" charset="utf-8">
-
-  function select_package(package) {
-    <%= remote_function(:url => {:controller => 'green_hosting_store', :action => :add_hosting}, :with => "'id=' + package"
-    ) %>
-  }
-
-</script>

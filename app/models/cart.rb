@@ -5,17 +5,7 @@ class Cart < ActiveRecord::Base
 
   # Adds a +Product+ to itself as a +CartItem+. You can customize the quanity and quantity units
   # with arguments. Returns the newly built +CartItem+.
-  #
-  # ==== Arguments
-  # * <tt>product</tt>        - A +Product+ object (required).
-  # * <tt>quantity</tt>       - Sets quantity of the product (defaults to 1).
-  # * <tt>quantity_units</tt> - Sets quantity units of the product (defaults to +nil+).
-  #
-  # ==== Examples
-  # add(product)                #=> A new +CartItem+.
-  # add(product, 94)            #=> A new +CartItem+ with a quantity of 94.
-  # add(product, 12, "months")  #=> A new +CartItem+ with a quanity of 12 and quantity_units of "months".
-  def add(product, name, data = {}, quantity = 1, quantity_unit = nil )
+  def add(product, name, data = {}, parent = nil, quantity = 1, quantity_unit = nil )
     cart_item_attributes = {
       :product_id          => product.id,
       :cart_id             => self.id,
@@ -24,7 +14,9 @@ class Cart < ActiveRecord::Base
       :unit_price          => product.cost,
       :quantity            => quantity,
       :quantity_unit       => quantity_unit,
-      :data                => data
+      :data                => data,
+      :parent              => parent
+      
     }
     cart_items.create!(cart_item_attributes)  #TODO test database creation of the record
   end

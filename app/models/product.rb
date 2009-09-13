@@ -1,11 +1,10 @@
 class Product < ActiveRecord::Base
-  STATUS = %w(active disabled)
+  include AASM
   KINDS = %w(package domain addon coupon)
 
   belongs_to :whmappackage
 
   validates_presence_of :name
-  validates_inclusion_of :status, :in => STATUS, :message => "%s is not a valid status"
   validates_inclusion_of :kind, :in => KINDS, :message => "%s is not a valid kind"
   
   named_scope :packages, :conditions => {:kind => 'package' }
@@ -13,6 +12,20 @@ class Product < ActiveRecord::Base
   named_scope :coupons, :conditions => {:kind => 'coupon'}
   
   serialize :data, Hash
+
+  aasm_column :status
+  aasm_initial_state :enabled
+  aasm_state :enabled
+  aasm_state :disabled
+
+    
+  aasm_event :enable do
+    transitions :from => :disabled, :to => :enabled
+  end
+  
+  aasm_event :disable do
+    transitions :from => :enabled, :to => :disabled
+  end
 
   def self.domain
     Product.find_by_kind('domain') || Product.create!(:name => "Domain Name", :description => "Domain Name", :kind => 'domain', :cost => '10.00', :recurring_month => 1, :status =>  'active')

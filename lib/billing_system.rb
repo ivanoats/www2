@@ -29,6 +29,13 @@ module BillingSystem
   
   def hostings
     Hosting.active.due.each { |hosting| hosting.charge }
-    
+  end
+  
+  def domains
+    Domain.active.due.each { |domain| domain.charge }
+  end
+  
+  def add_ons
+    AddOn.active.due.each { |add_on| addon.charge }
   end
 end

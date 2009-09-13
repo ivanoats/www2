@@ -1,9 +1,12 @@
 class Domain < ActiveRecord::Base
   include AASM
+  include Chargeable
+  before_create :initialize_next_charge, :unless => Proc.new { |a| a.attribute_present?("next_charge_on") }
   
   
   belongs_to :account
   belongs_to :product
+  belongs_to :hosting
   
   manage_with_enom
 

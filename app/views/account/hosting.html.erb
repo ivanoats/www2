@@ -30,15 +30,12 @@ Domains
     <th>Renewal Period</th>
     <th>Renewal Fee</th>
     <th>Due Next</th>
-    <th>Status</th>
   </tr>  
 <% @account.domains.each do |item| %>
   <tr class='<%= cycle("odd","even")%>'>
     <td style='text-align: left'><%= link_to item.name, item %></td>
     <td>yearly</td>
     <td><%= number_to_currency item.product.cost %></td>
-    <td></td>
-    <td></td>
   </tr>  
 <% end%>
 </table>
@@ -49,11 +46,21 @@ Add Ons
 <table class='model_table' style='font-size: 90%'>
   <tr>
     <th>Add On</th>
+    <th>Renewal Period</th>
+    <th>Renewal Fee</th>
+    <th >Due Next</th>
+    
   </tr>  
 <% @account.add_ons.each do |item| %>
   <tr class='<%= cycle("odd","even")%>'>
     <td style='text-align: left'><%= item.product.name %></td>
+    <td><%= item.product.period_in_words %></td>
+    <td><%= number_to_currency item.product.cost %></td>
+    <td><%= item.next_charge_on.to_formatted_s( :human_date ) unless item.next_charge_on.nil? %></td>
+
   </tr>  
 <% end%>
 </table>
 <% end %>
+
+<%= link_to "Add More Services", {:controller => 'green_hosting_store', :action => :index}%>
