@@ -1,4 +1,4 @@
-class AddCustomReocurrnig < ActiveRecord::Migration
+class AddCustomReocurring < ActiveRecord::Migration
   def self.up
     add_column :hostings, :custom_recurring_month, :integer
   end

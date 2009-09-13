@@ -135,6 +135,18 @@ namespace :db do
     remote_db_cleanup
   end
 
-  
+  # copies the production billing database to development
+  # replaces / erases the current development on development machine
+  # tars and compresses the old whmap sql
+  desc 'copies the production billing database to development'
+  task :remote_billing_download, :roles => :db do
+    time = Time.now.to_i
+    run "cd #{deploy_to}/#{current_dir}/db && mv whmap_data.sql.tgz whmap_data#{time}.sql.tgz" #back up old data
+    run "cd #{deploy_to}/#{current_dir} && rake db:whmap_dump RAILS_ENV=production"
+    download "#{deploy_to}/#{current_dir}/db/whmap_data.sql.tgz", "db/whmap_data.sql.tgz"
+    run "cd #{deploy_to}/#{current_dir} && rm db/whmap_data.sql" 
+    puts `tar xvzf db/whmap_data.sql.tgz`
+    puts `mysql billing < db/whmap_data.sql`
+  end #task
 end
 
