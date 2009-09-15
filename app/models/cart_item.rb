@@ -4,6 +4,8 @@ class CartItem < ActiveRecord::Base
   
   acts_as_tree
   
+  has_many :products, :through => :children
+  
   serialize :data, Hash
 
   validates_presence_of :name, :description

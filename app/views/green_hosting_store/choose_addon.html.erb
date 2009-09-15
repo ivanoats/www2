@@ -1,37 +1,35 @@
 
 <h1>Choose any additional services</h1>
 
-<% form_remote_for @addon, :url => { :controller => 'cart', :action => "add_addon" } do |f| -%>
   <% for addon in @addons %>
+    <% in_cart = @cart_addons.include? addon %>
+  
   <div class="addon">
     <div><%= h addon.name %></div>
     <div><%= sanitize addon.description, :tags => %w(a strong em), :attributes => %w(id class style)
       %></div>
     <br/>
-    <%= button_to_function "Add to Cart" , "select_addon(#{addon.id})", {:class => 'button', :style => 'float: right'} %>
-
-    <%= number_to_currency(addon.cost) %>
-    <%- if addon.recurring_month == 1 -%>
-      Monthly
-    <%- elsif addon.recurring_month == 0 -%>
-      One-Time
-    <%- else -%>
-      Yearly
-    <%- end -%>  
     
+    <%= button_to_function "Add to Cart" , "select_addon(#{addon.id})", {:class => 'button', :style => "float: right; #{'display:none' if in_cart}", :id => "select_#{addon.id}"}  %>
+    <%= button_to_function "Remove from Cart" , "deselect_addon(#{addon.id})", {:class => 'button', :style => "float: right; #{'display:none' unless in_cart}", :id => "deselect_#{addon.id}"} %>
+    
+    <%= number_to_currency(addon.cost) %>
+    <%= addon.period_in_words %>  
+    <br style='clear: both'/>  
   </div>
   
   <% end #for addon %>
-  <% end  #form -%>
 
 <%= button "Back", {:action => "choose_package"}, :style => 'float: left' %>
-<%= button "Continue", {:action => "checkout"}, :style => 'float: right' %>
+<%= button "Checkout", {:action => "checkout"}, :style => 'float: right' %>
 
 <script type="text/javascript" charset="utf-8">
 <!--
 function select_addon(addon) {
-  <%= remote_function(:url => {:controller => 'cart', :action => :add_addon}, :with => "'id=' + addon"
-  ) %>
+  <%= remote_function(:url => {:controller => 'cart', :action => :add_addon, :package_id => @hosting.id}, :with => "'id=' + addon", :complete => "$('#select_' + addon ).hide(); $('#deselect_' + addon ).show();") %>
+}
+function deselect_addon(addon) {
+  <%= remote_function(:url => {:controller => 'cart', :action => :remove_addon, :package_id => @hosting.id}, :with => "'id=' + addon", :complete => "$('#select_' + addon ).show(); $('#deselect_' + addon ).hide();") %>
 }
 
 //-->  

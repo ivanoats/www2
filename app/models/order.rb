@@ -4,7 +4,7 @@ class Order < ActiveRecord::Base
   belongs_to :account
   
   has_many :purchases
-  has_many :products, :through => :purchases, :as => :purchasable
+  has_many :products, :through => :purchases
   has_one :payment, :as => :payable
   
   before_create :create_invoice_number
@@ -22,10 +22,12 @@ class Order < ActiveRecord::Base
   
   def self.from_cart(cart)
     order = Order.new
-    cart.cart_items.each do |item|
+    cart.cart_items.find(:all, :conditions => "parent_id IS NULL").each do |item|
       if item.product
-        item.quantity.times do 
-          order.purchases << Purchase.new(:product => item.product, :data => item.data)
+        purchase = Purchase.new(:product => item.product, :data => item.data)
+        order.purchases << purchase
+        item.children.each do |child|
+          purchase.children << Purchase.new(:product => child.product, :data => child.data, :order => order)
         end
       end
     end
@@ -43,7 +45,7 @@ class Order < ActiveRecord::Base
 private
 
   def order_was_paid
-    self.purchases.each { |purchase| purchase.redeem }
+    self.purchases.find(:all, :conditions => "parent_id IS NULL").each { |purchase| purchase.redeem }
   end
   
   def self.generate_invoice_number

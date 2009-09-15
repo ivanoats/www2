@@ -9,11 +9,11 @@
 
     </tr>
 
-      <% for cart_item in @cart.cart_items %>
+      <% for cart_item in @cart.cart_items.find(:all,:conditions => ["parent_id IS NULL"]) %>
     <tr>
       <td>
         <% line_width = 40 %>
-        <%= simple_format(word_wrap(h(cart_item.name) , :line_width => line_width )) %><br>
+        <%= link_to simple_format(word_wrap(h(cart_item.name) , :line_width => line_width )), {:controller => 'green_hosting_store', :action => 'choose_addon', :id => cart_item.id} %>
         <%# TODO get this working if cart item descriptions are needed
         #- unless cart_item.product.kind == "addon" -%>
           <%#= simple_format(word_wrap(h(cart_item.description), :line_width => line_width )) %>
@@ -23,6 +23,15 @@
 
       <td><%= number_to_currency(cart_item.unit_price * cart_item.quantity) %></td>
     </tr>
+    
+        <% for child_item in cart_item.children %>
+          <tr>
+            <td style='padding-left: 20px'><%= simple_format(word_wrap(h(child_item.name) , :line_width => 40 )) %></td>
+            <td><%= link_to_remote "Remove", :url => {:controller => "cart", :action => :remove_cart_item, :id => child_item.id}%></td>
+            
+            <td><%= number_to_currency(child_item.unit_price * child_item.quantity) %></td>
+          </tr>
+        <% end %>
       <% end %>
       <tr>
         <td colspan="2">Total: </td>

@@ -16,11 +16,3 @@
   <%= f.label :recurring_month %><br />
   <%= f.text_field :recurring_month, :size => 10 %>
 </p>
-<p>
-  <%= f.label :status %><br />
-  <%= select("product", "status", Product::STATUS, {:include_blank => true}) %>
-</p>
-<p>
-  <%= f.label :kind %><br />
-  <%= select("product", "kind", Product::KINDS, {:include_blank => true}) %>
-</p>

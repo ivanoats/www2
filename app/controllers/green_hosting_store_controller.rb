@@ -9,7 +9,7 @@ class GreenHostingStoreController < ApplicationController
 
   
   def index
-    redirect_to :action => "choose_domain"
+    redirect_to :action => "choose_package"
   end
   
   def choose_package
@@ -24,32 +24,24 @@ class GreenHostingStoreController < ApplicationController
 
   def choose_domain
     @domain = Domain.new
-    
-    
-    # if this is a new package, we need to connect two cart items together?
-    # if this is a new domain, we need to connect it to 
-    
     @packages = Product.packages.enabled.find(:all, :order => 'cost')
-    
     if params[:package_id]
       @product = Product.packages.enabled.find(params[:package_id])
       @cart_item = CartItem.new(:product => @product)
     elsif params[:id]
       @cart_item = CartItem.find(params[:id])
     end
-    
-    
   end
 
   def check_domain
-    
+    @package = Product.packages.enabled.find(params[:id])
     @domain = Domain.new(:name => params[:domain])
     @domain.name.gsub!('www.','')
     render :update do |page|
       if @domain.available?
         page.replace_html 'dialog', :partial => 'domain_available'
         page << "jQuery('#dialog').dialog( 'destroy' );"
-        page << "jQuery('#dialog').dialog({ modal: true, draggable: false,resizeable: false, closeOnEscape: true, autoOpen: true, buttons: { 'Add To Cart': function(){ $.ajax({asyc:true, data:{domain: '#{@domain.name}', authenticity_token: '#{form_authenticity_token}'}, dataType: 'script', type:'post', url: '/cart/add_domain'})}, 'Cancel': function() { jQuery(this).dialog('close');} }});"
+        page << "jQuery('#dialog').dialog({ modal: true, draggable: false,resizeable: false, closeOnEscape: true, autoOpen: true, buttons: { 'Add To Cart': function(){ $.ajax({asyc:true, data:{domain: '#{@domain.name}', authenticity_token: '#{form_authenticity_token}'}, dataType: 'script', type:'post', url: '/cart/add_domain/?package_id=#{@package.id}'})}, 'Cancel': function() { jQuery(this).dialog('close');} }});"
       else
         page.replace_html 'choose_domain_message' , "<span style='color: red'>Domain #{@domain.name} is not available</span>"
       end
@@ -61,30 +53,29 @@ class GreenHostingStoreController < ApplicationController
       # end
   end
   
-  
-  def add_hosting
-    @package = Product.find(params[:id])
-    @data = {}
-    @hosting = Hosting.new(params[:hosting])
-    render :update do |page|
-      page.replace_html 'dialog', :partial => 'hosting_details'
-    end
-  end
-  
-  def edit_package
-    @package = Product.find(params[:id])
-    @hosting = Hosting.new(params[:hosting])
-    @hosting.generate_password if @hosting.password.blank?
-    @hosting.generate_username if @hosting.username.blank?
-    @data = {}
-  end
-
+    # 
+    # def add_hosting
+    #   @package = Product.find(params[:id])
+    #   @data = {}
+    #   @hosting = Hosting.new(params[:hosting])
+    #   render :update do |page|
+    #     page.replace_html 'dialog', :partial => 'hosting_details'
+    #   end
+    # end
+    # 
+    # def edit_package
+    #   @package = Product.find(params[:id])
+    #   @hosting = Hosting.new(params[:hosting])
+    #   @hosting.generate_password if @hosting.password.blank?
+    #   @hosting.generate_username if @hosting.username.blank?
+    #   @data = {}
+    # end
 
   def choose_addon
-    @addon = Product.new
+    @hosting = @cart.cart_items.find(params[:id])
+    @cart_addons = @hosting.products.find(:all, :conditions => ["products.kind = ?",'addon'])
     @addons = Product.addons
   end
-
 
   def checkout
     if logged_in?

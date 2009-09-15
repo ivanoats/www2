@@ -16,7 +16,6 @@ class Hosting < ActiveRecord::Base
   validates_presence_of :product_id
   validates_presence_of :username
   validates_presence_of :password
-  validates_presence_of :domain
   
   validates_length_of :username, :maximum => 8
   validates_uniqueness_of :username
@@ -58,13 +57,13 @@ class Hosting < ActiveRecord::Base
   end
   
   def generate_username
-    begin
-    self.username = Base64.encode64(Digest::SHA1.digest("#{rand(1<<64)}/#{Time.now.to_f}/#{Process.pid}"))[0..7]
-    end while !Hosting.find_by_username(self.username).nil?
-  end
-
-  def unmanaged_domain
-    true
+    self.username = self.domains.first.name
+    self.username.slice!(0,[self.username.rindex('.'),8].min)
+    
+    
+    while !Hosting.find_by_username(self.username).nil?
+      self.username.next!
+    end  
   end
 
 private

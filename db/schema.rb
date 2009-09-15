@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090912001958) do
+ActiveRecord::Schema.define(:version => 20090915082415) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -234,6 +234,13 @@ ActiveRecord::Schema.define(:version => 20090912001958) do
     t.datetime "updated_at"
   end
 
+  create_table "pay_pal_email_logs", :force => true do |t|
+    t.string   "messageid"
+    t.integer  "iid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "payment_profiles", :force => true do |t|
     t.integer  "account_id"
     t.string   "customer_payment_profile_id"
@@ -283,9 +290,9 @@ ActiveRecord::Schema.define(:version => 20090912001958) do
     t.integer  "order_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "purchasable_id"
-    t.integer  "purchasable_type"
     t.text     "data"
+    t.integer  "parent_id"
+    t.integer  "product_id"
   end
 
   create_table "redirects", :force => true do |t|

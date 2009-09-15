@@ -3,7 +3,6 @@ class Domain < ActiveRecord::Base
   include Chargeable
   before_create :initialize_next_charge, :unless => Proc.new { |a| a.attribute_present?("next_charge_on") }
   
-  
   belongs_to :account
   belongs_to :product
   belongs_to :hosting
@@ -13,10 +12,10 @@ class Domain < ActiveRecord::Base
   aasm_column :state
   aasm_initial_state :ordered
   aasm_state :ordered
-  aasm_state :active, :enter => :purchase!
-  aasm_state :suspended#, :enter => :suspend_cpanel_account, :exit => :unsuspend_cpanel_account
-  aasm_state :deleted#, :enter => :delete_cpanel_account
-
+  aasm_state :active, :enter => :purchase_if_necessary
+  aasm_state :suspended
+  aasm_state :deleted
+  
   aasm_event :activate do
     transitions :from => :ordered, :to => :active
   end
@@ -31,6 +30,10 @@ class Domain < ActiveRecord::Base
 
   aasm_event :unsuspend do
     transitions :from => :suspended, :to => :active
+  end
+
+  def purchase_if_necessary
+    purchase! if self.purchased
   end
 
   def purchase_with_attributes!

@@ -31,6 +31,8 @@ module Chargeable
       'yearly'
     when 1
       'monthly'
+    when 0
+      "once"
     else
       "every #{recurring_month} months"
     end
