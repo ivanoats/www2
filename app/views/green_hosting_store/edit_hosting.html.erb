@@ -1,0 +1,83 @@
+
+<p>
+You have selected the <%= select :hosting, :name, Product.packages.enabled.collect {|p| [p.name, p.id]} %>
+</p>
+<p>
+  Specify the domain name you will use for this web site.  
+</p>
+<div id="choose_domain">
+  <ul>
+    <li style='width: 305px'><%= link_to 'I have a domain name', '#use_domain', :style => 'width: 100%' %></li>
+    <li style='width: 305px'><%= link_to 'Purchase a domain name', '#purchase_domain', :style => 'width: 100%' %></li>
+  </ul>
+  <div id='use_domain'>
+
+
+    <% form_tag( {:controller => 'cart', :action => 'edit_domain', :id => @hosting}) do %>
+
+      <%= hidden_field_tag :purchased, false %> 
+      
+      <p>If you already have a domain name (such as example.com) enter it here.  This is required but can be changed later.  </p>
+      
+      <%= text_field_tag :domain, '', :size => 40, :label => "Domain", :style => 'font-size: 1em;' %>
+
+      <%= submit_tag("Change Domain",  :button => true, :style => 'float: right') %>
+      <br style='clear: both;'>
+    <% end -%> 
+  </div>
+  <div id='purchase_domain'>
+    <div id='choose_domain_message'></div>
+  
+    <% form_remote_tag :url => {:action => 'check_domain', :cart_item_id => @hosting} do |f| %>
+      <p>Check the availability of a domain name (such as example.com).  If it is available you can purchase it or search for another domain name.  </p>
+      
+      <%= text_field_tag :domain, '',:size => 40,  :label => "Domain", :style => 'font-size: 1em;' %>
+
+      <%= submit_to_remote(:domain_search, "Domain Search", :url => {:action => 'check_domain', :cart_item_id => @hosting}, :button => true, :html => {:style => 'float: right'})%>
+      <br style='clear: both;'>
+      
+    <% end -%>
+  </div>
+</div>
+<%= javascript_tag "jQuery(function() {
+  jQuery('#choose_domain').tabs();
+  #{ "jQuery('#choose_domain').tabs(2)" if @hosting.domain }
+});" %>
+<br/>
+
+Choose any additional services
+
+  <% for addon in @addons %>
+    <% in_cart = @cart_addons.include? addon %>
+  
+  <div class="addon ui-corner-all">
+    <div><%= h addon.name %></div>
+    <div><%= sanitize addon.description, :tags => %w(a strong em), :attributes => %w(id class style)
+      %></div>
+    <br/>
+    
+    <%= button_to_function "Add to Cart" , "select_addon(#{addon.id})", {:class => 'button', :style => "float: right; #{'display:none' if in_cart}", :id => "select_#{addon.id}"}  %>
+    <%= button_to_function "Remove from Cart" , "deselect_addon(#{addon.id})", {:class => 'button', :style => "float: right; #{'display:none' unless in_cart}", :id => "deselect_#{addon.id}"} %>
+    
+    <%= number_to_currency(addon.cost) %>
+    <%= addon.period_in_words %>  
+    <br style='clear: both'/>  
+  </div>
+  
+  <% end #for addon %>
+
+<%= button "Back", {:action => "choose_package"}, :style => 'float: left' %>
+<%= button "Checkout", {:action => "checkout"}, :style => 'float: right' %>
+
+<script type="text/javascript" charset="utf-8">
+<!--
+function select_addon(addon) {
+  <%= remote_function(:url => {:controller => 'cart', :action => :add_addon, :package_id => @hosting.id}, :with => "'id=' + addon", :complete => "$('#select_' + addon ).hide(); $('#deselect_' + addon ).show();") %>
+}
+function deselect_addon(addon) {
+  <%= remote_function(:url => {:controller => 'cart', :action => :remove_addon, :package_id => @hosting.id}, :with => "'id=' + addon", :complete => "$('#select_' + addon ).show(); $('#deselect_' + addon ).hide();") %>
+}
+
+//-->  
+</script>
+

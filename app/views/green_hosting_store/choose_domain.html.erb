@@ -1,23 +1,19 @@
 <p>
-<% if @product %>
+
 You have selected the <%= @product.name %>
  <%= number_to_currency @product.cost %> <%= @product.period_in_words %>.  
 <%= link_to "Change Package", {:action => 'choose_package'}%>
-<% else %>
-You have selected the <%= @cart_item.product.name %>
-<% end %>
 </p>
 <p>
   Specify the domain name you will use for this web site.  
 </p>
 <div id="choose_domain">
   <ul>
-    <li style='width: 319px'><%= link_to 'I have a domain name', '#use_domain', :style => 'width: 100%' %></li>
-    <li style='width: 320px'><%= link_to 'Purchase a domain name', '#purchase_domain', :style => 'width: 100%' %></li>
+    <li style='width: 305px'><%= link_to 'I have a domain name', '#use_domain', :style => 'width: 100%' %></li>
+    <li style='width: 305px'><%= link_to 'Purchase a domain name', '#purchase_domain', :style => 'width: 100%' %></li>
   </ul>
   <div id='use_domain'>
-    
-    <% form_tag( @product ? {:controller => 'cart', :action => 'add_package', :id => @product} : {:controller => 'cart', :action => 'edit_package', :id => @cart_item}) do %>
+    <% form_tag( @product ? {:controller => 'cart', :action => 'edit_domain', :id => @product} : {:controller => 'cart', :action => 'edit_package', :id => @cart_item}) do %>
 
       <%= hidden_field_tag :purchased, false %> 
       
@@ -26,7 +22,7 @@ You have selected the <%= @cart_item.product.name %>
       <%= text_field_tag :domain, '', :size => 40, :label => "Domain", :style => 'font-size: 1em;' %>
 
       <%= submit_tag("Add Hosting To Cart",  :button => true, :style => 'float: right') %>
-      <br style='clear: both/'>
+      <br style='clear: both;'>
     <% end -%> 
   </div>
   <div id='purchase_domain'>
@@ -40,7 +36,7 @@ You have selected the <%= @cart_item.product.name %>
       <%= text_field_tag :domain, '',:size => 40,  :label => "Domain", :style => 'font-size: 1em;' %>
 
       <%= submit_to_remote(:domain_search, "Domain Search", :url => {:action => 'check_domain', :id => @product}, :button => true, :html => {:style => 'float: right'})%>
-      <br style='clear: both/'>
+      <br style='clear: both;'>
       
     <% end -%>
   </div>

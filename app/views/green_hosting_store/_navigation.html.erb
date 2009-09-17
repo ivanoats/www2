@@ -1,7 +1,7 @@
 <ul class='breadcrumb'>
   <li><%= link_to 'Store', {:action => 'index'}, :class => 'root' %></li>
   <li><%= link_to_unless_current "Choose Package", :action => "choose_package" do link_to 'Choose Package', '#', :class => 'current' end %></li>
-  <li><%= link_to_unless current_page?(:action => 'choose_domain', :id => @hosting) || @hosting.nil?, "Choose Domain", {:action => "choose_domain", :id => @hosting} do link_to 'Choose Domain', '#', :class => 'current' end %></li>
+  <li><%= link_to_unless current_page?(:action => 'choose_domain') || true, "Choose Domain", {:action => "choose_domain", :id => @hosting} do link_to 'Choose Domain', '#', :class => 'current' end %></li>
   <li><%= link_to_unless current_page?(:action => 'choose_addon', :id => @hosting) || @hosting.nil?, "Choose Add-ons", {:action => "choose_addon", :id => @hosting} do link_to 'Choose Add-ons', '#', :class => 'current' end %></li>
   <li><%= link_to_unless_current "Checkout", :action => "checkout" do link_to 'Checkout', '#', :class => 'current' end %></li>
   <li><%= link_to_unless_current "Confirmation", :action => "confirmation" do link_to 'Confirmation', '#', :class => 'current' end %></li>

@@ -4,7 +4,7 @@
   <% for addon in @addons %>
     <% in_cart = @cart_addons.include? addon %>
   
-  <div class="addon">
+  <div class="addon ui-corner-all">
     <div><%= h addon.name %></div>
     <div><%= sanitize addon.description, :tags => %w(a strong em), :attributes => %w(id class style)
       %></div>

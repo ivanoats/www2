@@ -28,20 +28,24 @@ class GreenHostingStoreController < ApplicationController
     if params[:package_id]
       @product = Product.packages.enabled.find(params[:package_id])
       @cart_item = CartItem.new(:product => @product)
-    elsif params[:id]
-      @cart_item = CartItem.find(params[:id])
     end
   end
 
   def check_domain
-    @package = Product.packages.enabled.find(params[:id])
+    if params[:package_id]
+      @package = Product.packages.enabled.find(params[:package_id])
+      @ajax_url = "/cart/add_domain/?package_id=#{@package.id}"
+    else
+      @cart_item = @cart.cart_items.find(params[:cart_item_id])
+      @ajax_url = url_for({:controller => :cart, :action => "edit_domain", :id => @cart_item.id, :purchased => true})
+    end    
     @domain = Domain.new(:name => params[:domain])
     @domain.name.gsub!('www.','')
     render :update do |page|
       if @domain.available?
         page.replace_html 'dialog', :partial => 'domain_available'
         page << "jQuery('#dialog').dialog( 'destroy' );"
-        page << "jQuery('#dialog').dialog({ modal: true, draggable: false,resizeable: false, closeOnEscape: true, autoOpen: true, buttons: { 'Add To Cart': function(){ $.ajax({asyc:true, data:{domain: '#{@domain.name}', authenticity_token: '#{form_authenticity_token}'}, dataType: 'script', type:'post', url: '/cart/add_domain/?package_id=#{@package.id}'})}, 'Cancel': function() { jQuery(this).dialog('close');} }});"
+        page << "jQuery('#dialog').dialog({ modal: true, draggable: false,resizeable: false, closeOnEscape: true, autoOpen: true, buttons: { 'Add To Cart': function(){ $.ajax({asyc:true, data:{domain: '#{@domain.name}', authenticity_token: '#{form_authenticity_token}'}, dataType: 'script', type:'post', url: '#{@ajax_url}'})}, 'Cancel': function() { jQuery(this).dialog('close');} }});"
       else
         page.replace_html 'choose_domain_message' , "<span style='color: red'>Domain #{@domain.name} is not available</span>"
       end
@@ -70,6 +74,13 @@ class GreenHostingStoreController < ApplicationController
     #   @hosting.generate_username if @hosting.username.blank?
     #   @data = {}
     # end
+
+  def edit_hosting
+    @hosting = @cart.cart_items.find(params[:id])
+    @cart_addons = @hosting.products.find(:all, :conditions => ["products.kind = ?",'addon'])
+    @addons = Product.addons
+    
+  end
 
   def choose_addon
     @hosting = @cart.cart_items.find(params[:id])

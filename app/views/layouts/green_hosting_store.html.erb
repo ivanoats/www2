@@ -17,7 +17,12 @@
 	<%# = yield :tinymce %>
 	<%= javascript_include_tag :defaults, :cache => true %> 
   <%= javascript_include_tag 'jquery.dimensions.js','jquery.liveSearch.js', formz_javascripts,'jquery.corner.js', 'sw.js' %>
+  
   <%= yield :head %> 
+  <style type='text/css'>
+    #content { width: 620px; padding: 0px 20px;}
+    #sidebar {width: 300px;}
+  </style>
   
   <%= auto_discovery_link_tag(:rss, :controller => :articles, :action => 'index', :format => 'rss') %>
   <%= auto_discovery_link_tag(:rss, :controller => :articles, :action => 'index', :format => 'atom') %>
@@ -55,14 +60,6 @@
   	<% end #if splash on %>
 	  <%= content_tag(:div, '', :id => 'dialog')%>
 	  <%= flash_messages %>
-	  <% content_for :head do %>
-      <style type='text/css'>
-        #content { 
-          width: 500px;
-        }
-        #sidebar {width: auto;}
-      </style>
-    <% end %>
 
     <% content_for :sidebar do %>
       <%= render 'cart/items' %>
