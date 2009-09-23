@@ -86,7 +86,9 @@ namespace(:deploy) do
  end
  
  task :after_symlink do
-   run "ln -nfs #{shared_path}/assets/images #{release_path}/public/images"
+   #NOTE: it may make sense to manage some data images this way, but not the entire directory 
+   #run "ln -nfs #{shared_path}/assets/images #{release_path}/public/images"
+   
    run "ln -nfs #{shared_path}/assets/videos #{release_path}/public/videos"
    run "ln -nfs #{shared_path}/assets/tutorial_cpanel #{release_path}/public/tutorial_cpanel"
    run "ln -nfs #{shared_path}/assets/tutorial_email #{release_path}/public/tutorial_email"  
