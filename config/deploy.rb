@@ -58,9 +58,10 @@ set :repository, "ssh://git@sw.unfuddle.com/sw/www2.git"
 
 set :branch, "master"
 set :deploy_via, :remote_cache
-set :ssh_options, {  :port => 28822 }
+set :ssh_options, {:port => 28822 }
 
 set :git_enable_submodules, 1
+
 
 #############################################################
 #	Passenger
