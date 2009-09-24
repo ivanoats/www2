@@ -121,7 +121,7 @@ namespace :whm do
 
     Whmapaddon.find(:all).each { |addon|
       if(addon.coupon == 1)
-        Product.create!(:name => addon.addon_name, :description => addon.addon_description, :kind => "coupon", :data => {:code => addon.coupon_code, :percentage => addon.coupon_discount_percent, :discount => addon.coupon_discount_whole, :expires => Time.at(addon.expires.to_i)})
+        Product.create!(:name => addon.addon_name, :description => addon.addon_description, :kind => "coupon", :data => {:code => addon.coupon_code, :percentage => addon.coupon_discount_percent, :discount => addon.coupon_discount_whole, :expires => Time.at(addon.expires.to_i)}, :recurring_month => 0)
       elsif(addon.setup_cost == 0)
         Product.create!(:name => addon.addon_name, :description => addon.addon_description, :recurring_month => 1, :kind => "addon", :cost => addon.addon_cost)
       elsif(addon.addon_cost == 0)
@@ -234,18 +234,21 @@ namespace :whm do
            @hosting = Hosting.new(:server => Server.find_by_ip_address(order.whmapserver.server_ip),
              :username => order.whm_username,
              :password => order.whm_password,
-             :domain => order.domain_name,
              :next_charge_on => Time.at(order.next_due_date.to_i),
              :whmaphostingorder => order,
              :product => order.whmappackage.product
           )
+          @hosting.domains << Domain.new(:name => order.domain_name, :product => Product.free_domain)
           
           throw "Product not found for #{order.whmappackage.whm_package_name}" if @hosting.product.nil?
           
            @account.hostings << @hosting
            order.addon_choices.split('|').each {|id|
              add_on = Whmapaddon.find(id)
-             @account.add_ons << AddOn.new(:product => Product.find(:first, :conditions => {:name => add_on.addon_name, :description => add_on.addon_description, :cost => add_on.addon_cost}))
+             @add_on = AddOn.new(:hosting => @hosting, :product => Product.find(:first, :conditions => {:name => add_on.addon_name, :description => add_on.addon_description, :cost => add_on.addon_cost}))
+             throw "Addon not found for #{add_on.addon_name} #{id}" if @add_on.product.nil?
+             
+             @account.add_ons << @add_on
            }
            
            order.whmapinvoice.each { |invoice|
