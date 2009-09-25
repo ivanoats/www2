@@ -1,12 +1,12 @@
 class CartController < ApplicationController
   include CartSystem
   
-  before_filter :load_cart, :only => [:add_domain, :edit_domain, :add_package, :add_addon, :remove_addon, :remove_cart_item]
+  before_filter :load_cart, :only => [:add_domain, :edit_domain, :add_package, :add_addon, :remove_addon, :remove_cart_item, :edit_package]
   
   def add_domain
     if(params[:package_id]) #if package_id is specified then add a package with the domain
       @package = Product.packages.enabled.find(params[:package_id])
-      hosting = @cart.add(@package, @package.name, {:domain => params[:domain]})
+      hosting = @cart.add(@package, @package.name)
       @cart.add(Product.domain, params[:domain], {:domain => params[:domain]},hosting)
       render :update do |page|
         page.redirect_to :controller => :green_hosting_store, :action => :choose_addon, :id => hosting
@@ -17,7 +17,7 @@ class CartController < ApplicationController
   
   def edit_domain
     hosting = @cart.cart_items.find(params[:id])
-    hosting.domain.destroy
+    hosting.domain.destroy if hosting.domain
     if params[:purchased]
       @cart.add(Product.domain, params[:domain], {:domain => params[:domain]},hosting)      
       render :update do |page|
@@ -30,11 +30,23 @@ class CartController < ApplicationController
   end
 
   def add_package
-    @product = Product.packages.enabled.find(params[:id])
+    @product = Product.packages.enabled.find(params[:package_id])
     
     hosting = @cart.add(@product,@product.name,{:domain => params[:domain]})
     @cart.add(Product.free_domain, params[:domain], {:domain => params[:domain]},hosting)
     redirect_to :controller => :green_hosting_store, :action => :choose_addon, :id => hosting
+  end
+  
+  def edit_package
+    hosting = @cart.cart_items.find(params[:id])
+    product = Product.packages.enabled.find(params[:package_id])
+    hosting.update_attributes({
+      :product => product,
+      :name => product.name,
+      :description => product.description,
+      :unit_price => product.cost
+    })
+    render_cart
   end
   
   def add_addon

@@ -1,6 +1,7 @@
 
 <p>
-You have selected the <%= select :hosting, :name, Product.packages.enabled.collect {|p| [p.name, p.id]} %>
+You have selected the <%= select :hosting, :product_id, Product.packages.enabled.collect {|p| [p.name, p.id]} %>
+<%= observe_field :hosting_product_id, :url => {:controller => 'cart', :action => :edit_package, :id => @hosting}, :with => "package_id"%>
 </p>
 <p>
   Specify the domain name you will use for this web site.  
@@ -13,7 +14,7 @@ You have selected the <%= select :hosting, :name, Product.packages.enabled.colle
   <div id='use_domain'>
 
 
-    <% form_tag( {:controller => 'cart', :action => 'edit_domain', :id => @hosting}) do %>
+    <% form_remote_tag( {:controller => 'cart', :action => 'edit_domain', :id => @hosting}) do %>
 
       <%= hidden_field_tag :purchased, false %> 
       
