@@ -50,31 +50,8 @@ class GreenHostingStoreController < ApplicationController
         page.replace_html 'choose_domain_message' , "<span style='color: red'>Domain #{@domain.name} is not available</span>"
       end
     end
-  #rescue => e
-    # render :update do |page|
-    #     page << 'allow_check_domain()'
-    #     page.replace_html 'choose_domain_message' , "<span style='color: red'>Bad domain name</span>"
-      # end
   end
   
-    # 
-    # def add_hosting
-    #   @package = Product.find(params[:id])
-    #   @data = {}
-    #   @hosting = Hosting.new(params[:hosting])
-    #   render :update do |page|
-    #     page.replace_html 'dialog', :partial => 'hosting_details'
-    #   end
-    # end
-    # 
-    # def edit_package
-    #   @package = Product.find(params[:id])
-    #   @hosting = Hosting.new(params[:hosting])
-    #   @hosting.generate_password if @hosting.password.blank?
-    #   @hosting.generate_username if @hosting.username.blank?
-    #   @data = {}
-    # end
-
   def edit_hosting
     @hosting = @cart.cart_items.find(params[:id])
     @cart_addons = @hosting.products.find(:all, :conditions => ["products.kind = ?",'addon'])
