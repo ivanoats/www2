@@ -1,5 +1,5 @@
 <% unless @account.hostings.empty? %>
-Hosting
+Web Sites
 <table class='model_table' style='font-size: 90%'>
   <tr>
     <th style='width: 300px'>Name</th>
@@ -11,56 +11,36 @@ Hosting
   </tr>  
 <% @account.hostings.visible.each do |item| %>
 
-  <tr class='<%= cycle("odd","even")%>'>
+  <tr class='odd'>
     <td style='text-align: left'><%= link_to "#{item.product.name} (#{item.username})", item %></td>
     <td><%= item.period_in_words %></td>
     <td><%= number_to_currency item.product.cost %></td>
     <td><%= item.next_charge_on.to_formatted_s( :human_date ) unless item.next_charge_on.nil? %></td>
     <td><%= item.state.capitalize %></td>
   </tr>  
+  <% for child in item.domains do %>
+    <tr class='even'>
+      <td style='text-align: left'><%= link_to child.name, child %></td>
+      <td><%= child.period_in_words %></td>
+      <td><%= number_to_currency child.product.cost %></td>
+      <td><%= child.next_charge_on.to_formatted_s( :human_date ) unless child.next_charge_on.nil? %></td>
+      <td><%= child.state.capitalize %></td>
+    </tr>
+  <% end %>
+  <% for child in item.add_ons do %>
+    <tr class='even'>
+      <td style='text-align: left'><%= child.product.name %></td>
+      <td><%= child.period_in_words %></td>
+      <td><%= number_to_currency child.product.cost %></td>
+      <td><%= child.next_charge_on.to_formatted_s( :human_date ) unless child.next_charge_on.nil? %></td>
+      <td><%=  %></td>
+    </tr>
+  <% end %>
+  <tr class='even'>
+    <td colspan='5'></td>
+  </tr>
 <% end%>
 </table>
 <% end %>
 
-<% unless @account.domains.empty? %>
-Domains
-<table class='model_table' style='font-size: 90%'>
-  <tr>
-    <th  style='width: 300px'>Domain</th>
-    <th>Renewal Period</th>
-    <th>Renewal Fee</th>
-    <th>Due Next</th>
-  </tr>  
-<% @account.domains.each do |item| %>
-  <tr class='<%= cycle("odd","even")%>'>
-    <td style='text-align: left'><%= link_to item.name, item %></td>
-    <td>yearly</td>
-    <td><%= number_to_currency item.product.cost %></td>
-  </tr>  
-<% end%>
-</table>
-<% end %>
-
-<% unless @account.add_ons.empty? %>
-Add Ons
-<table class='model_table' style='font-size: 90%'>
-  <tr>
-    <th>Add On</th>
-    <th>Renewal Period</th>
-    <th>Renewal Fee</th>
-    <th >Due Next</th>
-    
-  </tr>  
-<% @account.add_ons.each do |item| %>
-  <tr class='<%= cycle("odd","even")%>'>
-    <td style='text-align: left'><%= item.product.name %></td>
-    <td><%= item.product.period_in_words %></td>
-    <td><%= number_to_currency item.product.cost %></td>
-    <td><%= item.next_charge_on.to_formatted_s( :human_date ) unless item.next_charge_on.nil? %></td>
-
-  </tr>  
-<% end%>
-</table>
-<% end %>
-
-<%= link_to "Add More Services", {:controller => 'green_hosting_store', :action => :index}%>
+<%= link_to "Add a Web Site", {:controller => 'green_hosting_store', :action => :index}%>

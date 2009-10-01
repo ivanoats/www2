@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20091001183138) do
     t.integer  "account_id"
     t.date     "next_charge_on"
     t.integer  "hosting_id"
+    t.string   "state"
   end
 
   create_table "addresses", :force => true do |t|

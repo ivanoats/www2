@@ -23,11 +23,11 @@ class Order < ActiveRecord::Base
   def self.from_cart(cart)
     order = Order.new
     cart.cart_items.find(:all, :conditions => "parent_id IS NULL").each do |item|
-      if item.product
+      unless item.product.nil?
         purchase = Purchase.new(:product => item.product, :data => item.data)
         order.purchases << purchase
         item.children.each do |child|
-          purchase.children << Purchase.new(:product => child.product, :data => child.data, :order => order)
+          purchase.children << Purchase.new(:product => child.product, :data => child.data, :order => order) unless child.product.nil?
         end
       end
     end

@@ -13,7 +13,7 @@ You have selected the <%= @product.name %>
     <li style='width: 305px'><%= link_to 'Purchase a domain name', '#purchase_domain', :style => 'width: 100%' %></li>
   </ul>
   <div id='use_domain'>
-    <% form_tag( @product ? {:controller => 'cart', :action => 'edit_domain', :id => @product} : {:controller => 'cart', :action => 'edit_package', :id => @cart_item}) do %>
+    <% form_tag({:controller => 'cart', :action => 'add_package', :package_id => @product}) do %>
 
       <%= hidden_field_tag :purchased, false %> 
       
@@ -28,7 +28,7 @@ You have selected the <%= @product.name %>
   <div id='purchase_domain'>
     <div id='choose_domain_message'></div>
   
-    <% form_remote_tag :url => {:action => 'check_domain', :id => @product} do |f| %>
+    <% form_remote_tag :url => {:action => 'check_domain', :package_id => @product} do |f| %>
 
       <%= hidden_field :purchased, true %> 
       <p>Check the availability of a domain name (such as example.com).  If it is available you can purchase it or search for another domain name.  </p>

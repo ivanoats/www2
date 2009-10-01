@@ -32,7 +32,7 @@ namespace :whm do
           :name            => whmap_product.package_name,
           :description     => "",
           :cost            => 0,
-          :recurring_month => 0,
+          :recurring_month => 12,
           :kind            => "package",
           :data            => {:package => whmap_product.whm_package_name},
           :whmappackage => whmap_product
@@ -173,25 +173,13 @@ namespace :whm do
   
   desc 'Migrate Users'
   task :migrate => :environment do
-    
-    
-    # WhmaphostingOrder.active.each { |order|
-    #       @hosting = create_hosting_from_order(order)
-    #       @account = account_for_user(order.whmapuser)
-    #       @account.hostings << @hosting
-    #       
-    #       order.addon_choices.split('|').each {|id|
-    #         add_on = Whmapaddon.find(id)
-    #         #TODO verify this
-    #         @account.add_ons << AddOn.new(:product => Product.find(:first, :conditions => {:name => add_on.addon_name, :description => addon.addon_description, :cost => add_on.addon_cost}))
-    #       }
-    #       @hosting.update_attribute('state', 'active')
-    #     }
-    
+
     begin
       User.find_by_email('padraicmcgee@gmail.com').destroy
     rescue
     end  
+    
+    Whmapinvoice.past_due.update_all({:status => 0})
     
     Whmapuser.find(:all, :include => :whmaphostingorder, :conditions => ['hosting_order.status = ?',1]).each { |user| 
       
@@ -216,7 +204,6 @@ namespace :whm do
         
         @account.save!
         
-        
         initial_password = 'password' #TODO generate a unique password
         @user = User.find_by_email(user.email) || User.new(:login => user.username.gsub(/ /,'_'), :email => user.email, :password => initial_password, :password_confirmation => initial_password)
         @account.users << @user
@@ -231,21 +218,35 @@ namespace :whm do
            puts "!!! Ignoring order for missing package "
            pp order
          elsif Server.find_by_ip_address(order.whmapserver.server_ip) #only create if we have an active server
+           case order.payment_term
+           when "Annual", "annual"
+             recurring_month = 12
+             cost = order.whmappackage.annual_cost
+           when "Monthly", "monthly"
+             recurring_month = 1
+             cost = order.whmappackage.monthly_cost
+           else
+             throw "Unknown payment term #{order.payment_term}"
+           end
+           
+           @product = Product.packages.first(:conditions => ["recurring_month = ? && cost = ?", recurring_month, cost])
+           
+           throw "Product not found for #{order.whmappackage.whm_package_name} #{order.id}" if @product.nil?
+           
            @hosting = Hosting.new(:server => Server.find_by_ip_address(order.whmapserver.server_ip),
              :username => order.whm_username,
              :password => order.whm_password,
              :next_charge_on => Time.at(order.next_due_date.to_i),
              :whmaphostingorder => order,
-             :product => order.whmappackage.product
+             :product => @product 
           )
           @hosting.domains << Domain.new(:name => order.domain_name, :product => Product.free_domain)
           
-          throw "Product not found for #{order.whmappackage.whm_package_name}" if @hosting.product.nil?
           
            @account.hostings << @hosting
            order.addon_choices.split('|').each {|id|
              add_on = Whmapaddon.find(id)
-             @add_on = AddOn.new(:hosting => @hosting, :product => Product.find(:first, :conditions => {:name => add_on.addon_name, :description => add_on.addon_description, :cost => add_on.addon_cost}))
+             @add_on = AddOn.new(:hosting => @hosting, :product => Product.addons.find(:first, :conditions => {:name => add_on.addon_name, :description => add_on.addon_description}))
              throw "Addon not found for #{add_on.addon_name} #{id}" if @add_on.product.nil?
              
              @account.add_ons << @add_on
@@ -264,10 +265,6 @@ namespace :whm do
                pp invoice
                puts "Unknown invoice status"
              end
-             
-             #8610, uid: 631, oid: 620, due_date: 1230530400, payment_method: 8, txn_id: "", additional_information: "", invoice_details: "", invoice_terms: 0, status: 0, created: 1230530400, date_paid: 0, invoice_number: 18534, invoice_type: 0, total_due_today: 0.0, total_due_reoccur: 10.0, charge_tax: 0.0, tax_type: "", extras: "", master: 1, checkout_id: "">
-             
-             
            }
            @account.save
            @hosting.update_attribute('state', 'active')
