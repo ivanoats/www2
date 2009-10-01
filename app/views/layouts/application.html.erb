@@ -1,70 +1,62 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<%= page_title %> 
-	<%= meta "description", meta_description %> 
-	<%= meta "keywords", meta_keywords %>
-	<%= stylesheet_snippets %>
-	<% stylesheet_link_tag "snippets/", :cache => 'snippets' %>
-		
-	<%= stylesheet_link_tag 'common', 'public', "pagination", "users", formz_stylesheets, 'live-search', 'jquery-ui', :cache => 'application_cache' %>
-	<!--[if lt IE 8]>
-		<%= stylesheet_link_tag "ie", :cache => true %>
-	<![endif]-->
-	<link rel="shortcut icon" href="/favicon.ico" />
-	<% # Include TinyMCE before other JS to avoid problems -%>
-	<%# = yield :tinymce %>
-	<%= javascript_include_tag :defaults, :cache => true %> 
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <%= page_title %> 
+  <%= meta "description", meta_description %> 
+  <%= meta "keywords", meta_keywords %>
+  <%= stylesheet_snippets %>
+  <% stylesheet_link_tag "snippets/", :cache => 'snippets' %>
+  <%= stylesheet_link_tag 'common', 'public', "pagination", "users", formz_stylesheets, 'live-search', 'jquery-ui', :cache => 'application_cache' %>
+  <!--[if lt IE 8]>
+    <%= stylesheet_link_tag "ie", :cache => true %>
+  <![endif]-->
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <% # Include TinyMCE before other JS to avoid problems -%>
+  <%# = yield :tinymce %>
+  <%= javascript_include_tag :defaults, :cache => true %> 
   <%= javascript_include_tag 'jquery.dimensions.js','jquery.liveSearch.js', formz_javascripts,'jquery.corner.js', 'sw.js' %>
   <%= yield :head %> 
-  
   <%= auto_discovery_link_tag(:rss, :controller => :articles, :action => 'index', :format => 'rss') %>
   <%= auto_discovery_link_tag(:rss, :controller => :articles, :action => 'index', :format => 'atom') %>
-  
 </head>
 <body id="<%= controller.controller_name.to_s + "_" + controller.action_name.to_s %>">
   <div id="wrapper">
-
-  	<div id="header">
-  		<a href="/"><img src="/images/logo.gif" alt="Logo" /></a>
-  		<div id="top">
-  			<p id="top_login"><a href="/support">Click here for <strong>Help</strong></a></p>
-  			<p id="top_twitter">We are a 100% Carbon Neutral Web Hosting Community</p>
-  		</div><!--/top-->
-  		<%= render :partial => 'layouts/menu' %>
-  	</div><!--/header-->
-  	  <div id="container">
-  	<div id="container-inner">
-	 
-	<% if @show_teaser then %>
-		<div id="teaser">
-	  		<span><%= @teaser %></span>
-	  	</div>
-	<% end #if show_teaser %>
-  	
-  	<% if @splash_on then %>
-	<div id="splash-wrap">
-  	<div id="splash">
-  		<ul>
-  			<li id="signup"><a href="/order"></a></li>
-  			<li id="learn_more"><a href="/green-web-hosting-services"></a></li>
-  		</ul>
-  	</div><!--/splash-->
-	</div><!--/splash-wrap-->
-  	<% end #if splash on %>
-  	<div id="content">
-  	  <%= content_tag(:div, '', :id => 'dialog')%>
-  	  <%= flash_messages %>
-      <%= yield %>
-  	</div><!--/content-->
-  	<%= render :partial => 'layouts/sidebar' %>
-  	</div>
-  </div><!--/container-->
-  <%= render :partial => 'layouts/footer' %>
-  <div><!--/wrapper-->
+    <div id="header">
+      <a href="/"><img src="/images/logo.gif" alt="Logo" /></a>
+      <div id="top">
+        <p id="top_login"><a href="/support">Click here for <strong>Help</strong></a></p>
+        <p id="top_twitter">Carbon Neutral and Green Powered Web Hosting</p>
+      </div><!--/top-->
+      <%= render :partial => 'layouts/menu' %>
+    </div><!--/header-->
+    <div id="container">
+      <div id="container-inner">
+        <% if @show_teaser then %>
+        <div id="teaser">
+          <span><%= @teaser %></span>
+        </div>
+        <% end %>
+        <% if @splash_on then %>
+        <div id="splash-wrap">
+          <div id="splash">
+            <ul>
+              <li id="signup"><a href="/order"></a></li>
+              <li id="learn_more"><a href="/green-web-hosting-services"></a></li>
+            </ul>
+          </div><!--/splash-->
+        </div><!--/splash-wrap-->
+        <% end %>
+        <div id="content">
+          <%= content_tag(:div, '', :id => 'dialog')%>
+          <%= flash_messages %>
+          <%= yield %>
+        </div><!--/content-->
+        <%= render :partial => 'layouts/sidebar' %>
+      </div><!-- /container-inner-->
+    </div><!--/container-->
+    <%= render :partial => 'layouts/footer' %>
+  </div><!--/wrapper-->
   <%= render :partial => "layouts/tracking_javascript"%>
 </body>
 </html>

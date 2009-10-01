@@ -52,6 +52,11 @@
       <input type="hidden" name="comment[commentable_id]" value="<%= @article.id %>">
       <input type="hidden" name="comment[commentable_type]" value="<%= @article.class.name %>" />
       <%= form.submit "Add Comment"%>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#comment_form').append('<input id="comment_key" type="hidden" value="<%= COMMENT_KEY %>" name="comment[key]">');
+                })
+        </script>
     <% end %>
   <% end %>
 <% end %>

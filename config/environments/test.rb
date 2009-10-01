@@ -29,6 +29,8 @@ REST_AUTH_DIGEST_STRETCHES = 10
 config.gem "aslakhellesoy-cucumber",
             :lib => "cucumber",
             :source => "http://gems.github.com"
+            
+config.gem 'webrat'
 # david chelimsky says not to include them here
 # config.gem "dchelimsky-rspec-rails",
 #              :lib => "rspec-rails",

@@ -6,10 +6,18 @@ class ApplicationController < ActionController::Base
 
   helper :all # include all helpers, all the time
   protect_from_forgery #:secret => 'b0a876313f3f9195e9bd01473bc5cd06'
-  filter_parameter_logging :password, :password_confirmation
+  filter_parameter_logging :password, :password_confirmation, :key
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
   
+  EXCEPTIONS_NOT_LOGGED = ['ActionController::UnknownAction',
+                           'ActionController::RoutingError',
+                           'ActionController::InvalidAuthenticityToken']
+  
   protected
+  
+  def log_error(exc)
+     super unless EXCEPTIONS_NOT_LOGGED.include?(exc.class.name)
+   end
   
   # Automatically respond with 404 for ActiveRecord::RecordNotFound
   def record_not_found

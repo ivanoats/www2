@@ -5,7 +5,10 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
+
+# key needed by ajax comment spam blocker
+COMMENT_KEY = '*W^dK8AMBAT2'
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -27,8 +30,8 @@ Rails::Initializer.run do |config|
   config.gem "capistrano-ext", :lib => "capistrano"  
   config.gem "mlightner-universal_ruby_whois",
               :lib => 'universal_ruby_whois',
-              :source => "http://gems.github.com",
-              :version => "1.2.6"
+              :source => "http://gems.github.com" #,
+  #           :version => "1.2.6"
   config.gem "httpclient"
   config.gem "mofo"
   config.gem "packet"

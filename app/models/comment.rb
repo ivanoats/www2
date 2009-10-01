@@ -1,20 +1,22 @@
 class Comment < ActiveRecord::Base
   
-# mysql -Dwww2_sw -e "describe comments;"
-# Field Type  Null  Key Default Extra
-# id  int(11) NO  PRI NULL  auto_increment
-# title varchar(255)  YES     
-# comment text  YES   NULL  
-# created_at  datetime  YES   NULL  
-# updated_at  datetime  YES   NULL  
-# user_id int(11) NO  MUL 0 
-# web_site  varchar(255)  YES   NULL  
-# email varchar(255)  YES   NULL  
-# name  varchar(255)  YES   NULL  
-# commentable_id  int(11) YES   NULL  
-# commentable_type  varchar(255)  YES   NULL  
-
-# describe comments  
+  # +------------------+--------------+------+-----+---------+----------------+
+  # | Field            | Type         | Null | Key | Default | Extra          |
+  # +------------------+--------------+------+-----+---------+----------------+
+  # | id               | int(11)      | NO   | PRI | NULL    | auto_increment |
+  # | title            | varchar(255) | YES  |     |         |                |
+  # | comment          | text         | YES  |     | NULL    |                |
+  # | created_at       | datetime     | YES  |     | NULL    |                |
+  # | updated_at       | datetime     | YES  |     | NULL    |                |
+  # | user_id          | int(11)      | NO   | MUL | 0       |                |
+  # | web_site         | varchar(255) | YES  |     | NULL    |                |
+  # | email            | varchar(255) | YES  |     | NULL    |                |
+  # | name             | varchar(255) | YES  |     | NULL    |                |
+  # | commentable_id   | int(11)      | YES  |     | NULL    |                |
+  # | commentable_type | varchar(255) | YES  |     | NULL    |                |
+  # +------------------+--------------+------+-----+---------+----------------+
+  
+  attr_accessor :key
 
   belongs_to :commentable, :polymorphic => true
   belongs_to :user
