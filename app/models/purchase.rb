@@ -9,13 +9,12 @@ class Purchase < ActiveRecord::Base
   def redeem
     case self.product.kind
     when 'package'
+      debugger
       hosting = Hosting.new({:product => self.product, :account => order.account})
-      
       self.children.each do |child|
         case child.product.kind
         when 'domain'
           hosting.domains << Domain.new(:product => child.product, :account => order.account, :name => child.data[:domain], :purchased => child.product.cost > 0)
-          
         when 'addon'
           hosting.add_ons << AddOn.new(:product => child.product, :account => order.account)
         end

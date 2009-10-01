@@ -8,7 +8,6 @@
   <% z_form_for :account do |f| %>    
     <% if current_user.accounts.empty? %>
         <%= f.text_field :organization, :label => "Name this Account" %>
-    
     <% else %>
     
     <%= hidden_field_tag :use_existing_account, true %>

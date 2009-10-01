@@ -77,7 +77,7 @@ class GreenHostingStoreController < ApplicationController
           #create a new account
           begin
             @account = current_user.accounts.create(params[:account])
-            session[:account] = @account
+            session[:account] = @account.id
             redirect_to :action => :billing and return
           rescue
           end

@@ -27,7 +27,6 @@ class User < ActiveRecord::Base
   # Relationships
   has_many :articles
   has_and_belongs_to_many :roles
-  
   has_and_belongs_to_many :accounts
 
   

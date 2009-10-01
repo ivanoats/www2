@@ -60,7 +60,6 @@ class Hosting < ActiveRecord::Base
     self.username = self.domains.first.name
     self.username.slice!(0,[self.username.rindex('.'),8].min)
     
-    
     while !Hosting.find_by_username(self.username).nil?
       self.username.next!
     end  

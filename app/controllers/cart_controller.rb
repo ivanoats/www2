@@ -32,7 +32,7 @@ class CartController < ApplicationController
   def add_package
     @product = Product.packages.enabled.find(params[:package_id])
     
-    hosting = @cart.add(@product,@product.name,{:domain => params[:domain]})
+    hosting = @cart.add(@product,@product.name)
     @cart.add(Product.free_domain, params[:domain], {:domain => params[:domain]},hosting)
     redirect_to :controller => :green_hosting_store, :action => :choose_addon, :id => hosting
   end
