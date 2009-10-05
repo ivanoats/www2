@@ -116,6 +116,8 @@ display: block;
 
 }
 
+div#support_form form#new_ticket div input[name="authenticity_token"] { display: none; background-color: #fff;}
+
 .errorExplanation { color: red; margin-bottom: 15px;}
 
 #support_sidebar {

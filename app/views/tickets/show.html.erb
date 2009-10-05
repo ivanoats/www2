@@ -1,10 +1,28 @@
 <h2>Thank you, help is on the way.</h2>
 <p><strong>Your support request has been emailed to our team.</strong></p>
+<p>Our team responds to issues as soon as possible. Depending on how busy we are,
+  replies typically are one to four hours. During unusually busy periods it may take up
+  to one business day to respond to your request.</p>
 
 <%if @ticket.department == "technical" %>	
-<p>We have sent you an automatic reply with a tracking number. Please reply to that email instead of using this form again if you have more information.</p>
+<p>We have sent you an automatic reply with a tracking number. Please reply to
+  that email instead of using this form again if you have more information.</p>
+<h2 class="fixes">Common Fixes</h2>
+<ul>
+  <li>If your forgot your password, <a href="http://www.sustainablewebsites.com/billing">click here</a> to re-send your welcome email</li>
+  <li>Please check the left side of your <a title="browse to your-site.com/cpanel" href="/control-panel">control panel</a> for any issues. Video tutorials are also there.</li>
+  <li>You can check to see if your site is online via an independent third-party service such as <a href="http://alertra.com">Alertra.com</a></li>
+  <li>Please read our <a href="/article/disclaimer">Technical Support Tutorial and Disclaimer</a> to ensure you know what is covered and what is not.</li>
+</ul>
+<% else %>
+<h2>Billing Questions</h2>
+<ul>
+  <li>Most billing questions like invoices and payment status can be answered by logging in to our
+  billing system here: <a href="http://www.sustainablewebsites.com/billing">Sustainable Websites Billing</a>.</li>
+  <li>If you have a change to your billing address, please email us billing at sustainablewebsites dot com.</li>
+</ul>
 <% end %>
-<p>Our team responds to issues as soon as possible. Depending on how busy we are, replies typically are one to four hours. During unusually busy periods it may take up to one business day to respond to your request.</p>
+
 
 <% if logged_in_user and logged_in_user.has_role?('Administrator') %> 
 
@@ -70,6 +88,6 @@
 
 
 <%= link_to 'Edit', edit_ticket_path(@ticket) %>
-<%= link_to 'Back', tickets_path %>
+<%= link_to 'Index', tickets_path %>
 
 <% end %>
