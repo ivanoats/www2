@@ -1,4 +1,6 @@
 class AddOn < ActiveRecord::Base
+  include AASM
+  
   belongs_to :product
   belongs_to :hosting
   belongs_to :account

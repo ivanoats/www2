@@ -9,7 +9,6 @@ class Purchase < ActiveRecord::Base
   def redeem
     case self.product.kind
     when 'package'
-      debugger
       hosting = Hosting.new({:product => self.product, :account => order.account})
       self.children.each do |child|
         case child.product.kind
