@@ -57,9 +57,14 @@ class Hosting < ActiveRecord::Base
   end
   
   def generate_username
+    #base the username on the first 8 characters of the domain name
     self.username = self.domains.first.name.dup
     self.username = self.username.slice(0,[self.username.rindex('.'),8].min)
     
+    #convert from 'greenhut' to 'greenhu1'
+    self.username = self.username[0,7] + "1" if Hosting.find_by_username(self.username)
+    
+    #increase last character until we find a unique name
     while !Hosting.find_by_username(self.username).nil?
       self.username.next!
     end  
