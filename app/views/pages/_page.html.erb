@@ -4,15 +4,17 @@
   <p>Title:<br /><%= f.text_field :title, :size => 60 %></p> 
   <p>Body: <%#= link_to_function "Toggle editor", "toggleEditor('page_body');"%>
   <br /><%= f.text_area :body, :rows => 20, :cols => 60,  :class => "mce-editor" %></p> 
-  
-  <p> <%= f.check_box :hide_sidebar %> Hide Sidebar </p>
-  <p> <%= f.check_box :flip_sidebar %> Flip Sidebar </p>
-  <p> <%= f.check_box :show_teaser %> Show Teaser </p>
+
+  <fieldset id="options" name="options">  
+      <p> <%= f.check_box :hide_sidebar %> Hide Sidebar </p>
+      <p> <%= f.check_box :flip_sidebar %> Flip Sidebar </p>
+      <p> <%= f.check_box :show_teaser %> Show Teaser </p>
+  </fieldset>
   <p>Teaser:<br /> <%= f.text_field :teaser, :size => 60 %></p>
-  <p> <%= f.text_field :widget1, :size => 60 %></p>
-  <p> <%= f.text_field :widget2, :size => 60 %></p>
-  <p> <%= f.text_field :widget3, :size => 60 %></p>
-  <p> <%= f.text_field :widget4, :size => 60 %></p>
+  <p>Widget 1:<br /> <%= f.text_field :widget1, :size => 60 %></p>
+  <p>Widget 2:<br /> <%= f.text_field :widget2, :size => 60 %></p>
+  <p>Widget 3:<br /> <%= f.text_field :widget3, :size => 60 %></p>
+  <p>Widget 4:<br /> <%= f.text_field :widget4, :size => 60 %></p>
    
   <%= submit_tag 'Save' %> <%= submit_to_remote "save_and_continue", "Save and Continue" , :url => (@page.new_record? ? pages_url : page_url(@page)), :before => "tinyMCE.triggerSave(false,true);" %> or <%= link_to 'cancel', pages_url %> 
 <% end -%>
