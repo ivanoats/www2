@@ -128,8 +128,10 @@ module Formz #:nodoc:
       end
     end
     
-    def address
-      multi_field 'Address' do
+    def address(options = {})
+      options = {:label => "Address"}.merge( options.stringify_keys)
+      
+      multi_field options['label'] do
         row :style => 'width: 100%' do
           text_area :street, :class => 'street'
         end
@@ -137,7 +139,64 @@ module Formz #:nodoc:
           text_field :city
         end
         row do
-          select(:state_id, [['Select a State',0]] + State.find(:all, :order => :name).collect { |s| [s.name,s.id]}) + text_field( :zip )
+          if ActiveRecord::Base.connection.tables.include?(:states)
+            select(:state_id, [[' ',0]] + State.find(:all, :order => :name).collect { |s| [s.name,s.id]}) + text_field( :zip )
+          else
+            select(:state, [   
+              [' ', ''],
+                ['Alabama', 'AL'], 
+                ['Alaska', 'AK'],
+                ['Arizona', 'AZ'],
+                ['Arkansas', 'AR'], 
+                ['California', 'CA'], 
+                ['Colorado', 'CO'], 
+                ['Connecticut', 'CT'], 
+                ['Delaware', 'DE'], 
+                ['District Of Columbia', 'DC'], 
+                ['Florida', 'FL'],
+                ['Georgia', 'GA'],
+                ['Hawaii', 'HI'], 
+                ['Idaho', 'ID'], 
+                ['Illinois', 'IL'], 
+                ['Indiana', 'IN'], 
+                ['Iowa', 'IA'], 
+                ['Kansas', 'KS'], 
+                ['Kentucky', 'KY'], 
+                ['Louisiana', 'LA'], 
+                ['Maine', 'ME'], 
+                ['Maryland', 'MD'], 
+                ['Massachusetts', 'MA'], 
+                ['Michigan', 'MI'], 
+                ['Minnesota', 'MN'],
+                ['Mississippi', 'MS'], 
+                ['Missouri', 'MO'], 
+                ['Montana', 'MT'], 
+                ['Nebraska', 'NE'], 
+                ['Nevada', 'NV'], 
+                ['New Hampshire', 'NH'], 
+                ['New Jersey', 'NJ'], 
+                ['New Mexico', 'NM'], 
+                ['New York', 'NY'], 
+                ['North Carolina', 'NC'], 
+                ['North Dakota', 'ND'], 
+                ['Ohio', 'OH'], 
+                ['Oklahoma', 'OK'], 
+                ['Oregon', 'OR'], 
+                ['Pennsylvania', 'PA'], 
+                ['Rhode Island', 'RI'], 
+                ['South Carolina', 'SC'], 
+                ['South Dakota', 'SD'], 
+                ['Tennessee', 'TN'], 
+                ['Texas', 'TX'], 
+                ['Utah', 'UT'], 
+                ['Vermont', 'VT'], 
+                ['Virginia', 'VA'], 
+                ['Washington', 'WA'], 
+                ['West Virginia', 'WV'], 
+                ['Wisconsin', 'WI'], 
+                ['Wyoming', 'WY']], :class => 'state')
+          end + text_field( :zip )
+          
         end
       end
     end
