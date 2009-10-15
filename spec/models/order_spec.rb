@@ -20,9 +20,4 @@ describe Order do
     assert @order.purchases.first.product == @product
   end
 
-  it "should create a invoice number" do
-    Order.expects(:generate_invoice_number).returns(7)
-    order = Order.create(@valid_attributes)
-    assert_equal order.invoice_number, 7
-  end
 end

@@ -1,10 +1,3 @@
-class ActiveRecord::Base
-   
-  def business_name
-		nil
-	end
-  
-end
 
 module ActionView
   module Helpers
@@ -32,20 +25,16 @@ module ActionView
           object = instance_variable_get("@#{name}")
           if object
             object.errors.each do |key, value|
+              value = [value].flatten.first
               if value.match(/^\^/)
-                unless value.match(/^\^nil/)
-                  app_errors << value[1..value.length]
-                end
+                app_errors << value[1..value.length]
               else
-                if key.class == String and key == "base"
+                pretty_key = key.underscore.split('_').last.humanize
+                if pretty_key == "Base"
                   app_errors << "#{value}"
                 else
-									unless object.business_name.blank?
-										app_errors << "#{object.business_name} #{key.underscore.split('_').join(' ').humanize} #{value}"
-                  else
-										app_errors << "#{key.underscore.split('_').join(' ').humanize} #{value}"
-									end
-								end
+                  app_errors << "#{pretty_key} #{value}"
+                end
               end
             end
           end

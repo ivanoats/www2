@@ -1,15 +1,15 @@
 8
 
 dir
-155
-svn+ssh://padraic@eleanor.homeunix.net/var/svn/cause_on_rails/vendor/plugins/formz/resources/public/images
-svn+ssh://padraic@eleanor.homeunix.net/var/svn
+160
+svn+ssh://deploy@67.23.30.253/home/deploy/subversion/trunk/cause_on_rails/vendor/plugins/formz/resources/public/images
+svn+ssh://deploy@67.23.30.253/home/deploy/subversion
 
 
 
-2009-03-24T16:01:48.133682Z
-26
-padraic
+2009-09-04T20:42:15.186450Z
+1
+deploy
 
 
 svn:special svn:externals svn:needs-lock

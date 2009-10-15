@@ -1,5 +1,4 @@
 module Formz
-  
   module FormzHelper
     
     def formz_stylesheets
@@ -11,98 +10,26 @@ module Formz
     end
     
     [:form_for, :fields_for, :form_remote_for, :remote_form_for].each do |meth|
-        src = <<-end_src
-          def z_#{meth}(object_name, *args, &proc)
-            options = args.last.is_a?(Hash) ? args.pop : {}
-            html_options = options.has_key?(:html) ? options[:html] : {}
-            if html_options.has_key?(:class) 
-              html_options[:class] << ' zForm'
-            else
-              html_options[:class] = 'zForm'
-            end
-            options.update(:html => html_options)
-            options.update(:builder => FormzBuilder)
-            #{meth}(object_name, *(args << options), &proc)
+      src = <<-end_src
+        def z_#{meth}(object_name, *args, &proc)
+          options = args.last.is_a?(Hash) ? args.pop : {}
+          html_options = options.has_key?(:html) ? options[:html] : {}
+          if html_options.has_key?(:class) 
+            html_options[:class] << ' zForm'
+          else
+            html_options[:class] = 'zForm'
           end
-        end_src
-        module_eval src, __FILE__, __LINE__
-      end
-      
-
+          options.update(:html => html_options)
+          options.update(:builder => FormzBuilder)
+          #{meth}(object_name, *(args << options), &proc)
+        end
+      end_src
+      module_eval src, __FILE__, __LINE__
+    end
+    
     def label_for(object_name, method, options = {})
       options[:text] ||= method.to_s.titleize
       ActionView::Helpers::InstanceTag.new(object_name, method, self, options.delete(:object)).to_label_tag2(options)
     end
-
-   def uniform_error_messages objects
-     no_error = true
-     str = ""
-     objects.each do |object|
-       no_error = no_error && object.errors.empty?
-       object.errors.each do |attr, msg|
-           str << content_tag("li", "#{object.class.human_attribute_name(attr)} #{msg}")
-       end
-     end
-     return content_tag("div", content_tag("h3", "Ooops! We Have a Problem.") + content_tag("ol", str), :id => "errorMsg") unless no_error
-     ""
-   end
-
-   def uniform_success_message msg
-     content_tag("div", content_tag("h3", msg), :id => "successMsg")
-   end
-   
-   
   end
-  # def multi_field( block )
-  #     content_tag(:div, {:class => 'zMultiField'}, block)
-  #   end
-  #   
-  #   def address
-  #     multi_field do
-  #       text_field :address1
-  #     end
-  #   end
-  
 end
-
-# <div class="zField">
-# 
-#   <p class="label">
-# 
-#     <em>*</em> Combo Field
-# 
-#   </p>
-#   
-#   <div class="zMultiField">
-#   
-#     <label for="dob_month" class="blockLabel"><span>Month</span> <select id="dob_month" name="dob_month"><option value="1">January</option></select></label>
-# 
-#     <label for="dob_day" class="blockLabel"><span>Day</span> <select id="dob_day" name="dob_day"><option value="1">1</option></select></label>
-# 
-#     <label for="dob_year" class="blockLabel"><span>Year</span> <select id="dob_year" name="dob_year"><option value="1">1908</option></select></label>
-# 
-#   </div>
-#   
-# </div>
-
-
-# 
-# <div class="zField">
-#   <p class="label">Gender</p>
-#   <div class="zMultiField">
-#     <label class="blockLabel" for="genderf"><input type="radio" checked="checked" value="female" id="genderf" name="gender"/> Female</label>
-#     <label class="blockLabel" for="genderm"><input type="radio" value="male" id="genderm" name="gender"/> Male</label>
-#   </div>
-# </div>
-#
-
-# def radio_select(method, choices, options = {}, html_options = {})
-#         super(method, choices, options, html_options)
-#         fields = content_tag(:div,{:class => "zMultiField"}) do |field|
-#           choices.each { |choice| 
-#             radio_button("test",choice.first,choice.last)
-#           }
-#         end
-#           
-#         render_field(method, options, fields)
-#       end

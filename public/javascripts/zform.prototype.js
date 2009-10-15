@@ -24,3 +24,4 @@ zform = {
 	}
 }// Auto set on page load...
 Event.observe(window, 'load', zform.init );
+

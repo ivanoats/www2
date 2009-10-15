@@ -8,46 +8,31 @@
 .blockLabels .label{
   display:block;
   float:none;
-  margin:.3em 0; padding:0;
+  padding:0;
   line-height:100%;
-  /*width:60%;*/
-	width: 100%;
-  /* user prefs */
   font-weight:bold;
-  width:auto;
-}
-.blockLabels .label{
-  float:left;
-  margin-right:3em;
 }
 
-.blockLabels .textInput{
-  float:left;
-  /*width:60%;*/
-	width: 100%;
-  /* user prefs */
-  border:2px solid #dfdfdf;
-	margin-right: 10px;
+.blockLabels .zFieldDiv {
+  float: left;
+  width: 100%;
 }
 
-.blockLabels .selectInput{
-  float:left;
-  /*width:60%;*/
-	width: 100%;
-  /* user prefs */
-  border:2px solid #dfdfdf;
-  
+.blockLabels .zFieldDiv .textInput,
+.blockLabels .zFieldDiv .fileInput,
+.blockLabels .zFieldDiv textarea,
+.blockLabels .selectInput,
+.blockLabels .zFieldDiv .checkboxInput {
+  width: 100%;
+  float: left;
+  padding: 0px;
+  margin: 0px;
 }
 
-.blockLabels textarea{
-  display:block;
-  float:left;
-  /*width:60%;*/
-	width: 100%;
-  /* user prefs */
-  border:2px solid #dfdfdf;
-  height:12em;
+.blockLabels .selectInputInline {
+  width: auto;
 }
+
 
 .blockLabels .formHint{
   float:right;
@@ -60,12 +45,6 @@
   font-style:italic;
 }
 
-/* blockLabels esthetics */
-.blockLabels .zField{
-/*  border:1px solid #dfdfdf; border-width:1px 0;
-*/  margin-top:-1px;
-}
-
-.blockLabels .focused{
-/*  padding:7px 4px;*/
+.blockLabels .zField {
+  margin-top:-1px;
 }

@@ -1,10 +1,96 @@
-<% z_form_for :account, :url => {:action => 'update', :id => @account} do |f| %>
-  <% f.fieldset :type => "inline" do %>
-  
-  <%= f.text_field :organization %>
-  
-  <%= f.text_field :email %>
-  
-  <%= f.submit "Update"%>
-  <% end %>
-<% end %>
+
+<div id="setting_tabs">
+  <ul>
+    <li><%= link_to "Contact", "#contact_tab" %></li>
+    <li><%= link_to "Billing", "#billing_tab" %></li>
+    <li><%= link_to "Users", "#users_tab" %></li>
+
+  </ul>
+  <div id="contact_tab">
+    <%= error_messages_for [:account] %>
+    
+    <% z_form_for :account, :url => {:action => 'update', :id => @account} do |f| %>
+      <% f.fieldset :type => "inline" do %>
+
+      <%= f.text_field :organization %>
+      <%= f.text_field:phone %>
+      <%= f.text_field :email %>
+      <% f.fields_for :address_attributes, @account.address do |address|%>
+        <%= address.address :label => "Mailing Address" %>
+        <%= address.country_select :country, ['United States', 'Canada'] %>
+      <% end %>
+
+      <%= f.submit "Update", :style => 'float: right'%>
+      <% end %>
+    <% end %>
+  </div>
+  <div id="billing_tab">
+    <%= error_messages_for [:account, :billing_address, :credit_card] %>
+    <% z_form_for :account, :url => {:action => 'billing'} do |f| %>
+    <% f.fieldset :type => "block" do %>
+
+      <% unless @account.needs_payment_info? %>
+          <%= f.custom_field "Saved Credit Card", "#{@account.card_number} Expires #{@account.card_expiration}" %>
+      <% end%>
+    
+    	<% z_fields_for :credit_card do |cc| %>
+      	<% cc.multi_field 'Credit Card' do %>
+        	<% cc.row :inline => true do %>
+          	<% supported_payment_types.each do |paytype| %>
+          	  <%= cc.radio_button :type, paytype.to_s, :label => '' %>
+          	  <%= image_tag( "credit_cards/#{paytype}.png", :style => "float: left; margin-left: 5px; margin-right: 10px")%>
+          	<% end %>
+        	<% end %>
+        	<div style='clear:left'></div>
+        	<% cc.row do %>
+          	<%= cc.text_field :first_name %>          
+          	<%= cc.text_field :last_name %>
+        	<% end %>
+        	
+        	<% cc.row :inline => true do %>
+        	  <%= cc.text_field :number, :maxlength => 19 %>          
+          	
+          	<%= cc.select_month :month, :prefix => 'credit_card', :label => "Expiration " %>
+          	<%= cc.select_year :year, :start_year => Time.now.year, :end_year => Time.now.year + 10, :prefix => 'credit_card', :label => " Date", :style => "margin-left: 10px" %>
+        	  <%= cc.text_field :verification_value, :maxlength => 7, :style => 'margin-right: 10px' %>
+          	
+        	<% end %>
+      	<% end %>
+    	<% end %>
+
+      <% f.fields_for :billing_address_attributes, @account.billing_address do |address|%>
+        <%= address.address :label => "Billing Address" %>
+        <%= address.country_select :country, ['United States', 'Canada'] %>
+      <% end %>
+
+      <%= f.submit "Update", :style => 'float: right'%>
+      <% end %>
+    <% end %>
+  </div>
+  <div id="users_tab">
+    <%= button_to_remote 'Add User', :url => "" %>
+    <div id="users">
+      <%= render :collection => @account.users, :partial => 'user' %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+	$(function() {
+	  $("#setting_tabs").tabs();
+
+    $("#setting_tabs").addClass('ui-tabs-vertical ui-helper-clearfix');
+       $("#setting_tabs").removeClass('ui-widget').removeClass('ui-widget-content');
+       $('#setting_tabs .ui-tabs-panel').addClass('ui-widget ui-widget-content');
+    
+    $("#setting_tabs li").removeClass('ui-corner-top');
+    $("#setting_tabs li:first").addClass('ui-corner-tl');
+    $("#setting_tabs li:last").addClass('ui-corner-bl');
+
+	});
+	</script>
+	
+	
+<%= javascript_tag "  jQuery('.zInlineField:last-child').each(function() {
+		jQuery(this).css('margin-right', '0px');
+	});"%>

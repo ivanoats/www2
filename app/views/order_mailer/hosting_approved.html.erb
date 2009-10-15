@@ -1,0 +1,15 @@
+
+Your sustainable website is now available!  
+
+Username: <%= @hosting.username %>
+Password: <%= @hosting.password %>
+
+<%= link_to "CPanel Login", "http://www.#{@hosting.domain}/cpanel" unless @hosting.server.nil? %>
+
+Thanks!
+
+Sustainable Website Support
+
+<p style='font-size: smaller'>
+  Manage your sustainable websites from your account page.  <%= link_to "Account Login", account_url(@hosting.account) %>
+</p>

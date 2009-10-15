@@ -51,6 +51,12 @@ class Hosting < ActiveRecord::Base
     "Web Hosting #{self.username}"
   end
   
+  def domain
+    self.domains.first.name
+  rescue
+    "No Default Domain"
+  end
+  
   def generate_password
     self.password = Base64.encode64(Digest::SHA1.digest("#{rand(1<<64)}/#{Time.now.to_f}/#{Process.pid}"))[0..7]
     
@@ -78,6 +84,8 @@ private
     debugger
     
     #self.server.whm.create_account(:username => self.username, :domain => self.domain)
+    
+    OrderMailer.deliver_hosting_approved(self)
   end
   
   def suspend_cpanel_account

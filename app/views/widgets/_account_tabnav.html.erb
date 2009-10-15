@@ -1,38 +1,42 @@
-<%  
-# this partial renders a tabnav, you can call it in your views with:
-#   <%= tabnav :account % > (just the tabnav) 
-# or, if you want a boxed tabnav:
-#   <% tabnav :account do % >
-#     your html here
-#   <% end % >
-# (remove the space between % and >, we don't want to mess up your brand new tabnav :-))
-#
-# you can pass render_tabnav a few options:
-#   :generate_css => true|false #=> generates a default inline css for the tabnav, defaults to false
-#   :html => aHash #=> sets html options for the tabnav's div (es :html => {:class=> 'myCssClass', :id=>'myCssId'}) 
-#     
+<%= javascript_tag "
+$(function() { 
+$('#account_tabnav ul').addClass('ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all');
+
+$('#account_tabnav li').addClass('ui-state-default ui-corner-top').hover(
+	function() {
+		$(this).addClass('ui-state-hover');
+	},
+	function() {
+		$(this).removeClass('ui-state-hover');
+	});
+
+})
+"%>
+
+<%   
 render_tabnav :account, 
               :generate_css => false do 
-  add_tab do |i|
+  add_tab() do |i|
     i.named 'Dashboard'
     i.links_to( {:controller => 'account', :action => 'manage'} )
   end
 
-
-  add_tab do |i|
+  add_tab() do |i|
     i.named 'Settings'
     i.links_to( {:controller => 'account', :action => 'edit'} )
   end
   
-  add_tab do |i|
-    i.named 'Billing and Payments'
+  add_tab() do |i|
+    i.named 'Billing'
     i.links_to( {:controller => 'account', :action => 'payments'} )
   end
   
-  add_tab do |i|
+  add_tab() do |i|
     i.named 'Websites'
     i.links_to( {:controller => 'account', :action => 'hosting'} )
   end
 
 end 
 %>
+
+

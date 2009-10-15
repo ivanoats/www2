@@ -10,6 +10,7 @@ class AdminController < ApplicationController
     @overdue = Account.overdue
     @server = Server.find_by_id(session[:provisioning_server]) || Server.last
     @domains = Domain.ordered
+    @add_ons = AddOn.ordered
   end
   
   def provision
@@ -35,9 +36,26 @@ class AdminController < ApplicationController
       }
     end
     redirect_to :action => :index
-  #rescue => e
-  #  flash[:error] = e
-  #  redirect_to :action => :index
+  rescue => e
+   flash[:error] = e
+   redirect_to :action => :index
+  end
+  
+  def complete
+    if request.post? && params[:add_on]
+      @add_on = AddOn.find(params[:add_on].keys)
+      @add_on.each { |add_on| 
+        if add_on.product.recurring_month == 0
+          add_on.completed!
+        else
+          add_on.activate!
+        end
+      }
+    end
+    redirect_to :action => :index
+  rescue => e
+    flash[:error] = e
+    redirect_to :action => :index
   end
 
 end

@@ -38,6 +38,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :pages
   map.resources :accounts
   map.resources :domains
+  map.resources :orders
   
   map.page_permalink '/page/:permalink', :controller => 'pages', :action => 'permalink'
   

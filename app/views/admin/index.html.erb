@@ -8,9 +8,11 @@
 
   <% render :partial => 'server_details'%>
 
-  <table class='model_table' style='font-size: 90%'>
+  <table class='model_table' id='hosting_table' style='font-size: 90%'>
     <tr>
-      <th></th>
+      <th style='text-align: right'><%= check_box_tag 'select_all_hosting' %>
+        <%= observe_field 'select_all_hosting',  :function => "bxs = jQuery('#hosting_table input::checkbox'); value = !jQuery(bxs[1]).is(':checked'); bxs.attr('checked',value);" %>
+      </th>
       <th>Name</th>
       <th>Purchase Date</th>
       <th>Account</th>
@@ -61,9 +63,11 @@
 <% unless @overdue.empty? %>
 <br/>
   <h2>Overdue Accounts</h2>
-  <table class='model_table' style='font-size: 90%'>
+  <table class='model_table' id="account_table" style='font-size: 90%'>
     <tr>
-      <th></th>
+      <th style='text-align: right'><%= check_box_tag 'select_all_accounts' %>
+        <%= observe_field 'select_all_accounts',  :function => "bxs = jQuery('#account_table input::checkbox'); value = !jQuery(bxs[1]).is(':checked'); bxs.attr('checked',value);" %>
+      </th>
       <th>Name</th>
       <th>Balance Due</th>
       <th>Due Date</th>
@@ -92,9 +96,12 @@
   <h2>List of New Domains</h2>
   
   <%= form_tag :action => 'approve'%>
-  <table class='model_table' style='font-size: 90%'>
+  <table class='model_table' id='domain_table' style='font-size: 90%'>
     <tr>
-      <th></th>
+      <th style='text-align: right'><%= check_box_tag 'select_all_domains' %>
+        <%= observe_field 'select_all_domains',  :function => "bxs = jQuery('#domain_table input::checkbox'); value = !jQuery(bxs[1]).is(':checked'); bxs.attr('checked',value);" %>
+      </th>
+      
       <th>Name</th>
       <th>Purchase Date</th>
       <th>Account</th>
@@ -105,7 +112,7 @@
       <td><%= check_box_tag "domain[#{domain.id}]" %></td>
       <td style='text-align: left'><%= domain.name %></td>
       <td><%= domain.created_at.to_formatted_s :human_date %></td>
-      <td><%= link_to domain.account.organization, domain.account %></td>
+      <td><%= link_to domain.account.organization, domain.account if domain.account %></td>
       <td><%= domain.state.capitalize %></td>
     </tr>  
   <% end %>
@@ -115,5 +122,38 @@
 <% else %>
   <div class='message'>
     No new domains.  
+  </div>
+<% end %>
+
+<% unless @add_ons.empty? %>
+  <h2>List of New Add Ons</h2>
+  
+  <%= form_tag :action => 'complete'%>
+  <table class='model_table' id='add_on_table' style='font-size: 90%'>
+    <tr>
+      <th style='text-align: right'><%= check_box_tag 'select_all_add_ons' %>
+        <%= observe_field 'select_all_add_ons',  :function => "bxs = jQuery('#add_on_table input::checkbox'); value = !jQuery(bxs[1]).is(':checked'); bxs.attr('checked',value);" %>
+      </th>
+      
+      <th>Name</th>
+      <th>Purchase Date</th>
+      <th>Account</th>
+      <th>Status</th>
+    </tr>
+  <% @add_ons.each do |add_on| %>
+    <tr class='<%= cycle("odd","even")%>'>  
+      <td><%= check_box_tag "add_on[#{add_on.id}]" %></td>
+      <td style='text-align: left'><%= add_on.product.name %></td>
+      <td><%= add_on.created_at.to_formatted_s :human_date %></td>
+      <td><%= link_to add_on.account.organization, add_on.account if add_on.account %></td>
+      <td><%= add_on.state.capitalize %></td>
+    </tr>  
+  <% end %>
+  </table>
+  <%= submit_tag "Mark Completed"%>
+</form>
+<% else %>
+  <div class='message'>
+    No new add ons.  
   </div>
 <% end %>

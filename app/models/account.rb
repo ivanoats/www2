@@ -21,8 +21,7 @@ class Account < ActiveRecord::Base
   belongs_to :address
   belongs_to :billing_address, :class_name => "Address"
   
-  accepts_nested_attributes_for :address
-  accepts_nested_attributes_for :billing_address
+  accepts_nested_attributes_for :address, :billing_address
   
   named_scope :active, :conditions => ["state = ?",'active']
   named_scope :due, :conditions => ['balance < ? and last_payment_on = ?',0,1.month.ago.to_date]
@@ -174,6 +173,16 @@ class Account < ActiveRecord::Base
     (self.last_payment_on + 1.month).to_date
   end
   
+  def name
+    "#{self.first_name} #{self.last_name}"
+  end
+  
+  def default_email
+    return self.email unless self.email.blank?
+    self.users.first.email
+  rescue
+    "noemail@sustainablewebsites.com"
+  end
   
 protected
   

@@ -12,34 +12,24 @@
   font-weight:bold;
 }
 
-.inlineLabels .textInput,
-.inlineLabels .fileInput{
-  float:left;
-  /* user prefs */
-  width:68%;
-  border:2px solid #e1dbce;
-}
-.inlineLabels .fileInput > input{
+.inlineLabels .zFieldDiv {
+  float: left;
+  width: 69%;
 }
 
-.inlineLabels .selectInput{
-  float:left;
-  /* user prefs */
-  width:69%;
-  border:2px solid #b7ada1;
+.inlineLabels .zFieldDiv .textInput,
+.inlineLabels .zFieldDiv .fileInput,
+.inlineLabels .zFieldDiv textarea,
+.inlineLabels .selectInput,
+.inlineLabels .zFieldDiv .checkboxInput {
+  width: 100%;
+  float: left;
+  padding: 0px;
+  margin: 0px;
 }
 
-.inlineLabels textarea{
-  float:left;
-  width:68%;
-  /* user prefs */
-  border:2px solid #dfdfdf;
-  height:12em;
-}
-
-.inlineLabels .checkboxInput{
-  float:left;
-  /* user prefs */
+.inlineLabels .selectInputInline {
+  width: auto;
 }
 
 .inlineLabels .formHint{

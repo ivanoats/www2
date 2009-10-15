@@ -8,11 +8,11 @@
     <td><%= @account.next_payment_on.to_formatted_s :human_date %></td>
     <td style='text-align: left'>
       <% if @account.needs_payment_info? %>
-        No credit card on file, <%= link_to "setup billing", {:action => 'billing'} %>.
+        No credit card on file, <%= link_to "setup billing", {:action => 'edit', :anchor => 'billing_tab'} %>.
       <% else %>
         Credit Card <%= @account.card_number %> <br/>
         Expires <%= @account.card_expiration %> <br/>
-        <%= link_to "Update my billing information", {:action => 'billing'} %>
+        <%= link_to "Update my billing information", {:action => 'edit', :anchor => 'billing_tab'} %>
       <% end %>
     </td>
     <td><% if @account.balance > 0 %>
@@ -22,16 +22,15 @@
     <% end %></td>
   </tr>
 </table>
-
-<%= link_to "Make Payment", {:action => 'pay'}%>
-<% unless @account.transactions.empty? %>
+<%= link_to "Make Payment", {:action => 'pay'} if false %>
+<% unless @history.empty? %>
 <table class='model_table' style='font-size: 90%'>
   <tr>
     <th style='width: 25%;'>Date</th>
     <th>Description</th>
     <th style='width: 15%;'>Amount</th>
   </tr>  
-<% @account.transactions.each do |item| %>
+<% @history.each do |item| %>
 
   <tr class='<%= cycle("odd","even")%>'>
     <td><%= item.created_at.to_formatted_s :human_date %></td>

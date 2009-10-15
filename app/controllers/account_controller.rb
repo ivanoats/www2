@@ -6,7 +6,7 @@ class AccountController < ApplicationController
   before_filter :require_payment_information, :only => :pay
   
   def index
-    redirect_to :action => :manage
+    render :action => "manage"
   end
   
   def new
@@ -32,33 +32,34 @@ class AccountController < ApplicationController
   end
   
   def users
-    
   end
 
   def manage
-    
   end
   
   def edit
-    
   end
+
+  def payments
+    @history = @account.transactions
+  end
+  
+  def hosting
+    @hostings = @account.hostings.visible.all(:include => {:product => nil, :add_ons => :product, :domains => :product})
+  end
+  
   
   def update
     respond_to do |format|
       if @account.update_attributes(params[:account])
         flash[:notice] = 'Account was successfully updated.'
-        format.html { redirect_to({:action => 'manage'}) }
+        format.html { redirect_to({:action => 'edit'}) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @redirect.errors, :status => :unprocessable_entity }
       end
     end
-  end
-  
-  
-  def payments
-    @history = @account.transactions
   end
   
   def order
@@ -76,47 +77,39 @@ class AccountController < ApplicationController
     end
   end
   
-  def hosting
-  end
   
   def billing
     @address = @account.billing_address || @account.build_billing_address
     @credit_card = CreditCard.new(params[:credit_card])
-    
     if request.post?
-      
       if params[:paypal].blank?
         if @account.update_attributes(params[:account]) && @address.update_attributes(params[:address]) && @credit_card.valid?          
           if @account.store_card(@credit_card, :ip => request.remote_ip)
             flash[:notice] = "Your billing information has been updated."
-            redirect_to :action => "billing"
           else
             flash[:notice] = "Failed to store credit card."
           end
         end
       else
         if redirect_url = @subscription.start_paypal(paypal_account_url, billing_account_url)
-          redirect_to redirect_url
+          redirect_to redirect_url and return
         end
       end
     end
+    redirect_to :action => 'edit', :anchor => 'billing_tab'
   end
   
   def switch_account
+    
     session[:account] = params[:id] if current_user.has_role?('Administrator') || current_user.accounts.include?( Account.find_by_id(params[:id]))
     render :update do |page|
-      page.redirect_to :action => :manage
+      page.redirect_to(params[:return] || {:action => :manage}) 
     end
   end
   
-private
+protected
 
-  def require_account
-    @account = Account.find_by_id(session[:account]) || current_user.accounts.first
-    redirect_to root_url and flash[:error] = "An account is required to view this page" if @account.nil?
-  end
-  
   def require_payment_information
-    redirect_to :action => "billing" and flash[:error] = "Billing Information required" if @account.needs_payment_info?
+    redirect_to :action => 'edit', :anchor => 'billing_tab' and flash[:error] = "Billing Information required" if @account.needs_payment_info?
   end
 end

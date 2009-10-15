@@ -41,16 +41,16 @@ h3 a {color: #000000;} /* blog titles */
 h3 a:hover {background: #eeeeee;}
 strong {font-weight: bold;}
 
-#content p {margin:0 0 1em;}
-/* #content p img {margin:1.5em 1em 1.5em 0;padding:0;} */
-#content p img.right {float:right;margin:1.5em 0 1.5em 1.5em;}
-#content a, #content a:focus,#content a:hover {outline:0; /* removes outline */}
-#content a {text-decoration:none;}
-/*#content a:hover {text-decoration: underline;}
+.text_content p {margin:0 0 1em;}
+/* .text_content p img {margin:1.5em 1em 1.5em 0;padding:0;} */
+.text_content p img.right {float:right;margin:1.5em 0 1.5em 1.5em;}
+.text_content a, .text_content a:focus,.text_content a:hover {outline:0; /* removes outline */}
+.text_content a {text-decoration:none;}
+/*.text_content a:hover {text-decoration: underline;}
 */blockquote {margin:1.5em;color:#666;font-style:italic;}
 img {border:none;}
-#content ul li {list-style: disc outside;}
-#content ol li {list-style: decimal outside;}
+.text_content ul li {list-style: disc outside;}
+.text_content ol li {list-style: decimal outside;}
 a img {border: none;}
 
 .clearfix:after {content: ".";display: block;clear: both;visibility: hidden;line-height: 0;height: 0;}
@@ -234,6 +234,22 @@ table.model_table {
   margin:1em auto;
     border-collapse:collapse;
   }
+
+table.model_table td {
+  background-color:white;
+}
+
+table.model_table tr.important td {
+  color:white;
+  background-color:#84CC7D;
+}  
+
+table.model_table tr.blank td {
+  color:transparent;
+  background-color:transparent;
+  border:none;
+}
+
 table.model_table tr.odd td {
   background:#f7fbff
   }
@@ -257,6 +273,9 @@ table.model_table th {
   border-bottom: 1px solid #e5eff8;
   border-left:1px solid #e5eff8;
   padding:.3em 1em;
+  
+  background-color: rgb(50, 126, 4);
+  color: white;
   }             
 table.model_table thead th {
   background:#f4f9fe;
@@ -267,6 +286,8 @@ table.model_table thead th {
 table.model_table tfoot th {
   text-align:center;
   background:#f4f9fe;
+  background-color: rgb(50, 126, 4);
+  color: white;
   } 
 table.model_table tfoot th strong {
   font:bold 1.2em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
@@ -279,3 +300,14 @@ table.model_table tfoot th em {
   font-size: 1.1em;
   font-style: normal;
   }
+  
+/* Less Ugly Tabs */
+
+.ui-tabs, .ui-tabs .ui-tabs-nav {
+   border: none;
+   background: none;
+}
+.ui_tabs .ui-widget-content {
+   border: 1px solid #DDDDDD;
+   background-color: #F9F9F9;
+}

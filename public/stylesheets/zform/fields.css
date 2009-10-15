@@ -9,20 +9,17 @@
 	float: left;
 	width: 100%;
 	margin-bottom: 5px;
-/*	margin-right: 10px;*/
+	margin-right: 5px;
 }
 
 .zInlineLabel {
 	display:block;
-	float: left;
 	font-weight: normal;
 	font-size: 10pt;
 	color: #444;
 }
 
-.zInlineField label { 
-/*	float: none!important;
-*/
+.zInlineField label  {
 	display:block;
 	float: left;
 	font-weight: normal;
@@ -30,19 +27,22 @@
 	color: #444;
 }
 
-.inlineLabels select {
-	float: left;
-}
 
 .zInlineField input, .zInlineField select {
 	clear: left;
 	width: 100%;
 }
 
+.zInlineField .zFieldDiv {
+  width: 100%;
+}
+
 .inlineLabels .zMultiField .textInput,
 .inlineLabels .zMultiField .fileInput {
 	width: 100%;
 }
+
+/* Inline Fields and Rows */
 
 .zInlineRow { width: 100%; clear: left;}
 
@@ -75,7 +75,8 @@
 	margin-right: 5%;
 }
 
-/* Phone number zMultiFieldContainer custom styles */
+/* Custom Data Fields */
+
 .zForm .inlineLabels .zMultiFieldContainer .blockLabel #phone_ccode.textInput,
 .zForm .inlineLabels .zMultiFieldContainer .blockLabel #phone_area.textInput{ width: 40px; }
 .zForm .inlineLabels .zMultiFieldContainer .blockLabel #phone_area.textInput{ width: 40px; }
@@ -88,8 +89,5 @@
 .zForm .inlineLabels .first_name { width: 48%;}
 .zForm .inlineLabels .last_name { width: 48%;}
 /*.zForm .inlineLabels .name { width: 350px;}*/
-
-legend { border-bottom: 1px solid #837563; width: 100%; margin-top: 20px;}
-.zForm fieldset { margin-top: 10px;}
 
 .zForm .textInput.fullWidth { width: 650px;}

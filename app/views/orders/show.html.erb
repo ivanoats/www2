@@ -1,0 +1,54 @@
+
+<table  style='width: 100%'>
+  <tr>
+    <th><h2>Bill To</h2></th>
+    <th style='width: 200px; text-align: right;'><h1>Order No. <%= @order.id %></h1></th>    
+  </tr>
+  <tr>
+    <td>
+      <%= content_tag :p, @order.account.name %>
+      <%= display_address @order.account.billing_address %>
+    </td>
+    <td style='text-align: right;'>
+      Status: <%= @order.state.humanize.upcase %><br/>
+      <%= @order.created_at.to_formatted_s :human_date %>
+      
+    </td>
+  </tr>
+  <tr><td colspan="2" class="bar_separator"></td></tr>
+</table>
+  
+  
+  
+  
+<% unless @order.purchases.empty? %>
+<table class='model_table' style='font-size: 90%'>
+  <tr>
+    <th style=''>Name</th>
+    <th style='width: 120px'>Cost</th>
+
+  </tr>  
+<% @order.purchases.all(:conditions => "parent_id IS NULL").each do |item| %>
+
+  <tr class='important'>
+    <td style='text-align: left'><%= item.product.name %></td>
+    <td><%= number_to_currency item.product.cost %> <%= item.product.period_in_words %></td>
+  </tr>  
+  <% for child in item.children do %>
+    <tr class='even'>
+      <td style='text-align: left'><%= child.product.name %></td>
+      <td><%= number_to_currency child.product.cost %> <%= child.product.period_in_words %></td>
+    </tr>
+  <% end %>
+  <tr class='blank'>
+    <td colspan='5'></td>
+  </tr>
+<% end%>
+
+<tr class='important'>
+  <td style='text-align: right'>Total:</td>
+  <td><%= number_to_currency @order.total_charge %></td>
+
+</table>
+<% end %>
+

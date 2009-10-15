@@ -2,7 +2,7 @@
 <% if @account.balance >= 0 %>
   <div class='message'>
   <h3>No payment due  </h3>
-  Thanks for staying on top of that!
+  Thanks for staying current.  
   </div>
 <% else %>
   <div class='alert'>
@@ -11,9 +11,9 @@
   </div>
 <% end %>
 
-<% if @account.needs_payment_info? %>
+<% if  @account.needs_payment_info? %>
 <div class='alert'>
   <h3>Billing Info Requires Update</h3>
-  <%= link_to "Click here to update your credit card for automated billing.  ", :action => :billing %>
+  <%= link_to "Click here to update your credit card for automated billing.  ", :action => :edit, :anchor => 'billing_tab' %>
 </div>
 <% end %>

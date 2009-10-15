@@ -14,7 +14,8 @@
      	  <td <%= "class='#{sort_class}'" if !sort_class.blank? %>>
   		   <%= sort_link_helper @action, heading[0], heading[1], params %>
   		  </td>
-  		<% end %>   
+  		<% end %>
+  		<td><%= sort_link_helper @action, "Balance", "balance", params %></td>   
   		<td></td>
   		<td></td>
       <td></td>
@@ -33,6 +34,7 @@
                <%= object.send(heading[1]) %>
              </td>
          <% end %>
+           <td><%= number_to_currency object.balance %>
            <td><%= link_to 'Show', object %></td>
            <td><%= link_to 'Edit', eval("edit_#{object.class.name.underscore}_path(object)") %></td>
            <td><%= link_to 'Destroy', object, :confirm => 'Are you sure?', :method => :delete %></td>

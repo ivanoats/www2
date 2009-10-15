@@ -1,8 +1,7 @@
+
 #content { 
   float: none;
-  border: 1px solid #dedede; 
-  font-size: 1.2em; 
-  border-width: 0 1px 0 0;  
+  border-width: 0;  
   width: auto;
 }
 
@@ -54,67 +53,15 @@
 
 /* Tabs */
 
-.account_tabnav {
-	color: #000;
-	border-bottom: 2px solid #648c33;
-	margin: 5px 0px 0px 0px;
-	padding: 0px;
-	z-index: 1;
-	padding-left: 10px;
-	font-size: 1.2em; }
-
-.account_tabnav ul {
-	margin: 0px;
-	padding: 0px;
-}
-
-.account_tabnav li {
-	display: inline;
-	overflow: hidden;
-	list-style-type: none; }
-
-.account_tabnav li span.disabled {
-  color: #888888;
-  background: #FAFAFA;
-  border: 2px solid #DDDDDD;
-  border-bottom: none;
-  padding: 2px 5px 0px 5px;
-  margin: 0;
-	text-decoration:none;}
-
-
-.account_tabnav a, account_tabnav a.active {
-	color: #000000;
-	border: 2px solid #648c33;
-	padding: 2px 5px 0px 5px;
-	margin: 0;
-	text-decoration: none; }
-
-.account_tabnav a.active {
-	background: #FFFFFF;
-	border-bottom: 3px solid #FFFFFF; }
-
-.account_tabnav a:hover {
-	color: #FFFFFF;
- }
-
-.account_tabnav a:visited {
-	color: #000000; }
-
-.account_tabnav a.active:hover {
-	background: #FFFFFF;
-	color: #000000; }
-
-.account_tabnav_content {
-	background: #FFFFFF;
-	padding: 20px;
-	border: 2px solid #648c33;
-	border-top: none;
-	z-index: 2;
-}
-
-/* */
 
 .actions {
   margin: 5px 0;
 }
+
+
+.ui-tabs .ui-tabs-panel {
+  border:1px solid #DFD9C3;
+  background:#F5F3E5 url(jqueryui/south-street/images/ui-bg_highlight-hard_100_f5f3e5_1x100.png) repeat-x scroll 50% top;
+  padding: 5px;
+}
+

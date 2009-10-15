@@ -79,7 +79,7 @@ module Widgets
         if tab.disabled?
           tab_html[:class] << ' disabled'
         elsif tab.highlighted?(params)
-          tab_html[:class] << ' active'
+          tab_html[:class] << ' active ui-state-active'
         end
         li_options[:class] = tab_html[:class]
 
@@ -87,10 +87,10 @@ module Widgets
         if tab.disabled? || (tab.link.empty? && tab.remote_link.nil?)
           concat content_tag('span', tab.name, tab_html)
         elsif !tab.link.empty?
-          concat link_to(tab.name, tab.link, tab_html)
+          concat link_to(tab.name, tab.link, {})
         elsif tab.remote_link
-          success = "document.getElementsByClassName('active', $('" + @_tabnav.html[:id]+ "')).each(function(item){item.removeClassName('active');});"
-          success += "$('#{tab.html[:id]}').addClassName('active');"
+          success = "document.getElementsByClassName('active', $('" + @_tabnav.html[:id]+ "')).each(function(item){item.removeClassName('active').removeClassName('ui-state-active');});"
+          success += "$('#{tab.html[:id]}').addClassName('active').addClassName('ui-state-active');"
           # success += "alert(this);"
 
           remote_opts = {:update => @_tabnav.html[:id] + '_content',

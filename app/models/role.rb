@@ -16,6 +16,7 @@ class Role < ActiveRecord::Base
     Role.find_or_create_by_name("Customer")
   end
   
+  
   def self.staff
     Role.find_or_create_by_name("Staff")
   end

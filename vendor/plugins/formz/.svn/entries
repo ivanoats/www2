@@ -1,15 +1,15 @@
 8
 
 dir
-155
-svn+ssh://padraic@eleanor.homeunix.net/var/svn/cause_on_rails/vendor/plugins/formz
-svn+ssh://padraic@eleanor.homeunix.net/var/svn
+160
+svn+ssh://deploy@67.23.30.253/home/deploy/subversion/trunk/cause_on_rails/vendor/plugins/formz
+svn+ssh://deploy@67.23.30.253/home/deploy/subversion
 
 
 
-2009-04-07T19:55:29.816282Z
-148
-padraic
+2009-09-30T00:39:39.082452Z
+64
+deploy
 
 
 svn:special svn:externals svn:needs-lock
@@ -24,7 +24,7 @@ svn:special svn:externals svn:needs-lock
 
 
 
-a9ad320c-3d93-4525-b223-b108e17e30d5
+74516202-89b3-4150-944a-df1d8e90d9fa
 
 test
 dir
@@ -41,11 +41,11 @@ file
 
 
 
-2007-09-07T14:35:11.000000Z
+2009-05-29T19:13:06.000000Z
 958c44c1017c41c7e463ed70c04e6d51
-2009-03-24T16:01:48.133682Z
-26
-padraic
+2009-09-04T20:42:15.186450Z
+1
+deploy
 
 init.rb
 file
@@ -53,11 +53,11 @@ file
 
 
 
-2009-03-21T20:43:17.000000Z
+2009-09-25T05:14:26.000000Z
 1f2e1b37167369be32dc624c734b8e57
-2009-03-24T16:01:48.133682Z
-26
-padraic
+2009-09-04T20:42:15.186450Z
+1
+deploy
 
 tasks
 dir
@@ -71,11 +71,11 @@ file
 
 
 
-2008-12-17T17:25:57.000000Z
+2009-05-29T19:13:06.000000Z
 13af69f73409c53e01328cd3b2147bea
-2009-03-24T16:01:48.133682Z
-26
-padraic
+2009-09-04T20:42:15.186450Z
+1
+deploy
 
 resources
 dir
@@ -86,11 +86,11 @@ file
 
 
 
-2007-09-07T14:35:11.000000Z
+2009-05-29T19:13:06.000000Z
 2a5fc883fe7f8dfe22ced24643d59ad4
-2009-03-24T16:01:48.133682Z
-26
-padraic
+2009-09-04T20:42:15.186450Z
+1
+deploy
 
 README
 file
@@ -98,9 +98,9 @@ file
 
 
 
-2009-03-26T08:02:41.000000Z
+2009-05-29T19:13:06.000000Z
 e191c4ce7234d7889ca66890e5d79458
-2009-03-26T09:10:48.922014Z
-49
-padraic
+2009-09-04T20:42:15.186450Z
+1
+deploy
 

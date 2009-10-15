@@ -29,4 +29,8 @@ config.after_initialize do
 end
 
 
+class ActionMailer::Base
+  default_url_options[:host] = "staging.sustainablewebsites.com"
+end
+
 SslRequirement.disable_ssl_check = true

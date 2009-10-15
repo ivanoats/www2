@@ -32,6 +32,9 @@ FileUtils.cp(
   :verbose => true
 )
 
+p ''
+p '========== Installation of Uni Form Patch is completed =========='
+p ''
 
 #####################################
 # Show the README text file

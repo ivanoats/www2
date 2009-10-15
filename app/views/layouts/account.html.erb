@@ -7,8 +7,9 @@
 	<%= page_title %> 
 	<%= meta "description", meta_description %> 
 	<%= meta "keywords", meta_keywords %>
+	<%= stylesheet_link_tag 'jqueryui/south-street/jquery-ui-1.7.2.custom.css', 'common', 'account', "pagination", "users", formz_stylesheets, 'live-search' ,:cache => 'account_cache' %>
 	<%= stylesheet_snippets %>
-	<%= stylesheet_link_tag 'common', 'account', "pagination", "users", formz_stylesheets, 'live-search', :cache => 'account_cache' %>
+
 	<!--[if lt IE 8]>
 		<%= stylesheet_link_tag "ie", :cache => true %>
 	<![endif]-->
@@ -27,44 +28,47 @@
   <div id="wrapper">
   <div id="container">
   	<div id="container-inner">
-  	<div id="header">
-  		<a href="/"><img src="/images/logo.gif" alt="Logo" /></a>
-  		<div id="top">
-  			<p id="top_login"><a href="/support">Click here for <strong>Help</strong></a></p>
-  			<p id="top_twitter">We are a 100% Carbon Neutral Web Hosting Community</p>
-  		</div><!--/top-->
-  		<%= render :partial => 'layouts/menu' %>
-  	</div><!--/header-->
+  	  <div id="header">
+    		<a href="/"><img src="/images/logo.gif" alt="Logo" /></a>
+    		<div id="top">
+    			<p id="top_login"><a href="/support">Click here for <strong>Help</strong></a></p>
+    			<p id="top_twitter">We are a 100% Carbon Neutral Web Hosting Community</p>
+    		</div><!--/top-->
+    		<%= render :partial => 'layouts/menu' %>
+    	</div><!--/header-->
     <div id="layout">
-  	<% if @splash_on then %>
-	<div id="splash-wrap">
-  	<div id="splash">
-  		<ul>
-  			<li id="signup"><a href="/order"></a></li>
-  			<li id="learn_more"><a href="/green-web-hosting-services"></a></li>
-  		</ul>
-  	</div><!--/splash-->
-	</div><!--/splash-wrap-->
-  	<% end #if splash on %>
+<% if @splash_on then %>
+    	<div id="splash-wrap">
+      	<div id="splash">
+      		<ul>
+      			<li id="signup"><a href="/order"></a></li>
+      			<li id="learn_more"><a href="/green-web-hosting-services"></a></li>
+      		</ul>
+      	</div><!--/splash-->
+    	</div><!--/splash-wrap-->
+<% end #if splash on %>
       <%= content_tag(:div, '', :id => 'dialog')%>
   	  <%= flash_messages %>
   	  <div style='float: right'>
       <% if current_user.has_role?('Administrator') %>
         All accounts:  <%= select_tag :switch_account, options_from_collection_for_select(Account.active, :id, :organization, @account.id) %>
-        <%= observe_field :switch_account, :url => {:controller => :account, :action => :switch_account}, :with => :id %>
+        <%= observe_field :switch_account, :url => {:controller => :account, :action => :switch_account, :return => request.request_uri}, :with => :id %>
         
       <% elsif @account && current_user.accounts.size > 1 %>
         Switch to another account <%= select_tag :switch_account, options_from_collection_for_select(current_user.accounts, :id, :organization, @account.id) %>
-        <%= observe_field :switch_account, :url => {:controller => :account, :action => :switch_account}, :with => :id %>
+        <%= observe_field :switch_account, :url => {:controller => :account, :action => :switch_account, :return => request.request_uri}, :with => :id %>
       <% end %>
       </div>
       <h2 style='float: left; margin: 0;'><%= @account.organization %></h2>
       <div style='clear: both;'></div>
-      <% tabnav :account do %>
-        <div id="content">
-      	<%= yield %>
-      	</div>
-      <% end %>
+      <div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+        <% tabnav :account do %>
+          <div class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+      	    <div id="content">
+      	      <%= yield %>
+      	    </div>
+      	  </div>
+        <% end %>
       </div>
   	</div>
   </div><!--/container-->

@@ -1,0 +1,5 @@
+<div class='users'>
+  <%= user.name %>
+  <%= user.email %>
+  <%= link_to_remote "Remove" unless user == current_user %>
+</div>

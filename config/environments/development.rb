@@ -8,6 +8,7 @@ config.cache_classes = false
 # Log error messages when you accidentally call methods on nil.
 config.whiny_nils = true
 
+
 # Show full error reports and disable caching
 config.action_controller.consider_all_requests_local = true
 config.action_view.debug_rjs                         = true
@@ -33,4 +34,9 @@ end
 
 config.after_initialize do
   ActiveMerchant::Billing::Base.gateway_mode = :test
+end
+
+class ActionMailer::Base
+default_url_options[:host] = "localhost"
+default_url_options[:port] = 3000
 end

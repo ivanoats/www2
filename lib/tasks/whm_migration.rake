@@ -240,16 +240,18 @@ namespace :whm do
              :whmaphostingorder => order,
              :product => @product 
           )
-          @hosting.domains << Domain.new(:name => order.domain_name, :product => Product.free_domain)
-          
+          domain = Domain.new(:name => order.domain_name, :product => Product.free_domain, :purchased => false, :account => @account)
+          @hosting.domains << domain
+          domain.activate!
           
            @account.hostings << @hosting
            order.addon_choices.split('|').each {|id|
              add_on = Whmapaddon.find(id)
-             @add_on = AddOn.new(:hosting => @hosting, :product => Product.addons.find(:first, :conditions => {:name => add_on.addon_name, :description => add_on.addon_description}))
+             @add_on = AddOn.new(:hosting => @hosting, :product => Product.addons.find(:first, :conditions => {:name => add_on.addon_name, :description => add_on.addon_description}), :account => @account)
              throw "Addon not found for #{add_on.addon_name} #{id}" if @add_on.product.nil?
              
              @account.add_ons << @add_on
+             @add_on.activate!
            }
            
            order.whmapinvoice.each { |invoice|

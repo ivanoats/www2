@@ -9,7 +9,7 @@ class AccountsController < ApplicationController
   
   def index
     get_sorted_objects(params, :per_page => 50, :table_headings => [
-    ['Organization', 'organization'], ['Status','state'], ['Balance','balance'],['Email','email']])
+    ['Organization', 'organization'], ['Status','state'],['Email','email']])
     
   end
   

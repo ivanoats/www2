@@ -104,7 +104,6 @@ class GreenHostingStoreController < ApplicationController
     @address = @account.billing_address || @account.build_billing_address
     @credit_card = CreditCard.new(params[:credit_card])
 
-    
     if request.post?
       if params[:use_existing_credit_card]
         redirect_to :action => "confirmation"
@@ -130,7 +129,12 @@ class GreenHostingStoreController < ApplicationController
     @order = Order.from_cart(@cart)
     @order.account = @account
     if @order.save 
-      redirect_to :action => 'thanks' and return if @account.charge_order(@order)
+      
+      if @account.charge_order(@order)
+        OrderMailer.deliver_complete(@order, current_user)
+        redirect_to :action => 'thanks'
+        return
+      end
     end
     @sidebar = ''
     render :action => 'confirmation'
