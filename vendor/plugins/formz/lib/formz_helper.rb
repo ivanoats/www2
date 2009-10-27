@@ -6,7 +6,7 @@ module Formz
     end
     
     def formz_javascripts
-      "zform.prototype.js"
+      ActionView::Helpers::PrototypeHelper.const_defined?("JQCALLBACKS") ? "zform.jquery.js" : "zform.prototype.js"
     end
     
     [:form_for, :fields_for, :form_remote_for, :remote_form_for].each do |meth|

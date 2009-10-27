@@ -4,7 +4,13 @@ class OrderMailer < ActionMailer::Base
     setup_email
     subject    "#{APP_CONFIG[:site_name]} Order ##{order.id} Receipt"
     recipients user.email || order.account.default_email
-    bcc APP_CONFIG[:admin_email]
+    body[:order] = order
+  end
+  
+  def admin_notification(order)
+    setup_email
+    subject    "#{APP_CONFIG[:site_name]} New Order ##{order.id} Purchased"
+    recipients APP_CONFIG[:admin_email]
     body[:order] = order
   end
   

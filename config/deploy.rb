@@ -54,10 +54,12 @@ after "deploy:update_code","deploy:symlink_configs"
 #############################################################
 
 set :scm, "git"
-set :repository, "ssh://git@sw.unfuddle.com/sw/www2.git"
+#set :repository, "ssh://git@sw.unfuddle.com/sw/www2.git"
+set :local_repository, "ssh://deploy@sustainablewebsites.com/var/git/www2"
+set :repository, "file:///var/git/www2"
 
 set :branch, "master"
-set :deploy_via, :remote_cache
+#set :deploy_via, :remote_cache
 set :ssh_options, {:port => 28822 }
 
 set :git_enable_submodules, 1

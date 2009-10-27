@@ -1,0 +1,41 @@
+<h2>A new order has been completed</h2>
+
+View the order <%= link_to "here", order_url(@order,:token => @order.token)%>
+
+Approve the purchases <%= link_to "here", admin_url %>
+
+<p>
+<b>Order No. </b><%= @order.id %><br/>
+<b>Billed To: </b><br/>
+<br/>
+  <%= @order.account.name %>
+  <%= @order.account.billing_address.street %><br/>
+  <%= @order.account.billing_address.city %>, <%= @order.account.billing_address.state %> <%= @order.account.billing_address.zip %>
+</p>
+
+<table width='100%'>
+  <tr>
+    <th></th><th style='width: 100px'></th>
+  </tr>
+<% @order.purchases.all(:conditions => "parent_id IS NULL").each do |item| %>
+  <tr>
+    <td><%= item.product.name %></td><td><%= number_to_currency item.product.cost %> <%= item.product.period_in_words %></td>
+  </tr>
+  <%- for child in item.children do %>
+  <tr>
+    <td><%= child.product.name -%></td><td><%= number_to_currency child.product.cost %> <%= child.product.period_in_words -%></td>
+  </tr>
+  <% end %>
+<% end%>
+<tr>
+  <td>Total </td>
+  <td><%= number_to_currency @order.total_charge %></td>
+
+</tr>
+</table>
+
+
+
+
+
+

@@ -19,6 +19,7 @@
   		<% end %>   
   		<td></td>
       <td></td>
+      <td></td>
 
       <td></td>
   	</tr>    
@@ -40,6 +41,7 @@
            <td><%= link_to 'Show', object %></td>
            <% end %>
            <td><%= link_to 'Hostings', {:action => 'hostings', :id => object} %></td>
+           <td><%= link_to 'Packages', {:action => 'packages', :id => object} %></td>
 
            <td><%= link_to 'Edit', eval("edit_#{object.class.name.underscore}_path(object)") %></td>
            <td><%= link_to 'Destroy', object, :confirm => 'Are you sure?', :method => :delete %></td>

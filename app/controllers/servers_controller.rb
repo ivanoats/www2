@@ -18,6 +18,17 @@ class ServersController < ApplicationController
   def hostings
     load_object
     @accounts = @server.whm.accounts
-    @packages = @server.whm.packages    
+  rescue Whm::CommandFailedError => e
+    flash[:error] = "Failed to load whm accounts because whm returned '#{e.to_s}'"
+    @accounts = []
+  end
+  
+  def packages
+    load_object
+    @packages = @server.whm.packages   
+     
+  rescue Whm::CommandFailedError => e
+    flash[:error] = "Failed to load whm packages because whm returned '#{e.to_s}'"
+    @packages = []
   end
 end

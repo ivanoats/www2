@@ -1,0 +1,19 @@
+<h1>Packages</h1>
+<% unless @packages.empty? %>
+<table class='model_table'>
+  <tr>
+    <% package_attributes(@packages.first).each_pair do |attribute,value| %>
+      <th><%= attribute %></th>
+    <% end %>
+  </tr>
+  <% @packages.each do |package| %>
+  <tr class='<%= cycle('odd','even')%>'>
+    <% package_attributes(package).each_pair do |attribute,value| %>
+      <td><%= value %></td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
+<% end %>
+
+<%= button 'Back', servers_path %>
