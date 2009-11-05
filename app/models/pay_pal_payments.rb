@@ -17,10 +17,13 @@ class PayPalPayments < ActionMailer::Base
   
   def self.receive(email)
     email_parsed = TMail::Mail.parse(email)
-    email_body = email_parsed.parts[0].body
-    
+    email_body = email_parsed.parts[0]
+    debugger
+    email_message_id = email_parsed.message_id
+
     # if email_parsed.messageid is not in PayPalEmailLogs table and it's a payment notification email
-    if PayPalEmailLogs.find_by_messageid(email_parsed.messageid) == nil && email_parsed.subject.downcase == "you have received a subscription payment" then
+    if PayPalEmailLog.find_by_messageid(email_message_id) == nil \
+                         && email_parsed.subject.downcase == "you have received a subscription payment" then
       # read payment info from email. amount, txn_id (paypal subscription number)
       amount =  find_after_until(email_body,"Amount: $"," ").to_i
       subscription_number = find_after_until(email_body,"Subscription Number: ","\n")
