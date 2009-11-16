@@ -87,7 +87,7 @@ module EnomApi
     
     def available?
       response = api_call('check')
-      !response.has_errors? && response['interface_response']['rrp_code'] == '210'
+      !response.has_errors? && response.code == '210'
     end
     
     def purchase!(options)
@@ -150,6 +150,12 @@ module EnomApi
     def has_errors?
       !errors.empty?
     end
+    
+    def code
+      self['interface_response']['RRPCode'] || self['interface_response']['rrp_code']
+    end
+    
+    
   end
   
 end
