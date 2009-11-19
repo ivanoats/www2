@@ -33,13 +33,13 @@
   <%= error_messages_for [:user, :account] %>
   <% z_form_for :user do |f| %>
     <% f.fieldset :legend => 'Create your Account', :type => "inline" do %>
+      <% z_fields_for :account do |a| %>
+        <%=  a.text_field :organization, :label => "Account Name"%>
+      <% end %>
       <%= f.text_field :email %>
-      <%= f.text_field :login %>
+      <% f.text_field :login %>
       <%= f.password_field :password %>
       <%= f.password_field :password_confirmation, :label => "Confirm Password" %>
-      <% z_fields_for :account do |a| %>
-        <%=  a.text_field :organization%>
-      <% end %>
       <%= f.submit "Create Account", :style => 'float: right;'%>
     <% end %>
   <% end %>

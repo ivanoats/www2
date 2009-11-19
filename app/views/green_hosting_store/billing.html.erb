@@ -19,14 +19,14 @@
       	<%= cc.text_field :first_name %>          
       	<%= cc.text_field :last_name %>
     	<% end %>
-
+      <% cc.row :inline => true do  %>
+  	    <%= cc.text_field :number, :maxlength => 19, :size => 35 %>
+  	    <%= cc.custom_field '', content_tag(:div,'', :style => 'width: 40px' ) %>
+    	  <%= cc.text_field :verification_value, :maxlength => 7, :size => 7 %>
+      <% end %>
     	<% cc.row :inline => true do %>
-    	  <%= cc.text_field :number, :maxlength => 19 %>          
-      	
       	<%= cc.select_month :month, :prefix => 'credit_card', :label => "Expiration " %>
       	<%= cc.select_year :year, :start_year => Time.now.year, :end_year => Time.now.year + 10, :prefix => 'credit_card', :label => " Date", :style => "margin-left: 10px" %>
-    	  <%= cc.text_field :verification_value, :maxlength => 7, :style => 'margin-right: 10px' %>
-      	
     	<% end %>
   	<% end %>
 	<% end %>

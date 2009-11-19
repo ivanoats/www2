@@ -4,7 +4,7 @@
   <table>
     <tr>
       <th>Item</th>
-      <th>Remove</th>
+      <th></th>
       <th>Price</th>
     </tr>
       <% for cart_item in @cart.cart_items.find(:all,:conditions => ["parent_id IS NULL"]) %>
@@ -36,5 +36,10 @@
         <td><%= number_to_currency( @cart.total_price ) %></td>
       </tr>
   </table>
+  <div style='margin-top: 5px'>
+    <%= button "Add Another Package", {:action => "choose_package"}, :style => 'float: left' unless current_page?({:action => 'choose_package'}) %>
+
+    <%= button "Checkout", {:controller => 'green_hosting_store', :action => 'checkout'}, :style => 'float: right'%>
+    <div style='clear: both'></div>
+  </div>
 </div>
-<%= button "Checkout", {:controller => 'green_hosting_store', :action => 'checkout'}%>

@@ -3,7 +3,7 @@
 You have selected the <%= select :hosting, :product_id, Product.packages.enabled.collect {|p| [p.name, p.id]} %>
 <%= observe_field :hosting_product_id, :url => {:controller => 'cart', :action => :edit_package, :id => @hosting}, :with => "package_id"%>
 </p>
-<p>
+<p style='margin-bottom: 5px'>
   Specify the domain name you will use for this web site.  
 </p>
 <div id="choose_domain">

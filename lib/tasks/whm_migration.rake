@@ -1,5 +1,4 @@
 require 'pp'
-
 namespace :whm do
   
   desc 'Migrate supporting objects'
@@ -198,6 +197,26 @@ namespace :whm do
         
         @account.save!
         
+        cc = user.whmapcreditcard
+        
+        puts "No Credit Card for user #{user.first_name} #{user.last_name} #{user.id}" unless cc
+        if cc
+          @credit_card = ActiveMerchant::Billing::CreditCard.new(:first_name => cc.customer_first_name,
+            :last_name => cc.customer_last_name,
+            :month => cc.month,
+            :year => cc.year,
+            :type => 'visa',
+            :number => cc.number
+          )
+        
+#          throw "Credit Card not valid #{@credit_card}" unless @credit_card.valid?
+        
+          @account.billing_address = Address.new(:street => cc.customer_address,
+        :city => cc.customer_city, :state => cc.customer_state, :zip => cc.customer_zip, :country => cc.customer_country)
+        
+          @account.store_card(@credit_card)
+        end
+      
         initial_password = 'password' #TODO generate a unique password
         @user = User.find_by_email(user.email) || User.new(:login => user.username.gsub(/ /,'_'), :email => user.email, :password => initial_password, :password_confirmation => initial_password)
         @account.users << @user
@@ -282,6 +301,7 @@ namespace :whm do
       }
     
   end
+  
   
   desc 'Verify Migration'
   task :verify => :environment do

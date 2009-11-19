@@ -1,10 +1,10 @@
 <p>
-
 You have selected the <%= @product.name %>
  <%= number_to_currency @product.cost %> <%= @product.period_in_words %>.  
 <%= link_to "Change Package", {:action => 'choose_package'}%>
 </p>
-<p>
+
+<p style='margin: 5px 0'>
   Specify the domain name you will use for this web site.  
 </p>
 <div id="choose_domain">
@@ -17,7 +17,7 @@ You have selected the <%= @product.name %>
 
       <%= hidden_field_tag :purchased, false %> 
       
-      <p>If you already have a domain name (such as example.com) enter it here.  This is required but can be changed later.  </p>
+      <p style='margin: 5px 0'>If you already have a domain name (such as example.com) enter it here.  This is required but can be changed later.  </p>
       
       <%= text_field_tag :domain, '', :size => 40, :label => "Domain", :style => 'font-size: 1em;' %>
 
@@ -31,11 +31,11 @@ You have selected the <%= @product.name %>
     <% form_remote_tag :url => {:action => 'check_domain', :package_id => @product} do |f| %>
 
       <%= hidden_field :purchased, true %> 
-      <p>Check the availability of a domain name (such as example.com).  If it is available you can purchase it or search for another domain name.  </p>
+      <p style='margin: 5px 0'>Check the availability of a domain name (such as example.com).  If it is available you can purchase it or search for another domain name.  </p>
       
       <%= text_field_tag :domain, '',:size => 40,  :label => "Domain", :style => 'font-size: 1em;' %>
 
-      <%= submit_to_remote(:domain_search, "Domain Search", :url => {:action => 'check_domain', :id => @product}, :button => true, :html => {:style => 'float: right'})%>
+      <%= submit_to_remote(:domain_search, "Domain Search", :url => {:action => 'check_domain', :package_id => @product}, :button => true, :html => {:style => 'float: right'})%>
       <br style='clear: both;'>
       
     <% end -%>

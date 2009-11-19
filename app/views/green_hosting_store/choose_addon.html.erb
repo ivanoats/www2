@@ -20,18 +20,10 @@
   
   <% end #for addon %>
 
-<%= button "Back", {:action => "choose_package"}, :style => 'float: left' %>
-<%= button "Checkout", {:action => "checkout"}, :style => 'float: right' %>
-
-<script type="text/javascript" charset="utf-8">
-<!--
+<%= javascript_tag "
 function select_addon(addon) {
-  <%= remote_function(:url => {:controller => 'cart', :action => :add_addon, :package_id => @hosting.id}, :with => "'id=' + addon", :complete => "$('#select_' + addon ).hide(); $('#deselect_' + addon ).show();") %>
+  #{ remote_function(:url => {:controller => 'cart', :action => :add_addon, :package_id => @hosting.id}, :with => "'id=' + addon", :complete => "$('#select_' + addon ).hide(); $('#deselect_' + addon ).show();") }
 }
 function deselect_addon(addon) {
-  <%= remote_function(:url => {:controller => 'cart', :action => :remove_addon, :package_id => @hosting.id}, :with => "'id=' + addon", :complete => "$('#select_' + addon ).show(); $('#deselect_' + addon ).hide();") %>
-}
-
-//-->  
-</script>
-
+  #{ remote_function(:url => {:controller => 'cart', :action => :remove_addon, :package_id => @hosting.id}, :with => "'id=' + addon", :complete => "$('#select_' + addon ).show(); $('#deselect_' + addon ).hide();")}
+} "%>

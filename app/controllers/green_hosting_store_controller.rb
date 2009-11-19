@@ -131,6 +131,7 @@ class GreenHostingStoreController < ApplicationController
     if @order.save 
       
       if @account.charge_order(@order)
+        session[:cart_id] = nil
         OrderMailer.deliver_admin_notification(@order)
         OrderMailer.deliver_complete(@order, current_user)
         redirect_to :action => 'thanks'

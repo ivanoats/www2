@@ -48,7 +48,7 @@
         	<% end %>
         	
         	<% cc.row :inline => true do %>
-        	  <%= cc.text_field :number, :maxlength => 19 %>          
+        	  <%= cc.text_field :number, :maxlength => 19, :size => 30 %>          
           	
           	<%= cc.select_month :month, :prefix => 'credit_card', :label => "Expiration " %>
           	<%= cc.select_year :year, :start_year => Time.now.year, :end_year => Time.now.year + 10, :prefix => 'credit_card', :label => " Date", :style => "margin-left: 10px" %>
@@ -68,10 +68,16 @@
     <% end %>
   </div>
   <div id="users_tab">
-    <%= button_to_remote 'Add User', :url => "" %>
-    <div id="users">
-      <%= render :collection => @account.users, :partial => 'user' %>
+    <%= button_to_remote 'Add User', :url => "", :button => true %>
+    <div style='padding: 5px; clear: left'>
+    <% model_table( @account.users, {:fields => [:name, 'email','']} ) do |user| %>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= link_to_remote "Remove" unless user == current_user %></td>
+    <% end %>
     </div>
+    
+    
   </div>
 </div>
 

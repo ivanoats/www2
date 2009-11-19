@@ -11,10 +11,10 @@ class User < ActiveRecord::Base
   end
 
   # Validations
-  validates_presence_of :login, :if => :not_using_openid?
-  validates_length_of :login, :within => 3..40, :if => :not_using_openid?
+  # validates_presence_of :login, :if => :not_using_openid?
+  #   validates_length_of :login, :within => 3..40, :if => :not_using_openid?
   validates_uniqueness_of :login, :case_sensitive => false, :if => :not_using_openid?
-  validates_format_of :login, :with => RE_LOGIN_OK, :message => MSG_LOGIN_BAD, :if => :not_using_openid?
+  #validates_format_of :login, :with => RE_LOGIN_OK, :message => MSG_LOGIN_BAD, :if => :not_using_openid?
   validates_format_of :name, :with => RE_NAME_OK, :message => MSG_NAME_BAD, :allow_nil => true
   validates_length_of :name, :maximum => 100
   validates_presence_of :email, :if => :not_using_openid?
