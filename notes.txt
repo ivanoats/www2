@@ -1,0 +1,36 @@
+
+SITE
+
+-> Listing of users / adding / removing in account is not done.  
+
+-> Deleting / Changing Status / Editing unmanaged hosting not yet possible
+
+
+-> Test emails on staging server
+
+-> review cancellation policies
+
+-> Make dashboard suck less and more useful
+
+-> condense number of colors used (too many green styles for example)
+
+-> IE testing
+
+-> Verify cron scripts are running
+
+-> Activity log of purchases, state changes, email errors
+
+MIGRATION
+
+-> Test credit card saving
+
+-> Test test test!
+
+-> What to do if there is no credit card for a user (paypal user?)
+
+
+THOUGHTS
+
+->  Package names on all servers need to be the same as values stored within product, as those are used when provisioning on the server.  
+
+->  We may want to migrate to automatically provisioning as customer has already paid at that point but has not yet seen any product.  But I think we talked about this already - something about abuse.  

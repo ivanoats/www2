@@ -101,7 +101,7 @@ class Account < ActiveRecord::Base
   # Charge the card on file any amount you want.  Pass in a dollar
   # amount (1.00 to charge $1).  
   def charge(amount)
-    if amount == 0 || (@response = gateway.purchase((amount.to_f * 100).to_i, billing_id)).success?
+    if amount == 0 || (@response = gateway.purchase((amount * 100).to_i, billing_id)).success?
       
       av = ActionView::Base.new(Rails::Configuration.new.view_path)
       receipt = av.render(
@@ -124,9 +124,18 @@ class Account < ActiveRecord::Base
   end
   
   def charge_order(order)
-    amount = order.total_charge_in_cents
-    if (@response = gateway.purchase(amount,billing_id)).success?
-      self.payments.create(:amount => amount, :transaction_id => @response.authorization, :order_id => order)
+    amount = order.total_charge
+    if (@response = gateway.purchase((amount * 100).to_i,billing_id)).success?
+      
+      av = ActionView::Base.new(Rails::Configuration.new.view_path)
+      receipt = av.render(
+        :partial => "shared/payment_receipt", 
+        :locals => {:amount => amount,
+                    :previous_balance => self.balance,
+                    :transactions => self.transactions({:conditions => ['created_at > ?',self.last_payment_on]}),
+                    :new_balance => self.balance + amount})
+      
+      self.payments.create(:amount => amount, :transaction_id => @response.authorization, :order_id => order.id)
       order.paid!
       true
     else

@@ -3,6 +3,8 @@ class Domain < ActiveRecord::Base
   include Chargeable
   before_create :initialize_next_charge, :unless => Proc.new { |a| a.attribute_present?("next_charge_on") }
   
+  after_create :auto_activate_free_domains
+  
   belongs_to :account
   belongs_to :product
   belongs_to :hosting
@@ -53,5 +55,10 @@ class Domain < ActiveRecord::Base
   end
   alias_method_chain :purchase!, :attributes
 
+protected
+
+  def auto_activate_free_domains
+    self.activate! unless self.purchased
+  end
 
 end
