@@ -176,6 +176,7 @@ namespace :whm do
     
     Whmapuser.find(:all, :include => :whmaphostingorder, :conditions => ['hosting_order.status = ?',1]).each { |user| 
       
+      User.transaction do  
         #TESTING
         user.email = 'padraicmcgee@gmail.com'
       
@@ -205,9 +206,11 @@ namespace :whm do
             :last_name => cc.customer_last_name,
             :month => cc.month,
             :year => cc.year,
-            :type => 'visa',
+            :type => cc.card_type,
             :number => cc.number
           )
+        
+        throw "Unknown card type for whampcreditcard #{cc.id}" if @credit_card.type == 'unknown'
         
 #          throw "Credit Card not valid #{@credit_card}" unless @credit_card.valid?
         
@@ -255,7 +258,6 @@ namespace :whm do
           )
           domain = Domain.new(:name => order.domain_name, :product => Product.free_domain, :purchased => false, :account => @account)
           @hosting.domains << domain
-          domain.activate!
           
            @account.hostings << @hosting
            order.addon_choices.split('|').each {|id|
@@ -298,8 +300,8 @@ namespace :whm do
         #          @account.hostings << @hosting
         #          @hosting.update_attribute('state', 'suspended')
         #         }
-      }
-    
+      end
+    }
   end
   
   

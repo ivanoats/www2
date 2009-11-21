@@ -5,7 +5,6 @@ SITE
 
 -> Deleting / Changing Status / Editing unmanaged hosting not yet possible
 
-
 -> Test emails on staging server
 
 -> review cancellation policies
@@ -34,3 +33,8 @@ THOUGHTS
 ->  Package names on all servers need to be the same as values stored within product, as those are used when provisioning on the server.  
 
 ->  We may want to migrate to automatically provisioning as customer has already paid at that point but has not yet seen any product.  But I think we talked about this already - something about abuse.  
+
+
+
+gem install kingpong-ruby-mcrypt --source http://gems.github.com --test \
+     -- --with-mcrypt-dir=/opt/local
