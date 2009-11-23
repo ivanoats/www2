@@ -60,7 +60,9 @@ class User < ActiveRecord::Base
   end
   
   def username
-    self.name.blank? ? self.login : self.name
+    return self.name unless self.name.blank?
+    return self.login unless self.login.blank?
+    return self.email
   end
   
   protected
