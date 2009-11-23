@@ -16,7 +16,6 @@ class AccountController < ApplicationController
   def create
     @account = Account.new(params[:account])
     
-    
     respond_to do |format|
       if @account.save
         @account.users << current_user

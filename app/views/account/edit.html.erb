@@ -80,16 +80,30 @@
     <% end %>
   </div>
   <div id="users_tab">
-    <%= button_to_remote 'Add User', :url => "", :button => true %>
-    <div style='padding: 5px; clear: left'>
-    <% model_table( @account.users, {:fields => [:name, 'email','']} ) do |user| %>
-      <td><%= user.name %></td>
-      <td><%= user.email %></td>
-      <td><%= link_to_remote "Remove" unless user == current_user %></td>
-    <% end %>
+    
+    <table id='users_table' style='width: 100%; margin: 10px'>
+      <% for user in @account.users do %>
+        <%= render :partial => 'user', :locals => {:user => user } %>
+      <% end %>
+    </table>  
+      
+    <div style='clear: left'></div>
+    
+    <div style='margin: 10px'>
+      <% z_remote_form_for( :user, {:url => {:controller => 'accounts_users', :action => :add_from_email, :account_id => @account}}.merge( show_hide_spinner ) ) do |f| %>
+        <% f.fieldset do %> 
+          <% f.multi_field 'Add Administrator by Email' do %>
+      	
+            <% f.row :inline => true do %>
+              <%= f.text_field :email, :label => '' %>
+              <%= f.custom_field '' , f.image_submit_tag('buttons/add.png') %>
+              <%= f.custom_field '', spinner_image %>
+              
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
     </div>
-    
-    
   </div>
 </div>
 

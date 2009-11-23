@@ -41,6 +41,23 @@ class UsersController < ApplicationController
     end
   end
   
+  def activate_admin
+    logout_keeping_session!
+    @user = User.find_by_activation_code(params[:activation_code]) unless params[:activation_code].blank?
+    
+    if request.put? && @user && !@user.active? && @user.state = 'pending' && @user.update_attributes(params[:user])
+        #@user.activate!
+        flash[:notice] = "Activation complete! Please sign in to continue."
+        redirect_to login_path
+    elsif params[:activation_code].blank?
+      flash[:error] = "The activation code was missing.  Please follow the URL from your email."
+      redirect_back_or_default(root_path)
+    elseif !@user 
+      flash[:error]  = "We couldn't find a user for that activation code, please check your email for the correct activation link, or contact support.  "
+      redirect_back_or_default(root_path)
+    end
+  end
+  
   def index
     @users = User.find(:all)
   end

@@ -19,6 +19,8 @@ module Formz #:nodoc:
   class FormzBuilder < ActionView::Helpers::FormBuilder #:nodoc:
     include ActionView::Helpers::FormTagHelper
     include ActionView::Helpers::DateHelper
+    include ActionView::Helpers::AssetTagHelper
+    include ActionView::Helpers::TagHelper
     
     (%w(date_select) + ActionView::Helpers::FormHelper.instance_methods - %w(label_for hidden_field form_for fields_for file_field)).each do |selector|      
       field_class =

@@ -67,4 +67,5 @@ module ApplicationHelper
     url = 'http://www.sustainablewebsites.com' + url if RAILS_ENV == "production"
     link_to(title,url)
   end
+
 end

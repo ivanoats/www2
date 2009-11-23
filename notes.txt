@@ -3,23 +3,18 @@ SITE
 
 -> Listing of users / adding / removing in account is not done.  
 
--> Deleting / Changing Status / Editing unmanaged hosting not yet possible
-
 -> Test emails on staging server
 
 -> review cancellation policies
-
--> Make dashboard suck less and more useful
-
--> condense number of colors used (too many green styles for example)
 
 -> IE testing
 
 -> Verify cron scripts are running
 
--> Activity log of purchases, state changes, email errors
 
 MIGRATION
+
+-> IF the migration fails at any point the transactions will keep the database intact, but we should ensure emails are only sent at the correct point and we can resume somehow.  
 
 -> Test credit card saving
 
@@ -36,5 +31,16 @@ THOUGHTS
 
 
 
+#here's how I installed mcrypt, this shouldn't be needed after the migration.
+
 gem install kingpong-ruby-mcrypt --source http://gems.github.com --test \
      -- --with-mcrypt-dir=/opt/local
+     
+LATER
+
+-> Make dashboard suck less and more useful
+
+-> condense number of colors used (too many green styles for example)
+
+-> Activity log of purchases, state changes, email errors
+

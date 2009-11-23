@@ -1,0 +1,14 @@
+To activate your account please complete the required information.  
+
+<% z_form_for @user, :url => {:action => :activate_admin, :id => @user, :activation_code => params[:activation_code]} do |f| %>
+  <% f.fieldset :type => 'inline' do %>
+    <%= f.text_field :email, :required => true %>
+    <%= f.text_field :login %>
+  
+    <%= f.text_field :password, :required => true %>
+    <%= f.text_field :password_confirmation, :label => 'Confirm Password', :required => true %>
+  
+  
+    <%= f.submit "Activate", :style => 'float: right;' %>
+  <% end%>
+<% end %>

@@ -49,7 +49,7 @@
     <td><%= debug account %></td>
     <td></td>
     <td></td>
-    <td></td>
+    <td><%= link_to 'Destroy', {:controller => :servers, :action => :delete_unmanaged, :id => @server, :account => account.user}, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 
 <% end %>

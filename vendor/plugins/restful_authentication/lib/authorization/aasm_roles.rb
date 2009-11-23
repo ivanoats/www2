@@ -10,15 +10,15 @@ module Authorization
         include StatefulRolesInstanceMethods
         include AASM
         aasm_column :state
-        aasm_initial_state :initial => :pending
+        aasm_initial_state :pending
         aasm_state :passive
-        aasm_state :pending, :enter => :make_activation_code
+        aasm_state :pending
         aasm_state :active,  :enter => :do_activate
         aasm_state :suspended
         aasm_state :deleted, :enter => :do_delete
 
         aasm_event :register do
-          transitions :from => :passive, :to => :pending, :guard => Proc.new {|u| !(u.crypted_password.blank? && u.password.blank?) }
+          transitions :from => :passive, :to => :pending
         end
         
         aasm_event :register_openid do
@@ -61,7 +61,7 @@ module Authorization
       def do_activate
         @activated = true
         self.activated_at = Time.now.utc
-        self.deleted_at = self.activation_code = nil
+        self.deleted_at = nil
       end
     end # instance methods
   end
