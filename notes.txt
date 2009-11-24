@@ -11,6 +11,7 @@ SITE
 
 -> Verify cron scripts are running
 
+-> Home page link to store / cart or profile page
 
 MIGRATION
 
