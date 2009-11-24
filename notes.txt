@@ -1,7 +1,7 @@
 
 SITE
 
--> Listing of users / adding / removing in account is not done.  
+-when registering from checkout
 
 -> Test emails on staging server
 
