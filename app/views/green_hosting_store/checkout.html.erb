@@ -2,22 +2,21 @@
 <h1>Checking out</h1>
 <% if logged_in? %>
   <%= error_messages_for :account %>
-
-  <p>You are signed in as <%= current_user.username %>.  </p>
-  
-  <% z_form_for :account do |f| %>    
+  <% z_form_for :account, :html => {:style => 'padding-top: 0'} do |f| %>  
+    <% f.fieldset :legend => '', :type => "inline" do %>
+    
     <% if current_user.accounts.empty? %>
         <%= f.text_field :organization, :label => "Name this Account" %>
     <% else %>
     
     <%= hidden_field_tag :use_existing_account, true %>
     <div id='use_existing'>
-      Pay with an existing account or <%= link_to_function "create a new account", "jQuery('#use_existing, #create_new_account').toggle('slow'); $('#use_existing_account').val('false');"%>
-        <%= f.select :id, current_user.accounts.collect { |a| [a.organization, a.id]}, :label => "Account Name"%>
+      Pay with an existing account or <%= link_to_function "create a new account", "jQuery('#use_existing, #create_new_account').slideToggle('slow'); $('#use_existing_account').val('false');"%>
+        <%= f.select :id, current_user.accounts.collect { |a| [a.organization, a.id]}, :label => "Account"%>
       
     </div>
     <div id="create_new_account" style='display:none;'>
-      Create a new account for this purchase or <%= link_to_function "add it to an existing account", "jQuery('#use_existing, #create_new_account').toggle('slow'); $('#use_existing_account').val('true');"%>
+      Create a new account for this purchase or <%= link_to_function "add it to an existing account", "jQuery('#use_existing, #create_new_account').slideToggle('slow'); $('#use_existing_account').val('true');"%>
       <% z_fields_for :account do |account| %>
         <%= account.text_field :organization, :label => "Account Name" %>
       <% end %>
@@ -25,6 +24,7 @@
     <% end %>
     <br/>
     <%= submit_tag "Continue", :style => 'float: right'%>
+    <% end %>
   <% end %>
 <% else %>  
   Create a new user account to manage your web hosting.  

@@ -1,8 +1,6 @@
 
 SITE
 
--when registering from checkout
-
 -> Test emails on staging server
 
 -> review cancellation policies

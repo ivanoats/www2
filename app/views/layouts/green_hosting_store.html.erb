@@ -64,8 +64,9 @@
     <% content_for :sidebar do %>
       <%= render 'cart/items' %>
     <% end unless controller.action_name == 'confirmation' %>
+    <%= render :partial => 'layouts/user' %>
     <%= render 'navigation' %>
-    <div id="content">
+	  <div id="content">
       <%= yield %>
     </div><!--/content-->
   	<%= render :partial => 'layouts/sidebar' %>
