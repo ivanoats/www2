@@ -4,6 +4,11 @@ class UsersController < ApplicationController
   require_role "Administrator", :only => [:index, :destroy, :enable]
   before_filter :login_required, :only => [:edit, :update]
   
+  def profile
+    @user = current_user
+    @sidebar = false
+  end
+  
   def new
     @user = User.new
   end

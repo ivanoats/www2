@@ -3,7 +3,6 @@ class SessionsController < ApplicationController
   
   ssl_exceptions #SSL for all
   
-  
   def new
     @sidebar = ''
   end
@@ -54,7 +53,7 @@ class SessionsController < ApplicationController
     new_cookie_flag = (params[:remember_me] == "1")
     handle_remember_cookie! new_cookie_flag
     if current_user.accounts.empty?
-      redirect_back_or_default(root_path)
+      redirect_back_or_default(profile_path)
     else
       redirect_back_or_default({:controller => 'account', :action => 'manage'})
     end

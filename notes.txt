@@ -15,23 +15,17 @@ SITE
 
 -> Account name label is crappy on checkout page (while logged in)
 
+-> Complete user profile page
+
 MIGRATION
 
 -> IF the migration fails at any point the transactions will keep the database intact, but we should ensure emails are only sent at the correct point and we can resume somehow.  
 
--> Test credit card saving
-
 -> Test test test!
-
--> What to do if there is no credit card for a user (paypal user?)
-
 
 THOUGHTS
 
 ->  Package names on all servers need to be the same as values stored within product, as those are used when provisioning on the server.  
-
-->  We may want to migrate to automatically provisioning as customer has already paid at that point but has not yet seen any product.  But I think we talked about this already - something about abuse.  
-
 
 
 #here's how I installed mcrypt, this shouldn't be needed after the migration.

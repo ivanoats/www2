@@ -78,7 +78,10 @@ class Account < ActiveRecord::Base
     destroy_gateway_record(paypal) if paypal?
     
     gw_options = {
-      :billing_address => billing_address.attributes.merge({:first_name => first_name, :last_name => last_name})
+      :billing_address => billing_address.attributes.merge({:first_name => first_name, :last_name => last_name}),
+      :email => self.default_email,
+      :description => self.organization
+      
     }.merge(gw_options)
     
     @response = if billing_id.blank?

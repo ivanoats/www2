@@ -352,11 +352,12 @@ module ActiveMerchant #:nodoc:
         # either merchant_customer_id or email, so generate it, if necessary
         if options[:billing_id]
           profile[:merchant_customer_id] = options[:billing_id]
-        elsif options[:email]
-          profile[:email] = options[:email]
         else
           profile[:merchant_customer_id] = Digest::SHA1.hexdigest("#{creditcard.number}#{Time.now.to_i}").first(20)
         end
+        
+        profile[:email] = options[:email] if options[:email]
+        profile[:description] = options[:description] if options[:description]
         
         create_customer_profile(:profile => profile)
       end

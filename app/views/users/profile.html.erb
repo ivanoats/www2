@@ -1,0 +1,50 @@
+<h2>Profile</h2>
+<div id='profile_tabs'>
+  <ul>
+    <li><%= link_to "Settings", "#settings_tab" %></li>
+    <li><%= link_to "Accounts", "#accounts_tab" %></li>
+
+  </ul>
+  <div id="settings_tab">
+    <%= error_messages_for [:user] %>
+  
+    <% z_form_for @user do |f| %>
+      <% f.fieldset :type => "inline" do %>
+
+      <%= f.fields [:login, :name, :email, :profile]%>
+      <%= f.submit "Update", :style => 'float: right'%>
+      <% end %>
+    <% end %>
+  </div>
+  <div id="accounts_tab">
+    <% unless current_user.accounts.empty? %>
+      <h3>Accounts</h3>
+
+      <% for account in current_user.accounts %>
+        <%= account.organization %>
+      <% end %>
+
+    <% end %>
+  </div>
+</div>
+<script type="text/javascript">
+	$(function() {
+	  $("#profile_tabs").tabs();
+
+    $("#profile_tabs").addClass('ui-tabs-vertical ui-helper-clearfix');
+       $("#profile_tabs").removeClass('ui-widget').removeClass('ui-widget-content');
+       $('#profile_tabs .ui-tabs-panel').addClass('ui-widget ui-widget-content');
+    
+    $("#profile_tabs li").removeClass('ui-corner-top');
+    $("#profile_tabs li:first").addClass('ui-corner-tl');
+    $("#profile_tabs li:last").addClass('ui-corner-bl');
+
+	});
+	</script>
+	
+	
+<%= javascript_tag "  jQuery('.zInlineField:last-child').each(function() {
+		jQuery(this).css('margin-right', '0px');
+	});"%>
+
+
