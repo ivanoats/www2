@@ -1,8 +1,6 @@
 
 SITE
 
--> Test emails on staging server
-
 -> review cancellation policies
 
 -> IE testing
@@ -14,6 +12,9 @@ SITE
 -> Account name label is crappy on checkout page (while logged in)
 
 -> Complete user profile page
+
+-> Complete staging test
+-> Complete production test
 
 MIGRATION
 

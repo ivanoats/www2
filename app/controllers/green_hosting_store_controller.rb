@@ -129,7 +129,7 @@ class GreenHostingStoreController < ApplicationController
     @order = Order.from_cart(@cart)
     @order.account = @account
     if @order.save 
-      
+      @order.reload
       if @account.charge_order(@order)
         session[:cart_id] = nil
         OrderMailer.deliver_admin_notification(@order)

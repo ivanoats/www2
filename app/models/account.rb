@@ -129,7 +129,6 @@ class Account < ActiveRecord::Base
   def charge_order(order)
     amount = order.total_charge
     if (@response = gateway.purchase((amount * 100).to_i,billing_id)).success?
-      
       av = ActionView::Base.new(Rails::Configuration.new.view_path)
       receipt = av.render(
         :partial => "shared/payment_receipt", 
@@ -138,7 +137,7 @@ class Account < ActiveRecord::Base
                     :transactions => self.transactions({:conditions => ['created_at > ?',self.last_payment_on]}),
                     :new_balance => self.balance + amount})
       
-      self.payments.create(:amount => amount, :transaction_id => @response.authorization, :order_id => order.id)
+      self.payments.create(:amount => amount, :transaction_id => @response.authorization, :order_id => order.id, :receipt => receipt)
       order.paid!
       true
     else

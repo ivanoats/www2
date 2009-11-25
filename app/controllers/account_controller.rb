@@ -76,7 +76,6 @@ class AccountController < ApplicationController
     end
   end
   
-  
   def billing
     @address = @account.billing_address || @account.build_billing_address
     @credit_card = CreditCard.new(params[:credit_card])

@@ -37,7 +37,7 @@
         <%=  a.text_field :organization, :label => "Account Name"%>
       <% end %>
       <%= f.text_field :email %>
-      <% f.text_field :login %>
+      <%= f.text_field :login %>
       <%= f.password_field :password %>
       <%= f.password_field :password_confirmation, :label => "Confirm Password" %>
       <%= f.submit "Create Account", :style => 'float: right;'%>
