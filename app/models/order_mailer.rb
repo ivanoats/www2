@@ -28,6 +28,8 @@ protected
     @from = APP_CONFIG[:admin_email]
     @subject = "[#{APP_CONFIG[:site_name]}] "
     @sent_on = Time.now
+    @content_type = 'text/html'
+    
   end
 
 end

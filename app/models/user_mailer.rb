@@ -31,5 +31,7 @@ class UserMailer < ActionMailer::Base
     @subject = "[#{APP_CONFIG[:site_name]}] "
     @sent_on = Time.now
     @body[:user] = user
+    @content_type = 'text/html'
+    
   end
 end
