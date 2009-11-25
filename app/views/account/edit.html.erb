@@ -96,7 +96,7 @@
       	
             <% f.row :inline => true do %>
               <%= f.text_field :email, :label => '' %>
-              <%= f.custom_field '' , f.image_submit_tag('buttons/add.png') %>
+              <%= f.custom_field '' , f.image_submit_tag('buttons/add.png', :style => 'padding: 2px; height: 20px; width: 20px;') %>
               <%= f.custom_field '', spinner_image %>
               
             <% end %>

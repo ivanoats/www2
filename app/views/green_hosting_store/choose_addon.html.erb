@@ -6,6 +6,7 @@
   
   <div class="addon ui-corner-all">
     <div><%= h addon.name %></div>
+    <br/>
     <div><%= sanitize addon.description, :tags => %w(a strong em), :attributes => %w(id class style)
       %></div>
     <br/>
@@ -15,7 +16,7 @@
     
     <%= number_to_currency(addon.cost) %>
     <%= addon.period_in_words %>  
-    <br style='clear: both'/>  
+    <div style='clear: both;'></div>
   </div>
   
   <% end #for addon %>

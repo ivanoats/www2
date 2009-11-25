@@ -22,7 +22,7 @@ You have selected the <%= @product.name %>
       <%= text_field_tag :domain, '', :size => 40, :label => "Domain", :style => 'font-size: 1em;' %>
 
       <%= submit_tag("Add Hosting To Cart",  :button => true, :style => 'float: right') %>
-      <br style='clear: both;'>
+      <div style='clear: both;'></div>
     <% end -%> 
   </div>
   <div id='purchase_domain'>
@@ -36,7 +36,7 @@ You have selected the <%= @product.name %>
       <%= text_field_tag :domain, '',:size => 40,  :label => "Domain", :style => 'font-size: 1em;' %>
 
       <%= submit_to_remote(:domain_search, "Domain Search", :url => {:action => 'check_domain', :package_id => @product}, :button => true, :html => {:style => 'float: right'})%>
-      <br style='clear: both;'>
+      <div style='clear: both;'></div>
       
     <% end -%>
   </div>

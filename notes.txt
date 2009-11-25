@@ -3,13 +3,7 @@ SITE
 
 -> review cancellation policies
 
--> IE testing
-
 -> Verify cron scripts are running
-
--> Home page link to store / cart or profile page
-
--> Account name label is crappy on checkout page (while logged in)
 
 -> Complete user profile page
 

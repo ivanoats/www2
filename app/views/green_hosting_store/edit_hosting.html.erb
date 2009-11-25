@@ -23,7 +23,7 @@ You have selected the <%= select :hosting, :product_id, Product.packages.enabled
       <%= text_field_tag :domain, '', :size => 40, :label => "Domain", :style => 'font-size: 1em;' %>
 
       <%= submit_tag("Change Domain",  :button => true, :style => 'float: right') %>
-      <br style='clear: both;'>
+      <div style='clear: both;'></div>
     <% end -%> 
   </div>
   <div id='purchase_domain'>
@@ -35,8 +35,7 @@ You have selected the <%= select :hosting, :product_id, Product.packages.enabled
       <%= text_field_tag :domain, '',:size => 40,  :label => "Domain", :style => 'font-size: 1em;' %>
 
       <%= submit_to_remote(:domain_search, "Domain Search", :url => {:action => 'check_domain', :cart_item_id => @hosting}, :button => true, :html => {:style => 'float: right'})%>
-      <br style='clear: both;'>
-      
+      <div style='clear: both;'></div>      
     <% end -%>
   </div>
 </div>
@@ -53,6 +52,7 @@ Choose any additional services
   
   <div class="addon ui-corner-all">
     <div><%= h addon.name %></div>
+    <br/>
     <div><%= sanitize addon.description, :tags => %w(a strong em), :attributes => %w(id class style)
       %></div>
     <br/>
@@ -62,7 +62,7 @@ Choose any additional services
     
     <%= number_to_currency(addon.cost) %>
     <%= addon.period_in_words %>  
-    <br style='clear: both'/>  
+    <div style='clear: both;'></div>
   </div>
   
   <% end #for addon %>
