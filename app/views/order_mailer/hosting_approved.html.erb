@@ -4,7 +4,7 @@
 Username: <%= @hosting.username %><br/>
 Password: <%= @hosting.password %><br/>
 
-<%= link_to "CPanel Login", "http://www.#{@hosting.domain}/cpanel" unless @hosting.server.nil? %>
+<p><%= link_to "CPanel Login", "http://#{@hosting.domain}/cpanel" unless @hosting.server.nil? %></p>
 
 <p>Thanks!</p>
 
