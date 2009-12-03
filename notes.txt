@@ -36,5 +36,5 @@ LATER
 
 -> Activity log of purchases, state changes, email errors
 -> Ability to cancel new hostings, domains, addons from admin.  
--> Ability to cancel 
+-> When cancelling a hosting, what happens to the attached domain?
 

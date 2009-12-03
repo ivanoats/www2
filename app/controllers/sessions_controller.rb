@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   ssl_exceptions #SSL for all
   
   def new
-    @sidebar = ''
+    @sidebar = false
   end
 
   def create

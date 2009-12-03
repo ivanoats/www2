@@ -121,7 +121,7 @@ class GreenHostingStoreController < ApplicationController
   end
 
   def confirmation
-    @sidebar = ''
+    @sidebar = false
     @terms_of_service = Page.find_by_permalink('terms_of_service')
   end
 
@@ -138,12 +138,12 @@ class GreenHostingStoreController < ApplicationController
         return
       end
     end
-    @sidebar = ''
+    @sidebar = false
     render :action => 'confirmation'
   end
   
   def thanks
-    @sidebar = ''
+    @sidebar = false
   end
   
 private
