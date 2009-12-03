@@ -11,11 +11,7 @@
       <td>
         <% line_width = 40 %>
         <%= link_to h(cart_item.name), {:controller => 'green_hosting_store', :action => 'edit_hosting', :id => cart_item.id} %>
-        <%# TODO get this working if cart item descriptions are needed
-        #- unless cart_item.product.kind == "addon" -%>
-          <%#= simple_format(word_wrap(h(cart_item.description), :line_width => line_width )) %>
-        <%#- end -%>
-        <%= link_to_remote image_tag('buttons/remove.png'), :url => {:controller => "cart", :action => :remove_cart_item, :id => cart_item.id}, :style => 'float: right' %>
+        <%= link_to_remote image_tag('buttons/remove.png'), :url => {:controller => "cart", :action => :remove_cart_item, :id => cart_item.id}, :html => { :style => 'float: right'} %>
         
       </td>
 

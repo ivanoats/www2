@@ -3,12 +3,25 @@ require 'lib/billing_system'
 namespace :billing do
   include BillingSystem
   
-  desc 'Run the daily billing script'
+  desc 'Hostings'
   task :run => :environment do
-    puts "Starting Billing worker at #{Time.now}"
     hostings
-    puts "Completed hostings at #{Time.now}"    
-    accounts
-    puts "Billing worker completed at #{Time.now}.  "
   end
+  
+  desc 'Accounts'
+  task :run => :environment do
+    accounts
+  end
+  
+  desc 'Domains'
+  task :run => :environment do
+    domains
+  end
+  
+  desc 'Add Ons'
+  task :run => :environment do
+    add_ons
+  end
+  
+  
 end

@@ -4,11 +4,14 @@ SITE
 -> review cancellation policies
 
 -> Verify cron scripts are running
+-> remove icon for cart
 
 -> Complete user profile page
 
 -> Complete staging test
 -> Complete production test
+
+-> zFields not selected when field is selected
 
 MIGRATION
 
