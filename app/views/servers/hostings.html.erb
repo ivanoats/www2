@@ -28,8 +28,10 @@
       end
        %></td>
     <td>
-      <%= select :"hosting[]", :state, Hosting.aasm_states_for_select %>
-      <%= observe_field "hosting_#{hosting.id}_state", :url => hosting_path(hosting), :with => 'hosting[state]', :method => :put %>
+      <%= @hosting.state.capitalize %>
+      
+      <% select :"hosting[]", :state, Hosting.aasm_states_for_select %>
+      <% observe_field "hosting_#{hosting.id}_state", :url => hosting_path(hosting), :with => 'hosting[state]', :method => :put %>
     </td>
     <td><%= link_to 'Show', hosting_path(hosting) %></td>
 

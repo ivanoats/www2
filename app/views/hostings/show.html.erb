@@ -63,7 +63,7 @@
   </tr>
 </table>
 <div class='actions'>
-<%= button_to 'Cancel Hosting Package', {:controller => "hostings", :action => 'cancel', :id => @hosting}, :method => :post, :confirm => "Are you sure you want to cancel this web hosting package?  This will take your site offline and delete your data.  " if ['ordered', 'active', 'suspended'].include? @hosting.state%>
+<%= button_to 'Cancel Hosting Package', {:controller => "hostings", :action => 'cancel', :id => @hosting}, :method => :post, :confirm => "Are you sure you want to cancel this web hosting package?  This will take your site offline and delete your data.  " if [ 'active', 'suspended'].include? @hosting.state%>
 </div>
 
 

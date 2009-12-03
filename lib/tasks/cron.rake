@@ -22,7 +22,7 @@ namespace :cron do
   desc "Daily cron tasks"
   task :daily => :environment do
     
-    tasks = ["db:backup"]
+    tasks = ["db:backup", "billing:all"]
     tasks.each do |task|
       
       begin

@@ -12,8 +12,9 @@
     <td><%= link_to 'Edit', edit_hosting_path(@hosting) %></td>
     <td><%= link_to 'Destroy', hosting_path(@hosting), :confirm => 'Are you sure?', :method => :delete %></td>
     <td>
-      <%= select :"hosting[]", :state, Hosting.aasm_states_for_select %>
-      <%= observe_field "hosting_#{@hosting.id}_state", :url => hosting_path(@hosting), :with => 'hosting[state]', :method => :put %>
+      <%= @hosting.state %>
+      <% select :"hosting[]", :state, Hosting.aasm_states_for_select %>
+      <% observe_field "hosting_#{@hosting.id}_state", :url => hosting_path(@hosting), :with => 'hosting[state]', :method => :put %>
     </td>
   </tr>
 <% end %>
