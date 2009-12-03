@@ -28,7 +28,7 @@
       <td style='text-align: left'><%= child.product.name %></td>
       <td><%= number_to_currency child.product.cost %> <%= child.period_in_words %></td>
       <td><%= child.next_charge_on.to_formatted_s( :human_date ) unless child.next_charge_on.nil? %></td>
-      <td><%=  %></td>
+      <td><%= child.state.capitalize %></td>
     </tr>
   <% end %>
   <tr class='blank'>

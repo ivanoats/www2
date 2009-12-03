@@ -78,7 +78,7 @@ class Hosting < ActiveRecord::Base
 
 
   def create_cpanel_account
-    exkdjgak
+    
     self.server.whm.create_account(:username => self.username, :domain => self.domain)    
     OrderMailer.deliver_hosting_approved(self)
   end
@@ -92,7 +92,7 @@ class Hosting < ActiveRecord::Base
   end
   
   def delete_cpanel_account
-    exkdjgak
+    
     self.server.whm.terminate_account(:user => self.username)
   end
 

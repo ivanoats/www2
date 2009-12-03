@@ -9,6 +9,9 @@ class Domain < ActiveRecord::Base
   belongs_to :product
   belongs_to :hosting
   
+  named_scope :due, :include => :product, :conditions => ['purchased = ? && next_charge_on <= CURDATE()',true]
+  
+  
   manage_with_enom
 
   aasm_column :state

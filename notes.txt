@@ -32,8 +32,9 @@ gem install kingpong-ruby-mcrypt --source http://gems.github.com --test \
 LATER
 
 -> Make dashboard suck less and more useful
-
 -> condense number of colors used (too many green styles for example)
 
 -> Activity log of purchases, state changes, email errors
+-> Ability to cancel new hostings, domains, addons from admin.  
+-> Ability to cancel 
 
