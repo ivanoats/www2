@@ -76,10 +76,16 @@ class Hosting < ActiveRecord::Base
     end  
   end
 
-
+  #return the whm account for this hosting
+  def whm
+    self.server.whm.account(self.username)
+  rescue => e
+    nil
+  end
+  
   def create_cpanel_account
     
-    self.server.whm.create_account(:username => self.username, :domain => self.domain)    
+    self.server.whm.create_account(:username => self.username, :domain => self.domain, :password => self.password)    
     OrderMailer.deliver_hosting_approved(self)
   end
   
