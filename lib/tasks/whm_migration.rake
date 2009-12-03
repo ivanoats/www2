@@ -43,8 +43,8 @@ namespace :whm do
 
     # Monthly packages
     Product.create!( {
-      :name            => "Basic Web Hosting Subscription",
-      :description     => "Basic Web Hosting Description",
+      :name            => "Basic Web Hosting ",
+      :description     => "Because it really does have everything you need to host a site, most customers choose this plan. Discount for yearly — only $8.33/month! ",
       :cost            => 10.00,
       :recurring_month => 1,
       :kind            => "package",
@@ -52,8 +52,8 @@ namespace :whm do
     })
     
     Product.create!( {
-      :name            => "Small Business Web Hosting Subscription",
-      :description     => "Small Business Web Hosting Description",
+      :name            => "Small Business Web Hosting",
+      :description     => "More Storage and more Bandwidth for audio and video files, and more visitors.",
       :cost            => 20.00,
       :recurring_month => 1,
       :kind            => "package",
@@ -62,8 +62,8 @@ namespace :whm do
     })
 
     Product.create!( {
-      :name            => "Professional Web Hosting Subscription",
-      :description     => "Professional Web Hosting Description",
+      :name            => "Professional Web Hosting",
+      :description     => "Even more storage and even more bandwidth for large audio and large video files, and tens of thousands of visitors.",
       :cost            => 30.00,
       :recurring_month => 1,
       :kind            => "package",
@@ -73,7 +73,7 @@ namespace :whm do
 
     # Yearly packages
     Product.create!( {
-      :name            => "Basic Web Hosting Subscription",
+      :name            => "Basic Web Hosting",
       :description     => "Basic Web Hosting Yearly",
       :cost            => 100.00,
       :recurring_month => 12,
@@ -82,7 +82,7 @@ namespace :whm do
     })
     
     Product.create!( {
-      :name            => "Small Business Web Hosting Subscription",
+      :name            => "Small Business Web Hosting",
       :description     => "Small Business Web Hosting Yearly",
       :cost            => 199.00,
       :recurring_month => 12,
@@ -92,7 +92,7 @@ namespace :whm do
     })
 
     Product.create!( {
-      :name            => "Professional Web Hosting Subscription",
+      :name            => "Professional Web Hosting",
       :description     => "Professional Web Hosting Yearly",
       :cost            => 299.00,
       :recurring_month => 12,

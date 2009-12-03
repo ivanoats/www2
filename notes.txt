@@ -1,17 +1,7 @@
 
 SITE
 
--> review cancellation policies
-
--> Verify cron scripts are running
--> remove icon for cart
-
--> Complete user profile page
-
--> Complete staging test
--> Complete production test
-
--> zFields not selected when field is selected
+-> Complete testing in production environment
 
 MIGRATION
 
@@ -33,9 +23,12 @@ LATER
 
 -> Make dashboard suck less and more useful
 -> condense number of colors used (too many green styles for example)
-
 -> Activity log of purchases, state changes, email errors
 -> Ability to cancel new hostings, domains, addons from admin.  
 -> When cancelling a hosting, what happens to the attached domain?
 -> Login to cpanel link from admin, update password functionality.  
 -> Edit hosting username before approval since some names can fail for funky reasons.
+-> remove icon for cart
+-> Complete user profile page
+-> zFields not selected when field is selected
+

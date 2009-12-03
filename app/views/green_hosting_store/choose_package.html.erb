@@ -4,8 +4,8 @@
   <% for package_group in @packages %>
   <% package_monthly, package_yearly = package_group %>
   <div class="package-group" >
-    <div><%= h package_monthly.name %></div>
-    <div style='margin-bottom: 30px'><%= h package_monthly.description %></div>
+    <h3><%= h package_monthly.name %></h3>
+    <div style='height: 40px'><%= h package_monthly.description %></div>
     <%= button "#{number_to_currency(package_monthly.cost)} Monthly", {:action => 'choose_domain', :package_id => package_monthly}, {:class => 'button'} %>
     <%= button "#{number_to_currency(package_yearly.cost)} Yearly", {:action => 'choose_domain', :package_id => package_yearly}, {:style => 'float: right', :class => 'button'} %>
     
