@@ -5,10 +5,12 @@ namespace :billing do
   
   desc "All Billing Tasks"
   task :all => :environment do
-    tasks = tasks_in_namespace("billing")
-    tasks.each do |task|
-      Rake::Task["#{task.name}"].invoke
-    end
+    #these need to be done first so accounts are charged the same day a balance is due
+    Rake::Task["billing:hostings"].invoke
+    Rake::Task["billing:domains"].invoke
+    Rake::Task["billing:add_ons"].invoke
+
+    Rake::Task["billing:accounts"].invoke    
   end
   
   desc 'Hostings'
@@ -31,12 +33,5 @@ namespace :billing do
     add_ons
   end
 
-private
-  def tasks_in_namespace(ns)
-    #grab all tasks in the supplied namespace
-    tasks = Rake.application.tasks.select { |t| t.name =~ /^#{ns}:/ }
 
-    #make sure we don't include the :all task
-    tasks.reject! { |t| t.name =~ /:all/ }
-  end
 end
