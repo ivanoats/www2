@@ -5,11 +5,14 @@ class AddOn < ActiveRecord::Base
   belongs_to :hosting
   belongs_to :account
   
+  named_scope :due, :include => :product, :conditions => ['next_charge_on <= CURDATE() && products.recurring_month != 0']
+  
+  
   aasm_column :state
   aasm_initial_state :ordered
   aasm_state :ordered
   aasm_state :active
-  aasm_state :completed
+  aasm_state :complete
   aasm_state :suspended
   aasm_state :deleted
   

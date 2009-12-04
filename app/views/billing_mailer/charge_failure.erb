@@ -1,5 +1,5 @@
 Your account failed to charge <%= number_to_currency @amount %>.  
 
-Please update your credit card information from your sustainablewebsites account at <%= url_for :controller => :account, :action => :billing %>.  The billing grace period is 5 days, after which your account will be suspended until the outstanding balance is paid.  
+Please update your credit card information from your sustainablewebsites account at <%= url_for :controller => :account, :action => :payments %>.  The billing grace period is 5 days, after which your account will be suspended until the outstanding balance is paid.  
 
 You have <%= 5 - (Date.today - @account.next_payment_on) %> days remaining.  

@@ -16,7 +16,6 @@ class AccountController < ApplicationController
   def create
     @account = Account.new(params[:account])
     
-    
     respond_to do |format|
       if @account.save
         @account.users << current_user
@@ -76,7 +75,6 @@ class AccountController < ApplicationController
       end
     end
   end
-  
   
   def billing
     @address = @account.billing_address || @account.build_billing_address

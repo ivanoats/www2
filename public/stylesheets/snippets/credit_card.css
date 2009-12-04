@@ -1,0 +1,12 @@
+.credit_card_container {
+  padding: 5px;
+  float: left;
+}
+
+.credit_card_container .zInlineField, .credit_card_container .zField {
+  display:none;
+}
+
+.credit_card_container.selected {
+  background: transparent url(/images/credit_cards/selected.png) no-repeat;
+}

@@ -172,7 +172,27 @@ div.fieldWithErrors textarea{}
 .alert h3 { color: red; }
 .alert a { color: black;}
 
-/* Button */
+/* User Navigation */
+
+#user_toolbar, #admin_toolbar {
+  padding: 5px;
+  float: right;
+  color: #008265;
+}
+
+#admin_toolbar {
+  float: left;
+}
+
+#user_toolbar a, #admin_toolbar a {
+  color: #008265;
+}
+
+#user_toolbar li, #admin_toolbar li {
+  display:inline;
+  padding-right: 5px;
+}
+
 
 
 /* Breadcrumb */

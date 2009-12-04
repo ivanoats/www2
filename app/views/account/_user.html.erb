@@ -1,5 +1,5 @@
-<div class='users'>
-  <%= user.name %>
-  <%= user.email %>
-  <%= link_to_remote "Remove" unless user == current_user %>
-</div>
+<tr id='accounts_users_<%= user.id %>'>
+  <td><%= user.name %></td>
+  <td><%= user.email %></td>
+  <td><%= link_to_remote(image_tag('buttons/remove.png'),:url => {:controller => :accounts_users, :action => :destroy, :account_id => @account, :user_id => user}, :confirm => "Are you sure you want to remove #{user.email}") unless user == current_user %></td>
+</tr>

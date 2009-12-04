@@ -51,6 +51,10 @@
 	min-width: 20px;
 }
 
+.zInlineRow .zInlineField input, .zInlineRow .zField input {
+  width: auto!important;
+}
+
 .zInlineRow .zInlineField input{
 	margin-right: 5px;
 }

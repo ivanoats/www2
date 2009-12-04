@@ -10,23 +10,32 @@
   	<% cc.multi_field 'Credit Card' do %>
     	<% cc.row :inline => true do %>
       	<% supported_payment_types.each do |paytype| %>
+    	  <div class='credit_card_container'>
       	  <%= cc.radio_button :type, paytype.to_s, :label => '' %>
-      	  <%= image_tag( "credit_cards/#{paytype}.png", :style => "float: left; margin-left: 5px; margin-right: 10px")%>
+      	  <%= image_tag( "credit_cards/#{paytype}.png")%>
+      	</div>
       	<% end %>
     	<% end %>
     	<div style='clear:left'></div>
+    	<%= javascript_tag "jQuery('.credit_card_container').click(function() {
+    	  jQuery(this).find('input').attr('checked', 'checked');
+    	  jQuery('.credit_card_container.selected').removeClass('selected');
+    	  jQuery(this).addClass('selected');
+    	})
+    	jQuery(function() { jQuery('.credit_card_container:first').click();});
+    	" %>
     	<% cc.row do %>
       	<%= cc.text_field :first_name %>          
       	<%= cc.text_field :last_name %>
     	<% end %>
-
+      <% cc.row :inline => true do  %>
+  	    <%= cc.text_field :number, :maxlength => 19, :size => 35 %>
+  	    <%= cc.custom_field '', content_tag(:div,'', :style => 'width: 40px' ) %>
+    	  <%= cc.text_field :verification_value, :maxlength => 7, :size => 7 %>
+      <% end %>
     	<% cc.row :inline => true do %>
-    	  <%= cc.text_field :number, :maxlength => 19 %>          
-      	
       	<%= cc.select_month :month, :prefix => 'credit_card', :label => "Expiration " %>
       	<%= cc.select_year :year, :start_year => Time.now.year, :end_year => Time.now.year + 10, :prefix => 'credit_card', :label => " Date", :style => "margin-left: 10px" %>
-    	  <%= cc.text_field :verification_value, :maxlength => 7, :style => 'margin-right: 10px' %>
-      	
     	<% end %>
   	<% end %>
 	<% end %>

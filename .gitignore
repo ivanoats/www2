@@ -15,3 +15,4 @@ www2.kpf
 .tmtags
 .idea/*
 tmp/restart.txt
+mkmf.log

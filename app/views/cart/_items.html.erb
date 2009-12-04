@@ -4,26 +4,22 @@
   <table>
     <tr>
       <th>Item</th>
-      <th>Remove</th>
       <th>Price</th>
     </tr>
       <% for cart_item in @cart.cart_items.find(:all,:conditions => ["parent_id IS NULL"]) %>
     <tr>
       <td>
         <% line_width = 40 %>
-        <%= link_to simple_format(word_wrap(h(cart_item.name) , :line_width => line_width )), {:controller => 'green_hosting_store', :action => 'edit_hosting', :id => cart_item.id} %>
-        <%# TODO get this working if cart item descriptions are needed
-        #- unless cart_item.product.kind == "addon" -%>
-          <%#= simple_format(word_wrap(h(cart_item.description), :line_width => line_width )) %>
-        <%#- end -%>
+        <%= link_to h(cart_item.name), {:controller => 'green_hosting_store', :action => 'edit_hosting', :id => cart_item.id} %>
+        <%= link_to_remote image_tag('buttons/remove.png'), :url => {:controller => "cart", :action => :remove_cart_item, :id => cart_item.id}, :html => { :style => 'float: right'} %>
+        
       </td>
-      <td><%= link_to_remote "Remove", :url => {:controller => "cart", :action => :remove_cart_item, :id => cart_item.id} %></td>
 
       <td><%= number_to_currency(cart_item.unit_price * cart_item.quantity) %></td>
     </tr>
         <% for child_item in cart_item.children %>
           <tr>
-            <td style='padding-left: 30px' colspan='2'>
+            <td style='padding-left: 30px'>
                 <%= simple_format(word_wrap(h(child_item.name) , :line_width => 40 )) %>
             </td>
             
@@ -32,9 +28,14 @@
         <% end %>
       <% end %>
       <tr>
-        <td colspan="2">Total: </td>
+        <td>Total: </td>
         <td><%= number_to_currency( @cart.total_price ) %></td>
       </tr>
   </table>
+  <div style='margin-top: 5px'>
+    <%= button "Add Another Package", {:action => "choose_package"}, :style => 'float: left' unless current_page?({:action => 'choose_package'}) %>
+
+    <%= button "Checkout", {:controller => 'green_hosting_store', :action => 'checkout'}, :style => 'float: right'%>
+    <div style='clear: both'></div>
+  </div>
 </div>
-<%= button "Checkout", {:controller => 'green_hosting_store', :action => 'checkout'}%>

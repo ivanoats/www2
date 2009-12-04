@@ -4,4 +4,6 @@ class Whmapuser < Whmap
   has_many :whmaphostingorder, :foreign_key => "uid"
   has_many :whmapinvoice, :foreign_key => "uid"
   has_many :whmapcreditcard, :foreign_key => "uid"
+  
+  has_one :whmapcreditcard, :foreign_key => "uid", :conditions => {:master_cc => 1}
 end

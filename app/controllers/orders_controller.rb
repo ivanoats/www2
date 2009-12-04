@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find_by_token(params[:token])
     flash[:error] = "Order not found" and redirect_to root_url and return unless @order
-    @sidebar = ''
+    @sidebar = false
     render :layout => 'application'
   end
 

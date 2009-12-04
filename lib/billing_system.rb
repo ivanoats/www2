@@ -36,6 +36,6 @@ module BillingSystem
   end
   
   def add_ons
-    AddOn.active.due.each { |add_on| addon.charge }
+    AddOn.active.due.each { |add_on| add_on.charge }
   end
 end

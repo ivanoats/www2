@@ -1,0 +1,34 @@
+
+SITE
+
+-> Complete testing in production environment
+
+MIGRATION
+
+-> IF the migration fails at any point the transactions will keep the database intact, but we should ensure emails are only sent at the correct point and we can resume somehow.  
+
+-> Test test test!
+
+THOUGHTS
+
+->  Package names on all servers need to be the same as values stored within product, as those are used when provisioning on the server.  
+
+
+#here's how I installed mcrypt, this shouldn't be needed after the migration.
+
+gem install kingpong-ruby-mcrypt --source http://gems.github.com --test \
+     -- --with-mcrypt-dir=/opt/local
+     
+LATER
+
+-> Make dashboard suck less and more useful
+-> condense number of colors used (too many green styles for example)
+-> Activity log of purchases, state changes, email errors
+-> Ability to cancel new hostings, domains, addons from admin.  
+-> When cancelling a hosting, what happens to the attached domain?
+-> Login to cpanel link from admin, update password functionality.  
+-> Edit hosting username before approval since some names can fail for funky reasons.
+-> remove icon for cart
+-> Complete user profile page
+-> zFields not selected when field is selected
+

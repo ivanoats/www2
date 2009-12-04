@@ -20,8 +20,8 @@
     </tr>
   <% @ordered.each do |hosting| %>
     <tr class='<%= cycle("odd","even")%>'>  
-      <td><%= check_box_tag "hosting[#{hosting.id}]" %></td>
-      <td style='text-align: left'><%= hosting.product.name %></td>
+      <td width='22px'><%= check_box_tag "hosting[#{hosting.id}]" %></td>
+      <td style='text-align: left'><%= hosting.product.name if hosting.product %></td>
       <td><%= hosting.created_at.to_formatted_s :human_date %></td>
       <td><%= link_to hosting.account.organization, hosting.account %></td>
       <td><%= hosting.state.capitalize %></td>
@@ -75,7 +75,7 @@
     </tr>
   <% @overdue.each do |account| %>
     <tr class='<%= cycle("odd","even")%>'>  
-      <td><%= check_box_tag "account[#{account.id}]" %></td>
+      <td  width='22px'><%= check_box_tag "account[#{account.id}]" %></td>
       <td style='text-align: left'><%= account.organization %></td>
       <td><%= number_to_currency -account.balance %></td>
       <td><%= account.next_payment_on.to_formatted_s :human_date %></td>
@@ -109,7 +109,7 @@
     </tr>
   <% @domains.each do |domain| %>
     <tr class='<%= cycle("odd","even")%>'>  
-      <td><%= check_box_tag "domain[#{domain.id}]" %></td>
+      <td width='22px'><%= check_box_tag "domain[#{domain.id}]" %></td>
       <td style='text-align: left'><%= domain.name %></td>
       <td><%= domain.created_at.to_formatted_s :human_date %></td>
       <td><%= link_to domain.account.organization, domain.account if domain.account %></td>
@@ -124,6 +124,7 @@
     No new domains.  
   </div>
 <% end %>
+<div style='clear: left'></div>
 
 <% unless @add_ons.empty? %>
   <h2>List of New Add Ons</h2>
@@ -142,7 +143,7 @@
     </tr>
   <% @add_ons.each do |add_on| %>
     <tr class='<%= cycle("odd","even")%>'>  
-      <td><%= check_box_tag "add_on[#{add_on.id}]" %></td>
+      <td  width='22px'><%= check_box_tag "add_on[#{add_on.id}]" %></td>
       <td style='text-align: left'><%= add_on.product.name %></td>
       <td><%= add_on.created_at.to_formatted_s :human_date %></td>
       <td><%= link_to add_on.account.organization, add_on.account if add_on.account %></td>

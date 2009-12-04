@@ -28,8 +28,10 @@
       end
        %></td>
     <td>
-      <%= select :"hosting[]", :state, Hosting.aasm_states_for_select %>
-      <%= observe_field "hosting_#{hosting.id}_state", :url => hosting_path(hosting), :with => 'hosting[state]', :method => :put %>
+      <%= @hosting.state.capitalize %>
+      
+      <% select :"hosting[]", :state, Hosting.aasm_states_for_select %>
+      <% observe_field "hosting_#{hosting.id}_state", :url => hosting_path(hosting), :with => 'hosting[state]', :method => :put %>
     </td>
     <td><%= link_to 'Show', hosting_path(hosting) %></td>
 
@@ -37,9 +39,9 @@
   </tr>
 <% end %>
 <% unless @accounts.empty? %>
-<tr class='<%= cycle('odd','even')%>'>
-  <td cols='5'>
-    These hostings are not managed.  
+<tr class='important'>
+  <td colspan='5' style='text-align:left'>
+    These sites are not managed.  
   </td>
 </tr>
 <% end %>
@@ -49,7 +51,7 @@
     <td><%= debug account %></td>
     <td></td>
     <td></td>
-    <td></td>
+    <td><%= link_to 'Destroy', {:controller => :servers, :action => :delete_unmanaged, :id => @server, :account => account.user}, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 
 <% end %>

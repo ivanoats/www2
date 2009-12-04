@@ -1,5 +1,4 @@
 require 'pp'
-
 namespace :whm do
   
   desc 'Migrate supporting objects'
@@ -44,8 +43,8 @@ namespace :whm do
 
     # Monthly packages
     Product.create!( {
-      :name            => "Basic Web Hosting Subscription",
-      :description     => "Basic Web Hosting Description",
+      :name            => "Basic Web Hosting ",
+      :description     => "Because it really does have everything you need to host a site, most customers choose this plan. Discount for yearly — only $8.33/month! ",
       :cost            => 10.00,
       :recurring_month => 1,
       :kind            => "package",
@@ -53,8 +52,8 @@ namespace :whm do
     })
     
     Product.create!( {
-      :name            => "Small Business Web Hosting Subscription",
-      :description     => "Small Business Web Hosting Description",
+      :name            => "Small Business Web Hosting",
+      :description     => "More Storage and more Bandwidth for audio and video files, and more visitors.",
       :cost            => 20.00,
       :recurring_month => 1,
       :kind            => "package",
@@ -63,8 +62,8 @@ namespace :whm do
     })
 
     Product.create!( {
-      :name            => "Professional Web Hosting Subscription",
-      :description     => "Professional Web Hosting Description",
+      :name            => "Professional Web Hosting",
+      :description     => "Even more storage and even more bandwidth for large audio and large video files, and tens of thousands of visitors.",
       :cost            => 30.00,
       :recurring_month => 1,
       :kind            => "package",
@@ -74,7 +73,7 @@ namespace :whm do
 
     # Yearly packages
     Product.create!( {
-      :name            => "Basic Web Hosting Subscription",
+      :name            => "Basic Web Hosting",
       :description     => "Basic Web Hosting Yearly",
       :cost            => 100.00,
       :recurring_month => 12,
@@ -83,7 +82,7 @@ namespace :whm do
     })
     
     Product.create!( {
-      :name            => "Small Business Web Hosting Subscription",
+      :name            => "Small Business Web Hosting",
       :description     => "Small Business Web Hosting Yearly",
       :cost            => 199.00,
       :recurring_month => 12,
@@ -93,7 +92,7 @@ namespace :whm do
     })
 
     Product.create!( {
-      :name            => "Professional Web Hosting Subscription",
+      :name            => "Professional Web Hosting",
       :description     => "Professional Web Hosting Yearly",
       :cost            => 299.00,
       :recurring_month => 12,
@@ -140,12 +139,6 @@ namespace :whm do
 
     Server.create! :name => "Test Server", :ip_address => '174.132.225.221', :whm_user => 'wpdnet', :whm_pass => 'coo2man'
 
-    Server.find_by_name('sustainablewebsites').update_attributes({:whm_user => 'sustainw', :whm_pass => 'CitizenSpace420!!'})
-    Server.find_by_name('swcom3').update_attributes({:whm_user => 'swcom3', :whm_pass => 'CitizenSpace420!!'})
-    Server.find_by_name('swcom7').update_attributes({:whm_user => 'swcom7', :whm_pass => 'CitizenSpace420!!'})
-    Server.find_by_name('swcom11').update_attributes({:whm_user => 'swcom11', :whm_pass => 'CitizenSpace420!!'})
-    Server.find_by_name('swcom13').update_attributes({:whm_user => 'swcom13', :whm_pass => 'CitizenSpace420!!'})
-    Server.find_by_name('uk1sw').update_attributes({:whm_user => 'uk1sw', :whm_pass => 'CitizenSpace420!!'})
 
 
     # "sustainw"," sustainablewebsites"," 74.55.133.197","yes","server.sustainablewebsites.com","main server new accounts go here"
@@ -183,6 +176,7 @@ namespace :whm do
     
     Whmapuser.find(:all, :include => :whmaphostingorder, :conditions => ['hosting_order.status = ?',1]).each { |user| 
       
+      User.transaction do  
         #TESTING
         user.email = 'padraicmcgee@gmail.com'
       
@@ -204,6 +198,28 @@ namespace :whm do
         
         @account.save!
         
+        cc = user.whmapcreditcard
+        
+        puts "No Credit Card for user #{user.first_name} #{user.last_name} #{user.id}" unless cc
+        if cc
+          @credit_card = ActiveMerchant::Billing::CreditCard.new(:first_name => cc.customer_first_name,
+            :last_name => cc.customer_last_name,
+            :month => cc.month,
+            :year => cc.year,
+            :type => cc.card_type,
+            :number => cc.number
+          )
+        
+        throw "Unknown card type for whampcreditcard #{cc.id}" if @credit_card.type == 'unknown'
+        
+#          throw "Credit Card not valid #{@credit_card}" unless @credit_card.valid?
+        
+          @account.billing_address = Address.new(:street => cc.customer_address,
+        :city => cc.customer_city, :state => cc.customer_state, :zip => cc.customer_zip, :country => cc.customer_country)
+        
+          @account.store_card(@credit_card)
+        end
+      
         initial_password = 'password' #TODO generate a unique password
         @user = User.find_by_email(user.email) || User.new(:login => user.username.gsub(/ /,'_'), :email => user.email, :password => initial_password, :password_confirmation => initial_password)
         @account.users << @user
@@ -242,7 +258,6 @@ namespace :whm do
           )
           domain = Domain.new(:name => order.domain_name, :product => Product.free_domain, :purchased => false, :account => @account)
           @hosting.domains << domain
-          domain.activate!
           
            @account.hostings << @hosting
            order.addon_choices.split('|').each {|id|
@@ -285,9 +300,10 @@ namespace :whm do
         #          @account.hostings << @hosting
         #          @hosting.update_attribute('state', 'suspended')
         #         }
-      }
-    
+      end
+    }
   end
+  
   
   desc 'Verify Migration'
   task :verify => :environment do

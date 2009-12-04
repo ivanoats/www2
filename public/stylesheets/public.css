@@ -2,7 +2,7 @@
 #content ul li {margin-left: 20px;}
 #content ol li {margin-left: 20px;}
 
-#content {float: left; width: 650px; margin: 30px 10px 0;  padding: 0 40px 0 20px; border: 1px solid #dedede; border-width: 0 1px 0 0;  }
+#content {float: left; width: 650px; margin: 10px 10px 0;  padding: 0 40px 0 20px; border: 1px solid #dedede; border-width: 0 1px 0 0;  }
 
 
 /* Hosting Table ################################################################## */
@@ -213,6 +213,13 @@ div#support_form form#new_ticket div input[name="authenticity_token"] { display:
     margin: 10px 0px;
     display: block;
     height: 90px;
+    color: #2D6B52;
+    
+}
+
+.package-group h3 {
+  font-size: 15pt;
+  color: black;
 }
 
 .package {

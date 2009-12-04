@@ -3,7 +3,7 @@ class Charge < ActiveRecord::Base
   belongs_to :chargable, :polymorphic => true
   
   def description
-    "#{self.chargable.name}"
+    "#{self.chargable.name if self.chargable}"
   end
 
 end

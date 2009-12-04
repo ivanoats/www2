@@ -121,7 +121,7 @@ class GreenHostingStoreController < ApplicationController
   end
 
   def confirmation
-    @sidebar = ''
+    @sidebar = false
     @terms_of_service = Page.find_by_permalink('terms_of_service')
   end
 
@@ -129,20 +129,21 @@ class GreenHostingStoreController < ApplicationController
     @order = Order.from_cart(@cart)
     @order.account = @account
     if @order.save 
-      
+      @order.reload
       if @account.charge_order(@order)
+        session[:cart_id] = nil
         OrderMailer.deliver_admin_notification(@order)
         OrderMailer.deliver_complete(@order, current_user)
         redirect_to :action => 'thanks'
         return
       end
     end
-    @sidebar = ''
+    @sidebar = false
     render :action => 'confirmation'
   end
   
   def thanks
-    @sidebar = ''
+    @sidebar = false
   end
   
 private

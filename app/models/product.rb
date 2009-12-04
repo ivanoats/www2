@@ -11,6 +11,9 @@ class Product < ActiveRecord::Base
   named_scope :addons, :conditions => {:kind => 'addon'}
   named_scope :coupons, :conditions => {:kind => 'coupon'}
   
+  named_scope :purchased, :conditions => {:purchased => true}
+  named_scope :free, :conditions => {:purchased => false}
+
   serialize :data, Hash
 
   aasm_column :status

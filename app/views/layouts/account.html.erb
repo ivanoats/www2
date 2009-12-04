@@ -11,12 +11,12 @@
 	<%= stylesheet_snippets %>
 
 	<!--[if lt IE 8]>
-		<%= stylesheet_link_tag "ie", :cache => true %>
+		<%= stylesheet_link_tag "ie" %>
 	<![endif]-->
 	<link rel="shortcut icon" href="/favicon.ico" />
 	<% # Include TinyMCE before other JS to avoid problems -%>
 	<%# = yield :tinymce %>
-	<%= javascript_include_tag :defaults, :cache => true %> 
+	<%= javascript_include_tag :defaults %> 
   <%= javascript_include_tag 'jquery.dimensions.js','jquery.liveSearch.js', formz_javascripts,'jquery.corner.js', 'sw.js' %>
   <%= yield :head %> 
   
@@ -49,7 +49,8 @@
 <% end #if splash on %>
       <%= content_tag(:div, '', :id => 'dialog')%>
   	  <%= flash_messages %>
-  	  <div style='float: right'>
+  	  <%= render :partial => 'layouts/user' %>
+      <div style='float: right'>
       <% if current_user.has_role?('Administrator') %>
         All accounts:  <%= select_tag :switch_account, options_from_collection_for_select(Account.active, :id, :organization, @account.id) %>
         <%= observe_field :switch_account, :url => {:controller => :account, :action => :switch_account, :return => request.request_uri}, :with => :id %>

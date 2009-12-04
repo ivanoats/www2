@@ -6,6 +6,7 @@
   
   <div class="addon ui-corner-all">
     <div><%= h addon.name %></div>
+    <br/>
     <div><%= sanitize addon.description, :tags => %w(a strong em), :attributes => %w(id class style)
       %></div>
     <br/>
@@ -15,23 +16,15 @@
     
     <%= number_to_currency(addon.cost) %>
     <%= addon.period_in_words %>  
-    <br style='clear: both'/>  
+    <div style='clear: both;'></div>
   </div>
   
   <% end #for addon %>
 
-<%= button "Back", {:action => "choose_package"}, :style => 'float: left' %>
-<%= button "Checkout", {:action => "checkout"}, :style => 'float: right' %>
-
-<script type="text/javascript" charset="utf-8">
-<!--
+<%= javascript_tag "
 function select_addon(addon) {
-  <%= remote_function(:url => {:controller => 'cart', :action => :add_addon, :package_id => @hosting.id}, :with => "'id=' + addon", :complete => "$('#select_' + addon ).hide(); $('#deselect_' + addon ).show();") %>
+  #{ remote_function(:url => {:controller => 'cart', :action => :add_addon, :package_id => @hosting.id}, :with => "'id=' + addon", :complete => "$('#select_' + addon ).hide(); $('#deselect_' + addon ).show();") }
 }
 function deselect_addon(addon) {
-  <%= remote_function(:url => {:controller => 'cart', :action => :remove_addon, :package_id => @hosting.id}, :with => "'id=' + addon", :complete => "$('#select_' + addon ).show(); $('#deselect_' + addon ).hide();") %>
-}
-
-//-->  
-</script>
-
+  #{ remote_function(:url => {:controller => 'cart', :action => :remove_addon, :package_id => @hosting.id}, :with => "'id=' + addon", :complete => "$('#select_' + addon ).show(); $('#deselect_' + addon ).hide();")}
+} "%>

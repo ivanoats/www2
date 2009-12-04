@@ -1,0 +1,10 @@
+
+table {
+  border-collapse: collapse;
+  padding: 0px;
+}
+
+input[type=checkbox] {
+  border: 0!important;
+}
+

@@ -43,8 +43,8 @@ class AdminController < ApplicationController
   
   def complete
     if request.post? && params[:add_on]
-      @add_on = AddOn.find(params[:add_on].keys)
-      @add_on.each { |add_on| 
+      @add_ons = AddOn.find(params[:add_on].keys)
+      @add_ons.each { |add_on| 
         if add_on.product.recurring_month == 0
           add_on.completed!
         else

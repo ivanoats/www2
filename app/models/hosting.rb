@@ -76,35 +76,30 @@ class Hosting < ActiveRecord::Base
     end  
   end
 
-private
-  
+  #return the whm account for this hosting
+  def whm
+    self.server.whm.account(self.username)
+  rescue => e
+    nil
+  end
   
   def create_cpanel_account
-    logger.error "CREATING CPANEL ACCOUNT"
-    debugger
     
-    #self.server.whm.create_account(:username => self.username, :domain => self.domain)
-    
+    self.server.whm.create_account(:username => self.username, :domain => self.domain, :password => self.password)    
     OrderMailer.deliver_hosting_approved(self)
   end
   
   def suspend_cpanel_account
-    logger.error "SUSPENDING CPANEL ACCOUNT"
-    debugger
-    
     self.server.whm.suspend_account(:user => self.username)
   end
   
   def unsuspend_cpanel_account
-    
     self.server.whm.unsuspend_account(:user => self.username)
   end
   
   def delete_cpanel_account
-    logger.error "DELETING CPANEL ACCOUNT"
-    debugger
-
-    #self.server.whm.terminate_account(:user => self.username)
+    
+    self.server.whm.terminate_account(:user => self.username)
   end
 
 end

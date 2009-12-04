@@ -37,18 +37,30 @@
       	<% cc.multi_field 'Credit Card' do %>
         	<% cc.row :inline => true do %>
           	<% supported_payment_types.each do |paytype| %>
+        	  <div class='credit_card_container'>
           	  <%= cc.radio_button :type, paytype.to_s, :label => '' %>
-          	  <%= image_tag( "credit_cards/#{paytype}.png", :style => "float: left; margin-left: 5px; margin-right: 10px")%>
+          	  <%= image_tag( "credit_cards/#{paytype}.png")%>
+          	</div>
           	<% end %>
         	<% end %>
         	<div style='clear:left'></div>
+        	<%= javascript_tag "jQuery('.credit_card_container').click(function() {
+        	  jQuery(this).find('input').attr('checked', 'checked');
+        	  jQuery('.credit_card_container.selected').removeClass('selected');
+        	  jQuery(this).addClass('selected');
+
+        	});
+        	
+            jQuery(function() { jQuery('.credit_card_container:first').click();});
+        	" %>
+        	
         	<% cc.row do %>
           	<%= cc.text_field :first_name %>          
           	<%= cc.text_field :last_name %>
         	<% end %>
         	
         	<% cc.row :inline => true do %>
-        	  <%= cc.text_field :number, :maxlength => 19 %>          
+        	  <%= cc.text_field :number, :maxlength => 19, :size => 30 %>          
           	
           	<%= cc.select_month :month, :prefix => 'credit_card', :label => "Expiration " %>
           	<%= cc.select_year :year, :start_year => Time.now.year, :end_year => Time.now.year + 10, :prefix => 'credit_card', :label => " Date", :style => "margin-left: 10px" %>
@@ -68,9 +80,29 @@
     <% end %>
   </div>
   <div id="users_tab">
-    <%= button_to_remote 'Add User', :url => "" %>
-    <div id="users">
-      <%= render :collection => @account.users, :partial => 'user' %>
+    
+    <table id='users_table' style='width: 100%; margin: 10px'>
+      <% for user in @account.users do %>
+        <%= render :partial => 'user', :locals => {:user => user } %>
+      <% end %>
+    </table>  
+      
+    <div style='clear: left'></div>
+    
+    <div style='margin: 10px'>
+      <% z_remote_form_for( :user, {:url => {:controller => 'accounts_users', :action => :add_from_email, :account_id => @account}}.merge( show_hide_spinner ) ) do |f| %>
+        <% f.fieldset do %> 
+          <% f.multi_field 'Add Administrator by Email' do %>
+      	
+            <% f.row :inline => true do %>
+              <%= f.text_field :email, :label => '' %>
+              <%= f.custom_field '' , f.image_submit_tag('buttons/add.png', :style => 'padding: 2px; height: 20px; width: 20px;') %>
+              <%= f.custom_field '', spinner_image %>
+              
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>

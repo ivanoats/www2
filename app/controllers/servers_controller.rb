@@ -31,4 +31,13 @@ class ServersController < ApplicationController
     flash[:error] = "Failed to load whm packages because whm returned '#{e.to_s}'"
     @packages = []
   end
+  
+  def delete_unmanaged
+    load_object
+    @account = @server.whm.account(params[:account])
+    @account.terminate!
+    flash[:notice] = "Account deleted"
+    redirect_to :action => "hostings", :id => @server
+  end
+  
 end
