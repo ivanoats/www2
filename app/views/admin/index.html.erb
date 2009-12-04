@@ -144,7 +144,7 @@
   <% @add_ons.each do |add_on| %>
     <tr class='<%= cycle("odd","even")%>'>  
       <td  width='22px'><%= check_box_tag "add_on[#{add_on.id}]" %></td>
-      <td style='text-align: left'><%= add_on.product.name %></td>
+      <td style='text-align: left'><%= add_on.product.name if add_on.product %></td>
       <td><%= add_on.created_at.to_formatted_s :human_date %></td>
       <td><%= link_to add_on.account.organization, add_on.account if add_on.account %></td>
       <td><%= add_on.state.capitalize %></td>

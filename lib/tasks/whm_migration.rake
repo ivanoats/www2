@@ -120,7 +120,7 @@ namespace :whm do
 
     Whmapaddon.find(:all).each { |addon|
       if(addon.coupon == 1)
-        Product.create!(:name => addon.addon_name, :description => addon.addon_description, :kind => "coupon", :data => {:code => addon.coupon_code, :percentage => addon.coupon_discount_percent, :discount => addon.coupon_discount_whole, :expires => Time.at(addon.expires.to_i)}, :recurring_month => 0)
+        Product.create!(:name => addon.coupon_code, :description => addon.addon_description, :kind => "coupon", :data => {:code => addon.coupon_code, :percentage => addon.coupon_discount_percent, :discount => addon.coupon_discount_whole, :expires => Time.at(addon.expires.to_i)}, :recurring_month => 0)
       elsif(addon.setup_cost == 0)
         Product.create!(:name => addon.addon_name, :description => addon.addon_description, :recurring_month => 1, :kind => "addon", :cost => addon.addon_cost)
       elsif(addon.addon_cost == 0)
@@ -159,6 +159,7 @@ namespace :whm do
     Account.delete_all
     Hosting.delete_all
     Domain.delete_all
+    AddOn.delete_all
     Order.delete_all
     Product.delete_all
     
@@ -199,8 +200,6 @@ namespace :whm do
         @account.save!
         
         cc = user.whmapcreditcard
-        
-        puts "No Credit Card for user #{user.first_name} #{user.last_name} #{user.id}" unless cc
         if cc
           @credit_card = ActiveMerchant::Billing::CreditCard.new(:first_name => cc.customer_first_name,
             :last_name => cc.customer_last_name,
@@ -217,7 +216,8 @@ namespace :whm do
           @account.billing_address = Address.new(:street => cc.customer_address,
         :city => cc.customer_city, :state => cc.customer_state, :zip => cc.customer_zip, :country => cc.customer_country)
         
-          @account.store_card(@credit_card)
+          #TODO reenable for speed
+          #@account.store_card(@credit_card)
         end
       
         initial_password = 'password' #TODO generate a unique password
@@ -247,6 +247,8 @@ namespace :whm do
            
            @product = Product.packages.first(:conditions => ["recurring_month = ? && cost = ?", recurring_month, cost])
            
+           @product ||= Product.packages.first(:conditions => {:cost => 0}) if cost == 0
+           
            throw "Product not found for #{order.whmappackage.whm_package_name} #{order.id}" if @product.nil?
            
            @hosting = Hosting.new(:server => Server.find_by_ip_address(order.whmapserver.server_ip),
@@ -262,7 +264,15 @@ namespace :whm do
            @account.hostings << @hosting
            order.addon_choices.split('|').each {|id|
              add_on = Whmapaddon.find(id)
-             @add_on = AddOn.new(:hosting => @hosting, :product => Product.addons.find(:first, :conditions => {:name => add_on.addon_name, :description => add_on.addon_description}), :account => @account)
+             
+             puts "SEARCHING: #{add_on.addon_name} #{add_on.coupon_code}"
+             
+             product = Product.addons.find(:first, :conditions => {:name => add_on.addon_name, :description => add_on.addon_description})
+             product ||= Product.coupons.find(:first, :conditions => {:name => add_on.coupon_code})
+             
+             puts "FOUND #{product.id}"
+             
+             @add_on = AddOn.new(:hosting => @hosting, :product => product, :account => @account)
              throw "Addon not found for #{add_on.addon_name} #{id}" if @add_on.product.nil?
              
              @account.add_ons << @add_on
