@@ -178,8 +178,8 @@ namespace :whm do
     Whmapuser.find(:all, :include => :whmaphostingorder, :conditions => ['hosting_order.status = ?',1]).each { |user| 
       
       User.transaction do  
-        #TESTING
-        user.email = 'padraicmcgee@gmail.com'
+        #TODO - remove this after final testing
+        #user.email = 'padraicmcgee@gmail.com'
       
         #create an account 
         @account = Account.new(:first_name => user.first_name,
@@ -220,12 +220,11 @@ namespace :whm do
           #@account.store_card(@credit_card)
         end
       
-        initial_password = 'password' #TODO generate a unique password
+        initial_password = Base64.encode64(Digest::SHA1.digest("#{rand(1<<64)}/#{Time.now.to_f}/#{Process.pid}"))[0..7]
+
         @user = User.find_by_email(user.email) || User.new(:login => user.username.gsub(/ /,'_'), :email => user.email, :password => initial_password, :password_confirmation => initial_password)
         @account.users << @user
         @user.update_attribute('state','active')
-        
-        #TODO mail to user with login and password
         
         user.whmaphostingorder.active.each { |order|
          if ["greenwebserver.com","ecobreeze", "windpowerhostnet"].include? order.whmapserver.server_name
@@ -247,7 +246,7 @@ namespace :whm do
            
            @product = Product.packages.first(:conditions => ["recurring_month = ? && cost = ?", recurring_month, cost])
            
-           @product ||= Product.packages.first(:conditions => {:cost => 0}) if cost == 0
+           @product ||= Product.packages.first(:conditions => {:cost => 0}) if cost == 0 # free packages having a monthly/annual setting is meaningless
            
            throw "Product not found for #{order.whmappackage.whm_package_name} #{order.id}" if @product.nil?
            
@@ -315,14 +314,18 @@ namespace :whm do
   end
   
   
-  desc 'Verify Migration'
-  task :verify => :environment do
-    
-    #balances should be the same
-    Account.find(:first).each { |account|
+  desc 'Email Accounts'
+  task :email => :environment do
+    User.find(:all, :conditions => ['created_at > ? ',1.hour.ago]).each do |user|
+      password = Base64.encode64(Digest::SHA1.digest("#{rand(1<<64)}/#{Time.now.to_f}/#{Process.pid}"))[0..7]
       
-    }
-    
+      user.password = user.password_confirmation = password
+      user.save!
+      
+      puts "Mailing #{user.email}"
+      UserMailer.deliver_billing_transfer(user,password)
+    end
   end
+  
   
 end
