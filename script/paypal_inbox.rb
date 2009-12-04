@@ -7,6 +7,7 @@ logger = RAILS_DEFAULT_LOGGER
 
 logger.info "Running Mail Importer..." 
 Net::POP3.start("server.sustainablewebsites.com", nil, "paypal-received@sustainablewebsites.com", "BIB3UkW:umGH") do |pop|
+
   if pop.mails.empty?
     logger.info "NO MAIL" 
   else

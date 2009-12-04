@@ -36,6 +36,11 @@ class Whmapinvoice < Whmap
   def paid?
     self.status == 1
   end
+
+  def mark_as_paid
+    self.status = 1
+    self.save
+  end
   
   # is a particular invoice due?
   def due?
