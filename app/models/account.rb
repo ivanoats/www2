@@ -123,7 +123,7 @@ class Account < ActiveRecord::Base
   end
   
   def charge_balance
-    charge(-self.balance)
+    charge(-self.balance) && self.update_attribute(:last_payment_on,Date.today)
   end
   
   def charge_order(order)
