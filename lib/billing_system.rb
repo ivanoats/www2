@@ -1,7 +1,27 @@
-module BillingSystem
+class BillingSystem
   
-  def accounts
-    Account.active.due.each do |account| 
+  def self.due_accounts
+    Account.active.due
+  end
+  
+  def self.overdue_accounts
+    Account.active.overdue
+  end
+  
+  def self.due_hostings
+    Hosting.active.due
+  end
+  
+  def self.due_domains
+    Domain.active.due
+  end
+  
+  def self.due_addons
+    AddOn.active.due
+  end
+  
+  def self.charge_accounts
+    due_accounts.each do |account| 
       amount = account.balance
       if account.charge_balance 
         BillingMailer.deliver_charge_success(account, account.payments.last)
@@ -10,7 +30,7 @@ module BillingSystem
       end
     end
     
-    Account.active.overdue.each do |account|
+    overdue_accounts.each do |account|
       amount = account.balance
       if account.charge_balance
         BillingMailer.deliver_charge_success(account, account.payments.last)
@@ -27,15 +47,24 @@ module BillingSystem
     
   end
   
-  def hostings
-    Hosting.active.due.each { |hosting| hosting.charge }
+  def self.charge_all
+    charge_hostings
+    charge_domains
+    charge_addons
+    
+    charge_accounts
+    
   end
   
-  def domains
-    Domain.active.due.each { |domain| domain.charge }
+  def self.charge_hostings
+    due_hostings.each { |hosting| hosting.charge }
   end
   
-  def add_ons
-    AddOn.active.due.each { |add_on| add_on.charge }
+  def self.domains
+    due_domains.each { |domain| domain.charge }
+  end
+  
+  def self.addons
+    due_addons.each { |add_on| add_on.charge }
   end
 end
