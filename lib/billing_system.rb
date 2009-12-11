@@ -60,11 +60,11 @@ class BillingSystem
     due_hostings.each { |hosting| hosting.charge }
   end
   
-  def self.domains
+  def self.charge_domains
     due_domains.each { |domain| domain.charge }
   end
   
-  def self.addons
+  def self.charge_addons
     due_addons.each { |add_on| add_on.charge }
   end
 end
