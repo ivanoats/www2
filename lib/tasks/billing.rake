@@ -4,7 +4,7 @@ namespace :billing do
   
   desc "All Billing Tasks"
   task :all => :environment do
-    BililngSystem.charge_all
+    BillingSystem.charge_all
   end
   
   desc 'Hostings'
