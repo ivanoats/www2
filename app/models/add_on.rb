@@ -40,4 +40,8 @@ class AddOn < ActiveRecord::Base
   include Chargeable
   before_create :initialize_next_charge, :unless => Proc.new { |a| a.attribute_present?("next_charge_on") }
   
+  def name
+    self.product.name if self.product
+  end
+  
 end
