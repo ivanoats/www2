@@ -25,6 +25,8 @@
 .ui-tabs-vertical .ui-widget-content .ui-state-default {
   border: 1px solid #327E04; 
   background: #459e00 url(/images/vertical-tabs/ui-bg_glass_30_7bd039_1x400.png) 50% 50% repeat-x; font-weight: bold; color: #ffffff; outline: none;
+  border:none;
+  background:none;
 }
 
 .ui-tabs-vertical .ui-state-active, 
@@ -34,6 +36,13 @@
   font-weight: bold; color: #459e00; outline: none;
 }
 
+.ui-tabs-vertical .ui-state-default a {
+  color: black;
+}
+
+.ui-tabs-vertical .ui-state-active a {
+  color: #459E00;
+}
 
 /*.ui-state-default, .ui-widget-content .ui-state-default { border: 1px solid #327E04; background: #459e00 url(images/ui-bg_highlight-hard_15_459e00_1x100.png) 50% 50% repeat-x; font-weight: bold; color: #ffffff; outline: none; }
 

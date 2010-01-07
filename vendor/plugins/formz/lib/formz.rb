@@ -108,6 +108,20 @@ module Formz #:nodoc:
       @template.concat(@template.content_tag(:div, content, :class => (options[:inline] ? "zInlineRow" : "zRow zRowFields#{@field_count}")))
     end
     
+    def buttons( options = {}, &proc )
+      @buttons = true
+        @field_count = 0
+        content = if block_given?
+          @template.capture(&proc)
+        else
+          submit + spinner_image
+        end
+      @buttons = false
+      options[:class] = "#{options[:class]} zInlineField zButton"
+      @template.concat(@template.content_tag(:div, content, :class => 'buttonHolder'))
+      nil
+    end
+    
     def name
       multi_field 'Name' do
         row do
@@ -203,15 +217,24 @@ module Formz #:nodoc:
       end
     end
       
-    def submit(value = "Save changes", options = {})
+    def submit(value = nil, options = {})
       options.stringify_keys!
+      value = self.object.new_record? ? "Save" : "Update" if value.nil?
       if disable_with = options.delete("disable_with")
         options["onclick"] = "this.disabled=true;this.value='#{disable_with}';this.form.submit();#{options["onclick"]}"
       end
 
-      @template.content_tag :div, 
-      options['prefix'].to_s + @template.content_tag(:button, @template.content_tag(:span,value), { "type" => "submit", "name" => "commit", :class => "submitButton button"}.update(options.stringify_keys)), 
-        :class => "buttonHolder"
+      submit_button = options['prefix'].to_s + @template.content_tag(:button, @template.content_tag(:span,value), { "type" => "submit", "name" => "commit", :class => "submitButton button"}.update(options.stringify_keys))
+      submit_button = @template.content_tag :div, submit_button, :class => "buttonHolder" unless @buttons
+      submit_button
+    end
+    
+    def spinner_image(options = {})
+      image_name = options.delete("image_name") || 'ajax-loader.gif'
+      spinner_id = options.delete("id") || "spinner_#{self.object.id}_#{self.object_name}"
+      
+      #@template.content_tag(:div,image_tag(image_name, :id => spinner_id, :style => ' display:none'), :style => 'padding: 5px;')
+      image_tag(image_name, :id => spinner_id, :style => ' display:none; padding: 5px')
     end
     
     def radio_button(method, tag_value, options = {})

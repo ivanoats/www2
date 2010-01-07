@@ -67,5 +67,8 @@ module ApplicationHelper
     url = 'http://www.sustainablewebsites.com' + url if RAILS_ENV == "production"
     link_to(title,url)
   end
-
+  
+  def current_account
+    current_user ? Account.find_by_id(session[:account]) || current_user.accounts.first : nil
+  end
 end

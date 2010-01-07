@@ -36,6 +36,10 @@
 	padding: 0 .5em;
 }
 
+.zButton {
+  float: right;
+}
+
 .zField, .zMultiField { /* This is the main unit that contains our form "modules" */
   overflow:hidden;
   margin:0; padding:0;
@@ -52,6 +56,10 @@
   
   padding:10px;
   text-align:right;
+}
+
+.buttonHolder * {
+  float: right!important;
 }
 
 .resetButton{

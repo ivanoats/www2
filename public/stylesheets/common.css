@@ -41,6 +41,12 @@ h3 a {color: #000000;} /* blog titles */
 h3 a:hover {background: #eeeeee;}
 strong {font-weight: bold;}
 
+
+
+.text_content ul {margin-left: 15px;}
+.text_content ul li {margin-left: 20px;}
+.text_content ol li {margin-left: 20px;}
+
 .text_content p {margin:0 0 1em;}
 /* .text_content p img {margin:1.5em 1em 1.5em 0;padding:0;} */
 .text_content p img.right {float:right;margin:1.5em 0 1.5em 1.5em;}

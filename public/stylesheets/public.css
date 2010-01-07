@@ -1,6 +1,3 @@
-#content ul {margin-left: 15px;}
-#content ul li {margin-left: 20px;}
-#content ol li {margin-left: 20px;}
 
 #content {float: left; width: 650px; margin: 10px 10px 0;  padding: 0 40px 0 20px; border: 1px solid #dedede; border-width: 0 1px 0 0;  }
 
@@ -57,7 +54,7 @@ input:active, input:focus, input.title:focus, textarea:focus, select:focus {bord
 input.title {font-size:1.5em;}
 
 /* Comment Form Overrides */
-.zForm {/*border-top: 2px solid #DFDFDF; */padding: 20px 0;}
+.zForm { padding: 15px 0 0 0;}
 .ctrlHolder {background: none; padding: 7px 0;}
 label em, .label em {color: red;}
 
@@ -265,4 +262,11 @@ div#support_form form#new_ticket div input[name="authenticity_token"] { display:
   border-top:none;
   border-left: none;
   border-right:none;
+}
+
+/* Accounts */
+
+.account_listing li {
+  float: left;
+  padding: 15px;
 }

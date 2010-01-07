@@ -5,8 +5,6 @@ SITE
 
 MIGRATION
 
--> IF the migration fails at any point the transactions will keep the database intact, but we should ensure emails are only sent at the correct point and we can resume somehow.  
-
 -> Test test test!
 
 THOUGHTS

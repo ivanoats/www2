@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :create
 
   require_role "Administrator", :only => [:index, :destroy, :enable]
-  before_filter :login_required, :only => [:edit, :update]
+  before_filter :login_required, :only => [:edit, :update, :profile]
+  before_filter :find_user, :only => [:edit, :update]
   
   def profile
     @user = current_user
@@ -73,28 +74,35 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @current_user = logged_in_user
-    if @current_user.has_role?('Administrator') && params[:id]
-      @user = User.find(params[:id])
-    else
-      @user = @current_user
-    end
+    
   end
   
-  def update
-    @current_user = logged_in_user
-    if @current_user.has_role?('Administrator') && params[:id]
-      @user = User.find(params[:id])
-    else
-      @user = @current_user
+  def update    
+    respond_to do |wants|
+      wants.html do
+        if @user.update_attributes(params[:user]) 
+          flash[:notice] = "User updated" 
+          redirect_to :action => 'show', :id => @user 
+        else 
+          render :action => 'edit' 
+        end  
+      end
+      
+      wants.js do
+        render :update do |page|
+          page.show "user_#{@user.id}_errors"
+          if @user.update_attributes(params[:user]) 
+            page.replace_html "user_#{@user.id}_errors", 'Your information has been updated'
+
+            page.delay(1) do
+              page.visual_effect :fade, "user_#{@user.id}_errors"
+            end
+          else 
+            page.replace_html "user_#{@user.id}_errors", @user.errors.join('<br/>')
+          end 
+        end
+      end
     end
-    
-    if @user.update_attributes(params[:user]) 
-      flash[:notice] = "User updated" 
-      redirect_to :action => 'show', :id => @user 
-    else 
-      render :action => 'edit' 
-    end 
   end
   
   def show_by_login
@@ -153,4 +161,15 @@ class UsersController < ApplicationController
     flash[:error] = message
     render :action => :new
   end
+  
+  def find_user
+    @current_user = logged_in_user
+    if @current_user.has_role?('Administrator') && params[:id]
+      @user = User.find(params[:id])
+    else
+      @user = @current_user
+    end
+  end
+    
+  
 end

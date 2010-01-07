@@ -11,8 +11,8 @@ ActionController::Routing::Routes.draw do |map|
   map.signup '/signup-new', :controller => 'users', :action => 'new'
   map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate', :activation_code => nil
   map.activate '/activate_admin/:activation_code', :controller => 'users', :action => 'activate_admin', :activation_code => nil
-  #map.profile '/profile', :controller => 'users', :action => 'profile'
-  map.profile '/profile', :controller => 'users', :action => 'edit'
+  map.profile '/profile', :controller => 'users', :action => 'profile'
+  #map.profile '/profile', :controller => 'users', :action => 'edit'
   
   
   map.forgot_password '/forgot_password', :controller => 'passwords', :action => 'new'
@@ -69,7 +69,7 @@ ActionController::Routing::Routes.draw do |map|
   map.knowledgebase '/knowledgebase', :controller => 'articles', :action => 'index', :category_id => 2
   map.livesearch '/search/:search', :controller => 'articles', :action => 'livesearch', :search => nil
   map.certificate_signing_request '/certificate_signing_request', :controller => 'certificate_tickets', :action => "new"
-
+  map.switch_account '/switch_account/:id', :controller => "account", :action => 'switch_account'
   # Home Page
   map.root :controller => 'pages', :action => 'home'
 

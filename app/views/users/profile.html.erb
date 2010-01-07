@@ -1,36 +1,60 @@
 <h2>Profile</h2>
-<div id='profile_tabs'>
+<%= content_tag(:div, '', :id => "user_#{@user.id}_errors")%>
+
+<div id='profile_tabs' style='display:none;'>
   <ul>
     <li><%= link_to "Settings", "#settings_tab" %></li>
+    <li><%= link_to "Password", "#password_tab" %></li>
+    <% unless current_user.accounts.empty? %>
     <li><%= link_to "Accounts", "#accounts_tab" %></li>
-
+    <% end %>
   </ul>
-  <div id="settings_tab">
-    <%= error_messages_for [:user] %>
-  
-    <% z_form_for @user do |f| %>
+  <div id="settings_tab" >  
+    <% z_remote_form_for @user, :spinner => true do |f| %>
       <% f.fieldset :type => "inline" do %>
 
-      <%= f.fields [:login, :name, :email, :profile]%>
+        <%= f.fields [:login, :name, :email, :profile]%>
+        <%= f.buttons %>
+      <% end %>
+    <% end %>
+  </div>
+  <div id="password_tab" >
+  
+    <% z_remote_form_for @user do |f| %>
+      <% f.fieldset :type => "inline" do %>
+      <%= f.password_field :password %>
+      <%= f.password_field :password_confirmation, :label => "Confirm Password" %>
+      <% end %>
+
+      
       <%= f.submit "Update", :style => 'float: right'%>
-      <% end %>
+
+      
     <% end %>
   </div>
-  <div id="accounts_tab">
-    <% unless current_user.accounts.empty? %>
+  <% unless current_user.accounts.empty? %>
+  <div id="accounts_tab" style="min-height: 200px">
+    <div style="padding: 15px; ">
       <h3>Accounts</h3>
-
+      <ul class='account_listing'>
       <% for account in current_user.accounts %>
-        <%= account.organization %>
+        <li>
+          <span style='font-size: larger'><%= account.organization %></span><br/>
+          <span style="font-size: smaller">
+          <%= account.hostings.active.size %> Sites<br/>
+          <%= link_to_remote "Manage", :url => switch_account_url(account)%>
+          </span>
+        </li>
       <% end %>
-
-    <% end %>
+      <ul>
+    </div>
   </div>
+    <% end %>
 </div>
 <script type="text/javascript">
 	$(function() {
 	  $("#profile_tabs").tabs();
-
+    $("#profile_tabs").show();
     $("#profile_tabs").addClass('ui-tabs-vertical ui-helper-clearfix');
        $("#profile_tabs").removeClass('ui-widget').removeClass('ui-widget-content');
        $('#profile_tabs .ui-tabs-panel').addClass('ui-widget ui-widget-content');

@@ -2,4 +2,14 @@
 <div id="sidebar">
 	<%= @sidebar || yield(:sidebar) || render(:partial => 'shared/default_sidebar') %>
 </div><!--/sidebar-->
+<% else %>
+<style type='text/css'>
+  #content { 
+    width: auto;
+    border:0;
+    padding-right: 10px;
+    float: none;
+  }
+  
+</style>
 <% end %>

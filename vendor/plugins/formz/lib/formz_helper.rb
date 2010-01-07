@@ -33,3 +33,16 @@ module Formz
     end
   end
 end
+
+module ActionView::Helpers::FormHelper
+  
+  def apply_form_for_options_with_spinner!(object,options)
+    if(options.delete(:spinner))
+      spinner_id = "spinner_#{object.id}_#{ActionController::RecordIdentifier.singular_class_name(object)}"
+      options.merge!({:before => "jQuery('##{spinner_id}').show();", :complete => "jQuery('##{spinner_id}').hide();"})
+    end
+    apply_form_for_options_without_spinner!(object,options)    
+  end
+  alias_method_chain :apply_form_for_options!, :spinner 
+
+end

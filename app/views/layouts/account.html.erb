@@ -7,7 +7,7 @@
 	<%= page_title %> 
 	<%= meta "description", meta_description %> 
 	<%= meta "keywords", meta_keywords %>
-	<%= stylesheet_link_tag 'jqueryui/south-street/jquery-ui-1.7.2.custom.css', 'common', 'account', "pagination", "users", formz_stylesheets, 'live-search' ,:cache => 'account_cache' %>
+	<%= stylesheet_link_tag 'common', 'account', "pagination", "users", formz_stylesheets, 'live-search','jquery-ui' ,:cache => 'account_cache' %>
 	<%= stylesheet_snippets %>
 
 	<!--[if lt IE 8]>
@@ -62,7 +62,7 @@
       </div>
       <h2 style='float: left; margin: 0;'><%= @account.organization %></h2>
       <div style='clear: both;'></div>
-      <div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+      <div id='account_tabs_container' style='display:none' class="ui-tabs ui-widget ui-widget-content ui-corner-all">
         <% tabnav :account do %>
           <div class="ui-tabs-panel ui-widget-content ui-corner-bottom">
       	    <div id="content">
@@ -70,6 +70,7 @@
       	    </div>
       	  </div>
         <% end %>
+        <%= javascript_tag "$(function() { $('#account_tabs_container').show()})"%>
       </div>
   	</div>
   </div><!--/container-->

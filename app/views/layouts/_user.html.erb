@@ -1,5 +1,6 @@
 <% if logged_in? and current_user.has_role?('Administrator') %> 
 <ul id='admin_toolbar'>
+  <li><%= link_to 'Administration', admin_path %></li>   
   <li><%= link_to 'Users Admin', users_path %></li> 
   <li><%= link_to 'Articles Admin', admin_articles_path  %></li>
   <li><%= link_to 'Pages Admin', pages_path %></li>
