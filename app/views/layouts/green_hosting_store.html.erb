@@ -16,7 +16,7 @@
 	<% # Include TinyMCE before other JS to avoid problems -%>
 	<%# = yield :tinymce %>
 	<%= javascript_include_tag :defaults %> 
-  <%= javascript_include_tag 'jquery.dimensions.js','jquery.liveSearch.js', formz_javascripts,'jquery.corner.js', 'sw.js' %>
+  <%= javascript_include_tag 'jquery.dimensions.js','jquery.liveSearch.js', formz_javascripts,'jquery.corner.js', 'sw.js', 'passwordstrengthmeter.js' %>
   
   <%= yield :head %> 
   <style type='text/css'>

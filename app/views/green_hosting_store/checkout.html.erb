@@ -31,6 +31,13 @@
   <br/>
   If you wish to add this purchase to an existing account, <%= link_to "sign in", login_url %>
   <%= error_messages_for [:user, :account] %>
+  <%= javascript_tag "jQuery(function() {
+    jQuery('#user_password').parent().append('<span id=\"strength\"></span>').end().bind('keydown keyup',
+    function() {
+      attrs = passwordStrength(jQuery(this).val(), jQuery('#user_login').val());
+      jQuery('#strength').html(attrs.text).css({color: attrs.color})
+    });
+  });"%>
   <% z_form_for :user do |f| %>
     <% f.fieldset :legend => 'Create your Account', :type => "inline" do %>
       <% z_fields_for :account do |a| %>
