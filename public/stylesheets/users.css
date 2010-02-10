@@ -3,3 +3,12 @@
 #profile {}
 #profile h2 { }
 #profile .gravitar { float: right; padding: 10px;}
+
+#green_hosting_store .blockLabels .zFieldDiv {
+  position: relative;
+}
+
+#strength {
+  position: absolute;
+  right: 0;
+}
