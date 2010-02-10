@@ -5,7 +5,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 
 # key needed by ajax comment spam blocker
 COMMENT_KEY = '*W^dK8AMBAT2'
@@ -36,6 +36,8 @@ Rails::Initializer.run do |config|
   config.gem "mofo"
   config.gem "packet"
   config.gem 'searchlogic'
+  config.gem 'curb'
+  config.gem 'packet'
   
   #config.gem "ivanoats-whm_xml", :lib => "whm"
   config.gem 'whm_xml', :lib => 'whm', :version => ">=0.3.2"
