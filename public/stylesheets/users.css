@@ -4,11 +4,12 @@
 #profile h2 { }
 #profile .gravitar { float: right; padding: 10px;}
 
-#green_hosting_store .inlineLabels .zFieldDiv {
+#green_hosting_store_checkout .zField .zFieldDiv {
   position: relative;
 }
 
 #strength {
   position: absolute;
   right: 0;
+  bottom: 0;
 }
