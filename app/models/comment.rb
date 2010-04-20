@@ -1,21 +1,21 @@
 class Comment < ActiveRecord::Base
-  
-  # +------------------+--------------+------+-----+---------+----------------+
-  # | Field            | Type         | Null | Key | Default | Extra          |
-  # +------------------+--------------+------+-----+---------+----------------+
-  # | id               | int(11)      | NO   | PRI | NULL    | auto_increment |
-  # | title            | varchar(255) | YES  |     |         |                |
-  # | comment          | text         | YES  |     | NULL    |                |
-  # | created_at       | datetime     | YES  |     | NULL    |                |
-  # | updated_at       | datetime     | YES  |     | NULL    |                |
-  # | user_id          | int(11)      | NO   | MUL | 0       |                |
-  # | web_site         | varchar(255) | YES  |     | NULL    |                |
-  # | email            | varchar(255) | YES  |     | NULL    |                |
-  # | name             | varchar(255) | YES  |     | NULL    |                |
-  # | commentable_id   | int(11)      | YES  |     | NULL    |                |
-  # | commentable_type | varchar(255) | YES  |     | NULL    |                |
-  # +------------------+--------------+------+-----+---------+----------------+
-  
+
+# +------------------+--------------+------+-----+---------+----------------+
+# | Field            | Type         | Null | Key | Default | Extra          |
+# +------------------+--------------+------+-----+---------+----------------+
+# | id               | int(11)      | NO   | PRI | NULL    | auto_increment |
+# | title            | varchar(255) | YES  |     |         |                |
+# | comment          | text         | YES  |     | NULL    |                |
+# | created_at       | datetime     | YES  |     | NULL    |                |
+# | updated_at       | datetime     | YES  |     | NULL    |                |
+# | user_id          | int(11)      | NO   | MUL | 0       |                |
+# | web_site         | varchar(255) | YES  |     | NULL    |                |
+# | email            | varchar(255) | YES  |     | NULL    |                |
+# | name             | varchar(255) | YES  |     | NULL    |                |
+# | commentable_id   | int(11)      | YES  |     | NULL    |                |
+# | commentable_type | varchar(255) | YES  |     | NULL    |                |
+# +------------------+--------------+------+-----+---------+----------------+
+
   attr_accessor :key
 
   belongs_to :commentable, :polymorphic => true
@@ -31,17 +31,32 @@ class Comment < ActiveRecord::Base
   def does_not_include_badwords
 
     badwords = %w(
+    aloha!
+    href=
     -online
+    1freewebspace.com
     4u
     5gighost.com
+    accutane
     adipex
+    adultsex
     advicer
+    alprazolam
+    amoxil
+    arcadepages
+    arimidex
+    associations.missouristate.edu
     ativan
+    augmentin
     baccarrat
-    blowjob
+    baclofen
+    beaver
     blackjack
     bllogspot
+    blogs.blackmarble.co.uk
+    blowjob
     booker
+    buspar
     byob
     car-rental-e-site
     car-rentals-e-site
@@ -50,12 +65,21 @@ class Comment < ActiveRecord::Base
     casinos
     chatroom
     cialis
+    cipro
     citalopram
+    clomid
     clonazepam
+    comment1
+    comment2
+    comment3
+    comment4
+    comment5
+    comment6
     coolcoolhu
     coolhu
     credit-card-debt
     credit-report-4u
+    creditonlinepersonalloans
     cwas
     cyclen
     cyclobenzaprine
@@ -64,17 +88,24 @@ class Comment < ActiveRecord::Base
     debt-consolidation
     debt-consolidation-consultant
     diazepam
+    diovan
     discreetordering
+    dostinex
     duty-free
     dutyfree
+    dvxuser.com
     equityloans
+    fanreach.com
     fioricet
+    flagyl
     flowers-leading-site
+    fosamax
     freenet
     freenet-shopping
     gambling-
     hair-loss
     health-insurancedeals-4u
+    hi5.com
     holdem
     holdempoker
     holdemsoftware
@@ -85,43 +116,54 @@ class Comment < ActiveRecord::Base
     hotele-site
     hotelse-site
     hydrocodone
+    hyves.mn
     incest
     insurance-quotesdeals-4u
     insurancedeals-4u
     isuzuforums.com
+    jestmaster
+    jizz
     jrcreations
-    kamagra
     kaboodle.com
+    kamagra
     klonopin
-    levitra
-    lycos
+    lamictal
     lesbian
+    levaquin
+    levitra
     lezbian
     loans
     lorazepam
+    lycos
     macinstruct
     metformin
     metronidazole
     mortgage-4-u
     mortgagequotes
     musicstation
+    nojazzfest
+    nolvadex
     online-gambling
     onlinegambling-4u
     ottawavalleyag
     ownsthis
     palm-texas-holdem-game
-    paydal
     paxil
+    paydal
     penguinforum
     penis
+    personalloansbad
     pharmacy
+    phenergan
     phentermine
     poker-chip
-    poze
     porn
-    propecia
+    poze
     profiles.friendster.com
+    propecia
+    proscar
     pussy
+    remeron
     rental-car-e-site
     ringtone
     ringtones
@@ -129,12 +171,18 @@ class Comment < ActiveRecord::Base
     shemale
     shoes
     slot-machine
+    Staphcillin
     tamiflu
+    tegretol
     texas-holdem
     thorcarlson
     top-e-site
     top-site
+    toprol
+    toradol
     tramadol
+    tramodal
+    tramodol
     trim-spa
     ultram
     valeofglamorganconservatives
@@ -143,53 +191,17 @@ class Comment < ActiveRecord::Base
     vibramycin
     vicodin
     vioxx
+    voltaren
+    vytorin
     xanax
+    zantac
+    zithromax
+    zofran
     zolpidem
     zolus
-    blogs.blackmarble.co.uk
-    personalloansbad
-    1freewebspace.com
-    associations.missouristate.edu
-    arcadepages
-    jestmaster
-    Staphcillin
-    amoxil
-    baclofen
-    lamictal
-    levaquin
-    toprol
-    diovan
-    arimidex
-    augmentin
-    voltaren
-    remeron
-    zantac
-    zofran
-    phenergan
-    dostinex
-    proscar
-    tegretol
-    creditonlinepersonalloans
-    cipro
-    vytorin
-    accutane
-    flagyl
-    dvxuser.com
-    buspar
-    fosamax
-    toradol
-    adultsex
-    jizz
-    nojazzfest
-    comment1
-    comment2
-    comment3
-    comment4
-    comment5
-    comment6
     )
     badwords.each do |bw|
-      if comment.downcase.include?(bw) 
+      if !comment.nil? && comment.downcase.include?(bw) 
         errors.add_to_base("Comment Rejected") 
         break
       end
