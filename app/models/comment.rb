@@ -16,6 +16,7 @@ class Comment < ActiveRecord::Base
 # | commentable_type | varchar(255) | YES  |     | NULL    |                |
 # +------------------+--------------+------+-----+---------+----------------+
 
+
   attr_accessor :key
 
   belongs_to :commentable, :polymorphic => true

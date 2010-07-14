@@ -26,7 +26,7 @@ namespace :db do
       raise "Task not supported by '#{abcs[RAILS_ENV]['adapter']}'" 
     end
   end # task database_dump
-  
+
   desc "Dump the billing database to a MySQL file and compress it" #only works on MySQL dbs
   task :whmap_dump do
     load 'config/environment.rb'

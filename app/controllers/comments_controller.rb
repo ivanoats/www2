@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
       @comment = Comment.new(comment_hash) 
       
       respond_to do |wants|
+
       if @comment.key == COMMENT_KEY
         if @comment.save
           flash[:notice] = "Comment saved"
@@ -32,7 +33,11 @@ class CommentsController < ApplicationController
           end # render update
           }
         end # if comment saved/ not saved
+<<<<<<< HEAD
       else # if comment key does not match
+=======
+      else # if not comment key
+>>>>>>> 5233f80cf54edfa2b7e0edefc9fe2cac21a682bd
         wants.js { render :update do |page|
           page.replace_html 'notice',''
           page.select("#errorExplanation") { |e| e.replace_html ''}

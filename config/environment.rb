@@ -10,6 +10,7 @@ RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 # key needed by ajax comment spam blocker
 COMMENT_KEY = '*W^dK8AMBAT2'
 
+
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
@@ -87,5 +88,8 @@ end
 ExceptionNotifier.exception_recipients = %w(ivanoats@gmail.com padraicmcgee@gmail.com)
 ExceptionNotifier.sender_address = %("Application Error" <app.error@sustainablewebsites.com>) 
 ExceptionNotifier.email_prefix = "[www2] " 
+<<<<<<< HEAD
 
 require 'hash_extensions'
+=======
+>>>>>>> 5233f80cf54edfa2b7e0edefc9fe2cac21a682bd

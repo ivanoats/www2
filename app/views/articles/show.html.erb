@@ -58,6 +58,11 @@
                 })
         </script>
     <% end %>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#comment_form').append('<input id="comment_key" type="hidden" value="*W^dK8AMBAT2" name="comment[key]">');
+            })
+    </script>
   <% end %>
 <% end %>
 <p><%= link_to 'Back to article list', articles_url %></p> 
