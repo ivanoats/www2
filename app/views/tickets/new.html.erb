@@ -1,6 +1,7 @@
 <% content_for :sidebar do %>
-	<%= render :partial => 'shared/search_form' %>
-	<%= render :partial => 'shared/common_fixes' %>	
+  <%= render :partial => 'shared/search_form' %>
+  <%= render :partial => 'shared/live_chat' %>
+  <%= render :partial => 'shared/common_fixes' %>	
 <% end %>
 
 <div id="support_form">
@@ -67,11 +68,6 @@
   <div>
     <label for="cpanel_username">cPanel username</label><br /><span class="field_description">put don't know if you don't know it. <a href="http://www.sustainablewebsites.com/billing">Click here to re-send your password email</a></span>
     <%= f.text_field :cpanel_username %>
-  </div>
-
-  <div>
-    <label for="cpanel_password">cPanel password</label><br /><span class="field_description">put don't know if you don't know it</span>
-    <%= f.password_field :cpanel_password %>
   </div>
 
   <div>

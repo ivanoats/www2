@@ -1,94 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
-<head>
-<title>SustainableWebsites.com - Paypal - Subscriptions</title>
-<link rel="shortcut icon" href="http://www.sustainablemarketing.com/images/favicon.ico">
-<link rel="stylesheet" href="../css/style.css" type="text/css">
-<script type="text/javascript">
+  <head>
+    <title>
+      SustainableWebsites.com - Paypal - Subscriptions
+    </title>
+    <link rel="shortcut icon" href="http://www.sustainablewebsites.com/images/favicon.ico">
+    <link rel="stylesheet" href="http://www.sustainablewebsites.com/stylesheets/sw.css" type="text/css">
+    <script type="text/javascript">
 function clickclear(thisfield, defaulttext) {
-if (thisfield.value == defaulttext) {
-thisfield.value = "";
-}
-}
+    if (thisfield.value == defaulttext) {
+    thisfield.value = "";
+    }
+    }
 
-function clickrecall(thisfield, defaulttext) {
-if (thisfield.value == "") {
-thisfield.value = defaulttext;
-}
-}
-</script>
-</head>
-<body>
+    function clickrecall(thisfield, defaulttext) {
+    if (thisfield.value == "") {
+    thisfield.value = defaulttext;
+    }
+    }
+    </script>
+  </head>
+  <body>
     <div id="container">
-    	<div id="container-inner">
-    		<div id="banner">
-    			<a href="http://www.sustainablewebsites.com"><img border="0"  src="/images/swtopbanner.jpg" alt="Sustainable Web Hosting for Organic, Green, and Corporate Social Responsibility companies presents SustainableWebsites Web Hosting 100% Carbon Neutral Wind Powered Web Hosting" ></a>
-    		</div>
-
-    		<div id="sidebar-a">
-    			<div id="sidebar-a-inner">
-    			<?php
-    			include("mainmenu.php");
-    			?>
-    			<p align="center">
-    			<a style="border:none " href="http://www.coopamerica.org/greenbusiness/sealofapproval.cfm" target="_blank">
-    			<img src="/images/coa_business-seal.gif" alt="Co-Op America Partner" title="Co-Op America Partner" border="0"  /></a>
-    			</p><p align="center">
-    			<a style="border:none;" href="http://www.opensource.org/docs/definition.php"> <img src="/images/opensource-110x95.png" border="0" style="border: 1px solid #000 "></a>
-    			</p><p align="center">
-    			<a style="border: none; " href="https://www.paypal.com/us/verified/pal=ivan%40sustainablemarketing%2ecom" target="_blank"><img src="/images/paypal_verification_seal.gif" border="0"  style="border: 1px solid #000 " alt="Official PayPal Seal" /></a>
-    			</p>
-    			<p align="center">
-    			<!-- GeoTrust QuickSSL [tm] Smart Icon tag. Do not edit. -->
-    <SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript" SRC="//smarticon.geotrust.com/si.js"></SCRIPT>
-    <!-- end GeoTrust Smart Icon tag -->
-     <!-- (c) 2006. Authorize.Net is a registered trademark of Lightbridge, Inc. -->
-     <div class="AuthorizeNetSealWrapper"> <div class="AuthorizeNetSeal" align="center;"> <script type="text/javascript" language="javascript">var ANS_customer_id="5583969a-4197-4472-a9d9-de44ddcb060b";</script> <script type="text/javascript" language="javascript" src="//VERIFY.AUTHORIZE.NET/anetseal/seal.js" ></script> <a href="http://www.authorize.net/" id="AuthorizeNetText" target="_blank">Payment Processing</a> </div> </div>
-    			</p>
-    		 	</div>
-    		</div>
-
-    <div id="content">
-        <h1>Reinstate your subscription</h1>
-        <p>Use this form to reinstate your PayPal subscription or start a new subscription, as agreed with the SustainableWebsites Billing Department. Please enter the amount and your domain name. Then press the PayPal button and you will be taken to the PayPal site where you must log into your PayPal account to confirm the transaction.</p>
-        
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-        
-        <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-        <input type="hidden" name="cmd" value="_xclick-subscriptions">
-        <input type="hidden" name="business" value="accounting@sustainablewebsites.com"><br />
-        <!--<label for="item_name">Subscription Name: </label><input type="hidden" name="item_name" value="subscription name" ><br />-->
-        <label for="item_number">Domain Name: </label><input type="text" name="item_name" value="domain_name.com" onclick="clickclear(this, 'domain_name.com')" onblur="clickrecall(this,'domain_name.com')"><br />
-        <input type="hidden" name="buyer_credit_promo_code" value="">
-        <input type="hidden" name="buyer_credit_product_category" value="">
-        <input type="hidden" name="buyer_credit_shipping_method" value="">
-        <input type="hidden" name="buyer_credit_user_address_change" value="">
-        <input type="hidden" name="no_shipping" value="1">
-        <input type="hidden" name="no_note" value="1">
-        <input type="hidden" name="currency_code" value="USD">
-        <input type="hidden" name="lc" value="US">
-        <input type="hidden" name="bn" value="PP-SubscriptionsBF">
-        <label for="a3">Amount: </label><input type="text" name="a3" value="10.00" onclick="clickclear(this, '10.00')" onblur="clickrecall(this,'10.00')"><br />
-        <input type="hidden" name="p3" value="1">
-        <input type="hidden" name="t3" value="M">
-        <label for="t3">Pay Period: </label><select name="t3">
-            <option value="M">Monthly</option>
-            <option value="Y">Yearly</option>
-        </select><br /><br />
-        <input type="hidden" name="src" value="1">
-        <input type="hidden" name="sra" value="1">
-        <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_subscribe_LG.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
-        </form>
-        
-</div>
-<br />
-		<div id="footer">
-			<div id="footer-inner">
-		<p align="center">A <a href="http://www.sustainablemarketing.com">SustainableMarketing.com</a> website
-		<br />
-		Questions? <a href="/contact-us.php">Email us</a> or call 1-888-755-8436</p>
-			</div>
-		</div>
-	</div>
-</div>
-</body>
+      <div id="container-inner">
+        <div id="banner">
+          <a href="http://www.sustainablewebsites.com"><img border="0" src="/images/logo.gif" alt="Sustainable Web Hosting for Organic, Green, and Corporate Social Responsibility companies presents SustainableWebsites Web Hosting 100% Carbon Neutral Wind Powered Web Hosting"></a>
+        </div>
+        <div id="content">
+          <h1>
+            Reinstate your subscription
+          </h1>
+          <p>
+            Use this form to reinstate your PayPal subscription or start a new subscription, as agreed with the SustainableWebsites Billing Department. Please enter the amount and your domain name. Then press the PayPal button and you will be taken to the PayPal site where you must log into your PayPal account to confirm the transaction.
+          </p>
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+            <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1"> <input type="hidden" name="cmd" value="_xclick-subscriptions"> <input type="hidden" name="business" value="accounting@sustainablewebsites.com"><br>
+            <!--<label for="item_name">Subscription Name: </label><input type="hidden" name="item_name" value="subscription name" ><br />-->
+             <label for="item_number">Domain Name:</label> <input type="text" name="item_name" value="domain_name.com" onclick="clickclear(this, 'domain_name.com')" onblur="clickrecall(this,'domain_name.com')"><br>
+            <input type="hidden" name="buyer_credit_promo_code" value=""> <input type="hidden" name="buyer_credit_product_category" value=""> <input type="hidden" name="buyer_credit_shipping_method" value=""> <input type="hidden" name="buyer_credit_user_address_change" value=""> <input type="hidden" name="no_shipping" value="1"> <input type="hidden" name="no_note" value="1"> <input type="hidden" name="currency_code" value="USD"> <input type="hidden" name="lc" value="US"> <input type="hidden" name="bn" value="PP-SubscriptionsBF"> <label for="a3">Amount:</label> <input type="text" name="a3" value="10.00" onclick="clickclear(this, '10.00')" onblur="clickrecall(this,'10.00')"><br>
+            <input type="hidden" name="p3" value="1"> <input type="hidden" name="t3" value="M"> <label for="t3">Pay Period:</label> <select name="t3">
+              <option value="M">
+                Monthly
+              </option>
+              <option value="Y">
+                Yearly
+              </option>
+            </select><br>
+            <br>
+            <input type="hidden" name="src" value="1"> <input type="hidden" name="sra" value="1"> <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_subscribe_LG.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+          </form>
+        </div><br>
+        <div id="footer">
+          <div id="footer-inner">
+            <p align="center">
+              A <a href="http://www.sustainablemarketing.com">SustainableMarketing.com</a> website<br>
+              Questions? <a href="/contact-us.php">Email us</a> or call 1-888-755-8436
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

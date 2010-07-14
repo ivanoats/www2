@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   
   require_role "Editor", :except => [:index, :show, :permalink, :livesearch]
+  ssl_allowed :livesearch
 
   def index
     @article_tags = Article.tag_counts :order => 'count desc', :at_least => 3 

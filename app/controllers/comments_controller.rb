@@ -1,13 +1,14 @@
 class CommentsController < ApplicationController
-  	
-  	def create
-  	  # ensure what user is commenting ON is passed to new comment 
+  
+  def create
+      # ensure what user is commenting ON is passed to new comment 
       comment_hash = params[:comment]
       #comment_hash[:commentable_id] = params[:commentable_id]
       #comment_hash[:commentable_type] = params[:commentable_type]
       @comment = Comment.new(comment_hash) 
       
-      respond_to do |wants| 
+      respond_to do |wants|
+      if @comment.key == "*W^dK8AMBAT2"
         if @comment.save
           flash[:notice] = "Comment saved"
           wants.xml  { render :xml => @comment.to_xml }
@@ -16,18 +17,26 @@ class CommentsController < ApplicationController
             page.visual_effect :highlight, 'comments', :duration => 3
             page << "$('#comment_form')[0].reset()"
             page.replace_html 'commentMessage', uniform_success_message(flash[:notice])
-          end
+          end # js render update
           }
-        else
-          wants.html { render :action => "new" } 
+        else # if comment not saved
+          # wants.html { render :action => "new" } 
           wants.xml  { render :xml => @comment.errors, :status => :unprocessable_entity } 
           wants.js { render :update do |page|
             page.replace_html 'notice', ''
             page.select("#errorExplanation") { |e| e.replace_html '' } 
             page.replace_html 'commentMessage', error_messages_for(:comment)
-          end
+          end # render update
           }
-        end
-      end 
-    end
-end
+        end # if comment saved/ not saved
+      else # if not comment key
+        wants.js { render :update do |page|
+          page.replace_html 'notice',''
+          page.select("#errorExplanation") { |e| e.replace_html ''}
+          page.replace_html 'commentMessage', "no valid key"
+        end # render update
+      }
+      end # if comment key
+    end # respond to
+  end # create method
+end # class comments controller
