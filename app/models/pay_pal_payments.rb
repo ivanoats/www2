@@ -112,6 +112,8 @@ class PayPalPayments < ActionMailer::Base
         return
       end
       
+    else
+      logger.info('email has already been processed')
     end # end if email is a subscription payment email  
   end # self.receive
   

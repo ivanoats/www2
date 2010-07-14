@@ -21,10 +21,18 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable, :polymorphic => true
   belongs_to :user
 
-  validates_presence_of :email, :on => :create, :message => "can't be blank"
-  validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message => "email is invalid"
-  validates_presence_of :comment, :on => :create, :message => "can't be blank"
-  validates_presence_of :commentable_id, :on => :create, :message => "you have to comment on something!"
+  validates_presence_of :email,
+                        :on => :create,
+                        :message => "can't be blank"
+  validates_format_of   :email,
+                        :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i,
+                        :message => "email is invalid"
+  validates_presence_of :comment,
+                        :on => :create,
+                        :message => "can't be blank"
+  validates_presence_of :commentable_id,
+                        :on => :create,
+                        :message => "you have to comment on something!"
   validate :does_not_include_badwords
 
   # Helper method to check comments against a badword list
