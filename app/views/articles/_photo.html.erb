@@ -8,6 +8,6 @@
       <%= p.label :Photo %><br />
       <%= p.file_field :data, :index => nil %>
       <%= link_to_function "delete", "remove_field($(this), ('.photo'))" %>
-    <% end # unless photo.new_record? %>
+    <% end %>
 <% end %>
 </div>

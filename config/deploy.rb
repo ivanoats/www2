@@ -152,6 +152,6 @@ namespace :db do
     run "cd #{deploy_to}/#{current_dir} && rm db/whmap_data.sql" 
     puts `tar xvzf db/whmap_data.sql.tgz`
     puts `mysql billing < db/whmap_data.sql`
-  end #task
+  end
 end
 

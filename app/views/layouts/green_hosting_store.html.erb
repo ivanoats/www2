@@ -46,7 +46,7 @@
 		<div id="teaser">
 	  		<span><%= @teaser %></span>
 	  	</div>
-	<% end #if show_teaser %>
+	<% end %>
   	
   	<% if @splash_on then %>
 	<div id="splash-wrap">
@@ -57,7 +57,7 @@
   		</ul>
   	</div><!--/splash-->
 	</div><!--/splash-wrap-->
-  	<% end #if splash on %>
+  	<% end %>
 	  <%= content_tag(:div, '', :id => 'dialog')%>
 	  <%= flash_messages %>
 

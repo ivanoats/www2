@@ -12,7 +12,7 @@
 		</span> in
 		<% if article.category %> 
 	      <%= link_to article.category.name, category_articles_path(article.category), :rel => 'tag', :class => 'entry-category' %>  
-	    <% end #if article has a category%>
+	    <% end %>
 	 </div><!-- end article_meta -->
   </div><!-- end hentry -->
 <% end %>
