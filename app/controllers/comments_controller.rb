@@ -32,7 +32,8 @@ class CommentsController < ApplicationController
             page.replace_html 'commentMessage', error_messages_for(:comment)
           end # render update
           }
-      else # if comment key does not match
+        end # if comment saved/ not saved
+      else # if not comment key
         wants.js { render :update do |page|
           page.replace_html 'notice',''
           page.select("#errorExplanation") { |e| e.replace_html ''}
