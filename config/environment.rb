@@ -38,11 +38,10 @@ Rails::Initializer.run do |config|
   config.gem "packet"
   config.gem 'searchlogic'
   config.gem 'curb'
-  config.gem 'packet'
   
   #config.gem "ivanoats-whm_xml", :lib => "whm"
   config.gem 'whm_xml', :lib => 'whm', :version => ">=0.3.2"
-  config.gem "kingpong-ruby-mcrypt", :lib => "mcrypt"
+  config.gem "ruby-mcrypt", :lib => "mcrypt"
   
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
