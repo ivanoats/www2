@@ -1,4 +1,4 @@
-#
+# a group of purchased products
 class Order < ActiveRecord::Base
   include AASM
   include TokenGenerator
@@ -41,6 +41,7 @@ class Order < ActiveRecord::Base
     order
   end
 
+  # @return [Integer] sum total of purchases
   def total_charge
     self.purchases.collect { |purchase| purchase.product }.sum(&:cost)
   end
