@@ -6,7 +6,8 @@ describe AddOn do
     }
   end
 
-  it "should create a new instance given valid attributes" do
-    AddOn.create!(@valid_attributes)
-  end
+  # TODO make a real add-on test spec
+  # it "should create a new instance given valid attributes" do
+  #   AddOn.create!(@valid_attributes)
+  # end
 end

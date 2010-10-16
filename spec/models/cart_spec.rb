@@ -46,7 +46,7 @@ describe Cart do
     cart    = Cart.create!(@valid_attributes)
     product = Product.create!(@valid_product_attributes)
 
-    cart_item = cart.add(product)
+    cart_item = cart.add(product,product.name)
     cart_item.should == cart.cart_items.first
     cart_item.product_id.should == product.id
     cart_item.cart_id.should == cart.id
@@ -62,7 +62,7 @@ describe Cart do
     product  = Product.create!(@valid_product_attributes)
     quantity = 94
 
-    cart_item = cart.add(product, quantity)
+    cart_item = cart.add(product, product.name, {}, nil ,quantity)
     cart_item.should == cart.cart_items.first
     cart_item.product_id.should == product.id
     cart_item.cart_id.should == cart.id
@@ -79,7 +79,7 @@ describe Cart do
     quantity      = 12
     quantity_unit = "months"
 
-    cart_item = cart.add(product, quantity, quantity_unit)
+    cart_item = cart.add(product, product.name, {}, nil, quantity, quantity_unit)
     cart_item.should == cart.cart_items.first
     cart_item.product_id.should == product.id
     cart_item.cart_id.should == cart.id
@@ -93,7 +93,7 @@ describe Cart do
   it "should remove a CartItem given it's id" do
     cart      = Cart.create!(@valid_attributes)
     product   = Product.create!(@valid_product_attributes)
-    cart_item = cart.add(product)
+    cart_item = cart.add(product, product.name)
     cart.save
 
     cart.cart_items.size.should == 1
@@ -105,7 +105,7 @@ describe Cart do
   it "should change the quantity for a CartItem" do
     cart      = Cart.create!(@valid_attributes)
     product   = Product.create!(@valid_product_attributes)
-    cart_item = cart.add(product)
+    cart_item = cart.add(product, product.name)
     cart.save
     expected_quantity = 45
 
@@ -117,7 +117,7 @@ describe Cart do
   it "should remove a CartItem when changing its quantity to 0" do
     cart      = Cart.create!(@valid_attributes)
     product   = Product.create!(@valid_product_attributes)
-    cart_item = cart.add(product)
+    cart_item = cart.add(product, product.name)
     cart.save
 
     changed_cart_item = cart.change_quantity(cart_item.id, 0)
@@ -129,7 +129,7 @@ describe Cart do
     cart      = Cart.create!(@valid_attributes)
     product   = Product.create!(@valid_product_attributes)  # 10.00
     product2  = Product.create!(@valid_product_attributes.merge({:cost => 33}))
-    cart_item = cart.add(product)
+    cart_item = cart.add(product, product.name)
     cart_item2 = cart.add(product2, 3) # 3 times 33 = 99
     cart.save
     

@@ -30,6 +30,8 @@ module FixtureReplacement
   attributes_for :hosting do |a|
     a.account = default_account
     a.product = default_product
+    a.username = 'testuser'
+    a.password = 'somepass'
 	end
   
   attributes_for :page do |a|
@@ -68,7 +70,7 @@ module FixtureReplacement
     a.password = 'testpass'
     a.password_confirmation = 'testpass'
     a.login = String.random
-    a.name = 'testauthor'
+    a.name = 'testauth'
     a.email = "#{String.random}@boo.com"
 	end
 

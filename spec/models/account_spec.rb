@@ -64,6 +64,7 @@ describe Account do
     assert_equal @account.balance, 0
   end
   
+  # TODO is this the right order?
   it "should return transactions" do
     @account = Account.create(@valid_attributes)
     @account.update_attribute(:balance, 25.0)
@@ -75,7 +76,7 @@ describe Account do
     #test specific query
     @account.transactions(:conditions => {:amount => 100.0}).should == @account.payments
     #test for all activity since last payment
-    @account.transactions(:conditions => ['created_at > ?',@account.payments.first.created_at]).should == @account.charges
+    @account.transactions(:conditions => ['created_at > ?',@account.payments.first.created_at]).reverse.should == @account.charges
   end
   
   describe "when making a fake purchase" do
