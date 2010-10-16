@@ -1,0 +1,7 @@
+app/**/*.rb
+config/*.rb
+config/initializers/*.rb
+lib/**/*
+Rakefile
+doc/README_FOR_APP
+doc/README.md
