@@ -1,2 +1,17 @@
-Use this README file to introduce your application and point to useful places in the API for learning more.
-Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+Sustainable Websites website, CMS, shopping cart, and billing system.
+Copyright (C) 2007-2010 Ivan Storck. Sustainable Websites LLC
+
+Author: Ivan Storck
+Contractors: Padraic McGee, Ryan Sobol, Sean Dick, Sumit N. Gupta
+
+Run "rake doc:app" to (re)generate API documentation for your models, controllers, helpers, and libraries.
+
+gems needed not in environment
+
+test:
+  awesome_print
+
+migration:
+  ruby-mcrypt
+  
+  
