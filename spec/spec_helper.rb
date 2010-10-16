@@ -13,6 +13,8 @@ require 'webrat'
 require "email_spec/helpers"
 require "email_spec/matchers"
 
+require 'ap'
+
 include AuthenticatedTestHelper
 include AuthenticatedSystem
 
