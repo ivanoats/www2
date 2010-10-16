@@ -1,0 +1,873 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: Account</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (A)</a> &raquo; 
+    
+    
+    <span class="title">Account</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Account
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">ActiveRecord::Base</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActiveRecord::Base</li>
+          
+            <li class="next">Account</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2">AASM</dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">app/models/account.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+  
+  
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#charge-instance_method" title="#charge (instance method)">- (Object) <strong>charge</strong>(amount) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Charge the card on file any amount you want.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#charge_balance-instance_method" title="#charge_balance (instance method)">- (Object) <strong>charge_balance</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#charge_order-instance_method" title="#charge_order (instance method)">- (Object) <strong>charge_order</strong>(order) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#complete_paypal-instance_method" title="#complete_paypal (instance method)">- (Object) <strong>complete_paypal</strong>(token) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#default_email-instance_method" title="#default_email (instance method)">- (Object) <strong>default_email</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#name-instance_method" title="#name (instance method)">- (Object) <strong>name</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#needs_payment_info%3F-instance_method" title="#needs_payment_info? (instance method)">- (Boolean) <strong>needs_payment_info?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#next_payment_on-instance_method" title="#next_payment_on (instance method)">- (Object) <strong>next_payment_on</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#start_paypal-instance_method" title="#start_paypal (instance method)">- (Object) <strong>start_paypal</strong>(return_url, cancel_url) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#store_card-instance_method" title="#store_card (instance method)">- (Object) <strong>store_card</strong>(creditcard, gw_options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#transactions-instance_method" title="#transactions (instance method)">- (Object) <strong>transactions</strong>(params = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="charge-instance_method">
+  
+    - (<tt>Object</tt>) <strong>charge</strong>(amount) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Charge the card on file any amount you want.  Pass in a dollar amount (1.00
+to charge $1).
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/account.rb', line 106</span>
+
+<span class='def def kw'>def</span> <span class='charge identifier id'>charge</span><span class='lparen token'>(</span><span class='amount identifier id'>amount</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='amount identifier id'>amount</span> <span class='eq op'>==</span> <span class='integer val'>0</span> <span class='orop op'>||</span> <span class='lparen token'>(</span><span class='@response ivar id'>@response</span> <span class='assign token'>=</span> <span class='gateway identifier id'>gateway</span><span class='dot token'>.</span><span class='purchase identifier id'>purchase</span><span class='lparen token'>(</span><span class='lparen token'>(</span><span class='amount identifier id'>amount</span> <span class='mult op'>*</span> <span class='integer val'>100</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='comma token'>,</span> <span class='billing_id identifier id'>billing_id</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='success? fid id'>success?</span>
+    
+    <span class='av identifier id'>av</span> <span class='assign token'>=</span> <span class='ActionView constant id'>ActionView</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='Rails constant id'>Rails</span><span class='colon2 op'>::</span><span class='Configuration constant id'>Configuration</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='dot token'>.</span><span class='view_path identifier id'>view_path</span><span class='rparen token'>)</span>
+    <span class='receipt identifier id'>receipt</span> <span class='assign token'>=</span> <span class='av identifier id'>av</span><span class='dot token'>.</span><span class='render identifier id'>render</span><span class='lparen token'>(</span>
+      <span class='symbol val'>:partial</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;shared/payment_receipt&quot;</span><span class='comma token'>,</span> 
+      <span class='symbol val'>:locals</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span><span class='symbol val'>:amount</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='amount identifier id'>amount</span><span class='comma token'>,</span>
+                  <span class='symbol val'>:previous_balance</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='balance identifier id'>balance</span><span class='comma token'>,</span>
+                  <span class='symbol val'>:transactions</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='transactions identifier id'>transactions</span><span class='lparen token'>(</span><span class='lbrace token'>{</span><span class='symbol val'>:conditions</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='string val'>'created_at &gt; ?'</span><span class='comma token'>,</span><span class='self self kw'>self</span><span class='dot token'>.</span><span class='last_payment_on identifier id'>last_payment_on</span><span class='rbrack token'>]</span><span class='rbrace token'>}</span><span class='rparen token'>)</span><span class='comma token'>,</span>
+                  <span class='symbol val'>:new_balance</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='balance identifier id'>balance</span> <span class='plus op'>+</span> <span class='amount identifier id'>amount</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+    <span class='self self kw'>self</span><span class='dot token'>.</span><span class='update_attribute identifier id'>update_attribute</span><span class='lparen token'>(</span><span class='symbol val'>:balance</span><span class='comma token'>,</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='balance identifier id'>balance</span> <span class='plus op'>+</span> <span class='amount identifier id'>amount</span><span class='rparen token'>)</span>
+    <span class='self self kw'>self</span><span class='dot token'>.</span><span class='payments identifier id'>payments</span><span class='dot token'>.</span><span class='create identifier id'>create</span><span class='lparen token'>(</span><span class='symbol val'>:amount</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='amount identifier id'>amount</span><span class='comma token'>,</span> <span class='symbol val'>:transaction_id</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='@response ivar id'>@response</span><span class='dot token'>.</span><span class='authorization identifier id'>authorization</span><span class='comma token'>,</span> <span class='symbol val'>:receipt</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='receipt identifier id'>receipt</span><span class='rparen token'>)</span>
+    <span class='true true kw'>true</span>
+  <span class='else else kw'>else</span>
+    <span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add_to_base identifier id'>add_to_base</span><span class='lparen token'>(</span><span class='@response ivar id'>@response</span><span class='dot token'>.</span><span class='message identifier id'>message</span><span class='rparen token'>)</span>
+    <span class='false false kw'>false</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="charge_balance-instance_method">
+  
+    - (<tt>Object</tt>) <strong>charge_balance</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+125
+126
+127</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/account.rb', line 125</span>
+
+<span class='def def kw'>def</span> <span class='charge_balance identifier id'>charge_balance</span>
+  <span class='charge identifier id'>charge</span><span class='lparen token'>(</span><span class='minus op'>-</span><span class='self self kw'>self</span><span class='dot token'>.</span><span class='balance identifier id'>balance</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='update_attribute identifier id'>update_attribute</span><span class='lparen token'>(</span><span class='symbol val'>:last_payment_on</span><span class='comma token'>,</span><span class='Date constant id'>Date</span><span class='dot token'>.</span><span class='today identifier id'>today</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="charge_order-instance_method">
+  
+    - (<tt>Object</tt>) <strong>charge_order</strong>(order) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/account.rb', line 129</span>
+
+<span class='def def kw'>def</span> <span class='charge_order identifier id'>charge_order</span><span class='lparen token'>(</span><span class='order identifier id'>order</span><span class='rparen token'>)</span>
+  <span class='amount identifier id'>amount</span> <span class='assign token'>=</span> <span class='order identifier id'>order</span><span class='dot token'>.</span><span class='total_charge identifier id'>total_charge</span>
+  <span class='if if kw'>if</span> <span class='lparen token'>(</span><span class='@response ivar id'>@response</span> <span class='assign token'>=</span> <span class='gateway identifier id'>gateway</span><span class='dot token'>.</span><span class='purchase identifier id'>purchase</span><span class='lparen token'>(</span><span class='lparen token'>(</span><span class='amount identifier id'>amount</span> <span class='mult op'>*</span> <span class='integer val'>100</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='comma token'>,</span><span class='billing_id identifier id'>billing_id</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='success? fid id'>success?</span>
+    <span class='av identifier id'>av</span> <span class='assign token'>=</span> <span class='ActionView constant id'>ActionView</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='Rails constant id'>Rails</span><span class='colon2 op'>::</span><span class='Configuration constant id'>Configuration</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='dot token'>.</span><span class='view_path identifier id'>view_path</span><span class='rparen token'>)</span>
+    <span class='receipt identifier id'>receipt</span> <span class='assign token'>=</span> <span class='av identifier id'>av</span><span class='dot token'>.</span><span class='render identifier id'>render</span><span class='lparen token'>(</span>
+      <span class='symbol val'>:partial</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;shared/payment_receipt&quot;</span><span class='comma token'>,</span> 
+      <span class='symbol val'>:locals</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span><span class='symbol val'>:amount</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='amount identifier id'>amount</span><span class='comma token'>,</span>
+                  <span class='symbol val'>:previous_balance</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='balance identifier id'>balance</span><span class='comma token'>,</span>
+                  <span class='symbol val'>:transactions</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='transactions identifier id'>transactions</span><span class='lparen token'>(</span><span class='lbrace token'>{</span><span class='symbol val'>:conditions</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='string val'>'created_at &gt; ?'</span><span class='comma token'>,</span><span class='self self kw'>self</span><span class='dot token'>.</span><span class='last_payment_on identifier id'>last_payment_on</span><span class='rbrack token'>]</span><span class='rbrace token'>}</span><span class='rparen token'>)</span><span class='comma token'>,</span>
+                  <span class='symbol val'>:new_balance</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='balance identifier id'>balance</span> <span class='plus op'>+</span> <span class='amount identifier id'>amount</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+    
+    <span class='self self kw'>self</span><span class='dot token'>.</span><span class='payments identifier id'>payments</span><span class='dot token'>.</span><span class='create identifier id'>create</span><span class='lparen token'>(</span><span class='symbol val'>:amount</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='amount identifier id'>amount</span><span class='comma token'>,</span> <span class='symbol val'>:transaction_id</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='@response ivar id'>@response</span><span class='dot token'>.</span><span class='authorization identifier id'>authorization</span><span class='comma token'>,</span> <span class='symbol val'>:order_id</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='order identifier id'>order</span><span class='dot token'>.</span><span class='id identifier id'>id</span><span class='comma token'>,</span> <span class='symbol val'>:receipt</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='receipt identifier id'>receipt</span><span class='rparen token'>)</span>
+    <span class='order identifier id'>order</span><span class='dot token'>.</span><span class='paid! fid id'>paid!</span>
+    <span class='true true kw'>true</span>
+  <span class='else else kw'>else</span>
+    <span class='order identifier id'>order</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add_to_base identifier id'>add_to_base</span><span class='lparen token'>(</span><span class='@response ivar id'>@response</span><span class='dot token'>.</span><span class='message identifier id'>message</span><span class='rparen token'>)</span>
+    <span class='false false kw'>false</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="complete_paypal-instance_method">
+  
+    - (<tt>Object</tt>) <strong>complete_paypal</strong>(token) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/account.rb', line 162</span>
+
+<span class='def def kw'>def</span> <span class='complete_paypal identifier id'>complete_paypal</span><span class='lparen token'>(</span><span class='token identifier id'>token</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='lparen token'>(</span><span class='@response ivar id'>@response</span> <span class='assign token'>=</span> <span class='paypal identifier id'>paypal</span><span class='dot token'>.</span><span class='details_for identifier id'>details_for</span><span class='lparen token'>(</span><span class='token identifier id'>token</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='success? fid id'>success?</span>
+    <span class='if if kw'>if</span> <span class='lparen token'>(</span><span class='@response ivar id'>@response</span> <span class='assign token'>=</span> <span class='paypal identifier id'>paypal</span><span class='dot token'>.</span><span class='create_billing_agreement_for identifier id'>create_billing_agreement_for</span><span class='lparen token'>(</span><span class='token identifier id'>token</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='success? fid id'>success?</span>
+      <span class='comment val'># Clear out payment info if switching to PayPal from CC</span>
+      <span class='destroy_gateway_record identifier id'>destroy_gateway_record</span><span class='lparen token'>(</span><span class='cc identifier id'>cc</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='paypal? fid id'>paypal?</span>
+
+      <span class='self self kw'>self</span><span class='dot token'>.</span><span class='card_number identifier id'>card_number</span> <span class='assign token'>=</span> <span class='string val'>'PayPal'</span>
+      <span class='self self kw'>self</span><span class='dot token'>.</span><span class='card_expiration identifier id'>card_expiration</span> <span class='assign token'>=</span> <span class='string val'>'N/A'</span>
+      <span class='self self kw'>self</span><span class='dot token'>.</span><span class='billing_id identifier id'>billing_id</span> <span class='assign token'>=</span> <span class='@response ivar id'>@response</span><span class='dot token'>.</span><span class='token identifier id'>token</span> <span class='unless unless_mod kw'>unless</span> <span class='@response ivar id'>@response</span><span class='dot token'>.</span><span class='token identifier id'>token</span><span class='dot token'>.</span><span class='blank? fid id'>blank?</span>
+      
+    <span class='else else kw'>else</span>
+      <span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add_to_base identifier id'>add_to_base</span><span class='lparen token'>(</span><span class='dstring node'>&quot;PayPal Error: #{@response.message}&quot;</span><span class='rparen token'>)</span>
+      <span class='false false kw'>false</span>
+    <span class='end end kw'>end</span>
+  <span class='else else kw'>else</span>
+    <span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add_to_base identifier id'>add_to_base</span><span class='lparen token'>(</span><span class='dstring node'>&quot;PayPal Error: #{@response.message}&quot;</span><span class='rparen token'>)</span>
+    <span class='false false kw'>false</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="default_email-instance_method">
+  
+    - (<tt>Object</tt>) <strong>default_email</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+191
+192
+193
+194
+195
+196</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/account.rb', line 191</span>
+
+<span class='def def kw'>def</span> <span class='default_email identifier id'>default_email</span>
+  <span class='return return kw'>return</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='email identifier id'>email</span> <span class='unless unless_mod kw'>unless</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='email identifier id'>email</span><span class='dot token'>.</span><span class='blank? fid id'>blank?</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='users identifier id'>users</span><span class='dot token'>.</span><span class='first identifier id'>first</span><span class='dot token'>.</span><span class='email identifier id'>email</span>
+<span class='rescue rescue kw'>rescue</span>
+  <span class='string val'>&quot;noemail@sustainablewebsites.com&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="name-instance_method">
+  
+    - (<tt>Object</tt>) <strong>name</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+187
+188
+189</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/account.rb', line 187</span>
+
+<span class='def def kw'>def</span> <span class='name identifier id'>name</span>
+  <span class='dstring node'>&quot;#{self.first_name} #{self.last_name}&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="needs_payment_info?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>needs_payment_info?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+149
+150
+151</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/account.rb', line 149</span>
+
+<span class='def def kw'>def</span> <span class='needs_payment_info? fid id'>needs_payment_info?</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='card_number identifier id'>card_number</span><span class='dot token'>.</span><span class='blank? fid id'>blank?</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="next_payment_on-instance_method">
+  
+    - (<tt>Object</tt>) <strong>next_payment_on</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+182
+183
+184
+185</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/account.rb', line 182</span>
+
+<span class='def def kw'>def</span> <span class='next_payment_on identifier id'>next_payment_on</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='update_attribute identifier id'>update_attribute</span><span class='lparen token'>(</span><span class='symbol val'>:last_payment_on</span><span class='comma token'>,</span> <span class='float val'>1</span><span class='dot token'>.</span><span class='month identifier id'>month</span><span class='dot token'>.</span><span class='ago identifier id'>ago</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='last_payment_on identifier id'>last_payment_on</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+  <span class='lparen token'>(</span><span class='self self kw'>self</span><span class='dot token'>.</span><span class='last_payment_on identifier id'>last_payment_on</span> <span class='plus op'>+</span> <span class='float val'>1</span><span class='dot token'>.</span><span class='month identifier id'>month</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_date identifier id'>to_date</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="start_paypal-instance_method">
+  
+    - (<tt>Object</tt>) <strong>start_paypal</strong>(return_url, cancel_url) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+153
+154
+155
+156
+157
+158
+159
+160</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/account.rb', line 153</span>
+
+<span class='def def kw'>def</span> <span class='start_paypal identifier id'>start_paypal</span><span class='lparen token'>(</span><span class='return_url identifier id'>return_url</span><span class='comma token'>,</span> <span class='cancel_url identifier id'>cancel_url</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='lparen token'>(</span><span class='@response ivar id'>@response</span> <span class='assign token'>=</span> <span class='paypal identifier id'>paypal</span><span class='dot token'>.</span><span class='setup_authorization identifier id'>setup_authorization</span><span class='lparen token'>(</span><span class='symbol val'>:return_url</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='return_url identifier id'>return_url</span><span class='comma token'>,</span> <span class='symbol val'>:cancel_return_url</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='cancel_url identifier id'>cancel_url</span><span class='comma token'>,</span> <span class='symbol val'>:description</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='AppConfig constant id'>AppConfig</span><span class='lbrack token'>[</span><span class='string val'>'app_name'</span><span class='rbrack token'>]</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='success? fid id'>success?</span>
+    <span class='paypal identifier id'>paypal</span><span class='dot token'>.</span><span class='redirect_url_for identifier id'>redirect_url_for</span><span class='lparen token'>(</span><span class='@response ivar id'>@response</span><span class='dot token'>.</span><span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='string val'>'token'</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='else else kw'>else</span>
+    <span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add_to_base identifier id'>add_to_base</span><span class='lparen token'>(</span><span class='dstring node'>&quot;PayPal Error: #{@response.message}&quot;</span><span class='rparen token'>)</span>
+    <span class='false false kw'>false</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="store_card-instance_method">
+  
+    - (<tt>Object</tt>) <strong>store_card</strong>(creditcard, gw_options = {}) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/account.rb', line 76</span>
+
+<span class='def def kw'>def</span> <span class='store_card identifier id'>store_card</span><span class='lparen token'>(</span><span class='creditcard identifier id'>creditcard</span><span class='comma token'>,</span> <span class='gw_options identifier id'>gw_options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='comment val'># Clear out payment info if switching to CC from PayPal</span>
+  <span class='destroy_gateway_record identifier id'>destroy_gateway_record</span><span class='lparen token'>(</span><span class='paypal identifier id'>paypal</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='paypal? fid id'>paypal?</span>
+  
+  <span class='gw_options identifier id'>gw_options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span>
+    <span class='symbol val'>:billing_address</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='billing_address identifier id'>billing_address</span><span class='dot token'>.</span><span class='attributes identifier id'>attributes</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='lbrace token'>{</span><span class='symbol val'>:first_name</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='first_name identifier id'>first_name</span><span class='comma token'>,</span> <span class='symbol val'>:last_name</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='last_name identifier id'>last_name</span><span class='rbrace token'>}</span><span class='rparen token'>)</span><span class='comma token'>,</span>
+    <span class='symbol val'>:email</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='default_email identifier id'>default_email</span><span class='comma token'>,</span>
+    <span class='symbol val'>:description</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='organization identifier id'>organization</span>
+    
+  <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='gw_options identifier id'>gw_options</span><span class='rparen token'>)</span>
+  
+  <span class='@response ivar id'>@response</span> <span class='assign token'>=</span> <span class='if if kw'>if</span> <span class='billing_id identifier id'>billing_id</span><span class='dot token'>.</span><span class='blank? fid id'>blank?</span>
+    <span class='gateway identifier id'>gateway</span><span class='dot token'>.</span><span class='store identifier id'>store</span><span class='lparen token'>(</span><span class='creditcard identifier id'>creditcard</span><span class='comma token'>,</span> <span class='gw_options identifier id'>gw_options</span><span class='rparen token'>)</span>
+  <span class='else else kw'>else</span>
+    <span class='gateway identifier id'>gateway</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='billing_id identifier id'>billing_id</span><span class='comma token'>,</span> <span class='creditcard identifier id'>creditcard</span><span class='comma token'>,</span> <span class='gw_options identifier id'>gw_options</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+  
+  <span class='if if kw'>if</span> <span class='@response ivar id'>@response</span><span class='dot token'>.</span><span class='success? fid id'>success?</span>
+    <span class='self self kw'>self</span><span class='dot token'>.</span><span class='card_number identifier id'>card_number</span> <span class='assign token'>=</span> <span class='creditcard identifier id'>creditcard</span><span class='dot token'>.</span><span class='display_number identifier id'>display_number</span>
+    <span class='self self kw'>self</span><span class='dot token'>.</span><span class='card_expiration identifier id'>card_expiration</span> <span class='assign token'>=</span> <span class='string val'>&quot;%02d-%d&quot;</span> <span class='mod op'>%</span> <span class='lbrack token'>[</span><span class='creditcard identifier id'>creditcard</span><span class='dot token'>.</span><span class='expiry_date identifier id'>expiry_date</span><span class='dot token'>.</span><span class='month identifier id'>month</span><span class='comma token'>,</span> <span class='creditcard identifier id'>creditcard</span><span class='dot token'>.</span><span class='expiry_date identifier id'>expiry_date</span><span class='dot token'>.</span><span class='year identifier id'>year</span><span class='rbrack token'>]</span>
+    <span class='self self kw'>self</span><span class='dot token'>.</span><span class='billing_id identifier id'>billing_id</span> <span class='assign token'>=</span> <span class='@response ivar id'>@response</span><span class='dot token'>.</span><span class='token identifier id'>token</span> <span class='unless unless_mod kw'>unless</span> <span class='@response ivar id'>@response</span><span class='dot token'>.</span><span class='token identifier id'>token</span><span class='dot token'>.</span><span class='blank? fid id'>blank?</span>
+    <span class='self self kw'>self</span><span class='dot token'>.</span><span class='save identifier id'>save</span>
+  <span class='else else kw'>else</span>
+    <span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add_to_base identifier id'>add_to_base</span><span class='lparen token'>(</span><span class='@response ivar id'>@response</span><span class='dot token'>.</span><span class='message identifier id'>message</span><span class='rparen token'>)</span>
+    <span class='false false kw'>false</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="transactions-instance_method">
+  
+    - (<tt>Object</tt>) <strong>transactions</strong>(params = {}) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+70
+71
+72
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/account.rb', line 70</span>
+
+<span class='def def kw'>def</span> <span class='transactions identifier id'>transactions</span><span class='lparen token'>(</span><span class='params identifier id'>params</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='transactions identifier id'>transactions</span> <span class='assign token'>=</span> <span class='lparen token'>(</span><span class='self self kw'>self</span><span class='dot token'>.</span><span class='payments identifier id'>payments</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='symbol val'>:all</span><span class='comma token'>,</span><span class='params identifier id'>params</span><span class='dot token'>.</span><span class='dup identifier id'>dup</span><span class='rparen token'>)</span> <span class='plus op'>+</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='charges identifier id'>charges</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='symbol val'>:all</span><span class='comma token'>,</span><span class='params identifier id'>params</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+  <span class='transactions identifier id'>transactions</span><span class='dot token'>.</span><span class='sort! fid id'>sort!</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='a identifier id'>a</span><span class='comma token'>,</span><span class='b identifier id'>b</span><span class='bitor op'>|</span> <span class='b identifier id'>b</span><span class='dot token'>.</span><span class='created_at identifier id'>created_at</span> <span class='cmp op'>&lt;=&gt;</span> <span class='a identifier id'>a</span><span class='dot token'>.</span><span class='created_at identifier id'>created_at</span> <span class='rbrace token'>}</span>
+  <span class='transactions identifier id'>transactions</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sat Oct 16 12:08:10 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

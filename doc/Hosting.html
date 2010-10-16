@@ -1,0 +1,637 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: Hosting</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (H)</a> &raquo; 
+    
+    
+    <span class="title">Hosting</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Hosting
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">ActiveRecord::Base</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActiveRecord::Base</li>
+          
+            <li class="next">Hosting</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2">AASM, <span class='object_link'><a href="Chargeable.html" title="Chargeable (module)">Chargeable</a></span></dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">app/models/hosting.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+  
+  
+  
+  
+  
+  
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_cpanel_account-instance_method" title="#create_cpanel_account (instance method)">- (Object) <strong>create_cpanel_account</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#delete_cpanel_account-instance_method" title="#delete_cpanel_account (instance method)">- (Object) <strong>delete_cpanel_account</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#domain-instance_method" title="#domain (instance method)">- (Object) <strong>domain</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#generate_password-instance_method" title="#generate_password (instance method)">- (Object) <strong>generate_password</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#generate_username-instance_method" title="#generate_username (instance method)">- (Object) <strong>generate_username</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#name-instance_method" title="#name (instance method)">- (Object) <strong>name</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#suspend_cpanel_account-instance_method" title="#suspend_cpanel_account (instance method)">- (Object) <strong>suspend_cpanel_account</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#unsuspend_cpanel_account-instance_method" title="#unsuspend_cpanel_account (instance method)">- (Object) <strong>unsuspend_cpanel_account</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#whm-instance_method" title="#whm (instance method)">- (Object) <strong>whm</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+return the whm account for this hosting.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Chargeable.html" title="Chargeable (module)">Chargeable</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Chargeable.html#charge-instance_method" title="Chargeable#charge (method)">#charge</a></span>, <span class='object_link'><a href="Chargeable.html#cost-instance_method" title="Chargeable#cost (method)">#cost</a></span>, <span class='object_link'><a href="Chargeable.html#included-class_method" title="Chargeable.included (method)">included</a></span>, <span class='object_link'><a href="Chargeable.html#period-instance_method" title="Chargeable#period (method)">#period</a></span>, <span class='object_link'><a href="Chargeable.html#period_in_words-instance_method" title="Chargeable#period_in_words (method)">#period_in_words</a></span>, <span class='object_link'><a href="Chargeable.html#recurring_month-instance_method" title="Chargeable#recurring_month (method)">#recurring_month</a></span>, <span class='object_link'><a href="Chargeable.html#should_charge%3F-instance_method" title="Chargeable#should_charge? (method)">#should_charge?</a></span></p>
+
+  
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="create_cpanel_account-instance_method">
+  
+    - (<tt>Object</tt>) <strong>create_cpanel_account</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+86
+87
+88
+89
+90</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/hosting.rb', line 86</span>
+
+<span class='def def kw'>def</span> <span class='create_cpanel_account identifier id'>create_cpanel_account</span>
+  
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='server identifier id'>server</span><span class='dot token'>.</span><span class='whm identifier id'>whm</span><span class='dot token'>.</span><span class='create_account identifier id'>create_account</span><span class='lparen token'>(</span><span class='symbol val'>:username</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='username identifier id'>username</span><span class='comma token'>,</span> <span class='symbol val'>:domain</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='domain identifier id'>domain</span><span class='comma token'>,</span> <span class='symbol val'>:password</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='password identifier id'>password</span><span class='rparen token'>)</span>    
+  <span class='OrderMailer constant id'>OrderMailer</span><span class='dot token'>.</span><span class='deliver_hosting_approved identifier id'>deliver_hosting_approved</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="delete_cpanel_account-instance_method">
+  
+    - (<tt>Object</tt>) <strong>delete_cpanel_account</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+100
+101
+102
+103</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/hosting.rb', line 100</span>
+
+<span class='def def kw'>def</span> <span class='delete_cpanel_account identifier id'>delete_cpanel_account</span>
+  
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='server identifier id'>server</span><span class='dot token'>.</span><span class='whm identifier id'>whm</span><span class='dot token'>.</span><span class='terminate_account identifier id'>terminate_account</span><span class='lparen token'>(</span><span class='symbol val'>:user</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='username identifier id'>username</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="domain-instance_method">
+  
+    - (<tt>Object</tt>) <strong>domain</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+54
+55
+56
+57
+58</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/hosting.rb', line 54</span>
+
+<span class='def def kw'>def</span> <span class='domain identifier id'>domain</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='domains identifier id'>domains</span><span class='dot token'>.</span><span class='first identifier id'>first</span><span class='dot token'>.</span><span class='name identifier id'>name</span>
+<span class='rescue rescue kw'>rescue</span>
+  <span class='string val'>&quot;No Default Domain&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="generate_password-instance_method">
+  
+    - (<tt>Object</tt>) <strong>generate_password</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+60
+61
+62
+63</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/hosting.rb', line 60</span>
+
+<span class='def def kw'>def</span> <span class='generate_password identifier id'>generate_password</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='password identifier id'>password</span> <span class='assign token'>=</span> <span class='Base64 constant id'>Base64</span><span class='dot token'>.</span><span class='encode64 identifier id'>encode64</span><span class='lparen token'>(</span><span class='Digest constant id'>Digest</span><span class='colon2 op'>::</span><span class='SHA1 constant id'>SHA1</span><span class='dot token'>.</span><span class='digest identifier id'>digest</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{rand(1&lt;&lt;64)}/#{Time.now.to_f}/#{Process.pid}&quot;</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='dot2 op'>..</span><span class='integer val'>7</span><span class='rbrack token'>]</span>
+  
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="generate_username-instance_method">
+  
+    - (<tt>Object</tt>) <strong>generate_username</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/hosting.rb', line 65</span>
+
+<span class='def def kw'>def</span> <span class='generate_username identifier id'>generate_username</span>
+  <span class='comment val'>#base the username on the first 8 characters of the domain name</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='username identifier id'>username</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='domains identifier id'>domains</span><span class='dot token'>.</span><span class='first identifier id'>first</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='dup identifier id'>dup</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='username identifier id'>username</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='username identifier id'>username</span><span class='dot token'>.</span><span class='slice identifier id'>slice</span><span class='lparen token'>(</span><span class='integer val'>0</span><span class='comma token'>,</span><span class='lbrack token'>[</span><span class='self self kw'>self</span><span class='dot token'>.</span><span class='username identifier id'>username</span><span class='dot token'>.</span><span class='rindex identifier id'>rindex</span><span class='lparen token'>(</span><span class='string val'>'.'</span><span class='rparen token'>)</span><span class='comma token'>,</span><span class='integer val'>8</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='min identifier id'>min</span><span class='rparen token'>)</span>
+  
+  <span class='comment val'>#convert from 'greenhut' to 'greenhu1'</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='username identifier id'>username</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='username identifier id'>username</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='comma token'>,</span><span class='integer val'>7</span><span class='rbrack token'>]</span> <span class='plus op'>+</span> <span class='string val'>&quot;1&quot;</span> <span class='if if_mod kw'>if</span> <span class='Hosting constant id'>Hosting</span><span class='dot token'>.</span><span class='find_by_username identifier id'>find_by_username</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='dot token'>.</span><span class='username identifier id'>username</span><span class='rparen token'>)</span>
+  
+  <span class='comment val'>#increase last character until we find a unique name</span>
+  <span class='while while kw'>while</span> <span class='notop op'>!</span><span class='Hosting constant id'>Hosting</span><span class='dot token'>.</span><span class='find_by_username identifier id'>find_by_username</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='dot token'>.</span><span class='username identifier id'>username</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+    <span class='self self kw'>self</span><span class='dot token'>.</span><span class='username identifier id'>username</span><span class='dot token'>.</span><span class='next! fid id'>next!</span>
+  <span class='end end kw'>end</span>  
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="name-instance_method">
+  
+    - (<tt>Object</tt>) <strong>name</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+50
+51
+52</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/hosting.rb', line 50</span>
+
+<span class='def def kw'>def</span> <span class='name identifier id'>name</span>
+  <span class='dstring node'>&quot;Web Hosting #{self.username}&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="suspend_cpanel_account-instance_method">
+  
+    - (<tt>Object</tt>) <strong>suspend_cpanel_account</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+92
+93
+94</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/hosting.rb', line 92</span>
+
+<span class='def def kw'>def</span> <span class='suspend_cpanel_account identifier id'>suspend_cpanel_account</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='server identifier id'>server</span><span class='dot token'>.</span><span class='whm identifier id'>whm</span><span class='dot token'>.</span><span class='suspend_account identifier id'>suspend_account</span><span class='lparen token'>(</span><span class='symbol val'>:user</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='username identifier id'>username</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="unsuspend_cpanel_account-instance_method">
+  
+    - (<tt>Object</tt>) <strong>unsuspend_cpanel_account</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+96
+97
+98</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/hosting.rb', line 96</span>
+
+<span class='def def kw'>def</span> <span class='unsuspend_cpanel_account identifier id'>unsuspend_cpanel_account</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='server identifier id'>server</span><span class='dot token'>.</span><span class='whm identifier id'>whm</span><span class='dot token'>.</span><span class='unsuspend_account identifier id'>unsuspend_account</span><span class='lparen token'>(</span><span class='symbol val'>:user</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='username identifier id'>username</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="whm-instance_method">
+  
+    - (<tt>Object</tt>) <strong>whm</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+return the whm account for this hosting
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+80
+81
+82
+83
+84</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/hosting.rb', line 80</span>
+
+<span class='def def kw'>def</span> <span class='whm identifier id'>whm</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='server identifier id'>server</span><span class='dot token'>.</span><span class='whm identifier id'>whm</span><span class='dot token'>.</span><span class='account identifier id'>account</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='dot token'>.</span><span class='username identifier id'>username</span><span class='rparen token'>)</span>
+<span class='rescue rescue kw'>rescue</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='e identifier id'>e</span>
+  <span class='nil nil kw'>nil</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sat Oct 16 12:08:20 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,650 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: CartController</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (C)</a> &raquo; 
+    
+    
+    <span class="title">CartController</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: CartController
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActionController::Base</li>
+          
+            <li class="next"><span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span></li>
+          
+            <li class="next">CartController</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2"><span class='object_link'><a href="CartSystem.html" title="CartSystem (module)">CartSystem</a></span></dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">app/controllers/cart_controller.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+  <h2>Constant Summary</h2>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Constants inherited from <span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ApplicationController.html#EXCEPTIONS_NOT_LOGGED-constant" title="ApplicationController::EXCEPTIONS_NOT_LOGGED (constant)">EXCEPTIONS_NOT_LOGGED</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_addon-instance_method" title="#add_addon (instance method)">- (Object) <strong>add_addon</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_domain-instance_method" title="#add_domain (instance method)">- (Object) <strong>add_domain</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_package-instance_method" title="#add_package (instance method)">- (Object) <strong>add_package</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#change_cart_item_quantity-instance_method" title="#change_cart_item_quantity (instance method)">- (Object) <strong>change_cart_item_quantity</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#edit_domain-instance_method" title="#edit_domain (instance method)">- (Object) <strong>edit_domain</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#edit_package-instance_method" title="#edit_package (instance method)">- (Object) <strong>edit_package</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#remove_addon-instance_method" title="#remove_addon (instance method)">- (Object) <strong>remove_addon</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#remove_cart_item-instance_method" title="#remove_cart_item (instance method)">- (Object) <strong>remove_cart_item</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="RoleRequirementSystem.html" title="RoleRequirementSystem (module)">RoleRequirementSystem</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="RoleRequirementSystem.html#included-class_method" title="RoleRequirementSystem.included (method)">included</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="add_addon-instance_method">
+  
+    - (<tt>Object</tt>) <strong>add_addon</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+52
+53
+54
+55
+56
+57
+58
+59</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/cart_controller.rb', line 52</span>
+
+<span class='def def kw'>def</span> <span class='add_addon identifier id'>add_addon</span>
+  <span class='@product ivar id'>@product</span> <span class='assign token'>=</span> <span class='Product constant id'>Product</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:id</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='cart_item identifier id'>cart_item</span> <span class='assign token'>=</span> <span class='@cart ivar id'>@cart</span><span class='dot token'>.</span><span class='cart_items identifier id'>cart_items</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:package_id</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='unless unless kw'>unless</span> <span class='cart_item identifier id'>cart_item</span><span class='dot token'>.</span><span class='products identifier id'>products</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='@product ivar id'>@product</span><span class='rparen token'>)</span>
+    <span class='@cart ivar id'>@cart</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='@product ivar id'>@product</span><span class='comma token'>,</span><span class='@product ivar id'>@product</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='comma token'>,</span> <span class='cart_item identifier id'>cart_item</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+  <span class='render_cart identifier id'>render_cart</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="add_domain-instance_method">
+  
+    - (<tt>Object</tt>) <strong>add_domain</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/cart_controller.rb', line 6</span>
+
+<span class='def def kw'>def</span> <span class='add_domain identifier id'>add_domain</span>
+  <span class='if if kw'>if</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:package_id</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='comment val'>#if package_id is specified then add a package with the domain</span>
+    <span class='@package ivar id'>@package</span> <span class='assign token'>=</span> <span class='Product constant id'>Product</span><span class='dot token'>.</span><span class='packages identifier id'>packages</span><span class='dot token'>.</span><span class='enabled identifier id'>enabled</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:package_id</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+    <span class='hosting identifier id'>hosting</span> <span class='assign token'>=</span> <span class='@cart ivar id'>@cart</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='@package ivar id'>@package</span><span class='comma token'>,</span> <span class='@package ivar id'>@package</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
+    <span class='@cart ivar id'>@cart</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='Product constant id'>Product</span><span class='dot token'>.</span><span class='domain identifier id'>domain</span><span class='comma token'>,</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:domain</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:domain</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:domain</span><span class='rbrack token'>]</span><span class='rbrace token'>}</span><span class='comma token'>,</span><span class='hosting identifier id'>hosting</span><span class='rparen token'>)</span>
+    <span class='render identifier id'>render</span> <span class='symbol val'>:update</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='page identifier id'>page</span><span class='bitor op'>|</span>
+      <span class='page identifier id'>page</span><span class='dot token'>.</span><span class='redirect_to identifier id'>redirect_to</span> <span class='symbol val'>:controller</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:green_hosting_store</span><span class='comma token'>,</span> <span class='symbol val'>:action</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:choose_addon</span><span class='comma token'>,</span> <span class='symbol val'>:id</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='hosting identifier id'>hosting</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+  <span class='return return kw'>return</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="add_package-instance_method">
+  
+    - (<tt>Object</tt>) <strong>add_package</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+32
+33
+34
+35
+36
+37
+38</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/cart_controller.rb', line 32</span>
+
+<span class='def def kw'>def</span> <span class='add_package identifier id'>add_package</span>
+  <span class='@product ivar id'>@product</span> <span class='assign token'>=</span> <span class='Product constant id'>Product</span><span class='dot token'>.</span><span class='packages identifier id'>packages</span><span class='dot token'>.</span><span class='enabled identifier id'>enabled</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:package_id</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  
+  <span class='hosting identifier id'>hosting</span> <span class='assign token'>=</span> <span class='@cart ivar id'>@cart</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='@product ivar id'>@product</span><span class='comma token'>,</span><span class='@product ivar id'>@product</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
+  <span class='@cart ivar id'>@cart</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='Product constant id'>Product</span><span class='dot token'>.</span><span class='free_domain identifier id'>free_domain</span><span class='comma token'>,</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:domain</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:domain</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:domain</span><span class='rbrack token'>]</span><span class='rbrace token'>}</span><span class='comma token'>,</span><span class='hosting identifier id'>hosting</span><span class='rparen token'>)</span>
+  <span class='redirect_to identifier id'>redirect_to</span> <span class='symbol val'>:controller</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:green_hosting_store</span><span class='comma token'>,</span> <span class='symbol val'>:action</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:choose_addon</span><span class='comma token'>,</span> <span class='symbol val'>:id</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='hosting identifier id'>hosting</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="change_cart_item_quantity-instance_method">
+  
+    - (<tt>Object</tt>) <strong>change_cart_item_quantity</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/cart_controller.rb', line 73</span>
+
+<span class='def def kw'>def</span> <span class='change_cart_item_quantity identifier id'>change_cart_item_quantity</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="edit_domain-instance_method">
+  
+    - (<tt>Object</tt>) <strong>edit_domain</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/cart_controller.rb', line 18</span>
+
+<span class='def def kw'>def</span> <span class='edit_domain identifier id'>edit_domain</span>
+  <span class='hosting identifier id'>hosting</span> <span class='assign token'>=</span> <span class='@cart ivar id'>@cart</span><span class='dot token'>.</span><span class='cart_items identifier id'>cart_items</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:id</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='hosting identifier id'>hosting</span><span class='dot token'>.</span><span class='domain identifier id'>domain</span><span class='dot token'>.</span><span class='destroy identifier id'>destroy</span> <span class='if if_mod kw'>if</span> <span class='hosting identifier id'>hosting</span><span class='dot token'>.</span><span class='domain identifier id'>domain</span>
+  <span class='if if kw'>if</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:purchased</span><span class='rbrack token'>]</span>
+    <span class='@cart ivar id'>@cart</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='Product constant id'>Product</span><span class='dot token'>.</span><span class='domain identifier id'>domain</span><span class='comma token'>,</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:domain</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:domain</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:domain</span><span class='rbrack token'>]</span><span class='rbrace token'>}</span><span class='comma token'>,</span><span class='hosting identifier id'>hosting</span><span class='rparen token'>)</span>      
+    <span class='render identifier id'>render</span> <span class='symbol val'>:update</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='page identifier id'>page</span><span class='bitor op'>|</span>
+      <span class='page identifier id'>page</span><span class='dot token'>.</span><span class='redirect_to identifier id'>redirect_to</span> <span class='symbol val'>:controller</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:green_hosting_store</span><span class='comma token'>,</span> <span class='symbol val'>:action</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:edit_hosting</span><span class='comma token'>,</span> <span class='symbol val'>:id</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='hosting identifier id'>hosting</span>
+    <span class='end end kw'>end</span>
+  <span class='else else kw'>else</span>
+    <span class='@cart ivar id'>@cart</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='Product constant id'>Product</span><span class='dot token'>.</span><span class='free_domain identifier id'>free_domain</span><span class='comma token'>,</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:domain</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:domain</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:domain</span><span class='rbrack token'>]</span><span class='rbrace token'>}</span><span class='comma token'>,</span><span class='hosting identifier id'>hosting</span><span class='rparen token'>)</span>      
+    <span class='redirect_to identifier id'>redirect_to</span> <span class='symbol val'>:controller</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:green_hosting_store</span><span class='comma token'>,</span> <span class='symbol val'>:action</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:edit_hosting</span><span class='comma token'>,</span> <span class='symbol val'>:id</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='hosting identifier id'>hosting</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="edit_package-instance_method">
+  
+    - (<tt>Object</tt>) <strong>edit_package</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/cart_controller.rb', line 40</span>
+
+<span class='def def kw'>def</span> <span class='edit_package identifier id'>edit_package</span>
+  <span class='hosting identifier id'>hosting</span> <span class='assign token'>=</span> <span class='@cart ivar id'>@cart</span><span class='dot token'>.</span><span class='cart_items identifier id'>cart_items</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:id</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='product identifier id'>product</span> <span class='assign token'>=</span> <span class='Product constant id'>Product</span><span class='dot token'>.</span><span class='packages identifier id'>packages</span><span class='dot token'>.</span><span class='enabled identifier id'>enabled</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:package_id</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='hosting identifier id'>hosting</span><span class='dot token'>.</span><span class='update_attributes identifier id'>update_attributes</span><span class='lparen token'>(</span><span class='lbrace token'>{</span>
+    <span class='symbol val'>:product</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='product identifier id'>product</span><span class='comma token'>,</span>
+    <span class='symbol val'>:name</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='product identifier id'>product</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='comma token'>,</span>
+    <span class='symbol val'>:description</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='product identifier id'>product</span><span class='dot token'>.</span><span class='description identifier id'>description</span><span class='comma token'>,</span>
+    <span class='symbol val'>:unit_price</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='product identifier id'>product</span><span class='dot token'>.</span><span class='cost identifier id'>cost</span>
+  <span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='render_cart identifier id'>render_cart</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="remove_addon-instance_method">
+  
+    - (<tt>Object</tt>) <strong>remove_addon</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+61
+62
+63
+64
+65
+66</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/cart_controller.rb', line 61</span>
+
+<span class='def def kw'>def</span> <span class='remove_addon identifier id'>remove_addon</span>
+  <span class='@package ivar id'>@package</span> <span class='assign token'>=</span> <span class='@cart ivar id'>@cart</span><span class='dot token'>.</span><span class='cart_items identifier id'>cart_items</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:package_id</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='add_on identifier id'>add_on</span> <span class='assign token'>=</span> <span class='@package ivar id'>@package</span><span class='dot token'>.</span><span class='children identifier id'>children</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='symbol val'>:first</span><span class='comma token'>,</span> <span class='symbol val'>:include</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:product</span><span class='comma token'>,</span> <span class='symbol val'>:conditions</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='string val'>&quot;product_id = ?&quot;</span><span class='comma token'>,</span><span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:id</span><span class='rbrack token'>]</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='@cart ivar id'>@cart</span><span class='dot token'>.</span><span class='remove identifier id'>remove</span><span class='lparen token'>(</span><span class='add_on identifier id'>add_on</span><span class='dot token'>.</span><span class='id identifier id'>id</span><span class='rparen token'>)</span>
+  <span class='render_cart identifier id'>render_cart</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="remove_cart_item-instance_method">
+  
+    - (<tt>Object</tt>) <strong>remove_cart_item</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+68
+69
+70
+71</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/cart_controller.rb', line 68</span>
+
+<span class='def def kw'>def</span> <span class='remove_cart_item identifier id'>remove_cart_item</span>
+  <span class='@cart ivar id'>@cart</span><span class='dot token'>.</span><span class='remove identifier id'>remove</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:id</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='render_cart identifier id'>render_cart</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sat Oct 16 12:08:21 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

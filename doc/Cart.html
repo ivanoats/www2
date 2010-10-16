@@ -1,0 +1,437 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: Cart</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (C)</a> &raquo; 
+    
+    
+    <span class="title">Cart</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Cart
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">ActiveRecord::Base</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActiveRecord::Base</li>
+          
+            <li class="next">Cart</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">app/models/cart.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+  
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add-instance_method" title="#add (instance method)">- (Object) <strong>add</strong>(product, name, data = {}, parent = nil, quantity = 1, quantity_unit = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Adds a <tt>Product</tt> to itself as a <tt>CartItem</tt>.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#change_quantity-instance_method" title="#change_quantity (instance method)">- (Object) <strong>change_quantity</strong>(cart_item_id, quantity) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Changes the <tt>quantity</tt> of a <tt>CartItem</tt> give an id.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#remove-instance_method" title="#remove (instance method)">- (Object) <strong>remove</strong>(cart_item_id) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Removes a <tt>CartItem</tt> from itself given an id.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#total_price-instance_method" title="#total_price (instance method)">- (Object) <strong>total_price</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="add-instance_method">
+  
+    - (<tt>Object</tt>) <strong>add</strong>(product, name, data = {}, parent = nil, quantity = 1, quantity_unit = nil) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Adds a <tt>Product</tt> to itself as a <tt>CartItem</tt>. You can customize
+the quanity and quantity units with arguments. Returns the newly built
+<tt>CartItem</tt>.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 8</span>
+
+<span class='def def kw'>def</span> <span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='product identifier id'>product</span><span class='comma token'>,</span> <span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='data identifier id'>data</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='comma token'>,</span> <span class='parent identifier id'>parent</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='quantity identifier id'>quantity</span> <span class='assign token'>=</span> <span class='integer val'>1</span><span class='comma token'>,</span> <span class='quantity_unit identifier id'>quantity_unit</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span> <span class='rparen token'>)</span>
+  <span class='cart_item_attributes identifier id'>cart_item_attributes</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span>
+    <span class='symbol val'>:product_id</span>          <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='product identifier id'>product</span><span class='dot token'>.</span><span class='id identifier id'>id</span><span class='comma token'>,</span>
+    <span class='symbol val'>:cart_id</span>             <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='id identifier id'>id</span><span class='comma token'>,</span>
+    <span class='symbol val'>:name</span>                <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='name identifier id'>name</span><span class='comma token'>,</span>
+    <span class='symbol val'>:description</span>         <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='product identifier id'>product</span><span class='dot token'>.</span><span class='description identifier id'>description</span><span class='comma token'>,</span>
+    <span class='symbol val'>:unit_price</span>          <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='product identifier id'>product</span><span class='dot token'>.</span><span class='cost identifier id'>cost</span><span class='comma token'>,</span>
+    <span class='symbol val'>:quantity</span>            <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='quantity identifier id'>quantity</span><span class='comma token'>,</span>
+    <span class='symbol val'>:quantity_unit</span>       <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='quantity_unit identifier id'>quantity_unit</span><span class='comma token'>,</span>
+    <span class='symbol val'>:data</span>                <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='data identifier id'>data</span><span class='comma token'>,</span>
+    <span class='symbol val'>:parent</span>              <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='parent identifier id'>parent</span>
+    
+  <span class='rbrace token'>}</span>
+  <span class='cart_items identifier id'>cart_items</span><span class='dot token'>.</span><span class='create! fid id'>create!</span><span class='lparen token'>(</span><span class='cart_item_attributes identifier id'>cart_item_attributes</span><span class='rparen token'>)</span>  <span class='comment val'>#TODO test database creation of the record</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="change_quantity-instance_method">
+  
+    - (<tt>Object</tt>) <strong>change_quantity</strong>(cart_item_id, quantity) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Changes the <tt>quantity</tt> of a <tt>CartItem</tt> give an id.  Returns
+the modified <tt>CartItem</tt>.
+</p>
+<h4>Arguments</h4>
+<ul>
+<li><p>
+<tt>cart_item_id</tt> - A <tt>CartItem</tt> id.
+</p>
+</li>
+<li><p>
+<tt>quantity</tt>     - Sets the quantity of the <tt>CartItem</tt> (removes
+the <tt>CartItem</tt> from the cart if 0).
+</p>
+</li>
+</ul>
+<h4>Example</h4>
+<p>
+change_quantity(12, 69)  #=> A modified <tt>CartItem</tt> with a quantity
+of 69.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 44</span>
+
+<span class='def def kw'>def</span> <span class='change_quantity identifier id'>change_quantity</span><span class='lparen token'>(</span><span class='cart_item_id identifier id'>cart_item_id</span><span class='comma token'>,</span> <span class='quantity identifier id'>quantity</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='remove identifier id'>remove</span><span class='lparen token'>(</span><span class='cart_item_id identifier id'>cart_item_id</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='quantity identifier id'>quantity</span> <span class='eq op'>==</span> <span class='integer val'>0</span>
+
+  <span class='cart_item identifier id'>cart_item</span> <span class='assign token'>=</span> <span class='cart_items identifier id'>cart_items</span><span class='dot token'>.</span><span class='find_by_id identifier id'>find_by_id</span><span class='lparen token'>(</span><span class='cart_item_id identifier id'>cart_item_id</span><span class='rparen token'>)</span>
+  <span class='index identifier id'>index</span>     <span class='assign token'>=</span> <span class='cart_items identifier id'>cart_items</span><span class='dot token'>.</span><span class='index identifier id'>index</span><span class='lparen token'>(</span><span class='cart_item identifier id'>cart_item</span><span class='rparen token'>)</span>
+
+  <span class='cart_item identifier id'>cart_item</span><span class='lbrack token'>[</span><span class='symbol val'>:quantity</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='quantity identifier id'>quantity</span>
+
+  <span class='cart_items identifier id'>cart_items</span><span class='lbrack token'>[</span><span class='index identifier id'>index</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='cart_item identifier id'>cart_item</span>
+  <span class='cart_item identifier id'>cart_item</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="remove-instance_method">
+  
+    - (<tt>Object</tt>) <strong>remove</strong>(cart_item_id) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Removes a <tt>CartItem</tt> from itself given an id.  Returns the
+destroyed, frozen <tt>CartItem</tt>.
+</p>
+<h4>Arguments</h4>
+<ul>
+<li><p>
+<tt>cart_item_id</tt> - A <tt>CartItem</tt> id.
+</p>
+</li>
+</ul>
+<h4>Example</h4>
+<p>
+remove(12)  #=> A destroyed and frozen <tt>CartItem</tt>.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+31
+32
+33
+34</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 31</span>
+
+<span class='def def kw'>def</span> <span class='remove identifier id'>remove</span><span class='lparen token'>(</span><span class='cart_item_id identifier id'>cart_item_id</span><span class='rparen token'>)</span>
+  <span class='cart_item identifier id'>cart_item</span> <span class='assign token'>=</span> <span class='cart_items identifier id'>cart_items</span><span class='dot token'>.</span><span class='find_by_id identifier id'>find_by_id</span><span class='lparen token'>(</span><span class='cart_item_id identifier id'>cart_item_id</span><span class='rparen token'>)</span>
+  <span class='cart_item identifier id'>cart_item</span><span class='dot token'>.</span><span class='destroy identifier id'>destroy</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="total_price-instance_method">
+  
+    - (<tt>Object</tt>) <strong>total_price</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+56
+57
+58
+59
+60</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 56</span>
+
+<span class='def def kw'>def</span> <span class='total_price identifier id'>total_price</span>
+  <span class='cart_items identifier id'>cart_items</span><span class='dot token'>.</span><span class='inject identifier id'>inject</span><span class='lparen token'>(</span><span class='integer val'>0</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='total identifier id'>total</span><span class='comma token'>,</span><span class='cart_item identifier id'>cart_item</span><span class='bitor op'>|</span>
+    <span class='total identifier id'>total</span> <span class='opasgn op'>+=</span> <span class='cart_item identifier id'>cart_item</span><span class='dot token'>.</span><span class='unit_price identifier id'>unit_price</span> <span class='mult op'>*</span> <span class='cart_item identifier id'>cart_item</span><span class='dot token'>.</span><span class='quantity identifier id'>quantity</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sat Oct 16 12:08:09 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

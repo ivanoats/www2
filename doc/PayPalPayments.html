@@ -1,0 +1,461 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: PayPalPayments</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (P)</a> &raquo; 
+    
+    
+    <span class="title">PayPalPayments</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: PayPalPayments
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">ActionMailer::Base</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActionMailer::Base</li>
+          
+            <li class="next">PayPalPayments</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">app/models/pay_pal_payments.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+receives paypal emails and marks invoices paid in the whmap billing
+database
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+
+  
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_after_until-class_method" title="find_after_until (class method)">+ (Object) <strong>find_after_until</strong>(haystack, needle, end_char) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+finds the value (text) after the needle(key) in a haystack, until the end
+character.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#receive-class_method" title="receive (class method)">+ (Object) <strong>receive</strong>(email) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="find_after_until-class_method">
+  
+    + (<tt>Object</tt>) <strong>find_after_until</strong>(haystack, needle, end_char) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+finds the value (text) after the needle(key) in a haystack, until the end
+character
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/pay_pal_payments.rb', line 4</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='find_after_until identifier id'>find_after_until</span><span class='lparen token'>(</span><span class='haystack identifier id'>haystack</span><span class='comma token'>,</span> <span class='needle identifier id'>needle</span><span class='comma token'>,</span> <span class='end_char identifier id'>end_char</span> <span class='rparen token'>)</span>
+  
+  <span class='comment val'># handle edge case where customer didn't fill out domain name in paypal renewal form</span>
+  <span class='comment val'># because normal method will error because there is no [] around domain name</span>
+  <span class='if if kw'>if</span> <span class='haystack identifier id'>haystack</span> <span class='eq op'>==</span> <span class='string val'>&quot;domain_name.com&quot;</span> 
+    <span class='return return kw'>return</span> <span class='string val'>&quot;domain_name.com&quot;</span>
+  <span class='end end kw'>end</span>
+  
+  <span class='comment val'># normal find_after_until method</span>
+  <span class='start_position identifier id'>start_position</span> <span class='assign token'>=</span> <span class='haystack identifier id'>haystack</span><span class='dot token'>.</span><span class='index identifier id'>index</span><span class='lparen token'>(</span><span class='needle identifier id'>needle</span><span class='rparen token'>)</span> <span class='plus op'>+</span> <span class='needle identifier id'>needle</span><span class='dot token'>.</span><span class='length identifier id'>length</span>
+  <span class='end_position identifier id'>end_position</span> <span class='assign token'>=</span> <span class='haystack identifier id'>haystack</span><span class='dot token'>.</span><span class='index identifier id'>index</span><span class='lparen token'>(</span><span class='end_char identifier id'>end_char</span><span class='comma token'>,</span> <span class='start_position identifier id'>start_position</span><span class='rparen token'>)</span> <span class='minus op'>-</span> <span class='integer val'>1</span>
+  <span class='haystack identifier id'>haystack</span><span class='lbrack token'>[</span><span class='start_position identifier id'>start_position</span><span class='dot2 op'>..</span><span class='end_position identifier id'>end_position</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="receive-class_method">
+  
+    + (<tt>Object</tt>) <strong>receive</strong>(email) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/pay_pal_payments.rb', line 18</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='receive identifier id'>receive</span><span class='lparen token'>(</span><span class='email identifier id'>email</span><span class='rparen token'>)</span>
+
+  <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='string val'>'parsing email'</span><span class='rparen token'>)</span>
+  <span class='email_parsed identifier id'>email_parsed</span> <span class='assign token'>=</span> <span class='TMail constant id'>TMail</span><span class='colon2 op'>::</span><span class='Mail constant id'>Mail</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='email identifier id'>email</span><span class='rparen token'>)</span>
+  <span class='email_body identifier id'>email_body</span> <span class='assign token'>=</span> <span class='email_parsed identifier id'>email_parsed</span><span class='dot token'>.</span><span class='parts identifier id'>parts</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='body identifier id'>body</span>
+  <span class='email_message_id identifier id'>email_message_id</span> <span class='assign token'>=</span> <span class='email_parsed identifier id'>email_parsed</span><span class='dot token'>.</span><span class='message_id identifier id'>message_id</span>
+  <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='string val'>'email message id: '</span><span class='plus op'>+</span><span class='email_message_id identifier id'>email_message_id</span><span class='rparen token'>)</span>
+
+  <span class='comment val'># if email_parsed.messageid is not in PayPalEmailLogs table and it's a payment notification email</span>
+  <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='string val'>'checking to see if email id has been processed before'</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='PayPalEmailLog constant id'>PayPalEmailLog</span><span class='dot token'>.</span><span class='find_by_messageid identifier id'>find_by_messageid</span><span class='lparen token'>(</span><span class='email_message_id identifier id'>email_message_id</span><span class='rparen token'>)</span> <span class='eq op'>==</span> <span class='nil nil kw'>nil</span> \
+     <span class='andop op'>&amp;&amp;</span> <span class='email_parsed identifier id'>email_parsed</span><span class='dot token'>.</span><span class='subject identifier id'>subject</span><span class='dot token'>.</span><span class='downcase identifier id'>downcase</span> <span class='eq op'>==</span> <span class='string val'>&quot;you have received a subscription payment&quot;</span> <span class='then then kw'>then</span>
+
+    <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='string val'>'No, this email has not been processed before'</span><span class='rparen token'>)</span>
+    <span class='comment val'># read payment info from email. amount, txn_id (paypal subscription number)</span>
+    <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='string val'>'Parsing amount, subscription number, domain name and email from email body'</span><span class='rparen token'>)</span>
+    <span class='amount identifier id'>amount</span> <span class='assign token'>=</span>  <span class='find_after_until identifier id'>find_after_until</span><span class='lparen token'>(</span><span class='email_body identifier id'>email_body</span><span class='comma token'>,</span><span class='string val'>&quot;Amount: $&quot;</span><span class='comma token'>,</span><span class='string val'>&quot; &quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span>
+    <span class='subscription_number identifier id'>subscription_number</span> <span class='assign token'>=</span> <span class='find_after_until identifier id'>find_after_until</span><span class='lparen token'>(</span><span class='email_body identifier id'>email_body</span><span class='comma token'>,</span><span class='string val'>&quot;Subscription Number: &quot;</span><span class='comma token'>,</span><span class='string val'>&quot;\n&quot;</span><span class='rparen token'>)</span>
+    <span class='comment val'># convert Subscription name to domain name process</span>
+    <span class='subscription_name identifier id'>subscription_name</span> <span class='assign token'>=</span> <span class='find_after_until identifier id'>find_after_until</span><span class='lparen token'>(</span><span class='email_body identifier id'>email_body</span><span class='comma token'>,</span> <span class='string val'>&quot;Subscription Name: &quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;\n&quot;</span><span class='rparen token'>)</span>
+    <span class='comment val'># does it have [ ] - then only use that part</span>
+    <span class='if if kw'>if</span> <span class='subscription_name identifier id'>subscription_name</span><span class='dot token'>.</span><span class='slice identifier id'>slice</span><span class='lparen token'>(</span><span class='regexp val'>/\[(.+)\]/</span><span class='comma token'>,</span><span class='integer val'>1</span><span class='rparen token'>)</span> <span class='neq op'>!=</span> <span class='nil nil kw'>nil</span> <span class='comment val'># then it has [ ]</span>
+      <span class='domain_name identifier id'>domain_name</span> <span class='assign token'>=</span> <span class='subscription_name identifier id'>subscription_name</span><span class='dot token'>.</span><span class='slice identifier id'>slice</span><span class='lparen token'>(</span><span class='regexp val'>/\[(.+)\]/</span><span class='comma token'>,</span><span class='integer val'>1</span><span class='rparen token'>)</span>
+    <span class='elsif elsif kw'>elsif</span> <span class='subscription_name identifier id'>subscription_name</span><span class='dot token'>.</span><span class='slice identifier id'>slice</span><span class='lparen token'>(</span><span class='regexp val'>/\s/</span><span class='rparen token'>)</span> <span class='neq op'>!=</span> <span class='nil nil kw'>nil</span> <span class='comment val'>#does it have spaces? then we can't figure out the domain name </span>
+      <span class='domain_name identifier id'>domain_name</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
+    <span class='else else kw'>else</span> <span class='comment val'># then it's already fine</span>
+      <span class='domain_name identifier id'>domain_name</span> <span class='assign token'>=</span> <span class='subscription_name identifier id'>subscription_name</span>
+    <span class='end end kw'>end</span> 
+
+    <span class='comment val'># domain_name = find_after_until(find_after_until(email_body,&quot;Subscription Name: &quot;, &quot;\n&quot;), &quot;[&quot;,&quot;]&quot;)</span>
+    <span class='user_email identifier id'>user_email</span> <span class='assign token'>=</span> <span class='find_after_until identifier id'>find_after_until</span><span class='lparen token'>(</span><span class='email_body identifier id'>email_body</span><span class='comma token'>,</span><span class='string val'>&quot;Email: &quot;</span><span class='comma token'>,</span><span class='string val'>&quot;\n&quot;</span><span class='rparen token'>)</span>
+    <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='string val'>'amount: '</span><span class='plus op'>+</span><span class='amount identifier id'>amount</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span>
+    <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='string val'>'domain_name: '</span><span class='plus op'>+</span><span class='domain_name identifier id'>domain_name</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='domain_name identifier id'>domain_name</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+    <span class='comment val'># strip http:// and www. out of domain name</span>
+    <span class='domain_name identifier id'>domain_name</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='string val'>'http://'</span><span class='comma token'>,</span><span class='string val'>''</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='domain_name identifier id'>domain_name</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+    <span class='domain_name identifier id'>domain_name</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='string val'>'www.'</span><span class='comma token'>,</span><span class='string val'>''</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='domain_name identifier id'>domain_name</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+    <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='string val'>'stripped domain_name: '</span><span class='plus op'>+</span><span class='domain_name identifier id'>domain_name</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='domain_name identifier id'>domain_name</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+    <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='string val'>'user_email: '</span><span class='plus op'>+</span><span class='user_email identifier id'>user_email</span><span class='rparen token'>)</span>
+
+    <span class='comment val'># associate it to a order id (oid) or user id (uid)</span>
+    <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='string val'>'looking for an order by txn_id'</span><span class='rparen token'>)</span>
+    <span class='order identifier id'>order</span> <span class='assign token'>=</span> <span class='Whmaphostingorder constant id'>Whmaphostingorder</span><span class='dot token'>.</span><span class='find_by_txn_id identifier id'>find_by_txn_id</span><span class='lparen token'>(</span><span class='subscription_number identifier id'>subscription_number</span><span class='rparen token'>)</span>
+    <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='string val'>'found order id:'</span> <span class='plus op'>+</span> <span class='order identifier id'>order</span><span class='dot token'>.</span><span class='id identifier id'>id</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='notop op'>!</span><span class='order identifier id'>order</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+    <span class='if if kw'>if</span> <span class='domain_name identifier id'>domain_name</span> <span class='neq op'>!=</span> <span class='string val'>&quot;domain_name.com&quot;</span> <span class='andop op'>&amp;&amp;</span> <span class='order identifier id'>order</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+      <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='string val'>'domain_name was not domain_name.com and order was not nil'</span><span class='rparen token'>)</span>
+      <span class='order identifier id'>order</span> <span class='assign token'>=</span> <span class='Whmaphostingorder constant id'>Whmaphostingorder</span><span class='dot token'>.</span><span class='find_by_domain_name identifier id'>find_by_domain_name</span><span class='lparen token'>(</span><span class='domain_name identifier id'>domain_name</span><span class='rparen token'>)</span>
+      <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='string val'>'order id:'</span> <span class='plus op'>+</span> <span class='order identifier id'>order</span><span class='dot token'>.</span><span class='id identifier id'>id</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='notop op'>!</span><span class='order identifier id'>order</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+    <span class='end end kw'>end</span>
+    <span class='if if kw'>if</span> <span class='order identifier id'>order</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+      <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='string val'>'order was nil, looking for Whmapuser by email'</span><span class='rparen token'>)</span>
+      <span class='user identifier id'>user</span> <span class='assign token'>=</span> <span class='Whmapuser constant id'>Whmapuser</span><span class='dot token'>.</span><span class='find_by_email identifier id'>find_by_email</span><span class='lparen token'>(</span><span class='user_email identifier id'>user_email</span><span class='rparen token'>)</span>
+      <span class='order identifier id'>order</span> <span class='assign token'>=</span> <span class='Whmaphostingorder constant id'>Whmaphostingorder</span><span class='dot token'>.</span><span class='find_by_uid identifier id'>find_by_uid</span><span class='lparen token'>(</span><span class='user identifier id'>user</span><span class='rparen token'>)</span>
+      <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='string val'>'order id:'</span> <span class='plus op'>+</span> <span class='order identifier id'>order</span><span class='dot token'>.</span><span class='id identifier id'>id</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='notop op'>!</span><span class='order identifier id'>order</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+    <span class='end end kw'>end</span>
+    <span class='if if kw'>if</span> <span class='order identifier id'>order</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+      <span class='error_text identifier id'>error_text</span> <span class='assign token'>=</span> <span class='string val'>&quot;[Billing Warning] : Order was still nil after trying to find by email, domain name and subscription number\n&quot;</span> \
+                 <span class='plus op'>+</span> <span class='email_body identifier id'>email_body</span>
+      <span class='new_log identifier id'>new_log</span> <span class='assign token'>=</span> <span class='PayPalEmailLog constant id'>PayPalEmailLog</span><span class='dot token'>.</span><span class='create identifier id'>create</span><span class='lparen token'>(</span><span class='symbol val'>:messageid</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='email_message_id identifier id'>email_message_id</span><span class='comma token'>,</span>
+                                      <span class='symbol val'>:comments</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='error_text identifier id'>error_text</span><span class='rparen token'>)</span>
+      <span class='new_log identifier id'>new_log</span><span class='dot token'>.</span><span class='save identifier id'>save</span>
+      <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='warn identifier id'>warn</span><span class='lparen token'>(</span><span class='error_text identifier id'>error_text</span><span class='rparen token'>)</span>
+      <span class='return return kw'>return</span> 
+      <span class='comment val'># raise( &quot;Billing Warning: failed to find any valid info in paypal email: &quot; + email_body )</span>
+    <span class='end end kw'>end</span>
+    
+    <span class='comment val'># maybe it was paid already? check month</span>
+    <span class='email_month identifier id'>email_month</span> <span class='assign token'>=</span> <span class='email_parsed identifier id'>email_parsed</span><span class='dot token'>.</span><span class='date identifier id'>date</span><span class='dot token'>.</span><span class='month identifier id'>month</span>
+    <span class='invoice_for_month identifier id'>invoice_for_month</span> <span class='assign token'>=</span> <span class='Whmapinvoice constant id'>Whmapinvoice</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='symbol val'>:first</span><span class='comma token'>,</span> 
+                                          <span class='symbol val'>:conditions</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span> <span class='string val'>&quot;uid = ? AND month(from_unixtime(due_date)) = ?&quot;</span><span class='comma token'>,</span> <span class='order identifier id'>order</span><span class='dot token'>.</span><span class='uid identifier id'>uid</span><span class='comma token'>,</span> <span class='email_month identifier id'>email_month</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+
+    <span class='comment val'># did I find a matching invoice? if not, what</span>
+    <span class='if if kw'>if</span> <span class='invoice_for_month identifier id'>invoice_for_month</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+      <span class='error_text identifier id'>error_text</span> <span class='assign token'>=</span> <span class='string val'>&quot;[Billing warning] : Could not find invoice for the month that the email was from\n&quot;</span> \
+                 <span class='plus op'>+</span> <span class='string val'>&quot;email_month: &quot;</span> <span class='plus op'>+</span> <span class='email_parsed identifier id'>email_parsed</span><span class='dot token'>.</span><span class='date identifier id'>date</span><span class='dot token'>.</span><span class='month identifier id'>month</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='plus op'>+</span> <span class='string val'>&quot;\n&quot;</span> \
+                 <span class='plus op'>+</span> <span class='email_body identifier id'>email_body</span>
+      <span class='new_log identifier id'>new_log</span> <span class='assign token'>=</span> <span class='PayPalEmailLog constant id'>PayPalEmailLog</span><span class='dot token'>.</span><span class='create identifier id'>create</span><span class='lparen token'>(</span><span class='symbol val'>:messageid</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='email_message_id identifier id'>email_message_id</span><span class='comma token'>,</span>
+                                      <span class='symbol val'>:comments</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='error_text identifier id'>error_text</span><span class='rparen token'>)</span>
+      <span class='new_log identifier id'>new_log</span><span class='dot token'>.</span><span class='save! fid id'>save!</span>
+      <span class='return return kw'>return</span>
+    <span class='end end kw'>end</span>
+
+    <span class='if if kw'>if</span> <span class='invoice_for_month identifier id'>invoice_for_month</span><span class='dot token'>.</span><span class='paid? fid id'>paid?</span>
+      <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='string val'>'invoice was already marked as paid, ignoring email'</span><span class='rparen token'>)</span>
+      <span class='new_log identifier id'>new_log</span> <span class='assign token'>=</span> <span class='PayPalEmailLog constant id'>PayPalEmailLog</span><span class='dot token'>.</span><span class='create identifier id'>create</span><span class='lparen token'>(</span><span class='symbol val'>:iid</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='invoice_for_month identifier id'>invoice_for_month</span><span class='dot token'>.</span><span class='id identifier id'>id</span><span class='comma token'>,</span> 
+                                      <span class='symbol val'>:messageid</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='email_message_id identifier id'>email_message_id</span><span class='comma token'>,</span>
+                                      <span class='symbol val'>:comments</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'invoice was already marked as paid, ignoring email'</span><span class='rparen token'>)</span>
+      <span class='new_log identifier id'>new_log</span><span class='dot token'>.</span><span class='save! fid id'>save!</span>
+      <span class='return return kw'>return</span>
+    <span class='else else kw'>else</span> <span class='comment val'>#unpaid</span>
+      <span class='invoice_for_month identifier id'>invoice_for_month</span><span class='dot token'>.</span><span class='mark_as_paid identifier id'>mark_as_paid</span>
+      <span class='new_log identifier id'>new_log</span> <span class='assign token'>=</span> <span class='PayPalEmailLog constant id'>PayPalEmailLog</span><span class='dot token'>.</span><span class='create identifier id'>create</span><span class='lparen token'>(</span><span class='symbol val'>:iid</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='invoice_for_month identifier id'>invoice_for_month</span><span class='dot token'>.</span><span class='id identifier id'>id</span><span class='comma token'>,</span> 
+                                      <span class='symbol val'>:messageid</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='email_message_id identifier id'>email_message_id</span><span class='comma token'>,</span>
+                                      <span class='symbol val'>:comments</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'marked invoice paid'</span><span class='rparen token'>)</span>
+      <span class='new_log identifier id'>new_log</span><span class='dot token'>.</span><span class='save! fid id'>save!</span>
+      <span class='return return kw'>return</span>
+    <span class='end end kw'>end</span>
+    
+  <span class='else else kw'>else</span>
+    <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='string val'>'email has already been processed'</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span> <span class='comment val'># end if email is a subscription payment email  </span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sat Oct 16 12:08:13 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

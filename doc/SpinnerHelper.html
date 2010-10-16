@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Module: SpinnerHelper</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (S)</a> &raquo; 
+    
+    
+    <span class="title">SpinnerHelper</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: SpinnerHelper
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">app/helpers/spinner_helper.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#show_hide_spinner-instance_method" title="#show_hide_spinner (instance method)">- (Object) <strong>show_hide_spinner</strong>(id = 'ajax_loader') </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#spinner_image-instance_method" title="#spinner_image (instance method)">- (Object) <strong>spinner_image</strong>(id = 'ajax_loader') </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="show_hide_spinner-instance_method">
+  
+    - (<tt>Object</tt>) <strong>show_hide_spinner</strong>(id = 'ajax_loader') 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+7
+8
+9</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/helpers/spinner_helper.rb', line 7</span>
+
+<span class='def def kw'>def</span> <span class='show_hide_spinner identifier id'>show_hide_spinner</span><span class='lparen token'>(</span><span class='id identifier id'>id</span> <span class='assign token'>=</span> <span class='string val'>'ajax_loader'</span><span class='rparen token'>)</span>
+  <span class='lbrace token'>{</span><span class='symbol val'>:before</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='dstring node'>&quot;jQuery('##{id}').show();&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:complete</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='dstring node'>&quot;jQuery('##{id}').hide();&quot;</span><span class='comma token'>,</span><span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="spinner_image-instance_method">
+  
+    - (<tt>Object</tt>) <strong>spinner_image</strong>(id = 'ajax_loader') 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3
+4
+5</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/helpers/spinner_helper.rb', line 3</span>
+
+<span class='def def kw'>def</span> <span class='spinner_image identifier id'>spinner_image</span><span class='lparen token'>(</span><span class='id identifier id'>id</span> <span class='assign token'>=</span> <span class='string val'>'ajax_loader'</span><span class='rparen token'>)</span> 
+  <span class='content_tag identifier id'>content_tag</span><span class='lparen token'>(</span><span class='symbol val'>:div</span><span class='comma token'>,</span><span class='image_tag identifier id'>image_tag</span><span class='lparen token'>(</span><span class='string val'>'ajax-loader.gif'</span><span class='comma token'>,</span> <span class='symbol val'>:id</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='id identifier id'>id</span><span class='comma token'>,</span> <span class='symbol val'>:style</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>' display:none'</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='symbol val'>:style</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'padding: 5px;'</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sat Oct 16 12:08:15 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

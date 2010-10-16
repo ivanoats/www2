@@ -1,0 +1,911 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: AccountController</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (A)</a> &raquo; 
+    
+    
+    <span class="title">AccountController</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: AccountController
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActionController::Base</li>
+          
+            <li class="next"><span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span></li>
+          
+            <li class="next">AccountController</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2">ActiveMerchant::Billing</dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">app/controllers/account_controller.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+  <h2>Constant Summary</h2>
+  
+
+
+  
+  
+  
+  
+  
+  <h3 class="inherited">Constants inherited from <span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ApplicationController.html#EXCEPTIONS_NOT_LOGGED-constant" title="ApplicationController::EXCEPTIONS_NOT_LOGGED (constant)">EXCEPTIONS_NOT_LOGGED</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#billing-instance_method" title="#billing (instance method)">- (Object) <strong>billing</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create-instance_method" title="#create (instance method)">- (Object) <strong>create</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#edit-instance_method" title="#edit (instance method)">- (Object) <strong>edit</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#hosting-instance_method" title="#hosting (instance method)">- (Object) <strong>hosting</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#index-instance_method" title="#index (instance method)">- (Object) <strong>index</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#manage-instance_method" title="#manage (instance method)">- (Object) <strong>manage</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#new-instance_method" title="#new (instance method)">- (Object) <strong>new</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#order-instance_method" title="#order (instance method)">- (Object) <strong>order</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pay-instance_method" title="#pay (instance method)">- (Object) <strong>pay</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#payments-instance_method" title="#payments (instance method)">- (Object) <strong>payments</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#switch_account-instance_method" title="#switch_account (instance method)">- (Object) <strong>switch_account</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update-instance_method" title="#update (instance method)">- (Object) <strong>update</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#users-instance_method" title="#users (instance method)">- (Object) <strong>users</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="RoleRequirementSystem.html" title="RoleRequirementSystem (module)">RoleRequirementSystem</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="RoleRequirementSystem.html#included-class_method" title="RoleRequirementSystem.included (method)">included</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="billing-instance_method">
+  
+    - (<tt>Object</tt>) <strong>billing</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/account_controller.rb', line 79</span>
+
+<span class='def def kw'>def</span> <span class='billing identifier id'>billing</span>
+  <span class='@address ivar id'>@address</span> <span class='assign token'>=</span> <span class='@account ivar id'>@account</span><span class='dot token'>.</span><span class='billing_address identifier id'>billing_address</span> <span class='orop op'>||</span> <span class='@account ivar id'>@account</span><span class='dot token'>.</span><span class='build_billing_address identifier id'>build_billing_address</span>
+  <span class='@credit_card ivar id'>@credit_card</span> <span class='assign token'>=</span> <span class='CreditCard constant id'>CreditCard</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:credit_card</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='request identifier id'>request</span><span class='dot token'>.</span><span class='post? fid id'>post?</span>
+    <span class='if if kw'>if</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:paypal</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='blank? fid id'>blank?</span>
+      <span class='if if kw'>if</span> <span class='@account ivar id'>@account</span><span class='dot token'>.</span><span class='update_attributes identifier id'>update_attributes</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:account</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='@address ivar id'>@address</span><span class='dot token'>.</span><span class='update_attributes identifier id'>update_attributes</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:address</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='@credit_card ivar id'>@credit_card</span><span class='dot token'>.</span><span class='valid? fid id'>valid?</span>          
+        <span class='if if kw'>if</span> <span class='@account ivar id'>@account</span><span class='dot token'>.</span><span class='store_card identifier id'>store_card</span><span class='lparen token'>(</span><span class='@credit_card ivar id'>@credit_card</span><span class='comma token'>,</span> <span class='symbol val'>:ip</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='request identifier id'>request</span><span class='dot token'>.</span><span class='remote_ip identifier id'>remote_ip</span><span class='rparen token'>)</span>
+          <span class='flash identifier id'>flash</span><span class='lbrack token'>[</span><span class='symbol val'>:notice</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='string val'>&quot;Your billing information has been updated.&quot;</span>
+        <span class='else else kw'>else</span>
+          <span class='flash identifier id'>flash</span><span class='lbrack token'>[</span><span class='symbol val'>:notice</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='string val'>&quot;Failed to store credit card.&quot;</span>
+        <span class='end end kw'>end</span>
+      <span class='end end kw'>end</span>
+    <span class='else else kw'>else</span>
+      <span class='if if kw'>if</span> <span class='redirect_url identifier id'>redirect_url</span> <span class='assign token'>=</span> <span class='@subscription ivar id'>@subscription</span><span class='dot token'>.</span><span class='start_paypal identifier id'>start_paypal</span><span class='lparen token'>(</span><span class='paypal_account_url identifier id'>paypal_account_url</span><span class='comma token'>,</span> <span class='billing_account_url identifier id'>billing_account_url</span><span class='rparen token'>)</span>
+        <span class='redirect_to identifier id'>redirect_to</span> <span class='redirect_url identifier id'>redirect_url</span> <span class='and and kw'>and</span> <span class='return return kw'>return</span>
+      <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+  <span class='redirect_to identifier id'>redirect_to</span> <span class='symbol val'>:action</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'edit'</span><span class='comma token'>,</span> <span class='symbol val'>:anchor</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'billing_tab'</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="create-instance_method">
+  
+    - (<tt>Object</tt>) <strong>create</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/account_controller.rb', line 16</span>
+
+<span class='def def kw'>def</span> <span class='create identifier id'>create</span>
+  <span class='@account ivar id'>@account</span> <span class='assign token'>=</span> <span class='Account constant id'>Account</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:account</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  
+  <span class='respond_to identifier id'>respond_to</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='format identifier id'>format</span><span class='bitor op'>|</span>
+    <span class='if if kw'>if</span> <span class='@account ivar id'>@account</span><span class='dot token'>.</span><span class='save identifier id'>save</span>
+      <span class='@account ivar id'>@account</span><span class='dot token'>.</span><span class='users identifier id'>users</span> <span class='lshft op'>&lt;&lt;</span> <span class='current_user identifier id'>current_user</span>
+      <span class='session identifier id'>session</span><span class='lbrack token'>[</span><span class='symbol val'>:account</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='@account ivar id'>@account</span><span class='dot token'>.</span><span class='id identifier id'>id</span>
+      <span class='flash identifier id'>flash</span><span class='lbrack token'>[</span><span class='symbol val'>:notice</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='string val'>'Account was successfully created.'</span>
+      <span class='format identifier id'>format</span><span class='dot token'>.</span><span class='html identifier id'>html</span> <span class='lbrace token'>{</span> <span class='redirect_to identifier id'>redirect_to</span><span class='lparen token'>(</span><span class='lbrace token'>{</span><span class='symbol val'>:action</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:manage</span><span class='rbrace token'>}</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
+      <span class='format identifier id'>format</span><span class='dot token'>.</span><span class='xml identifier id'>xml</span>  <span class='lbrace token'>{</span> <span class='render identifier id'>render</span> <span class='symbol val'>:xml</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='@account ivar id'>@account</span><span class='comma token'>,</span> <span class='symbol val'>:status</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:created</span><span class='comma token'>,</span> <span class='symbol val'>:location</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='@account ivar id'>@account</span> <span class='rbrace token'>}</span>
+    <span class='else else kw'>else</span>
+      <span class='format identifier id'>format</span><span class='dot token'>.</span><span class='html identifier id'>html</span> <span class='lbrace token'>{</span> <span class='render identifier id'>render</span> <span class='symbol val'>:action</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;new&quot;</span> <span class='rbrace token'>}</span>
+      <span class='format identifier id'>format</span><span class='dot token'>.</span><span class='xml identifier id'>xml</span>  <span class='lbrace token'>{</span> <span class='render identifier id'>render</span> <span class='symbol val'>:xml</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='@account ivar id'>@account</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='comma token'>,</span> <span class='symbol val'>:status</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:unprocessable_entity</span> <span class='rbrace token'>}</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="edit-instance_method">
+  
+    - (<tt>Object</tt>) <strong>edit</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+39
+40</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/account_controller.rb', line 39</span>
+
+<span class='def def kw'>def</span> <span class='edit identifier id'>edit</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="hosting-instance_method">
+  
+    - (<tt>Object</tt>) <strong>hosting</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+46
+47
+48</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/account_controller.rb', line 46</span>
+
+<span class='def def kw'>def</span> <span class='hosting identifier id'>hosting</span>
+  <span class='@hostings ivar id'>@hostings</span> <span class='assign token'>=</span> <span class='@account ivar id'>@account</span><span class='dot token'>.</span><span class='hostings identifier id'>hostings</span><span class='dot token'>.</span><span class='visible identifier id'>visible</span><span class='dot token'>.</span><span class='all identifier id'>all</span><span class='lparen token'>(</span><span class='symbol val'>:include</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span><span class='symbol val'>:product</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='symbol val'>:add_ons</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:product</span><span class='comma token'>,</span> <span class='symbol val'>:domains</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:product</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="index-instance_method">
+  
+    - (<tt>Object</tt>) <strong>index</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+8
+9
+10</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/account_controller.rb', line 8</span>
+
+<span class='def def kw'>def</span> <span class='index identifier id'>index</span>
+  <span class='render identifier id'>render</span> <span class='symbol val'>:action</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;manage&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="manage-instance_method">
+  
+    - (<tt>Object</tt>) <strong>manage</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+36
+37</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/account_controller.rb', line 36</span>
+
+<span class='def def kw'>def</span> <span class='manage identifier id'>manage</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="new-instance_method">
+  
+    - (<tt>Object</tt>) <strong>new</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+12
+13
+14</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/account_controller.rb', line 12</span>
+
+<span class='def def kw'>def</span> <span class='new identifier id'>new</span>
+  <span class='@new_account ivar id'>@new_account</span> <span class='assign token'>=</span> <span class='Account constant id'>Account</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="order-instance_method">
+  
+    - (<tt>Object</tt>) <strong>order</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+64
+65
+66</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/account_controller.rb', line 64</span>
+
+<span class='def def kw'>def</span> <span class='order identifier id'>order</span>
+  <span class='@order ivar id'>@order</span> <span class='assign token'>=</span> <span class='@account ivar id'>@account</span><span class='dot token'>.</span><span class='orders identifier id'>orders</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:id</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="pay-instance_method">
+  
+    - (<tt>Object</tt>) <strong>pay</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/account_controller.rb', line 68</span>
+
+<span class='def def kw'>def</span> <span class='pay identifier id'>pay</span>
+  <span class='if if kw'>if</span> <span class='request identifier id'>request</span><span class='dot token'>.</span><span class='post? fid id'>post?</span>
+    <span class='amount identifier id'>amount</span> <span class='assign token'>=</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:amount</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span>
+    <span class='@account ivar id'>@account</span><span class='dot token'>.</span><span class='charge identifier id'>charge</span><span class='lparen token'>(</span><span class='amount identifier id'>amount</span><span class='rparen token'>)</span>
+    <span class='if if kw'>if</span> <span class='@account ivar id'>@account</span><span class='dot token'>.</span><span class='save identifier id'>save</span>
+      <span class='flash identifier id'>flash</span><span class='lbrack token'>[</span><span class='symbol val'>:notice</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='string val'>&quot;Payment completed&quot;</span>
+      <span class='redirect_to identifier id'>redirect_to</span> <span class='symbol val'>:action</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'payments'</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="payments-instance_method">
+  
+    - (<tt>Object</tt>) <strong>payments</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+42
+43
+44</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/account_controller.rb', line 42</span>
+
+<span class='def def kw'>def</span> <span class='payments identifier id'>payments</span>
+  <span class='@history ivar id'>@history</span> <span class='assign token'>=</span> <span class='@account ivar id'>@account</span><span class='dot token'>.</span><span class='transactions identifier id'>transactions</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="switch_account-instance_method">
+  
+    - (<tt>Object</tt>) <strong>switch_account</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+100
+101
+102
+103
+104
+105
+106</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/account_controller.rb', line 100</span>
+
+<span class='def def kw'>def</span> <span class='switch_account identifier id'>switch_account</span>
+  
+  <span class='session identifier id'>session</span><span class='lbrack token'>[</span><span class='symbol val'>:account</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:id</span><span class='rbrack token'>]</span> <span class='if if_mod kw'>if</span> <span class='current_user identifier id'>current_user</span><span class='dot token'>.</span><span class='has_role? fid id'>has_role?</span><span class='lparen token'>(</span><span class='string val'>'Administrator'</span><span class='rparen token'>)</span> <span class='orop op'>||</span> <span class='current_user identifier id'>current_user</span><span class='dot token'>.</span><span class='accounts identifier id'>accounts</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span> <span class='Account constant id'>Account</span><span class='dot token'>.</span><span class='find_by_id identifier id'>find_by_id</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:id</span><span class='rbrack token'>]</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+  <span class='render identifier id'>render</span> <span class='symbol val'>:update</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='page identifier id'>page</span><span class='bitor op'>|</span>
+    <span class='page identifier id'>page</span><span class='dot token'>.</span><span class='redirect_to identifier id'>redirect_to</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:return</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='lbrace token'>{</span><span class='symbol val'>:action</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:manage</span><span class='rbrace token'>}</span><span class='rparen token'>)</span> 
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="update-instance_method">
+  
+    - (<tt>Object</tt>) <strong>update</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/account_controller.rb', line 51</span>
+
+<span class='def def kw'>def</span> <span class='update identifier id'>update</span>
+  <span class='respond_to identifier id'>respond_to</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='format identifier id'>format</span><span class='bitor op'>|</span>
+    <span class='if if kw'>if</span> <span class='@account ivar id'>@account</span><span class='dot token'>.</span><span class='update_attributes identifier id'>update_attributes</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:account</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+      <span class='flash identifier id'>flash</span><span class='lbrack token'>[</span><span class='symbol val'>:notice</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='string val'>'Account was successfully updated.'</span>
+      <span class='format identifier id'>format</span><span class='dot token'>.</span><span class='html identifier id'>html</span> <span class='lbrace token'>{</span> <span class='redirect_to identifier id'>redirect_to</span><span class='lparen token'>(</span><span class='lbrace token'>{</span><span class='symbol val'>:action</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'edit'</span><span class='rbrace token'>}</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
+      <span class='format identifier id'>format</span><span class='dot token'>.</span><span class='xml identifier id'>xml</span>  <span class='lbrace token'>{</span> <span class='head identifier id'>head</span> <span class='symbol val'>:ok</span> <span class='rbrace token'>}</span>
+    <span class='else else kw'>else</span>
+      <span class='format identifier id'>format</span><span class='dot token'>.</span><span class='html identifier id'>html</span> <span class='lbrace token'>{</span> <span class='render identifier id'>render</span> <span class='symbol val'>:action</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;edit&quot;</span> <span class='rbrace token'>}</span>
+      <span class='format identifier id'>format</span><span class='dot token'>.</span><span class='xml identifier id'>xml</span>  <span class='lbrace token'>{</span> <span class='render identifier id'>render</span> <span class='symbol val'>:xml</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='@redirect ivar id'>@redirect</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='comma token'>,</span> <span class='symbol val'>:status</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:unprocessable_entity</span> <span class='rbrace token'>}</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="users-instance_method">
+  
+    - (<tt>Object</tt>) <strong>users</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+33
+34</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/account_controller.rb', line 33</span>
+
+<span class='def def kw'>def</span> <span class='users identifier id'>users</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sat Oct 16 12:08:11 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Module: RoleRequirementTestHelper</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (R)</a> &raquo; 
+    
+    
+    <span class="title">RoleRequirementTestHelper</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: RoleRequirementTestHelper
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/role_requirement_test_helper.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+Include this is test_helper.rb to enable test-case helper support for
+RoleRequirement via:
+</p>
+<pre class="code">
+  <span class='include identifier id'>include</span> <span class='RoleRequirementTestHelper constant id'>RoleRequirementTestHelper</span>
+</pre>
+<p>
+RoleRequirementTestHelper uses the power of ruby to temporarily
+&#8220;hijack&#8221; your target action.  (don&#8217;t worry, it puts
+things back the way it was after it runs) This means that the only thing
+that will be tested is whether or not the action can be accessed with a
+given circumstances. Any authentication you implement inside of your action
+will be ignored.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assert_user_can_access-instance_method" title="#assert_user_can_access (instance method)">- (Object) <strong>assert_user_can_access</strong>(user, actions, params = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Makes sure a user can access the given action.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assert_user_cant_access-instance_method" title="#assert_user_cant_access (instance method)">- (Object) <strong>assert_user_cant_access</strong>(user, actions, params = {}) </a>
+    
+
+    
+      (also: #assert_user_cannot_access)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Makes sure a user cant access the given action.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assert_users_access-instance_method" title="#assert_users_access (instance method)">- (Object) <strong>assert_users_access</strong>(users_access_list, actions, params = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Check a list of users against a set of actions with parameters.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="assert_user_can_access-instance_method">
+  
+    - (<tt>Object</tt>) <strong>assert_user_can_access</strong>(user, actions, params = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Makes sure a user can access the given action
+</p>
+<p>
+Example:
+</p>
+<pre class="code">
+  <span class='assert_user_can_access identifier id'>assert_user_can_access</span><span class='lparen token'>(</span><span class='symbol val'>:quentin</span><span class='comma token'>,</span> <span class='string val'>&quot;index&quot;</span><span class='rparen token'>)</span>
+</pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+16
+17
+18</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/role_requirement_test_helper.rb', line 16</span>
+
+<span class='def def kw'>def</span> <span class='assert_user_can_access identifier id'>assert_user_can_access</span><span class='lparen token'>(</span><span class='user identifier id'>user</span><span class='comma token'>,</span> <span class='actions identifier id'>actions</span><span class='comma token'>,</span> <span class='params identifier id'>params</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='assert_user_access_check identifier id'>assert_user_access_check</span><span class='lparen token'>(</span><span class='true true kw'>true</span><span class='comma token'>,</span> <span class='user identifier id'>user</span><span class='comma token'>,</span> <span class='actions identifier id'>actions</span><span class='comma token'>,</span> <span class='params identifier id'>params</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="assert_user_cant_access-instance_method">
+  
+    - (<tt>Object</tt>) <strong>assert_user_cant_access</strong>(user, actions, params = {}) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='assert_user_cannot_access-instance_method'>assert_user_cannot_access</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Makes sure a user cant access the given action
+</p>
+<p>
+Example:
+</p>
+<pre class="code">
+  <span class='assert_user_cant_access identifier id'>assert_user_cant_access</span><span class='lparen token'>(</span><span class='symbol val'>:quentin</span><span class='comma token'>,</span> <span class='string val'>&quot;destroy&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:listing_id</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>1</span><span class='rparen token'>)</span>
+</pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+26
+27
+28</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/role_requirement_test_helper.rb', line 26</span>
+
+<span class='def def kw'>def</span> <span class='assert_user_cant_access identifier id'>assert_user_cant_access</span><span class='lparen token'>(</span><span class='user identifier id'>user</span><span class='comma token'>,</span> <span class='actions identifier id'>actions</span><span class='comma token'>,</span> <span class='params identifier id'>params</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='assert_user_access_check identifier id'>assert_user_access_check</span><span class='lparen token'>(</span><span class='false false kw'>false</span><span class='comma token'>,</span> <span class='user identifier id'>user</span><span class='comma token'>,</span> <span class='actions identifier id'>actions</span><span class='comma token'>,</span> <span class='params identifier id'>params</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="assert_users_access-instance_method">
+  
+    - (<tt>Object</tt>) <strong>assert_users_access</strong>(users_access_list, actions, params = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Check a list of users against a set of actions with parameters.
+</p>
+<p>
+Parameters:
+</p>
+<pre class="code">
+  <span class='users_access_list identifier id'>users_access_list</span> <span class='minus op'>-</span> <span class='a identifier id'>a</span> <span class='hash identifier id'>hash</span> <span class='where identifier id'>where</span> <span class='the identifier id'>the</span> <span class='key identifier id'>key</span> <span class='is identifier id'>is</span> <span class='the identifier id'>the</span> <span class='label identifier id'>label</span> <span class='for for kw'>for</span> <span class='a identifier id'>a</span> <span class='fixture identifier id'>fixture</span><span class='comma token'>,</span> <span class='and and kw'>and</span> <span class='the identifier id'>the</span> <span class='value identifier id'>value</span> <span class='is identifier id'>is</span> <span class='a identifier id'>a</span> <span class='boolean identifier id'>boolean</span><span class='dot token'>.</span>
+  <span class='actions identifier id'>actions</span> <span class='minus op'>-</span> <span class='a identifier id'>a</span> <span class='list identifier id'>list</span> <span class='of identifier id'>of</span> <span class='actions identifier id'>actions</span> <span class='to identifier id'>to</span> <span class='test identifier id'>test</span> <span class='against identifier id'>against</span>
+  <span class='params identifier id'>params</span> <span class='minus op'>-</span> <span class='a identifier id'>a</span> <span class='hash identifier id'>hash</span> <span class='containing identifier id'>containing</span> <span class='the identifier id'>the</span> <span class='parameters identifier id'>parameters</span> <span class='to identifier id'>to</span> <span class='pass identifier id'>pass</span> <span class='to identifier id'>to</span> <span class='each identifier id'>each</span> <span class='test identifier id'>test</span> <span class='call identifier id'>call</span> <span class='to identifier id'>to</span> <span class='the identifier id'>the</span> <span class='controller identifier id'>controller</span><span class='dot token'>.</span>
+</pre>
+<p>
+Example:
+</p>
+<pre class="code">
+  <span class='assert_user_access identifier id'>assert_user_access</span><span class='lparen token'>(</span>
+    <span class='lbrace token'>{</span><span class='symbol val'>:admin</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='comma token'>,</span> <span class='symbol val'>:quentin</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='false false kw'>false</span> <span class='rbrace token'>}</span><span class='comma token'>,</span> 
+    <span class='lbrack token'>[</span><span class='symbol val'>:show</span><span class='comma token'>,</span> <span class='symbol val'>:edit</span><span class='rbrack token'>]</span><span class='comma token'>,</span> 
+    <span class='lbrace token'>{</span><span class='symbol val'>:listing_id</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>1</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+</pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+42
+43
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/role_requirement_test_helper.rb', line 42</span>
+
+<span class='def def kw'>def</span> <span class='assert_users_access identifier id'>assert_users_access</span><span class='lparen token'>(</span><span class='users_access_list identifier id'>users_access_list</span><span class='comma token'>,</span> <span class='actions identifier id'>actions</span><span class='comma token'>,</span> <span class='params identifier id'>params</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='users_access_list identifier id'>users_access_list</span><span class='dot token'>.</span><span class='each_pair identifier id'>each_pair</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='user identifier id'>user</span><span class='comma token'>,</span> <span class='access identifier id'>access</span><span class='bitor op'>|</span> 
+    <span class='assert_user_access_check identifier id'>assert_user_access_check</span><span class='lparen token'>(</span><span class='access identifier id'>access</span><span class='comma token'>,</span> <span class='user identifier id'>user</span><span class='comma token'>,</span> <span class='actions identifier id'>actions</span><span class='comma token'>,</span> <span class='params identifier id'>params</span><span class='rparen token'>)</span>
+  <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sat Oct 16 12:08:12 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

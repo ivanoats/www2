@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Module: DisplayHelper</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (D)</a> &raquo; 
+    
+    
+    <span class="title">DisplayHelper</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: DisplayHelper
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">app/helpers/display_helper.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#display_address-instance_method" title="#display_address (instance method)">- (Object) <strong>display_address</strong>(address = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#display_address_inline-instance_method" title="#display_address_inline (instance method)">- (Object) <strong>display_address_inline</strong>(address = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#display_phone_number-instance_method" title="#display_phone_number (instance method)">- (Object) <strong>display_phone_number</strong>(p_number = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="display_address-instance_method">
+  
+    - (<tt>Object</tt>) <strong>display_address</strong>(address = nil) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3
+4
+5
+6
+7
+8
+9
+10</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/helpers/display_helper.rb', line 3</span>
+
+<span class='def def kw'>def</span> <span class='display_address identifier id'>display_address</span><span class='lparen token'>(</span><span class='address identifier id'>address</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='unless unless_mod kw'>unless</span> <span class='address identifier id'>address</span>
+  
+  <span class='city_state_zip identifier id'>city_state_zip</span> <span class='assign token'>=</span> <span class='h identifier id'>h</span> <span class='address identifier id'>address</span><span class='dot token'>.</span><span class='city identifier id'>city</span>
+  <span class='city_state_zip identifier id'>city_state_zip</span> <span class='opasgn op'>+=</span> <span class='string val'>', '</span> <span class='plus op'>+</span> <span class='h identifier id'>h</span><span class='lparen token'>(</span> <span class='address identifier id'>address</span><span class='dot token'>.</span><span class='state identifier id'>state</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='address identifier id'>address</span><span class='dot token'>.</span><span class='state identifier id'>state</span>
+  <span class='city_state_zip identifier id'>city_state_zip</span> <span class='opasgn op'>+=</span> <span class='string val'>' '</span> <span class='plus op'>+</span> <span class='h identifier id'>h</span><span class='lparen token'>(</span> <span class='address identifier id'>address</span><span class='dot token'>.</span><span class='zip identifier id'>zip</span><span class='rparen token'>)</span>
+  <span class='content_tag identifier id'>content_tag</span><span class='lparen token'>(</span><span class='symbol val'>:p</span><span class='comma token'>,</span><span class='h identifier id'>h</span><span class='lparen token'>(</span><span class='address identifier id'>address</span><span class='dot token'>.</span><span class='street identifier id'>street</span><span class='rparen token'>)</span> <span class='plus op'>+</span> <span class='string val'>'&lt;br /&gt;'</span> <span class='plus op'>+</span> <span class='city_state_zip identifier id'>city_state_zip</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="display_address_inline-instance_method">
+  
+    - (<tt>Object</tt>) <strong>display_address_inline</strong>(address = nil) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+12
+13
+14
+15
+16
+17
+18
+19</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/helpers/display_helper.rb', line 12</span>
+
+<span class='def def kw'>def</span> <span class='display_address_inline identifier id'>display_address_inline</span><span class='lparen token'>(</span><span class='address identifier id'>address</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='unless unless_mod kw'>unless</span> <span class='address identifier id'>address</span>
+  
+  <span class='city_state_zip identifier id'>city_state_zip</span> <span class='assign token'>=</span> <span class='h identifier id'>h</span> <span class='address identifier id'>address</span><span class='dot token'>.</span><span class='city identifier id'>city</span>
+  <span class='city_state_zip identifier id'>city_state_zip</span> <span class='opasgn op'>+=</span> <span class='string val'>', '</span> <span class='plus op'>+</span> <span class='h identifier id'>h</span><span class='lparen token'>(</span> <span class='address identifier id'>address</span><span class='dot token'>.</span><span class='state identifier id'>state</span><span class='dot token'>.</span><span class='abbreviation identifier id'>abbreviation</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='address identifier id'>address</span><span class='dot token'>.</span><span class='state identifier id'>state</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+  <span class='city_state_zip identifier id'>city_state_zip</span> <span class='opasgn op'>+=</span> <span class='string val'>' '</span> <span class='plus op'>+</span> <span class='h identifier id'>h</span><span class='lparen token'>(</span> <span class='address identifier id'>address</span><span class='dot token'>.</span><span class='zip identifier id'>zip</span><span class='rparen token'>)</span>
+  <span class='content_tag identifier id'>content_tag</span><span class='lparen token'>(</span><span class='symbol val'>:p</span><span class='comma token'>,</span><span class='h identifier id'>h</span><span class='lparen token'>(</span><span class='address identifier id'>address</span><span class='dot token'>.</span><span class='street identifier id'>street</span> <span class='plus op'>+</span> <span class='string val'>', '</span> <span class='plus op'>+</span> <span class='city_state_zip identifier id'>city_state_zip</span> <span class='rparen token'>)</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="display_phone_number-instance_method">
+  
+    - (<tt>Object</tt>) <strong>display_phone_number</strong>(p_number = nil) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+21
+22
+23
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/helpers/display_helper.rb', line 21</span>
+
+<span class='def def kw'>def</span> <span class='display_phone_number identifier id'>display_phone_number</span><span class='lparen token'>(</span><span class='p_number identifier id'>p_number</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='unless unless_mod kw'>unless</span> <span class='p_number identifier id'>p_number</span>
+  
+  <span class='content_tag identifier id'>content_tag</span><span class='lparen token'>(</span><span class='symbol val'>:p</span><span class='comma token'>,</span><span class='h identifier id'>h</span><span class='lparen token'>(</span><span class='p_number identifier id'>p_number</span><span class='dot token'>.</span><span class='number identifier id'>number</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+  
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sat Oct 16 12:08:18 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

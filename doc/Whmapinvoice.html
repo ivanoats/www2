@@ -1,0 +1,781 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: Whmapinvoice</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (W)</a> &raquo; 
+    
+    
+    <span class="title">Whmapinvoice</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Whmapinvoice
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="Whmap.html" title="Whmap (class)">Whmap</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActiveRecord::Base</li>
+          
+            <li class="next"><span class='object_link'><a href="Whmap.html" title="Whmap (class)">Whmap</a></span></li>
+          
+            <li class="next">Whmapinvoice</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">app/models/whmapinvoice.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+  
+  
+  
+  
+  
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_due-class_method" title="find_due (class method)">+ (Object) <strong>find_due</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+finds unpaid invoices (except todays).
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_overdue-class_method" title="find_overdue (class method)">+ (Object) <strong>find_overdue</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+finds invocies more than 5 days old.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_warning_due-class_method" title="find_warning_due (class method)">+ (Object) <strong>find_warning_due</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#due%3F-instance_method" title="#due? (instance method)">- (Boolean) <strong>due?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+is a particular invoice due?.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#formatted_created-instance_method" title="#formatted_created (instance method)">- (Object) <strong>formatted_created</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#formatted_date_paid-instance_method" title="#formatted_date_paid (instance method)">- (Object) <strong>formatted_date_paid</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#formatted_due_date-instance_method" title="#formatted_due_date (instance method)">- (Object) <strong>formatted_due_date</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#formatted_payment_method-instance_method" title="#formatted_payment_method (instance method)">- (Object) <strong>formatted_payment_method</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#formatted_status-instance_method" title="#formatted_status (instance method)">- (Object) <strong>formatted_status</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#mark_as_paid-instance_method" title="#mark_as_paid (instance method)">- (Object) <strong>mark_as_paid</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#paid%3F-instance_method" title="#paid? (instance method)">- (Boolean) <strong>paid?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="find_due-class_method">
+  
+    + (<tt>Object</tt>) <strong>find_due</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+finds unpaid invoices (except todays)
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/whmapinvoice.rb', line 51</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='find_due identifier id'>find_due</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='unpaid identifier id'>unpaid</span><span class='dot token'>.</span><span class='all identifier id'>all</span><span class='lparen token'>(</span><span class='symbol val'>:conditions</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span> <span class='string val'>&quot;due_date &lt;= ? &quot;</span><span class='comma token'>,</span> <span class='DateTime constant id'>DateTime</span><span class='dot token'>.</span><span class='yesterday identifier id'>yesterday</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='dot token'>.</span><span class='to_time identifier id'>to_time</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span> <span class='rbrack token'>]</span> <span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="find_overdue-class_method">
+  
+    + (<tt>Object</tt>) <strong>find_overdue</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+finds invocies more than 5 days old
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+56
+57
+58</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/whmapinvoice.rb', line 56</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='find_overdue identifier id'>find_overdue</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='unpaid identifier id'>unpaid</span><span class='dot token'>.</span><span class='all identifier id'>all</span><span class='lparen token'>(</span><span class='symbol val'>:conditions</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span> <span class='string val'>&quot;due_date &lt;= ? &quot;</span><span class='comma token'>,</span> <span class='Chronic constant id'>Chronic</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>&quot;5 days ago&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span> <span class='rbrack token'>]</span> <span class='rparen token'>)</span> 
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="find_warning_due-class_method">
+  
+    + (<tt>Object</tt>) <strong>find_warning_due</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+60
+61
+62</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/whmapinvoice.rb', line 60</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='find_warning_due identifier id'>find_warning_due</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='unpaid identifier id'>unpaid</span><span class='dot token'>.</span><span class='all identifier id'>all</span><span class='lparen token'>(</span><span class='symbol val'>:conditions</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span><span class='symbol val'>:due_date</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='Chronic constant id'>Chronic</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>&quot;15 days ago&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='dot2 op'>..</span><span class='Chronic constant id'>Chronic</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>&quot;5 days ago&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span> <span class='rbrace token'>}</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="due?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>due?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+is a particular invoice due?
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+46
+47
+48</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/whmapinvoice.rb', line 46</span>
+
+<span class='def def kw'>def</span> <span class='due? fid id'>due?</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='due_date identifier id'>due_date</span> <span class='lt op'>&lt;</span> <span class='DateTime constant id'>DateTime</span><span class='dot token'>.</span><span class='yesterday identifier id'>yesterday</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='dot token'>.</span><span class='to_time identifier id'>to_time</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="formatted_created-instance_method">
+  
+    - (<tt>Object</tt>) <strong>formatted_created</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+15
+16
+17</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/whmapinvoice.rb', line 15</span>
+
+<span class='def def kw'>def</span> <span class='formatted_created identifier id'>formatted_created</span>
+  <span class='Time constant id'>Time</span><span class='dot token'>.</span><span class='at identifier id'>at</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='dot token'>.</span><span class='created identifier id'>created</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='strftime identifier id'>strftime</span><span class='lparen token'>(</span><span class='string val'>'%Y-%m-%d'</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="formatted_date_paid-instance_method">
+  
+    - (<tt>Object</tt>) <strong>formatted_date_paid</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+19
+20
+21</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/whmapinvoice.rb', line 19</span>
+
+<span class='def def kw'>def</span> <span class='formatted_date_paid identifier id'>formatted_date_paid</span>
+  <span class='Time constant id'>Time</span><span class='dot token'>.</span><span class='at identifier id'>at</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='dot token'>.</span><span class='daite_paid identifier id'>daite_paid</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='strftime identifier id'>strftime</span><span class='lparen token'>(</span><span class='string val'>'%Y-%m-%d'</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="formatted_due_date-instance_method">
+  
+    - (<tt>Object</tt>) <strong>formatted_due_date</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+11
+12
+13</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/whmapinvoice.rb', line 11</span>
+
+<span class='def def kw'>def</span> <span class='formatted_due_date identifier id'>formatted_due_date</span>
+  <span class='Time constant id'>Time</span><span class='dot token'>.</span><span class='at identifier id'>at</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='dot token'>.</span><span class='due_date identifier id'>due_date</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='strftime identifier id'>strftime</span><span class='lparen token'>(</span><span class='string val'>'%Y-%m-%d'</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="formatted_payment_method-instance_method">
+  
+    - (<tt>Object</tt>) <strong>formatted_payment_method</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23
+24
+25
+26
+27
+28
+29
+30</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/whmapinvoice.rb', line 23</span>
+
+<span class='def def kw'>def</span> <span class='formatted_payment_method identifier id'>formatted_payment_method</span>
+  <span class='case case kw'>case</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='payment_method identifier id'>payment_method</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span>
+  <span class='when when kw'>when</span> <span class='integer val'>8</span> <span class='then then kw'>then</span> <span class='string val'>&quot;Authorize.net&quot;</span>
+  <span class='when when kw'>when</span> <span class='integer val'>6</span> <span class='then then kw'>then</span> <span class='string val'>&quot;2Checkout&quot;</span>
+  <span class='when when kw'>when</span> <span class='integer val'>4</span> <span class='then then kw'>then</span> <span class='string val'>&quot;Mail in&quot;</span>
+  <span class='when when kw'>when</span> <span class='integer val'>1</span> <span class='then then kw'>then</span> <span class='string val'>&quot;PayPal&quot;</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="formatted_status-instance_method">
+  
+    - (<tt>Object</tt>) <strong>formatted_status</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+32
+33
+34</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/whmapinvoice.rb', line 32</span>
+
+<span class='def def kw'>def</span> <span class='formatted_status identifier id'>formatted_status</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='status identifier id'>status</span> <span class='eq op'>==</span> <span class='integer val'>1</span> <span class='question op'>?</span> <span class='string val'>&quot;paid&quot;</span> <span class='colon op'>:</span> <span class='string val'>&quot;unpaid&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="mark_as_paid-instance_method">
+  
+    - (<tt>Object</tt>) <strong>mark_as_paid</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+40
+41
+42
+43</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/whmapinvoice.rb', line 40</span>
+
+<span class='def def kw'>def</span> <span class='mark_as_paid identifier id'>mark_as_paid</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='status identifier id'>status</span> <span class='assign token'>=</span> <span class='integer val'>1</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='save identifier id'>save</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="paid?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>paid?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+36
+37
+38</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/whmapinvoice.rb', line 36</span>
+
+<span class='def def kw'>def</span> <span class='paid? fid id'>paid?</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='status identifier id'>status</span> <span class='eq op'>==</span> <span class='integer val'>1</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sat Oct 16 12:08:10 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>
