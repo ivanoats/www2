@@ -1,5 +1,5 @@
 #
-#class Order < ActiveRecord::Base
+class Order < ActiveRecord::Base
   include AASM
   include TokenGenerator
   
