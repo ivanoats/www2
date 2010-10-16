@@ -6,10 +6,18 @@ Contractors: Padraic McGee, Ryan Sobol, Sean Dick, Sumit N. Gupta
 
 Run "rake doc:app" to (re)generate API documentation for your models, controllers, helpers, and libraries.
 
-gems needed not in environment
+
+
+gems needed not in environment:
+
+development:
+  yard  
+  redcloth
 
 test:
   awesome_print
+  autotest
+  
 
 migration:
   ruby-mcrypt

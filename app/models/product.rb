@@ -1,3 +1,4 @@
+# a product for sale
 class Product < ActiveRecord::Base
   include AASM
   KINDS = %w(package domain addon coupon)
@@ -38,6 +39,8 @@ class Product < ActiveRecord::Base
     Product.find(:first, :conditions => {:kind => 'domain', :cost => 0.00}) || Product.create!(:name => "Free Domain Name", :description => "Free Domain Name", :kind => 'domain', :cost => 0.00, :recurring_month => 12, :status =>  'active')
   end
   
+  # Returns the recurring period - number of months
+  # @return [Integer] the recurring period - number of months
   def period
     case self.recurring_month
     when 12
@@ -47,6 +50,8 @@ class Product < ActiveRecord::Base
     end
   end
   
+  # Returns the recurring period in words
+  # @return [String] the period in words
   def period_in_words
     case recurring_month
     when 12

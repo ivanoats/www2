@@ -1,4 +1,5 @@
-class Order < ActiveRecord::Base
+#
+#class Order < ActiveRecord::Base
   include AASM
   include TokenGenerator
   
@@ -24,6 +25,8 @@ class Order < ActiveRecord::Base
   
   validates_presence_of :token
   
+  # @param [Cart] cart the shopping cart
+  # @return [Order] an new order object from the shopping cart
   def self.from_cart(cart)
     order = Order.new
     cart.cart_items.find(:all, :conditions => "parent_id IS NULL").each do |item|

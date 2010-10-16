@@ -18,13 +18,9 @@ tmp/restart.txt
 mkmf.log
 www2.mvimsession
 db/www2_development_2010-07-14.sql
-
 db/whmap_data.sql.tgz
-
 db/whmap_data.sql
-
 db/production_data.sql
-
 db/production.sql.gz
-
 .rvmrc
+.yardoc/*
