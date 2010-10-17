@@ -87,6 +87,12 @@ def mock_ticket
     :errors => [])
 end
 
+def smart_ap(data, html = true)
+  puts '<pre>' if html == true
+  ap data
+  puts '</pre>' if html == true
+end
+
 # See http://www.blognow.com.au/q/67540/Reflect_on_association_one_liner_to_check_association_details.html
 module ActiveRecord
     module Reflection
