@@ -34,6 +34,7 @@ describe Product do
     Product::STATUS.should == %w(active disabled)
   end
   
+  # TODO:  IS THIS TEST USEFUL?   WE'RE TESTING CONSTANTS...
   it "should include only valid choices for status" do
     Product::STATUS.each do |expected|
       lambda { Product.create!(@valid_attributes.merge(:status => expected)) }.should_not raise_error
@@ -46,8 +47,9 @@ describe Product do
     lambda { Product.create!(@valid_attributes.merge(:status => nil)) }.should raise_error
   end
   
+  # TODO: IS THIS TEST USEFUL? 
   it "should have a list of kinds" do
-    Product::KINDS.should == %w(package domain addon)
+    Product::KINDS.should == %w(package domain addon coupon)
   end
   
   it "should include only valid choises for kind" do
