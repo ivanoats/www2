@@ -19,9 +19,7 @@ class Article < ActiveRecord::Base
   validates_uniqueness_of :permalink
   
   def before_save
-    self.permalink = self.title if self.permalink.blank?
-    self.permalink.gsub!('_','-')
-    self.permalink = PermalinkFu.escape(self.permalink)
+    encode_permalink
   end
   
   def photo_attributes=(photo_attributes)
@@ -45,6 +43,12 @@ class Article < ActiveRecord::Base
   # updates the article published at time
   def update_published_at 
     self.published_at = Time.now if published == true 
+  end
+
+  def encode_permalink
+    self.permalink = self.title if self.permalink.blank?
+    self.permalink.gsub!('_','-')
+    self.permalink = PermalinkFu.escape(self.permalink)
   end
   
 end

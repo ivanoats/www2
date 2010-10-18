@@ -10,7 +10,7 @@ module Authorization
         include StatefulRolesInstanceMethods
         include AASM
         aasm_column :state
-        aasm_initial_state :pending
+        # aasm_initial_state :passive
         aasm_state :passive
         aasm_state :pending
         aasm_state :active,  :enter => :do_activate

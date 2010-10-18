@@ -15,6 +15,8 @@ require "email_spec/matchers"
 
 require 'ap'
 
+require File.expand_path(File.dirname(__FILE__) + "/blueprints.rb")
+
 include AuthenticatedTestHelper
 include AuthenticatedSystem
 
@@ -28,6 +30,11 @@ ActiveSupport::Deprecation.silenced = true
 Dir[RAILS_ROOT + '/spec/shared/**/*.rb'].each { |f| require f }
 
 Spec::Runner.configure do |config|
+  
+  # Resets all test data thats generated before ever test thats run:
+  config.before(:all)    { Sham.reset(:before_all)  }
+  config.before(:each)   { Sham.reset(:before_each) }
+  
   # If you're not using ActiveRecord you should remove these
   # lines, delete config/database.yml and disable :active_record
   # in your config/boot.rb

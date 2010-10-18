@@ -1,10 +1,13 @@
 require 'digest/sha1'
 
+# Users start as passive until they login or register
 class User < ActiveRecord::Base
   include Authentication
   include Authentication::ByPassword
   include Authentication::ByCookieToken
   include Authorization::AasmRoles
+
+  aasm_initial_state :passive
 
   aasm_event :register_from_checkout do
     transitions :from => :passive, :to => :active

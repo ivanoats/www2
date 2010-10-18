@@ -232,6 +232,7 @@ describe User do
 
   it 'registers passive user' do
     user = create_user(:password => nil, :password_confirmation => nil)
+    puts user.to_yaml
     user.should be_passive
     user.update_attributes(:password => 'new password', :password_confirmation => 'new password')
     user.register!

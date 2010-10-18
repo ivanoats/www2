@@ -2,12 +2,12 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Article do
   before(:each) do
-    @valid_attributes = {
-      :title => "Article Test",  
-      :body => "stub for article test",
-      :synopsis => "synopz"
-    }
-    @article = Article.new(@valid_attributes)
+    # @valid_attributes = {
+    #   :title => "Article Test",  
+    #   :body => "stub for article test",
+    #   :synopsis => "synopz"
+    # }
+    @article = Article.make
   end
 
   describe "being created" do
@@ -17,7 +17,6 @@ describe Article do
     end
   
     it "should create an Article with a blank permalink" do
-      @article = Article.new(@valid_attributes.merge(:permalink => ''))
       @article.should be_valid
     end
   
@@ -25,13 +24,14 @@ describe Article do
   
   describe "creating a permalink" do
   
-    it "from the title" do
+    it "shoud create a permalink from the title" do
+      @article.permalink = ""
       @article.save
       @article.permalink.should == PermalinkFu.escape(@article.title)
     end
    
    
-    it "from a sentance" do
+    it "from a sentence" do
       @article.permalink = "This is the new link"
       @article.save
       @article.permalink.should == "this-is-the-new-link"
@@ -47,11 +47,12 @@ describe Article do
     end
   
     it "should use title when permalink is saved as blank" do
-      @article.update_attributes(:permalink => "temppermalink")
-      @article.permalink.should == "temppermalink"
-
-      @article.update_attribute(:permalink,"")
-      @article.permalink.should == "article-test"  
+      # @article.update_attributes(:permalink => "temppermalink")
+      # @article.permalink.should == "temppermalink"
+      @article.update_attribute(:title, "some title")
+      @article.update_attribute(:permalink, "")
+      @article.encode_permalink
+      @article.permalink.should == "some-title"
     end
     
     it "should keep permalink when title is changed" do
