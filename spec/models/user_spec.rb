@@ -7,15 +7,9 @@ include AuthenticatedTestHelper
 
 describe User do
   before(:each) do
-    # @valid_attributes = {
-    #   :title => "Article Test",  
-    #   :body => "stub for article test",
-    #   :synopsis => "synopz"
-    # }
     @user = User.make
     @user.register!
     @user.activate!
-    #smart_ap(@user)
   end
 
   # fixtures :users

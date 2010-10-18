@@ -2,6 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe BillingSystem do
   include BillingSystem
+  
   before(:each) do
     @user = create_user
     @product = create_product(:name => "Magic Hosting", :cost => 12.50, :status => 'active', :kind => 'package')
