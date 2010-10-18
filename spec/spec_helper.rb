@@ -96,6 +96,9 @@ end
 
 def smart_ap(data, html = true)
   puts '<pre>' if html == true
+  puts 'Object is a '
+  puts data.class
+  puts '<br />'if html == true
   ap data
   puts '</pre>' if html == true
 end
