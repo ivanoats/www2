@@ -32,7 +32,7 @@ describe FourOhFoursController do
       Page.expects(:find_by_permalink).returns(Page.new(:permalink => "that_article"))
       get 'index', :path => ["that_page"]
       response.should be_success
-      response.should render_template('pages/show')
+      response.should render_template('pages/_show')
     end
     
     it "should request an article by name" do
@@ -41,7 +41,13 @@ describe FourOhFoursController do
       response.should redirect_to(permalink_url('that_article'))
     end
     
-    it "should request a page that does not exist" #http://site.com/page/asdkjasdkja
+    it "should request a page that does not exist and return the search page" do
+      dummy_link = 'skdfjlskdfjlsdkfj'
+      get 'index', :path => dummy_link
+      response.should redirect_to(articles_path(:search => dummy_link))
+      # response.body.should include('no results')
+    end
+    
     it "should request pages instead of page" #http://site.com/pages/asdkjalkdfj
     
   end
