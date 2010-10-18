@@ -35,7 +35,7 @@ describe AccountController do
   end
   
   describe 'update' do
-    it 'should work' do
+    it 'should work and redirect to the account/manage page' do
       @account.expects(:update_attributes).returns(true)
       put 'update', {}, {:user_id => 30}
       response.should redirect_to(:action => :manage)
@@ -59,6 +59,7 @@ describe AccountController do
   describe 'hosting' do
     it 'should work' do
       get 'hosting', {}, {:user_id => 30}
+      smart_ap(response)      
       response.should be_success
     end
   end
@@ -66,6 +67,7 @@ describe AccountController do
   describe 'billing' do
     it 'should GET' do
       get 'billing', {}, {:user_id => 30}
+      smart_ap(response)
       response.should be_success
     end
     

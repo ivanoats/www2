@@ -52,7 +52,7 @@ class AccountController < ApplicationController
     respond_to do |format|
       if @account.update_attributes(params[:account])
         flash[:notice] = 'Account was successfully updated.'
-        format.html { redirect_to({:action => 'edit'}) }
+        format.html { redirect_to({:action => 'manage'}) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
