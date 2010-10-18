@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
+require ('spec_helper')
 include ActiveMerchant::Billing
 
 describe AccountController do
@@ -59,19 +59,17 @@ describe AccountController do
   describe 'hosting' do
     it 'should work' do
       get 'hosting', {}, {:user_id => 30}
-      smart_ap(response)      
       response.should be_success
     end
   end
   
-  describe 'billing' do
-    it 'should GET' do
-      get 'billing', {}, {:user_id => 30}
-      smart_ap(response)
+  describe 'payments' do
+    it 'should GET payments page' do
+      get 'payments', {}, {:user_id => 30}
       response.should be_success
     end
     
-    it "should update billing" do
+    it "should update payments" do
       credit_card = mock('cc')
       credit_card.stubs(:valid?).returns(true)
       CreditCard.stubs(:new).returns(credit_card)
@@ -80,7 +78,7 @@ describe AccountController do
       
       post 'billing', {:user_id => 30}
       response.should have_been_redirect
-      response.should redirect_to(:action => "billing")
+      response.should redirect_to(:action => "edit", :anchor => "billing_tab")
     end
   end
   
