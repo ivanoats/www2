@@ -25,6 +25,9 @@ REST_AUTH_DIGEST_STRETCHES = 10
 config.gem "rails-footnotes",  
         :lib => "rails-footnotes", :source => "http://gemcutter.org"
 
+config.gem "awesome_print", :lib => false
+require 'ap'
+
 if File.exists?(File.join(RAILS_ROOT,'tmp', 'debug.txt'))
   require 'ruby-debug'
   Debugger.wait_connection = true
