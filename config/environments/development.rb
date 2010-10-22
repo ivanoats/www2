@@ -23,10 +23,14 @@ REST_AUTH_DIGEST_STRETCHES = 10
 
 # textmate footnotes for development
 config.gem "rails-footnotes",  
-        :lib => "rails-footnotes", :source => "http://gemcutter.org"
+        :lib => "rails-footnotes"
 
 config.gem "awesome_print", :lib => false
 require 'ap'
+
+# http://github.com/ddollar/rack-debug
+config.gem 'rack-debug'
+config.middleware.use 'Rack::Debug'
 
 if File.exists?(File.join(RAILS_ROOT,'tmp', 'debug.txt'))
   require 'ruby-debug'

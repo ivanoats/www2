@@ -1,3 +1,13 @@
+<% 
+logger.info "--------------------------------"
+logger.info "product: "
+logger.ap @product, :info
+logger.info "--------------------------------"
+logger.info "f:"
+logger.ap f
+debugger
+ %>
+
 <%= f.error_messages %>
 
 <p>
@@ -12,6 +22,9 @@
   <%= f.label :cost %><br />
   $ <%= f.text_field :cost, :size => 10 %> USD
 </p>
+<p>
+  <%= f.label :kind %><br />
+  <%= f.collection_select :kind, Product::KINDS, :to_s, :to_s %>
 <p>
   <%= f.label :recurring_month %><br />
   <%= f.text_field :recurring_month, :size => 10 %>

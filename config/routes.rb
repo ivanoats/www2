@@ -40,9 +40,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :accounts
   map.resources :domains
   map.resources :orders
-  map.resources :whmapuser, :active_scaffold => true
-  map.resources :whmaphostingorder, :active_scaffold => true
-  map.resources :whmapinvoice, :active_scaffold => true
+  map.resources :whmapuser         # ,  :active_scaffold => true
+  map.resources :whmaphostingorder # ,  :active_scaffold => true
+  map.resources :whmapinvoice      #,  :active_scaffold => true
 
   
   map.page_permalink '/page/:permalink', :controller => 'pages', :action => 'permalink'

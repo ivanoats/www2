@@ -2,14 +2,15 @@
 class Product < ActiveRecord::Base
   include AASM
   KINDS = %w(package domain addon coupon)
-  STATUS = %w(active disabled)
+  STATUS = %w(enabled disabled)
 
   belongs_to :whmappackage
 
   validates_presence_of :name
   validates_inclusion_of :kind, :in => KINDS, :message => "%s is not a valid kind"
   validates_inclusion_of :status, :in => STATUS, :message => "%s is not a valid status"
-  validates_numericality_of :cost, :greater_than => 0
+  # TODO why did we want to disallow free products?
+  validates_numericality_of :cost, :greater_than_or_equal_to => 0
   
   
   named_scope :packages, :conditions => {:kind => 'package' }

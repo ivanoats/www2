@@ -8,3 +8,6 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 
 require 'tasks/rails'
+
+#debugging with rack debug 
+require 'rack-debug/tasks'

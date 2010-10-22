@@ -24,3 +24,5 @@ db/production_data.sql
 db/production.sql.gz
 .rvmrc
 .yardoc/*
+
+db/billing_2010-10-21.sql

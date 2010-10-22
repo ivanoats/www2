@@ -1,1 +1,2 @@
 - Replace authentication with something like authlogic + omniauth to allow for a user to be logged in automatically from facebook/twitter/openid/etc.    Reasoning:   Makes it easier for someone to manage their sustainablewebsites accounts and gives SW increased integration into someones facebook stream to spam the hell out of their friends with offers, coupons, and scams.  Life will be good. 
+- Allow products to have both a setup cost and a monthly cost

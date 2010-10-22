@@ -47,7 +47,10 @@ module ActionView
             else
               render :inline => DEFAULT_PARTIAL, :locals => {:errors => app_errors}
             end
-          else        
+          else 
+            # TODO remove debug       
+            logger.ap view_partial
+            logger.ap app_errors
             render :partial => view_partial, :locals => {:errors => app_errors}
           end
         else

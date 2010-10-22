@@ -7,7 +7,7 @@ describe Product do
       :description     => "1,000MB Storage, 10,000MB Bandwidth, Unlimited Emails, Unlimited Addons, Fantastico",
       :cost            => 10.00,
       :recurring_month => 1,
-      :status          => "active",
+      :status          => "enabled",
       :kind            => "package"
     }
   end
@@ -31,7 +31,7 @@ describe Product do
   end
     
   it "should have a list of status" do
-    Product::STATUS.should == %w(active disabled)
+    Product::STATUS.should == %w(enabled disabled)
   end
   
   # TODO:  IS THIS TEST USEFUL?   WE'RE TESTING CONSTANTS...
