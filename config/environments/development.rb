@@ -29,8 +29,8 @@ config.gem "awesome_print", :lib => false
 require 'ap'
 
 # http://github.com/ddollar/rack-debug
-config.gem 'rack-debug'
-config.middleware.use 'Rack::Debug'
+# config.gem 'rack-debug'
+# config.middleware.use 'Rack::Debug'
 
 if File.exists?(File.join(RAILS_ROOT,'tmp', 'debug.txt'))
   require 'ruby-debug'
