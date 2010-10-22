@@ -11,7 +11,7 @@ describe Cart do
       :description     => "1,000MB Storage, 10,000MB Bandwidth, Unlimited Emails, Unlimited Addons, Fantastico",
       :cost            => 10.00,
       :recurring_month => 1,
-      :status          => "active",
+      :status          => "enabled",
       :kind            => "package"
     }
   end

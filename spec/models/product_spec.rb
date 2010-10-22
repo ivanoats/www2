@@ -26,8 +26,12 @@ describe Product do
     lambda { Product.create!(@valid_attributes.merge(:cost => 1)) }.should_not raise_error
   end
   
-  it "should only allow cost greater than 0" do
-    lambda { Product.create!(@valid_attributes.merge(:cost => 0)) }.should raise_error
+  it "should only allow cost greater or equal to 0" do
+    lambda { Product.create!(@valid_attributes.merge(:cost => 0)) }.should_not raise_error
+  end
+  
+  it "should only allow positive costs" do
+    lambda { Product.create!(@valid_attributes.merge(:cost => -10 ))}.should raise_error
   end
     
   it "should have a list of status" do
@@ -43,8 +47,7 @@ describe Product do
     lambda { Product.create!(@valid_attributes.merge(:status => 'cool!')) }.should raise_error
     lambda { Product.create!(@valid_attributes.merge(:status => 1)) }.should raise_error
     lambda { Product.create!(@valid_attributes.merge(:status => true)) }.should raise_error
-    lambda { Product.create!(@valid_attributes.merge(:status => false)) }.should raise_error
-    lambda { Product.create!(@valid_attributes.merge(:status => nil)) }.should raise_error
+    lambda { Product.create!(@valid_attributes.merge(:status => nil)) }.should_not raise_error
   end
   
   # TODO: IS THIS TEST USEFUL? 
@@ -52,7 +55,7 @@ describe Product do
     Product::KINDS.should == %w(package domain addon coupon)
   end
   
-  it "should include only valid choises for kind" do
+  it "should include only valid choices for kind" do
     Product::KINDS.each do |expected|
       lambda { Product.create!(@valid_attributes.merge(:kind => expected)) }.should_not raise_error
     end
@@ -60,8 +63,7 @@ describe Product do
     lambda { Product.create!(@valid_attributes.merge(:status => 'cool!')) }.should raise_error
     lambda { Product.create!(@valid_attributes.merge(:status => 1)) }.should raise_error
     lambda { Product.create!(@valid_attributes.merge(:status => true)) }.should raise_error
-    lambda { Product.create!(@valid_attributes.merge(:status => false)) }.should raise_error
-    lambda { Product.create!(@valid_attributes.merge(:status => nil)) }.should raise_error
+    lambda { Product.create!(@valid_attributes.merge(:status => nil)) }.should_not raise_error
   end
   
   it "should find all packages" do

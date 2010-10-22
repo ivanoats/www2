@@ -8,6 +8,7 @@ class Product < ActiveRecord::Base
 
   validates_presence_of :name
   validates_inclusion_of :kind, :in => KINDS, :message => "%s is not a valid kind"
+  validates_presence_of :status
   validates_inclusion_of :status, :in => STATUS, :message => "%s is not a valid status"
   # TODO why did we want to disallow free products?
   validates_numericality_of :cost, :greater_than_or_equal_to => 0

@@ -26,6 +26,7 @@ module CartSystemHelperSpecMethods
     cart
   end
   
+  
   def mock_cart_item
     cart_item = mock('cart_item')
     cart_item.stubs({:product => Product.new, :quantity => 1})
@@ -77,7 +78,12 @@ describe GreenHostingStoreController do
   describe "GET 'choose_addon'" do
     it "should be successful" do
       #pending ("write a proper test for addons that sets up a cart")
-      get 'choose_addon', {}, cart_in_session
+      cart = mock_cart
+      cart_item = mock_cart_item
+      cart_item.stubs(:products).returns(stub("products") {stubs(:find).returns( [Product.new,Product.new] )})
+      cart.stubs(:cart_items).returns(stub('cart_items') { stubs(:find).with('1').returns(cart_item)})
+      Cart.stubs(:find_by_id).with(7).returns(cart)      
+      get 'choose_addon', {:id => 1}, {:cart_id => 7}
       response.should be_success
     end
 

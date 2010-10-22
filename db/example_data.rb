@@ -47,7 +47,7 @@ module FixtureReplacement
     a.name = 'Package'
     a.kind = 'package'
     a.cost = 1
-    a.status = 'active'
+    a.status = 'enabled'
 	end
 
   attributes_for :role do |a|

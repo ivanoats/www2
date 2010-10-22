@@ -14,7 +14,7 @@ describe Order do
   # TODO:  REPLACE THE MODEL CREATIONS WITH A FIXTUREREPLACEMENT TOOL LIKE FACTORYGIRL OR MACHINIST
   it "should create an order from a cart" do
     
-    @product = Product.create!(:name => "Product Name", :description => "a test product", :cost => 7.00, :status => 'active', :kind => 'package')
+    @product = Product.create!(:name => "Product Name", :description => "a test product", :cost => 7.00, :status => 'enabled', :kind => 'package')
     @cart_item = CartItem.new(:description => "A test item", :quantity => 1, :product => @product, :name => @product.name)
 
 

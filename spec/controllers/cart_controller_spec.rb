@@ -13,7 +13,7 @@ describe CartController do
     it "should be successful" do
 #  Cart.stubs(:create!).returns(mock('cart', {:cart_items => [],:remove => true})) # TODO use mocks eventually
       @cart = Cart.create!
-      @product = Product.create!(:name => 'test product', :kind => "package", :status => 'active', :cost => '10', :description => 'a test product description')
+      @product = Product.create!(:name => 'test product', :kind => "package", :status => 'enabled', :cost => '10', :description => 'a test product description')
       @cart.add @product, @product.name
       # put cart in session, to avoid creating a brand new cart
       session[:cart_id] = @cart.id
