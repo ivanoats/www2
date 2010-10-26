@@ -31,6 +31,7 @@ describe SessionsController do
               @user.stubs(:remember_token).returns(token_value) 
               @user.stubs(:remember_token_expires_at).returns(token_expiry)
               @user.stubs(:remember_token?).returns(has_request_token == :valid)
+              @user.stubs(:accounts).returns([])
               if want_remember_me
                 @login_params[:remember_me] = '1'
               else 
@@ -43,7 +44,8 @@ describe SessionsController do
             it "greets me nicely"            do do_create; response.flash[:notice].should =~ /success/i   end
             it "sets/resets/expires cookie"  do controller.expects(:handle_remember_cookie!).with(want_remember_me); do_create end
             it "sends a cookie"              do controller.expects(:send_remember_cookie!);  do_create end
-            it 'redirects to the home page'  do do_create; response.should redirect_to('/')   end
+            it 'redirects to accounts page'  do @user.stubs(:accounts).returns([mock('account')]); do_create; response.should redirect_to(manage_account_path) end
+            it 'redirects to the profile page'  do do_create; response.should redirect_to(profile_path)   end
             it "does not reset my session"   do controller.expects(:reset_session).never; do_create end # change if you uncomment the reset_session path
             if (has_request_token == :valid)
               it 'does not make new token'   do @user.expects(:remember_me).never;   do_create end

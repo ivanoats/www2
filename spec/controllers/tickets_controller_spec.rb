@@ -59,6 +59,8 @@ describe TicketsController do
     end
     
     it "should list tickets" do
+      Ticket.stubs(:find).returns [@ticket]
+      
       get 'index'
       response.should be_success
     end

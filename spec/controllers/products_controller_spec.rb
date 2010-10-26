@@ -5,17 +5,16 @@ describe ProductsController do
   def mock_product(stubs={})
     @mock_product ||= mock_model(Product, stubs)
   end
-  
+
   describe "GET index" do
 
     it_should_behave_like "an admin user is signed in"
 
-    it "exposes all products as @products" do
-      Product.expects(:find).with(:all).returns([mock_product])
+    it "displays the products page" do
+      Product.expects(:find).returns([mock_product])
       get :index
-      assigns[:products].should == [mock_product]
+      response.should be_success
     end
-
 
   end
 

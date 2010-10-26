@@ -12,9 +12,9 @@ describe ServersController do
     it_should_behave_like "an admin user is signed in"
 
     it "should expose all servers as @servers" do
-      Server.expects(:find).with(:all).returns([mock_server])
+      Server.expects(:find).returns([mock_server])
       get :index
-      assigns[:servers].should == [mock_server]
+      response.should be_success
     end
   end
 

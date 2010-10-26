@@ -55,7 +55,7 @@ class SessionsController < ApplicationController
     if current_user.accounts.empty?
       redirect_back_or_default(profile_path)
     else
-      redirect_back_or_default({:controller => 'account', :action => 'manage'})
+      redirect_back_or_default(manage_account_path)
     end
     flash[:notice] = "Logged in successfully"
   end
