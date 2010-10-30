@@ -18,6 +18,15 @@ test:
   awesome_print
   autotest
   
+  I'm trying Guard to keep rspec running like autotest, which requires these gems:
+    guard
+    guard-rspec
+    thor
+    configuration
+    launchy
+    bundler
+  
+  
 
 migration:
   ruby-mcrypt
