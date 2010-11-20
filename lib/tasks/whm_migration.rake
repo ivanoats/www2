@@ -44,7 +44,7 @@ namespace :whm do
     # Monthly packages
     Product.create!( {
       :name            => "Basic Web Hosting ",
-      :description     => "Because it really does have everything you need to host a site, most customers choose this plan. Discount for yearly — only $8.33/month! ",
+      :description     => "Because it really does have everything you need to host a site, most customers choose this plan. Discount for yearly - only $8.33/month!",
       :cost            => 10.00,
       :recurring_month => 1,
       :kind            => "package",

@@ -1,6 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 include ActiveMerchant::Billing
 
+
 module CartSystemHelperSpecMethods
   def should_test_for_new_cart_on(action)
     get action
@@ -25,7 +26,6 @@ module CartSystemHelperSpecMethods
     cart.stubs({:cart_items => [mock_cart_item, mock_cart_item]})
     cart
   end
-  
   
   def mock_cart_item
     cart_item = mock('cart_item')

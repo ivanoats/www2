@@ -31,10 +31,11 @@ Rails::Initializer.run do |config|
   # They can then be installed with "rake gems:install" on new installations.
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "aws-s3", :lib => "aws/s3"
+  config.gem "nokogiri"
   config.gem "capistrano-ext", :lib => "capistrano"  
   config.gem "universal_ruby_whois"
   config.gem "httpclient"
-  config.gem "mofo"
+  #config.gem "mofo"
   config.gem "packet"
   config.gem 'searchlogic'
   config.gem 'curb'

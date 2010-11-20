@@ -25,8 +25,10 @@ module Formz #:nodoc:
     (%w(date_select) + ActionView::Helpers::FormHelper.instance_methods - %w(label_for hidden_field form_for fields_for file_field)).each do |selector|      
       field_class =
         case selector
-          when "text_field": "textInput"
-          when "password_field": "textInput"
+          when "text_field"
+            "textInput"
+          when "password_field" 
+            "textInput"
           else ""
         end
       src = <<-end_src

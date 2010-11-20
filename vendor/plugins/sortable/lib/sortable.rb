@@ -1,5 +1,3 @@
-require 'generator'
-
 module Sortable
     def self.included(base)
       base.extend(ClassMethods)
@@ -210,10 +208,9 @@ module Sortable
         if !params[:q].blank?
           columns_to_search = ''
           values = Array.new        
-          g = Generator.new(search_array)
-          g.each do |col|
+          search_array.each_with_index do |col,i|
            columns_to_search += col + ' LIKE ? '
-           columns_to_search += 'OR ' unless g.end?
+           columns_to_search += 'OR ' unless i == search_array.length - 1
            values<< "%#{params[:q]}%"
           end
           conditions += ' and' if !conditions.blank?
@@ -259,10 +256,9 @@ module Sortable
         # this adds support for more than one sort criteria for a given column
         # for example, status DESC, created_at ASC
         if sort_array[0].class == Array
-          g = Generator.new(sort_array)
-          g.each do |sort_value|
+          sort_array.each_with_index do |sort_value,i|
             result = get_sort_direction(sort, sort_value)
-            result += ', ' unless g.end?
+            result += ', ' unless i == sort_array.length - 1
           end
         else
           result = get_sort_direction(sort, sort_array)

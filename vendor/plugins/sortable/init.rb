@@ -22,7 +22,7 @@ if RAILS_ENV == 'test'
   ActionController::Base.append_view_path(VIEW_PATH) unless ActionController::Base.view_paths.include?(VIEW_PATH)
 end
 
-COPY_IMAGES = true
+COPY_IMAGES = false
 
 if COPY_IMAGES
   require "ftools"

@@ -1,4 +1,4 @@
-require 'lib/billing_system'
+require 'billing_system'
 
 namespace :billing do
   

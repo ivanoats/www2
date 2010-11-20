@@ -9,5 +9,8 @@ require 'rake/rdoctask'
 
 require 'tasks/rails'
 
-#debugging with rack debug 
-require 'rack-debug/tasks'
+#debugging with rack debug (optional)
+begin
+  require 'rack-debug/tasks'
+rescue LoadError
+end

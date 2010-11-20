@@ -2,7 +2,7 @@ require ('spec_helper')
 include ActiveMerchant::Billing
 
 describe AccountController do
-  
+
   before(:each) do
     @user = User.new()
     @account = Account.new(:organization => 'Ok')

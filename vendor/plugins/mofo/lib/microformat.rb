@@ -1,5 +1,6 @@
-%w(rubygems set hpricot microformat/string microformat/array open-uri ostruct timeout).each { |f| require f }
-gem 'hpricot', '>=0.4.59'
+%w(rubygems set nokogiri microformat/string microformat/array open-uri ostruct timeout).each { |f| require f }
+#gem 'hpricot', '>=0.4.59'
+gem 'nokogiri'
 
 class Microformat
   module Base
@@ -315,5 +316,8 @@ class MicroformatNotFound < Exception; end
 Mofo = Microformat
 
 # type & id are used a lot in uformats and deprecated in ruby.  no loss.
-OpenStruct.class_eval { undef :type, :id }
+begin
+  OpenStruct.class_eval { undef :type, :id }
+rescue
+end
 Symbol.class_eval { def no_bang() to_s.sub('!','').to_sym end }
