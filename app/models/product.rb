@@ -38,11 +38,11 @@ class Product < ActiveRecord::Base
   end
 
   def self.domain
-    Product.find(:first, :conditions => {:kind => 'domain', :cost => 10.00}) || Product.create!(:name => "Domain Name", :description => "Domain Name", :kind => 'domain', :cost => 10.00, :recurring_month => 12, :status =>  'active')
+    Product.find(:first, :conditions => {:kind => 'domain', :cost => 10.00}) || Product.create!(:name => "Domain Name", :description => "Domain Name", :kind => 'domain', :cost => 10.00, :recurring_month => 12, :status =>  'enabled')
   end
   
   def self.free_domain
-    Product.find(:first, :conditions => {:kind => 'domain', :cost => 0.00}) || Product.create!(:name => "Free Domain Name", :description => "Free Domain Name", :kind => 'domain', :cost => 0.00, :recurring_month => 12, :status =>  'active')
+    Product.find(:first, :conditions => {:kind => 'domain', :cost => 0.00}) || Product.create!(:name => "Free Domain Name", :description => "Free Domain Name", :kind => 'domain', :cost => 0.00, :recurring_month => 12, :status =>  'enabled')
   end
   
   # Returns the recurring period - number of months
