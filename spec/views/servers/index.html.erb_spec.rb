@@ -4,7 +4,7 @@ describe "/servers/index.html.erb" do
   
   
   before(:each) do
-    assigns[:servers] = [
+    assigns[:objects] = [
       stub_model(Server,
         :name => "value for name",
         :ip_address => "value for ip_address",
@@ -34,14 +34,16 @@ describe "/servers/index.html.erb" do
         :whm_key => "value for whm_key"
       )
     ]
+    assigns[:objects].stubs(:total_pages).returns(1)
+    assigns[:headings] = [['Name', 'name'],
+    ['IP Address', 'ip_address'], ['Whm User','whm_user']]
   end
 
   it "should render list of servers" do
     render "/servers/index.html.erb"
     response.should have_tag("tr>td", "value for name".to_s, 2)
     response.should have_tag("tr>td", "value for ip_address".to_s, 2)
-    response.should have_tag("tr>td", "value for vendor".to_s, 2)
-    response.should have_tag("tr>td", "value for location".to_s, 2)
+    response.should have_tag("tr>td", "value for whm_user".to_s, 2)
   end
 end
 

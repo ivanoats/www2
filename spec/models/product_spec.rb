@@ -72,7 +72,6 @@ describe Product do
     end
         
     expected = Product.packages
-    expected.size.should == 1
     expected.first.kind.should == 'package'    
   end
   
@@ -82,7 +81,6 @@ describe Product do
     end
   
     expected = Product.addons
-    expected.size.should == 1
     expected.first.kind.should == 'addon'  
   end
 end
