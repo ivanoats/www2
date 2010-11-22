@@ -9,12 +9,15 @@ module AuthenticatedTestHelper
   end
   
   # rspec
-  def mock_user
-    user = mock_model(User, :id => 1,
+  def mock_user(attributes = {})
+    
+    attributes = {:id => 1,
       :login  => 'user_name',
       :name   => 'U. Surname',
       :to_xml => "User-in-XML", :to_json => "User-in-JSON", 
-      :errors => [])
+      :errors => []}.merge(attributes)
+    
+    user = mock_model(User, attributes)
     user
   end  
 end

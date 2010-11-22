@@ -16,7 +16,7 @@ Address.blueprint do
 end
 
 Article.blueprint do 
-  title
+  title { Sham.title }
   synopsis
   body
   permalink { Sham.title }
