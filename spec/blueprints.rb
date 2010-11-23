@@ -9,6 +9,7 @@ Sham.synopsis { Faker::Lorem.paragraph }
 Sham.body  { Faker::Lorem.paragraph }
 Sham.email { Faker::Internet.email }
 Sham.name  { Faker::Name.name }
+Sham.word { (0...8).map{65.+(rand(25)).chr}.join }
 
 Address.blueprint do
   
@@ -30,3 +31,27 @@ User.blueprint do
   email { Sham.email }
   
 end
+
+Purchase.blueprint do
+end
+
+Product.blueprint do
+  kind 'package'
+  recurring_month { 3 }
+  name { Sham.name }
+end
+
+Account.blueprint do
+  organization { Sham.name}
+end
+
+Order.blueprint do
+end
+
+Hosting.blueprint do
+  username { Sham.word }
+  password { Sham.name }
+end
+
+
+

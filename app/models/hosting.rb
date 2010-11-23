@@ -13,7 +13,7 @@ class Hosting < ActiveRecord::Base
   belongs_to :product
   belongs_to :whmaphostingorder
   
-  validates_presence_of :product_id
+  validates_presence_of :product
   validates_presence_of :username
   validates_presence_of :password
   
@@ -29,7 +29,6 @@ class Hosting < ActiveRecord::Base
   aasm_state :active, :enter => :create_cpanel_account
   aasm_state :suspended, :enter => :suspend_cpanel_account, :exit => :unsuspend_cpanel_account
   aasm_state :deleted, :enter => :delete_cpanel_account
-
     
   aasm_event :activate do
     transitions :from => :ordered, :to => :active, :guard => Proc.new {|u| !u.server.nil? }
@@ -64,7 +63,7 @@ class Hosting < ActiveRecord::Base
   
   def generate_username
     #base the username on the first 8 characters of the domain name
-    self.username = self.domains.first.name.dup
+    self.username = self.domains.first.name.gsub('www.','')
     self.username = self.username.slice(0,[self.username.rindex('.'),8].min)
     
     #convert from 'greenhut' to 'greenhu1'

@@ -234,7 +234,6 @@ describe User do
 
   it 'registers passive user' do
     new_user = User.make(:password => nil, :password_confirmation => nil)
-    smart_ap(new_user)
     new_user.should be_passive
     new_user.update_attributes(:password => 'new password', :password_confirmation => 'new password')
     new_user.register!

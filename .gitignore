@@ -26,3 +26,4 @@ db/production.sql.gz
 .yardoc/*
 db/billing_2010-10-21.sql
 coverage/*
+billing.sql

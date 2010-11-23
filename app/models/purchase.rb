@@ -21,12 +21,11 @@ class Purchase < ActiveRecord::Base
       hosting.generate_username
       hosting.generate_password
       hosting.save
-      hosting.activate
+      hosting
     when 'domain'
       domain = Domain.create(:product => self.product, :account => order.account, :name => self.data[:domain], :purchased => self.product.cost > 0)
     when 'addon'
       add_on = AddOn.create(:product => self.product, :account => order.account)
     end
-  end
-  
+  end  
 end
