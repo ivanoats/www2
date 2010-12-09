@@ -14,7 +14,7 @@ class AccountsController < ApplicationController
   end
   
   def show
-    session[:account] = params[:id] if Account.find_by_id(params[:id])
+    session[:account] = params[:id] if @obj
     redirect_to :controller => :account, :action => :manage
   end
   

@@ -15,12 +15,12 @@ class DomainsController < ApplicationController
 
   private
 
-    def require_domain
-      @account = Account.find_by_id(session[:account]) || current_user.accounts.first
-      redirect_to root_url and flash[:error] = "An account is required to view this page" if @account.nil?
-    end
+  def require_domain
+    @account = Account.find_by_id(session[:account]) || current_user.accounts.first
+    redirect_to root_url and flash[:error] = "An account is required to view this page" if @account.nil?
+  end
 
-    def scoper
-      @account.domains
-    end
+  def scoper
+    @account.domains
+  end
 end

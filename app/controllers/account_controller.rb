@@ -68,8 +68,7 @@ class AccountController < ApplicationController
   def pay
     if request.post?
       amount = params[:amount].to_i
-      @account.charge(amount)
-      if @account.save
+      if @account.charge(amount)
         flash[:notice] = "Payment completed"
         redirect_to :action => 'payments'
       end
@@ -80,7 +79,7 @@ class AccountController < ApplicationController
     @address = @account.billing_address || @account.build_billing_address
     @credit_card = CreditCard.new(params[:credit_card])
     if request.post?
-      if params[:paypal].blank?
+      #if params[:paypal].blank?
         if @account.update_attributes(params[:account]) && @address.update_attributes(params[:address]) && @credit_card.valid?          
           if @account.store_card(@credit_card, :ip => request.remote_ip)
             flash[:notice] = "Your billing information has been updated."
@@ -88,11 +87,11 @@ class AccountController < ApplicationController
             flash[:notice] = "Failed to store credit card."
           end
         end
-      else
-        if redirect_url = @subscription.start_paypal(paypal_account_url, billing_account_url)
-          redirect_to redirect_url and return
-        end
-      end
+      # else
+      #         if redirect_url = @subscription.start_paypal(paypal_account_url, billing_account_url)
+      #           redirect_to redirect_url and return
+      #         end
+      #       end
     end
     redirect_to :action => 'edit', :anchor => 'billing_tab'
   end
