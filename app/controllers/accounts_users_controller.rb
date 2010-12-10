@@ -32,10 +32,5 @@ class AccountsUsersController < ApplicationController
   end
   
 protected
-
   
-  def generate_password
-    Base64.encode64( Digest::SHA1.digest( "#{ rand( 1<<64 ) }/#{ Time.now.to_f }/#{ Process.pid }" ) )[0..7]
-  end
-    
 end

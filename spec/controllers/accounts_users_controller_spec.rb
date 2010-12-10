@@ -23,6 +23,15 @@ describe AccountsUsersController do
     response.should render_template('account/_user')
   end
 
+  it 'should show an error message for an invalid user' do
+    @params = {:user => {:email => 'user@email.com'}, :account_id => 1}
+    User.expects(:find_by_email).with('user@email.com').returns(nil)
+    @user = User.new 
+    User.expects(:new).returns(@user)
+    post :add_from_email, @params
+    response.should have_text(/alert/)
+  end
+
   
   it_should_behave_like "join model controller create"
   it_should_behave_like "join model controller destroy"

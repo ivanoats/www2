@@ -24,7 +24,7 @@ class AdminController < ApplicationController
     end
     redirect_to :action => :index
   rescue => e
-    flash[:error] = e
+    flash[:error] = e.to_s
     redirect_to :action => :index
   end
 
@@ -37,7 +37,7 @@ class AdminController < ApplicationController
     end
     redirect_to :action => :index
   rescue => e
-   flash[:error] = e
+   flash[:error] = e.to_s
    redirect_to :action => :index
   end
   
@@ -54,7 +54,7 @@ class AdminController < ApplicationController
     end
     redirect_to :action => :index
   rescue => e
-    flash[:error] = e
+    flash[:error] = e.to_s
     redirect_to :action => :index
   end
 
