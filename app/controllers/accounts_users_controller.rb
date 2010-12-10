@@ -1,6 +1,6 @@
 class AccountsUsersController < ApplicationController
   before_filter :login_required
-  before_filter :require_account, :except => [:new, :create]
+  #before_filter :require_account, :except => [:create, :destroy]
 
   include JoinModelControllerMethods
   
@@ -11,6 +11,7 @@ class AccountsUsersController < ApplicationController
     
     unless @user
       @user = User.new(:email => params[:user][:email])
+      
       if @user.save
         UserMailer.deliver_admin_notification @user
       else
@@ -32,13 +33,6 @@ class AccountsUsersController < ApplicationController
   
 protected
 
-  def scoper
-    Account.find(params[:account_id]).users
-  end
-  
-  def object
-    @obj = User.find(params[:user_id])
-  end
   
   def generate_password
     Base64.encode64( Digest::SHA1.digest( "#{ rand( 1<<64 ) }/#{ Time.now.to_f }/#{ Process.pid }" ) )[0..7]
