@@ -32,6 +32,10 @@ User.blueprint do
   
 end
 
+Role.blueprint do
+  name { Sham.name }
+end
+
 Purchase.blueprint do
 end
 

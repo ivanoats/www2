@@ -16,15 +16,18 @@ class RolesController < ApplicationController
   end
 
   def destroy 
-      @user = User.find(params[:user_id]) 
-      @role = Role.find(params[:id]) 
-      if Role.find_by_name('Administrator').users.count < 1
-        raise ("cannot delete all administrators, you are trying to delete the last one")
-      end
-      if @user.has_role?(@role.name) 
-        @user.roles.delete(@role) 
-      end 
-      redirect_to :action => 'index' 
+    @user = User.find(params[:user_id]) 
+    @role = Role.find(params[:id]) 
+    if @role.name == 'Administrator' && @role.users.count == 1
+      
+      flash[:error] = "Cannot delete all administrators, you are trying to delete the last one"
+      redirect_to :action => 'index'
+      return
+    end
+    if @user.has_role?(@role.name) 
+      @user.roles.delete(@role) 
+    end 
+    redirect_to :action => 'index' 
   end 
 end 
   
