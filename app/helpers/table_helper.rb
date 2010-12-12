@@ -20,7 +20,7 @@ module TableHelper
     
     records.each { |record|
       _out << content_tag('tr', :class => cycle("odd","even")) do
-        block.call( record )
+        block.call( record ) if block_given?
       end
     }
 

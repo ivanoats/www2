@@ -53,5 +53,14 @@ Hosting.blueprint do
   password { Sham.name }
 end
 
+CartItem.blueprint do
+  name { Sham.word }
+  description { Sham.word }
+  unit_price { 1.75 }
+  quantity { 1 }
+end
+
+
+
 
 
