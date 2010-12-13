@@ -12,7 +12,7 @@ class ServersController < ApplicationController
     get_sorted_objects(params, :table_headings => [['Name', 'name'],
     ['IP Address', 'ip_address'], ['Whm User','whm_user']])
     
-    
+
   end
   
   def hostings

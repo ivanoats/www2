@@ -64,6 +64,14 @@ CartItem.blueprint do
   quantity { 1 }
 end
 
+Server.blueprint do 
+  name { Sham.word }
+  ip_address { Sham.word }
+  whm_user { Sham.word }
+  whm_pass { Sham.word }
+  
+end 
+
 
 
 
