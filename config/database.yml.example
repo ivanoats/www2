@@ -20,7 +20,7 @@ test:
   # Mysql Settings
   adapter: mysql
   encoding: utf8
-  database: www2_development
+  database: www2_test
   username: root
   password:
   
