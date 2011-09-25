@@ -5,13 +5,13 @@ class TicketMailer < ActionMailer::Base
     @body["ticket"]       = ticket
     ticket.department ||= "technical"
     if ticket.department == "technical"
-      @recipients = %w(support@sustainablewebsites.com ivanoats+support@gmail.com)
+      @recipients = %w(support@sustainablewebsites.com)
     else
-      @recipients = %w(ivan@sustainablewebsites.com ivanoats+sw@gmail.com)
+      @recipients = %w(ivan@sustainablewebsites.com)
     end
     @from       = ticket.email
     @headers["Reply-To"] = ticket.email
-    @headers["Sender"]  =  "sustainablewebsites.com" #"ivanoats@a2s23.a2hosting.com"
-    @headers["Return-path"] = "tickets@sustainablewebsites.com "#"ivanoats@a2s23.a2hosting.com"
+    @headers["Sender"]  =  "sustainablewebsites.com"
+    @headers["Return-path"] = "tickets@sustainablewebsites.com"
   end
 end
