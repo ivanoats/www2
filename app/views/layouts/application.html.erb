@@ -5,6 +5,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="google-site-verification" content="h8yhscuElaAyZOS96DEbyolx6DR-LSRFaQreFv0sCOE" />
+    <meta name="bitly-verification" content="39f120fe8fbe">
+    <meta property="fb:admins" content="608227278" />
 	<%= page_title %> 
 	<%= meta "description", meta_description %> 
 	<%= meta "keywords", meta_keywords %>
@@ -21,7 +23,7 @@
   
   <%= auto_discovery_link_tag(:rss, :controller => :articles, :action => 'index', :format => 'rss') %>
   <%= auto_discovery_link_tag(:rss, :controller => :articles, :action => 'index', :format => 'atom') %>
-  
+<script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>  
 </head>
 <body id="<%= controller.controller_name.to_s + "_" + controller.action_name.to_s %>">
   <div id="wrapper">
@@ -44,8 +46,9 @@
   		</ul>
   	</div><!--/splash-->
 	</div><!--/splash-wrap-->
-  	<% end #if splash on %>
-  	<div id="content">
+  	<% end %>
+  	<!-- content div -->
+    <div id="content">
   	    <%# if flash[:notice] -%> 
                     <div id="notice"><%= flash[:notice] %></div> 
                   <%# end -%> 
